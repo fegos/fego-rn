@@ -1,0 +1,27 @@
+{
+	"name": "fego-rn",
+	"version": "0.0.1",
+	"description": "基于 React Native 的移动开发库",
+	"homepage": "http://fe.hhtcex.com",
+	"author": "esky",
+	"keywords": [
+		"fego",
+		"react",
+		"react native",
+		"component",
+		"components",
+		"ui"
+	],
+	"repository": {
+		"type": "git",
+		"url": "http://github.com/fegos/fego-rn"
+	},
+	"bugs": {
+		"url": "http://github.com/fegos/fego-rn/issues"
+	},
+	"files": [],
+	"license": "MIT",
+	"dependencies": {},
+	"devDependencies": {},
+	"scripts": {}
+}
