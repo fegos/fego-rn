@@ -1,0 +1,239 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs Tests renders correctly 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderColor": "#ddd",
+          "flexDirection": "row",
+          "height": 42,
+        },
+        Object {
+          "borderBottomWidth": 0.5,
+          "borderTopWidth": 0,
+        },
+      ]
+    }
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel="tab1"
+      accessibilityTraits="button"
+      accessible={true}
+      hitSlop={undefined}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+          "paddingBottom": 0,
+        }
+      }
+      testID={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontSize": 15,
+            },
+            Object {
+              "color": "#108ee9",
+            },
+            Object {
+              "fontWeight": "bold",
+            },
+          ]
+        }
+      >
+        tab1
+      </Text>
+    </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel="tab2"
+      accessibilityTraits="button"
+      accessible={true}
+      hitSlop={undefined}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+          "paddingBottom": 0,
+        }
+      }
+      testID={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontSize": 15,
+            },
+            Object {},
+            Object {
+              "fontWeight": "normal",
+            },
+          ]
+        }
+      >
+        tab2
+      </Text>
+    </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel="tab3"
+      accessibilityTraits="button"
+      accessible={true}
+      hitSlop={undefined}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+          "paddingBottom": 0,
+        }
+      }
+      testID={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontSize": 15,
+            },
+            Object {},
+            Object {
+              "fontWeight": "normal",
+            },
+          ]
+        }
+      >
+        tab3
+      </Text>
+    </View>
+    <View
+      collapsable={undefined}
+      style={
+        Object {
+          "backgroundColor": "#108ee9",
+          "bottom": -1,
+          "height": 2,
+          "left": 0,
+          "position": "absolute",
+          "width": 250,
+        }
+      }
+    />
+  </View>
+  <RCTScrollView
+    alwaysBounceVertical={false}
+    automaticallyAdjustContentInsets={false}
+    directionalLockEnabled={true}
+    horizontal={true}
+    keyboardDismissMode="on-drag"
+    keyboardShouldPersistTaps="handled"
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    pagingEnabled={true}
+    scrollEnabled={true}
+    scrollEventThrottle={16}
+    scrollsToTop={false}
+    showsHorizontalScrollIndicator={false}
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "width": 750,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+          tab="tab1"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "width": 750,
+          }
+        }
+      >
+        <View
+          tab="tab2"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "width": 750,
+          }
+        }
+      >
+        <View
+          tab="tab3"
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

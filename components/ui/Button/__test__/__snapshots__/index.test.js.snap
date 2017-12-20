@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Tests renders correctly 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  collapsable={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#337ab7",
+      "borderColor": "#2e6da4",
+      "borderRadius": 3,
+      "borderWidth": 0.5,
+      "flexDirection": "row",
+      "height": 40,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 13,
+    }
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "color": "#FFF",
+            "fontSize": 16,
+            "textAlign": "center",
+          },
+          Object {},
+        ]
+      }
+    >
+      primary button
+    </Text>
+  </View>
+</View>
+`;

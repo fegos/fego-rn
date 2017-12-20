@@ -1,0 +1,294 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox Tests Checkbox group renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+    testID={undefined}
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#333",
+            "fontSize": 16,
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Array [
+            Object {
+              "color": "#333",
+              "fontSize": 16,
+              "paddingRight": 0,
+              "width": 20,
+            },
+            null,
+            null,
+          ],
+          Object {},
+          Object {
+            "fontFamily": "FontAwesome",
+          },
+        ]
+      }
+    >
+      square-o
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#333",
+            "flex": 1,
+            "fontSize": 14,
+          },
+          null,
+        ]
+      }
+    >
+      英语
+    </Text>
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+    testID={undefined}
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#333",
+            "fontSize": 16,
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Array [
+            Object {
+              "color": "#333",
+              "fontSize": 16,
+              "paddingRight": 0,
+              "width": 20,
+            },
+            null,
+            null,
+          ],
+          Object {},
+          Object {
+            "fontFamily": "FontAwesome",
+          },
+        ]
+      }
+    >
+      square-o
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#333",
+            "flex": 1,
+            "fontSize": 14,
+          },
+          null,
+        ]
+      }
+    >
+      语文
+    </Text>
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+    testID={undefined}
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#333",
+            "fontSize": 16,
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Array [
+            Object {
+              "color": "#333",
+              "fontSize": 16,
+              "paddingRight": 0,
+              "width": 20,
+            },
+            null,
+            null,
+          ],
+          Object {},
+          Object {
+            "fontFamily": "FontAwesome",
+          },
+        ]
+      }
+    >
+      square-o
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#333",
+            "flex": 1,
+            "fontSize": 14,
+          },
+          null,
+        ]
+      }
+    >
+      数学
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Checkbox Tests Checkbox item renders correctly 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hitSlop={undefined}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+  testID={undefined}
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#333",
+          "fontSize": 16,
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        Array [
+          Object {
+            "color": "#333",
+            "fontSize": 16,
+            "paddingRight": 0,
+            "width": 20,
+          },
+          null,
+          null,
+        ],
+        Object {},
+        Object {
+          "fontFamily": "FontAwesome",
+        },
+      ]
+    }
+  >
+    square-o
+  </Text>
+</View>
+`;

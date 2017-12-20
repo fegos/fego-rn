@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon Tests renders correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#333",
+        "fontSize": 16,
+        "fontStyle": "normal",
+        "fontWeight": "normal",
+      },
+      undefined,
+      Object {},
+      Object {
+        "fontFamily": "FontAwesome",
+      },
+    ]
+  }
+>
+  user
+</Text>
+`;

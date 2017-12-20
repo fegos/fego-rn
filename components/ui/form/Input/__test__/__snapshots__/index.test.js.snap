@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input Tests renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderBottomColor": "#999",
+        "borderBottomWidth": 0.5,
+        "flex": 1,
+        "flexDirection": "row",
+        "marginBottom": 0,
+        "marginLeft": 10,
+        "marginTop": 0,
+        "paddingRight": 10,
+      },
+      Object {
+        "borderBottomWidth": 0.5,
+      },
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#333",
+        "fontSize": 14,
+        "marginRight": 5,
+        "textAlignVertical": "center",
+        "width": 60,
+      }
+    }
+  >
+    label
+  </Text>
+  <TextInput
+    clearButtonMode="never"
+    defaultValue=""
+    editable={true}
+    keyboardType="default"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="placeholder"
+    secureTextEntry={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#FFF",
+          "flex": 1,
+          "fontSize": 14,
+          "height": 48,
+        },
+        Object {},
+      ]
+    }
+    underlineColorAndroid="transparent"
+  />
+</View>
+`;

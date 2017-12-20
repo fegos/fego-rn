@@ -1,0 +1,142 @@
+@import './common/index.less';
+@import './md.less';
+
+@mainColor: #a8864d;
+@asideWidth: 230px;
+@headerHeight: 64px;
+@footerHeight: 45px;
+@headerBg: #231f1f;
+@footerBg: #efefef;
+
+.activeLinkColor {
+	a{
+		font-weight: bold;
+		color: @mainColor;
+	}
+}
+
+#react-content {
+	height: 100%;
+}
+
+.wrap {
+	height: 100%;
+}
+
+#header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	background-color: @headerBg;
+	height: @headerHeight;
+	line-height: @headerHeight;
+	a {
+		display: block;
+		color: #fff;
+	}
+	.container {
+		min-width: 1000px;
+		margin: 0 auto;
+		padding: 0 4%;
+	}
+	.to-home {
+		font-size: 22px;
+	}
+	.nav-item {
+		float: left;
+		width: 80px;
+		padding: 0 10px;
+		text-align: center;
+		font-size: 16px;
+		a {
+			transition: all .3s ease-in-out;
+		}
+		&:hover {
+			.activeLinkColor;
+		}
+	}
+	.nav-item-active {
+		.activeLinkColor;
+	}
+}
+
+#main {
+	min-height: 100%;
+	padding-top: @headerHeight;
+	padding-bottom: @footerHeight;
+	box-sizing: border-box;
+	position: relative;
+	>.aside-line {
+		position: absolute;
+		width: 1px;
+		left: @asideWidth;
+		top: @headerHeight;
+		bottom: @footerHeight;
+		border-left: 1px solid #e9e9e9;
+	}
+	>aside {
+		box-sizing: border-box;
+		// border-right: 1px solid #e9e9e9;
+		width: @asideWidth;
+	}
+	>.content {
+		margin-left: @asideWidth - 1px;
+		// border-left: 1px solid #e9e9e9;
+		#page {
+			padding: 20px 40px;
+			.title {
+				font-size: 16px;
+				margin: 10px 0 30px;
+			}
+		}
+	}
+}
+
+#aside {
+	.menu {
+		padding: 10px 0;
+	}
+	.menu-item{
+		height: 42px;
+		line-height: 42px;
+		font-size: 12px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		transition: background .3s ease-in-out;
+		&:hover {
+			.activeLinkColor;
+		}
+		a {
+			display: block;
+			padding-left: 32px;
+			transition: all .3s ease-in-out;
+		}
+	}
+	.menu-item-active {
+		.activeLinkColor;
+		background: rgba(168, 134, 77, .1);
+		border-right: 2px solid @mainColor;
+		// &:after {
+		// 	content: " ";
+		// 	position: absolute;
+		// 	right: 0;
+		// 	top: 0;
+		// 	border-right: 2px solid @mainColor;
+		// }
+	}
+}
+
+#footer {
+	height: @footerHeight;
+	line-height: @footerHeight;
+	margin-top: 0 - @footerHeight;
+	font-size: 10px;
+	text-align: center;
+	color: #999;
+	background: @footerBg;
+	a {
+		color: #999;
+	}
+}

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag Tests renders correctly 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hitSlop={undefined}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FFF",
+        "borderColor": "#bbb",
+        "borderRadius": 3,
+        "borderWidth": 0.5,
+        "flexDirection": "row",
+        "overflow": "visible",
+        "paddingHorizontal": 5,
+        "paddingVertical": 5,
+      },
+      Object {},
+    ]
+  }
+  testID={undefined}
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#888",
+          "fontSize": 12,
+        },
+        Object {},
+        Object {},
+      ]
+    }
+  >
+    这是一个tag
+  </Text>
+</View>
+`;

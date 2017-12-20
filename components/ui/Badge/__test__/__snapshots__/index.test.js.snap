@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge Tests renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F05B48",
+      "borderRadius": 3,
+      "height": 6,
+      "width": 6,
+    }
+  }
+/>
+`;

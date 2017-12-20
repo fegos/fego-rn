@@ -1,0 +1,173 @@
+export default {
+	'ui/index': {
+		screen: require('./index').default
+	},
+	'ui/ActivityIndicator': {
+		screen: require('./ActivityIndicator').default,
+		navigationOptions: {
+			title: 'ActivityIndicator',
+		},
+	},
+	'ui/Badge': {
+		screen: require('./Badge').default,
+		navigationOptions: {
+			title: 'Badge',
+		},
+	},
+	'ui/Button': {
+		screen: require('./Button').default,
+		navigationOptions: {
+			title: 'Button',
+		},
+	},
+	'ui/Calendar': {
+		screen: require('./Calendar').default,
+		navigationOptions: {
+			title: 'Calendar',
+		},
+	},
+	'ui/Carousel': {
+		screen: require('./Carousel').default,
+		navigationOptions: {
+			title: 'Carousel',
+		},
+	},
+	'ui/DatePicker': {
+		screen: require('./DatePicker').default,
+		navigationOptions: {
+			title: 'DatePicker',
+		},
+	},
+	'ui/Form': {
+		screen: require('./Form').default,
+		navigationOptions: {
+			title: 'Form',
+		},
+	},
+	'ui/GesturePassword': {
+		screen: require('./GesturePassword').default,
+		navigationOptions: {
+			title: 'GesturePassword',
+		},
+	},
+	'ui/Icon': {
+		screen: require('./Icon').default,
+		navigationOptions: {
+			title: 'Icon',
+		},
+	},
+	'ui/List': {
+		screen: require('./List').default,
+		navigationOptions: {
+			title: 'List',
+		},
+	},
+	'ui/Modal': {
+		screen: require('./Modal').default,
+		navigationOptions: {
+			title: 'Modal',
+		},
+	},
+	'ui/MonthPicker': {
+		screen: require('./MonthPicker').default,
+		navigationOptions: {
+			title: 'MonthPicker',
+		},
+	},
+	'ui/Picker': {
+		screen: require('./Picker').default,
+		navigationOptions: {
+			title: 'Picker',
+		},
+	},
+	'ui/PickerView': {
+		screen: require('./PickerView').default,
+		navigationOptions: {
+			title: 'PickerView',
+		},
+	},
+	'ui/PieChart': {
+		screen: require('./PieChart').default,
+		navigationOptions: {
+			title: 'PieChart',
+		},
+	},
+	'ui/Popover': {
+		screen: require('./Popover').default,
+		navigationOptions: {
+			title: 'Popover',
+		},
+	},
+	'ui/Popup': {
+		screen: require('./Popup').default,
+		navigationOptions: {
+			title: 'Popup',
+		},
+	},
+	'ui/Progress': {
+		screen: require('./Progress').default,
+		navigationOptions: {
+			title: 'Progress',
+		},
+	},
+	'ui/RefreshView': {
+		screen: require('./RefreshView').default,
+		navigationOptions: {
+			title: 'RefreshView',
+		},
+	},
+	'ui/RefreshView/ListView': {
+		screen: require('./RefreshView/ListView').default,
+		navigationOptions: {
+			title: 'RefreshView',
+		},
+	},
+	'ui/Segment': {
+		screen: require('./Segment').default,
+		navigationOptions: {
+			title: 'Segment',
+		},
+	},
+	'ui/Slider': {
+		screen: require('./Slider').default,
+		navigationOptions: {
+			title: 'Slider',
+		},
+	},
+	'ui/Switch': {
+		screen: require('./Switch').default,
+		navigationOptions: {
+			title: 'Switch',
+		},
+	},
+	'ui/Tabs': {
+		screen: require('./Tabs').default,
+		navigationOptions: {
+			title: 'Tabs',
+		},
+	},
+	'ui/Tabs/RotateTabs': {
+		screen: require('./Tabs/RotateTabs').default,
+		navigationOptions: {
+			title: 'RotateTabs',
+		},
+	},
+	'ui/Tag': {
+		screen: require('./Tag').default,
+		navigationOptions: {
+			title: 'Tag',
+		},
+	},
+	'ui/Toast': {
+		screen: require('./Toast').default,
+		navigationOptions: {
+			title: 'Toast',
+		},
+	},
+	'ui/TestArt': {
+		screen: require('./TestArt').default,
+		navigationOptions: {
+			title: 'TestArt',
+		},
+	}
+}

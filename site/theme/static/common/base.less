@@ -1,0 +1,106 @@
+@import './normalize';
+/******************************************************************************************
+ * 基础通用样式
+ */
+/*  重设各标签默认样式 */
+html{
+	height:100%;
+	font-size: 12px;
+	color: #333;
+	background:#fff;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif;
+}
+body {
+	height: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+	margin:0;padding:0;
+}
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+	display:block;
+}
+/* HTML5 媒体文件跟 img 保持一致 */
+audio,canvas,video {
+	display: inline-block;*display: inline;*zoom: 1;
+}
+/* 去掉各Table  cell 的边距并让其边重合 */
+table{
+	border-collapse:collapse;border-spacing:0;
+}
+/* IE bug fixed: th 不继承 text-align*/
+th{
+	text-align:inherit;
+}
+/* 去除默认边框 */
+fieldset,img{
+	border:0;
+}
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe{
+	display:block;
+}
+/* 去掉 firefox 下此元素的边框 */
+abbr,acronym{
+	border:0;font-variant:normal;
+}
+/* 一致的 del 样式 */
+del {
+	text-decoration:line-through;
+}
+address,caption,cite,code,dfn,em,th,var,i,b {
+	font-style:normal;
+	font-weight:normal;
+}
+/* 去掉列表前的标识, li 会继承 */
+ol,ul {
+	list-style:none;
+}
+/* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+h1,h2,h3,h4,h5,h6,b {
+	font-size:100%;
+	// PingFang SC 字体的500和粗体差不多
+	// font-weight:500;
+	font-weight: normal;
+}
+q:before,q:after {
+	content:'';
+}
+/* 统一上标和下标 */
+sub, sup {
+	font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;
+}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+/* 原有reset，上下居中显示，并恢复正确的inline-block */
+img,input,select{
+	vertical-align:middle;
+	display:inline-block;
+}
+/* 去掉flash的虚线 */
+embed,object{
+	outline:none;
+}
+/* 为运行 Windows 8 的设备上的 Internet Explorer 10 触摸式浏览设置默认行为 */
+canvas {
+	-ms-touch-action: double-tap-zoom;
+}
+/* 默认不显示下划线，保持页面简洁 */
+ins,a {
+	text-decoration:none;
+}
+// 重置超链接默认色
+:any-link{
+	color: #333;
+}
+:-webkit-any-link{
+	color: #333;
+}
+.g-ctn {
+    width: 1190px;
+    margin: 0 auto;
+}
