@@ -65,9 +65,6 @@ exports[`Tabs Tests renders correctly 1`] = `
             Object {
               "color": "#108ee9",
             },
-            Object {
-              "fontWeight": "bold",
-            },
           ]
         }
       >
@@ -110,9 +107,6 @@ exports[`Tabs Tests renders correctly 1`] = `
               "fontSize": 15,
             },
             Object {},
-            Object {
-              "fontWeight": "normal",
-            },
           ]
         }
       >
@@ -155,9 +149,6 @@ exports[`Tabs Tests renders correctly 1`] = `
               "fontSize": 15,
             },
             Object {},
-            Object {
-              "fontWeight": "normal",
-            },
           ]
         }
       >

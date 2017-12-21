@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.0.1_0f6e4e61ba8015b6f5b7e93d7801125c14e2cc18.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="050f688115ea65a0292d8483a6ffe6bcdab1e2ef">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.0.1_44f23c6ae7ae3ee0528c3ad797ac4696542bbbf7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_13a728e6da8dad84f35f78b9b6bce71372857525.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.47.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="576b5113887747a7592650ae14d980e1c57983c4">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.47.2_8aae9412eb00b574d99900dd85245c98a904d0de.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1_6a667981aef8c6691925c850320d9b62594dc598.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_19053da1b64c8208cad44ac598ae3d05587977fa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5a61f17cd72e20aa4323cbf5f909b7c609619275">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.0.1_f621309f23442a9e334762817d2919c277d97cf8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_8eb865cf275d0ba5a704b7ad77e9da745dc7fdfd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d9c4402c3057225d80cbbbec52154e7a25b0ebdf">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.0.1_6ad9401c376cae17805dd306da4fbc2ba3e337db.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_5c6f26797099fc88af6b98baed98bea9da8f54c4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.47.2/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_82dcaa71f98ac09e90e4a626b97ecb7a7a58b6a3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1_d8ad0d7c6739b0ac2258f4580946ddeaea3edfcb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="cf836a435a496eb22ff2aa69aa1e619462549f81">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.0.1_75b1ae50ea3e9c26d29e4bb26b31415ef44a228f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.0.1_b1495fd02a26b6751905152932d78ba4285f0c17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ba9b39366b723ccff6359d1117332968e98a4aca">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.0.1_2dac1a12ea49ac1d974485c912180960c06338f0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_cb167e2ec5b88b5583b946480ed7576fa8782c8c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_82640bdbd6c9642adb0e4dcc4fd89d789dfe324d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_2f715f03ccc52f29f138277f3666c6861ea3f2a1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_1bc7811c77aede3018e8e97da61b595488262968.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_dd8ba7b35fcd4f63adaaba34aa41b11cab939cf5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2668e49e4e31c7d451b76a36009b902bf44e0d70">
+        <dex dex="/Users/yantao/Desktop/work/fego-rn/demo/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.0.1_7fbca5cc32c40b60e3f3d122e221279ae0843b53.jar" />
+    </item>
+
+</items>

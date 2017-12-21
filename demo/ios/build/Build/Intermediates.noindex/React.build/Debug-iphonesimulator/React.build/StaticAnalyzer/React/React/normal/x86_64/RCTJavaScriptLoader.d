@@ -1,0 +1,26 @@
+dependencies: \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTJavaScriptLoader.mm \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/ios/build/Build/Products/Debug-iphonesimulator/include/cxxreact/JSBundleType.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTMultipartDataTask.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTMultipartStreamReader.h \
+  /Users/yantao/Desktop/work/fego-rn/demo/node_modules/react-native/React/Base/RCTPerformanceLogger.h

@@ -1,0 +1,15 @@
+{
+  "presets": ["react-native"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "cwd": "babelrc",
+        "root": ["./"],
+        "alias": {
+          "fego-rn": "./components"
+        }
+      }
+    ]
+  ]
+}

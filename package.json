@@ -48,11 +48,11 @@
 	},
 	"scripts": {
 		"init": "yarn install --no-optional -s --registry=https://registry.npm.taobao.org",
-		"mock": "esky-mock -c example/mock/conf.js",
+		"mock": "esky-mock -c demo/mock/conf.js",
 		"site": "bisheng start -c site/bisheng.config.js",
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"ios": "react-native run-ios --project-path demo/ios",
 		"android": "react-native run-android --root demo",
-		"test": "jest --config jest.config.js --verbose"
+		"test": "jest --verbose --config jest.config.js"
 	}
 }

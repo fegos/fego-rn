@@ -1,6 +1,4 @@
 import UIComponent from './common/UIComponent'
-import * as native from './native'
-import * as nativeUI from './nativeUI'
 import * as ui from './ui'
 import * as util from './util'
 import './patch'
@@ -10,8 +8,6 @@ import './patch'
  */
 export {
 	UIComponent,
-	native,
-	nativeUI,
 	ui,
 	util
 }
