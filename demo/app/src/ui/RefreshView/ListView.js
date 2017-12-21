@@ -16,30 +16,20 @@ import {
 	AppRegistry
 } from 'react-native';
 
-// import PullRefreshScrollView from './PullRefreshScrollView';
-// import PullRefreshScrollView from './JBRefreshScrollView';
 import { RefreshView, RefreshConfig } from 'fego-rn'
-// import  PullRefreshScrollView from './PullView'
 
-export default class Projects extends Component {
+export default class Page extends Component {
 	constructor(props) {
 		super(props);
-
-		// JBRefreshConfig.bottomHeight = 100;
-		// JBRefreshConfig.loadMoreBackgroundColor='red';
-
 		var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 		this.data = ['我是一个cell', '我是一个cell', '我是一个cell', '我是一个cell', '我是一个cell', '我是一个cell', '我是一个cell', '我是一个cell', '我是一个cell', '我是一个cell'];
 		this.state = {
 			dataSource: ds.cloneWithRows(this.data),
 		}
-
 	}
 
 	onRefresh(PullRefresh) {
 		console.log('refresh');
-
-
 		setTimeout(function () {
 			PullRefresh.refreshed();
 		}, 5000);
@@ -64,22 +54,18 @@ export default class Projects extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				{/* <View style={styles.header}>
-				</View> */}
-				<ListView
-					renderScrollComponent={(props) =>
-						<RefreshView
-							onRefresh={(PullRefresh) => this.onRefresh(PullRefresh)}
-							onLoadMore={(PullRefresh) => this.onLoadmore(PullRefresh)}
-							useLoadMore={true}
-							{...props}
-						/>}
-					dataSource={this.state.dataSource}
-					renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
-					renderRow={(rowData) => <View style={styles.rowItem}><Text style={{ fontSize: 16 }}>{rowData}</Text></View>}
-				/>
+				<RefreshView
+					onRefresh={(PullRefresh) => this.onRefresh(PullRefresh)}
+					onLoadMore={(PullRefresh) => this.onLoadmore(PullRefresh)}
+					useLoadMore={true}
+				>
+					<ListView
+						dataSource={this.state.dataSource}
+						renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
+						renderRow={(rowData) => <View style={styles.rowItem}><Text style={{ fontSize: 16 }}>{rowData}</Text></View>}
+					/>
+				</RefreshView>
 			</View>
-
 		);
 	}
 }
@@ -99,10 +85,10 @@ const styles = StyleSheet.create({
 		height: 120,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: 'yellow'
+		backgroundColor: '#ccc'
 	},
 	separator: {
 		height: 1,
-		backgroundColor: '#CCCCCC',
+		backgroundColor: '#999',
 	},
 });

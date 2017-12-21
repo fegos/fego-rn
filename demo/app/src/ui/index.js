@@ -33,7 +33,7 @@ export default class Page extends Component {
 				{ title: '进度条 Progress', icon: 'tasks', page: 'ui/Progress' },
 				{ title: '单选框 Radio', icon: 'dot-circle-o', page: 'ui/Radio' },
 				{ title: '下拉刷新 RefreshView', icon: 'refresh', page: 'ui/RefreshView' },
-				{ title: '下拉刷新 RefreshView（嵌入 ListView 使用）', icon: 'refresh', page: 'ui/RefreshView/ListView' },
+				{ title: '下拉刷新 RefreshView2', icon: 'refresh', page: 'ui/RefreshView/ListView' },
 				{ title: '分段器 Segment', icon: 'sitemap', page: 'ui/Segment' },
 				{ title: '滑动器 Slider', icon: 'sliders', page: 'ui/Slider' },
 				{ title: '开关 Switch', icon:'toggle-on', page: 'ui/Switch' },

@@ -16,19 +16,18 @@ import {
     AppRegistry,
 } from 'react-native';
 
-import { PullRefreshScrollView } from 'fego-rn'
+import { RefreshView } from 'fego-rn'
 
-export default class Projects extends Component {
+export default class Page extends Component {
     constructor(props) {
         super(props);
-
     }
 
     onRefresh(){
         console.log('refresh');
         var self = this;
         setTimeout(function(){
-            self.refs.PullRefresh.onRefreshEnd();
+            self.refs.PullRefresh.refreshed();
         },2000);
 	}
 	
@@ -44,18 +43,15 @@ export default class Projects extends Component {
                 <View style={styles.header}>
                 </View>
 
-                <PullRefreshScrollView ref="PullRefresh" onRefresh={()=>this.onRefresh()}>
+                <RefreshView ref="PullRefresh" onRefresh={()=>this.onRefresh()}>
                     <View style={styles.scrollItem}><Text>Scroll1</Text></View>
                     <View style={styles.scrollItem}><Text>Scroll2</Text></View>
                     <View style={styles.scrollItem}><Text>Scroll3</Text></View>
                     <View style={styles.scrollItem}><Text>Scroll4</Text></View>
                     <View style={styles.scrollItem}><Text>Scroll5</Text></View>
                     <View style={styles.scrollItem}><Text>Scroll6</Text></View>
-                </PullRefreshScrollView>
-
-
+                </RefreshView>
             </View>
-
         );
     }
 }
