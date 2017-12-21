@@ -7,11 +7,9 @@ import {
 	View,
 	Text,
 	Dimensions,
-	NativeModules, Platform
+	Platform
 } from 'react-native'
 import { GesturePassword } from 'fego-rn'
-
-var customUtils = NativeModules.CustomUtils;
 
 export default class GesturePasswordDemo extends Component {
 
@@ -34,11 +32,6 @@ export default class GesturePasswordDemo extends Component {
 		//判断屏幕的状态栏和导航栏是否存在，以便计算高度
 		const { state } = this.props.navigation;
 		this.state.navigationHeight = state ? 44 : 0;
-		if (Platform.OS === 'ios') {
-			customUtils.isStatusBarDisplay(show => {
-				this.setState({ statusBarHeight: show ? 20 : 0, })
-			});
-		}
 	}
 
 	componentDidMount() {
