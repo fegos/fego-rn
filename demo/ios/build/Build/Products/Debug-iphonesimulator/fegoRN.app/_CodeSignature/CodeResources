@@ -6,7 +6,11 @@
 	<dict>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
-		DnBEYwsJWivaVhGYDvuUgn9PLRU=
+		dDrBin1+M6K7n+qshBMEpimKys0=
+		</data>
+		<key>FontAwesome.ttf</key>
+		<data>
+		E7HqtlqYPHpzvHmXxHnWaUP3xss=
 		</data>
 		<key>Frameworks/IDEBundleInjection.framework/IDEBundleInjection</key>
 		<data>
@@ -51,7 +55,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		7x0AU0BSoCfGAAs5d/rxN9jUEJI=
+		ZaCIW6lRk6v+2R4ON4jhl5U1h34=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -77,6 +81,10 @@
 		<data>
 		OVeMdHPj6KXCXeRf+GK3JbenGkU=
 		</data>
+		<key>entypo.ttf</key>
+		<data>
+		R4cKZ91Qhxdl95nKqX2ochnuR8U=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
@@ -84,11 +92,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			DnBEYwsJWivaVhGYDvuUgn9PLRU=
+			dDrBin1+M6K7n+qshBMEpimKys0=
 			</data>
 			<key>hash2</key>
 			<data>
-			ipWsTbV8s+Ea2Fe+KLPD8LZ4jc81oMKkal17UZOkrJA=
+			OMbZsQD3cIclhOlSS0TH14DBh6qARy+/f+U6fslaF5s=
+			</data>
+		</dict>
+		<key>FontAwesome.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			E7HqtlqYPHpzvHmXxHnWaUP3xss=
+			</data>
+			<key>hash2</key>
+			<data>
+			qljzPyOaD7AvXHpsRcBD16msmgkzNYBmlOzW1O3A1qg=
 			</data>
 		</dict>
 		<key>Frameworks/IDEBundleInjection.framework/IDEBundleInjection</key>
@@ -245,6 +264,17 @@
 			<key>hash2</key>
 			<data>
 			5h9pqxvcN+X0ha4GH4EK09ebc9nIyOP/sabtcG1HNXc=
+			</data>
+		</dict>
+		<key>entypo.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			R4cKZ91Qhxdl95nKqX2ochnuR8U=
+			</data>
+			<key>hash2</key>
+			<data>
+			3QhJoVkfiNp5N7I/kiQYpc7FTgdeCePMyo/rYgFvqoI=
 			</data>
 		</dict>
 	</dict>

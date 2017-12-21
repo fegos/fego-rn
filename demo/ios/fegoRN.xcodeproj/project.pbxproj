@@ -24,6 +24,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		B95CBB6D1FEB58E600785CDE /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B95CBB6C1FEB58E600785CDE /* FontAwesome.ttf */; };
 		B95CBB6F1FEB58F100785CDE /* entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B95CBB6E1FEB58F100785CDE /* entypo.ttf */; };
+		B95CBB7A1FEBB83400785CDE /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B95CBB761FEBB81E00785CDE /* libART.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,6 +231,20 @@
 			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
 			remoteInfo = "double-conversion-tvOS";
 		};
+		B95CBB751FEBB81E00785CDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B95CBB701FEBB81D00785CDE /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = ART;
+		};
+		B95CBB771FEBB81E00785CDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B95CBB701FEBB81D00785CDE /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 323A12871E5F266B004975B8;
+			remoteInfo = "ART-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -256,6 +271,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		B95CBB6C1FEB58E600785CDE /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		B95CBB6E1FEB58F100785CDE /* entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = entypo.ttf; sourceTree = "<group>"; };
+		B95CBB701FEBB81D00785CDE /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B95CBB7A1FEBB83400785CDE /* libART.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -411,6 +428,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B95CBB701FEBB81D00785CDE /* ART.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -444,6 +462,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* fegoRNTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				B95CBB791FEBB83400785CDE /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -455,6 +474,22 @@
 				13B07F961A680F5B00A75B9A /* fegoRN.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B95CBB711FEBB81D00785CDE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B95CBB761FEBB81E00785CDE /* libART.a */,
+				B95CBB781FEBB81E00785CDE /* libART-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B95CBB791FEBB83400785CDE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -499,6 +534,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = B95CBB711FEBB81D00785CDE /* Products */;
+					ProjectRef = B95CBB701FEBB81D00785CDE /* ART.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -753,6 +792,20 @@
 			fileType = archive.ar;
 			path = "libdouble-conversion.a";
 			remoteRef = B95CBB541FEB50E500785CDE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B95CBB761FEBB81E00785CDE /* libART.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libART.a;
+			remoteRef = B95CBB751FEBB81E00785CDE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B95CBB781FEBB81E00785CDE /* libART-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libART-tvOS.a";
+			remoteRef = B95CBB771FEBB81E00785CDE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
