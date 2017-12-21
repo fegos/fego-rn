@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View, ScrollView } from 'react-native'
-import { List, ListItem } from 'fego-rn'
+import { List } from 'fego-rn'
 import Style from './Style'
 
+const ListItem = List.ListItem
 export default class Page extends Component {
 	constructor(props){
 		super(props)

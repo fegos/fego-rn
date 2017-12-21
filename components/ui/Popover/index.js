@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import Item from './Item';
 import UIComponent from '../../common/UIComponent';
-import { Modal } from '../modal';
+import Modal from '../Modal';
 
 const { width, height } = Dimensions.get('window')
 const { Shape, Path, Surface } = ART;

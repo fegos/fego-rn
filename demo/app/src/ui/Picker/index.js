@@ -6,7 +6,9 @@ import {
 	Text,
 	Platform
 } from 'react-native'
-import { Picker, List, ListItem } from 'fego-rn'
+import { Picker, List } from 'fego-rn'
+
+const ListItem = List.ListItem;
 
 const pickerData1 = [[{
 	label: '2011年',

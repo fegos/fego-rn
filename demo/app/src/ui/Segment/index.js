@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, View } from 'react-native'
 import { Style } from '../../../common'
-import { List, ListItem, Segment } from 'fego-rn'
+import { List, Segment } from 'fego-rn'
+
+const ListItem = List.ListItem;
 
 export default class Page extends Component {
 	static navigationOptions = {

@@ -14,16 +14,16 @@ export default class Page extends Component {
 	render() {
 		return (
 			<ScrollView style={Style.container}>
-				<Text style={Style.text} >slider value</Text>
-				<Slider value={this.state.value} onValueChange={(value) => this.setState({ value })} />
+				<Text style={Style.title} >slider value</Text>
 				<Text style={Style.text}>Value: {this.state.value}</Text>
-				<Text style={Style.text}>type = circle</Text>
+				<Slider value={this.state.value} onValueChange={(value) => this.setState({ value })} />
+				<Text style={Style.title}>type = circle</Text>
 				<Slider type='circle' value={20} />
-				<Text style={Style.text}>type = square</Text>
+				<Text style={Style.title}>type = square</Text>
 				<Slider type='square' value={30} />
-				<Text style={Style.text}>size = large</Text>
+				<Text style={Style.title}>size = large</Text>
 				<Slider size='large' value={40} />
-				<Text style={Style.text}>size = small</Text>
+				<Text style={Style.title}>size = small</Text>
 				<Slider size='small' value={50} />
 			</ScrollView>
 		)

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, View, Animated } from 'react-native'
 import { Style } from '../../../common'
-import { List, ListItem, Popup, Button, Checkbox, Icon, Toast, Dialog } from 'fego-rn'
+import { List, Popup, Button, Checkbox, Icon, Toast, Dialog } from 'fego-rn'
+
+const ListItem = List.ListItem;
 
 export default class Page extends Component {
 

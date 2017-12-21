@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ScrollView, View, Text } from 'react-native'
 import { Style } from '../../../common'
-import { ActivityIndicator, Button } from 'fego-rn'
+import { ActivityIndicator } from 'fego-rn'
 export default class Page extends Component {
 	static navigationOptions = {
 		title: '活动指示器'

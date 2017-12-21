@@ -32,16 +32,22 @@ export default {
 			title: 'Carousel',
 		},
 	},
+	'ui/Checkbox': {
+		screen: require('./Checkbox').default,
+		navigationOptions: {
+			title: 'Checkbox',
+		},
+	},
 	'ui/DatePicker': {
 		screen: require('./DatePicker').default,
 		navigationOptions: {
 			title: 'DatePicker',
 		},
 	},
-	'ui/Form': {
-		screen: require('./Form').default,
+	'ui/Dialog': {
+		screen: require('./Dialog').default,
 		navigationOptions: {
-			title: 'Form',
+			title: 'Dialog',
 		},
 	},
 	'ui/GesturePassword': {
@@ -54,6 +60,12 @@ export default {
 		screen: require('./Icon').default,
 		navigationOptions: {
 			title: 'Icon',
+		},
+	},
+	'ui/Input': {
+		screen: require('./Input').default,
+		navigationOptions: {
+			title: 'Input',
 		},
 	},
 	'ui/List': {
@@ -108,6 +120,12 @@ export default {
 		screen: require('./Progress').default,
 		navigationOptions: {
 			title: 'Progress',
+		},
+	},
+	'ui/Radio': {
+		screen: require('./Radio').default,
+		navigationOptions: {
+			title: 'Radio',
 		},
 	},
 	'ui/RefreshView': {

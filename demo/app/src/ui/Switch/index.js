@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, View } from 'react-native'
 import { Style } from '../../../common'
-import { List, ListItem, Switch } from 'fego-rn'
+import { List, Switch } from 'fego-rn'
+
+const ListItem = List.ListItem;
 
 export default class Page extends Component {
 	static navigationOptions = {
@@ -21,7 +23,7 @@ export default class Page extends Component {
 	render() {
 		return (
 			<ScrollView style={Style.container}>
-				<Text style={Style.title}>Checkbox</Text>
+				<Text style={Style.title}>Switch</Text>
 				<List>
 					<ListItem>
 						<Switch defaultActive={true} disabled={true} /> 

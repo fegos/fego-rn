@@ -16,7 +16,7 @@ export default class Page extends Component {
 		super(props);
 		this.state = {
 			horizontal: false,
-			activeKey: 'fivedays',
+			activeKey: 'tab2',
 		};
 	}
 
@@ -90,71 +90,71 @@ export default class Page extends Component {
 		}
 
 		let tabView = (
-			<View style={{ height: 250, width: horizontal ? height : width}}>
+			<View style={[Style.container, { height: 250, width: horizontal ? height : width}]}>
 				<Tabs
 					styles={TabStyles}
 					activeKey={this.state.activeKey}
 					onChange={this._onChange}
 				>
-					<Tabs.TabPane tab='分时' key='timeline'>
+					<Tabs.TabPane tab='tab1' key='tab1'>
 						<View style={viewStyle} >
 							<TouchableWithoutFeedback onPress={this._handleDoubleClick}>
 								<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-									<Text>分时</Text>
+									<Text>tab1, 单击切换横竖屏</Text>
 								</View>
 							</TouchableWithoutFeedback>
 						</View>
 					</Tabs.TabPane>
-					<Tabs.TabPane tab='5日' key='fivedays'>
+					<Tabs.TabPane tab='tab2' key='tab2'>
 						<View style={viewStyle} >
 							<TouchableWithoutFeedback onPress={this._handleDoubleClick}>
 								<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-									<Text>5日</Text>
+									<Text>tab2, 单击切换横竖屏</Text>
 								</View>
 							</TouchableWithoutFeedback>
 						</View>
 					</Tabs.TabPane>
-					<Tabs.TabPane tab='日k' key='rik'>
+					<Tabs.TabPane tab='tab3' key='tab3'>
 						<View style={viewStyle} >
 							<TouchableWithoutFeedback onPress={this._handleDoubleClick}>
 								<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-									<Text>日k</Text>
+									<Text>tab3, 单击切换横竖屏</Text>
 								</View>
 							</TouchableWithoutFeedback>
 						</View>
 					</Tabs.TabPane>
-					<Tabs.TabPane tab='分k' key='fenk'>
+					<Tabs.TabPane tab='tab4' key='tab4'>
 						<View style={viewStyle} >
 							<TouchableWithoutFeedback onPress={this._handleDoubleClick}>
 								<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-									<Text>分k</Text>
+									<Text>tab4, 单击切换横竖屏</Text>
 								</View>
 							</TouchableWithoutFeedback>
 						</View>
 					</Tabs.TabPane>
-					<Tabs.TabPane tab='周k' key='zhouk'>
+					<Tabs.TabPane tab='tab5' key='tab5'>
 						<View style={viewStyle} >
 							<TouchableWithoutFeedback onPress={this._handleDoubleClick}>
 								<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-									<Text>周k</Text>
+									<Text>tab5, 单击切换横竖屏</Text>
 								</View>
 							</TouchableWithoutFeedback>
 						</View>
 					</Tabs.TabPane>
-					<Tabs.TabPane tab='月k' key='yuek'>
+					<Tabs.TabPane tab='tab6' key='tab6'>
 						<View style={viewStyle} >
 							<TouchableWithoutFeedback onPress={this._handleDoubleClick}>
 								<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-									<Text>月k</Text>
+									<Text>tab6, 单击切换横竖屏</Text>
 								</View>
 							</TouchableWithoutFeedback>
 						</View>
 					</Tabs.TabPane>
-					<Tabs.TabPane tab='年k' key='niank'>
+					<Tabs.TabPane tab='tab7' key='tab7'>
 						<View style={viewStyle} >
 							<TouchableWithoutFeedback onPress={this._handleDoubleClick}>
 								<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-									<Text>年k</Text>
+									<Text>tab7, 单击切换横竖屏</Text>
 								</View>
 							</TouchableWithoutFeedback>
 						</View>

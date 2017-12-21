@@ -6,7 +6,9 @@ import {
 	Text,
 	Platform
 } from 'react-native'
-import { MonthPicker, List, ListItem, Popup } from 'fego-rn'
+import { MonthPicker, List, Popup } from 'fego-rn'
+
+const ListItem = List.ListItem;
 
 // 组件静态方法生成 从 startMonth 到昨天所在月份的可选数组
 // startMonth 目前是随意写的 201609

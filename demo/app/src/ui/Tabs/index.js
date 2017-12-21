@@ -13,7 +13,7 @@ export default class Page extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeKey: '3',
+			activeKey: 'tab3',
 		};
 	}
 
@@ -23,9 +23,6 @@ export default class Page extends Component {
 
 	_onAnimationEnd = (key, tab) => {
 		console.log('ani end and start wait==========', key, tab);
-		// for (let i = 0; i < 5000; i++) {
-		// 	console.log(1);
-		// }
 	}
 
 	_onChange = (key, tab) => {
@@ -36,7 +33,7 @@ export default class Page extends Component {
 	}
 
 	render() {
-		let keys = ['分时', '5日', '日k', '分k', '1', '2', '3', '4', '5'];
+		let keys = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5'];
 		let tabs = [];
 		for (let tab in keys) {
 			let _key = keys[tab];
@@ -48,46 +45,20 @@ export default class Page extends Component {
 
 		return (
 			<ScrollView style={Style.container}>
-				<Text style={Style.title}>红色背景的 tab 通过调用 onAnimationEnd 在 tab 动画结束后做一些操作</Text>
-				<View style={{ height: 35, backgroundColor: 'red' }}>
+				<Text style={Style.title}>通过调用 onAnimationEnd 可以在 tab 动画结束后做一些操作</Text>
+				<View style={{ height: 35, }}>
 					<View style={{ height: StyleSheet.hairlineWidth, backgroundColor: 'rgba(255,255,255,0.15)' }} />
-					{/*<View style={{ height: 35 }}>*/}
 						<Tabs
-							defaultActiveKey='3'
+							defaultActiveKey='tab3'
 							onTabClick={this._onTabClick}
 							onAnimationEnd={this._onAnimationEnd}
 							styles={TabStyles}
-							textColor='rgba(255,255,255,0.5)'
-							activeTextColor='#FFFFFF'
-							underlineColor='transparent'
-							activeUnderlineColor='#FFFFFF'
+							textColor='#333'
 						>
 							{tabs}
 						</Tabs>
-					{/*</View>*/}
 					<View style={{ height: StyleSheet.hairlineWidth, backgroundColor: 'rgba(255,255,255,0.15)' }} />
 				</View>
-
-				<View style={{ marginTop: 50, height: 35, backgroundColor: 'red' }}>
-					<View style={{ height: StyleSheet.hairlineWidth, backgroundColor: 'rgba(255,255,255,0.15)' }} />
-					{/*<View style={{ height: 35 }}>*/}
-						<Tabs
-							activeKey={this.state.activeKey}
-							onChange={this._onChange}
-							onTabClick={this._onTabClick}
-							onAnimationEnd={this._onAnimationEnd}
-							styles={TabStyles}
-							textColor='rgba(255,255,255,0.5)'
-							activeTextColor='#FFFFFF'
-							underlineColor='transparent'
-							activeUnderlineColor='#FFFFFF'
-						>
-							{tabs}
-						</Tabs>
-					{/*</View>*/}
-					<View style={{ height: StyleSheet.hairlineWidth, backgroundColor: 'rgba(255,255,255,0.15)' }} />
-				</View>
-
 				<Ori />
 			</ScrollView>
 		);
@@ -98,8 +69,8 @@ class Ori extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeKey1: '日k',
-			activeKey2: '分k',
+			activeKey1: 'tab1',
+			activeKey2: 'tab2',
 		};
 	}
 
@@ -111,7 +82,7 @@ class Ori extends Component {
 	}
 
 	render() {
-		let keys = ['分时', '5日', '日k', '分k', '1', '2', '3', '4', '5'];
+		let keys = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5', 'tab6'];
 		let tabs = [];
 		for (let tab in keys) {
 			let _key = keys[tab];
@@ -123,9 +94,9 @@ class Ori extends Component {
 		return (
 			<ScrollView style={{marginTop: 50}}>
 				<Text style={Style.title}>使用非受控属性，默认显示第一个 tab</Text>
-				<View style={{ height: 200 }}>
+				<View style={{ height: 100 }}>
 					<Tabs
-						styles={TabStyles2}
+						styles={TabStyles}
 						textColor='blue'
 						activeTextColor='yellow'
 						underlineColor='red'
@@ -135,10 +106,10 @@ class Ori extends Component {
 					</Tabs>
 				</View>
 
-				<Text style={Style.title}>使用非受控属性 defaultActiveKey = '5日'</Text>
-				<View style={{ height: 200 }}>
+				<Text style={Style.title}>使用非受控属性 defaultActiveKey = 'tab2'</Text>
+				<View style={{ height: 100 }}>
 					<Tabs
-						defaultActiveKey='5日'
+						defaultActiveKey='tabs'
 						styles={TabStyles}
 					>
 						{tabs}
@@ -146,7 +117,7 @@ class Ori extends Component {
 				</View>
 
 				<Text style={Style.title}>使用受控属性 activeKey 需搭配 onChange 维护 activeKey 值，不搭配 onChange 的错误示例</Text>
-				<View style={{ height: 200 }}>
+				<View style={{ height: 100 }}>
 					<Tabs
 						styles={TabStyles}
 						activeKey={this.state.activeKey1}
@@ -156,7 +127,7 @@ class Ori extends Component {
 				</View>
 
 				<Text style={Style.title}>使用受控属性 activeKey 搭配 onChange 维护 activeKey 值</Text>
-				<View style={{ height: 200 }}>
+				<View style={{ height: 100 }}>
 					<Tabs
 						styles={TabStyles}
 						activeKey={this.state.activeKey2}
@@ -167,59 +138,59 @@ class Ori extends Component {
 				</View>
 
 				<Text style={Style.title}>滚动的 tabBar</Text>
-				<View style={{ height: 200 }}>
+				<View style={{ height: 100 }}>
 					<Tabs
 						styles={TabStyles3}
-						defaultActiveKey='fenk'
+						defaultActiveKey='tab1'
 					>
-						<Tabs.TabPane tab='分时' key='timeline'>
+						<Tabs.TabPane tab='tab1' key='tab1'>
 							<View style={viewStyle}>
-								<Text>分时</Text>
+								<Text>tab1</Text>
 							</View>
 						</Tabs.TabPane>
-						<Tabs.TabPane tab='5日' key='fivedays'>
+						<Tabs.TabPane tab='tab2' key='tab2'>
 							<View style={viewStyle}>
-								<Text>5日</Text>
+								<Text>tab2</Text>
 							</View>
 						</Tabs.TabPane>
-						<Tabs.TabPane tab='日k' key='rik'>
+						<Tabs.TabPane tab='tab3' key='tab3'>
 							<View style={viewStyle}>
-								<Text>日k</Text>
+								<Text>tab3</Text>
 							</View>
 						</Tabs.TabPane>
-						<Tabs.TabPane tab='分k' key='fenk'>
+						<Tabs.TabPane tab='tab4' key='tab4'>
 							<View style={viewStyle}>
-								<Text>分k</Text>
+								<Text>tab4</Text>
 							</View>
 						</Tabs.TabPane>
-						<Tabs.TabPane tab='周k' key='zhouk'>
+						<Tabs.TabPane tab='tab5' key='tab5'>
 							<View style={viewStyle}>
-								<Text>周k</Text>
+								<Text>tab5</Text>
 							</View>
 						</Tabs.TabPane>
-						<Tabs.TabPane tab='月k' key='yuek'>
+						<Tabs.TabPane tab='tab6' key='tab6'>
 							<View style={viewStyle}>
-								<Text>月k</Text>
+								<Text>tab6</Text>
 							</View>
 						</Tabs.TabPane>
-						<Tabs.TabPane tab='年k' key='niank'>
+						<Tabs.TabPane tab='tab7' key='tab7'>
 							<View style={viewStyle}>
-								<Text>年k</Text>
+								<Text>tab7</Text>
 							</View>
 						</Tabs.TabPane>
-						<Tabs.TabPane tab='a' key='a'>
+						<Tabs.TabPane tab='tab8' key='tab8'>
 							<View style={viewStyle}>
-								<Text>a</Text>
+								<Text>tab8</Text>
 							</View>
 						</Tabs.TabPane>
-						<Tabs.TabPane tab='b' key='b'>
+						<Tabs.TabPane tab='tab9' key='tab9'>
 							<View style={viewStyle}>
-								<Text>b</Text>
+								<Text>tab9</Text>
 							</View>
 						</Tabs.TabPane>
-						<Tabs.TabPane tab='c' key='c'>
+						<Tabs.TabPane tab='tab10' key='tab10'>
 							<View style={viewStyle}>
-								<Text>c</Text>
+								<Text>tab10</Text>
 							</View>
 						</Tabs.TabPane>
 					</Tabs>
@@ -239,21 +210,6 @@ const TabStyles = {
 	},
 	activeUnderline: {
 		height: 3,
-	}
-}
-const TabStyles2 = {
-	tab: {
-		width: tabWidth,
-		backgroundColor: 'transparent',
-	},
-	bar: {
-		width: tabWidth * 9,
-		height: 34,
-	},
-	activeUnderline: {
-		height: 3,
-		width: 50,
-		marginLeft: 25
 	}
 }
 const TabStyles3 = {

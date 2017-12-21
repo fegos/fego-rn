@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, Platform } from 'react-native'
-import { List, ListItem, DatePicker, Popup } from 'fego-rn'
-
+import { List, DatePicker, Popup } from 'fego-rn'
+const ListItem = List.ListItem;
 export default class Page extends Component {
 	constructor(props) {
 		super(props)

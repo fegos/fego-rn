@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { ScrollView, View, Text } from 'react-native'
 import { Style } from '../../../common'
-import { List, ListItem,Button } from 'fego-rn'
+import { List, Button } from 'fego-rn'
+
+const ListItem = List.ListItem;
+
 export default class Page extends Component {
 	static navigationOptions = {
 		title: '清单List',

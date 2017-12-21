@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, View, StyleSheet } from 'react-native'
 import { Style } from '../../../common'
-import { Toast, List, ListItem, Dialog, Button, Tag } from 'fego-rn'
+import { Toast, List, Dialog, Button, Tag } from 'fego-rn'
+
+const ListItem = List.ListItem;
 
 export default class Page extends Component {
 	showToast() {
