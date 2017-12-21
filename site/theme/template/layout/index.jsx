@@ -16,7 +16,7 @@ export default class Layout extends Component {
 	render() {
 		let { themeConfig, location, children, picked } = this.props,
 			{ pathname } = location;
-console.log(picked)
+
 		return (
 			<div className='wrap'>
 				<Header themeConfig={themeConfig} location={location} />

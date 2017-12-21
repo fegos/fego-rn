@@ -45,15 +45,6 @@ module.exports = {
 			path: '/components/ui/:children',
 			component: component
 		}, {
-			path: '/components/ui/form/:children',
-			component: component
-		}, {
-			path: '/components/ui/picker/:children',
-			component: component
-		}, {
-			path: '/components/ui/modal/:children',
-			component: component
-		}, {
 			path: '/components/util',
 			component: componentIndex
 		}, {
