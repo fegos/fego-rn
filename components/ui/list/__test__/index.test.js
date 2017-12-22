@@ -2,8 +2,10 @@ import React from 'react'
 import { Text } from 'react-native'
 import Renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
-import { List, ListItem } from '../index'
+import List from '../index'
 import Icon from '../../Icon'
+
+const ListItem = List.ListItem;
 
 describe('List Tests', () => {
 	describe('List test', () => {
