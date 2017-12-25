@@ -4,7 +4,7 @@
 	"description": "基于 React Native 的移动开发库",
 	"homepage": "http://fe.hhtcex.com",
 	"author": "esky",
-	"main": "index.js",
+	"main": "components/index.js",
 	"keywords": [
 		"fego",
 		"react",
