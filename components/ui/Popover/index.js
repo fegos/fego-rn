@@ -73,7 +73,7 @@ export default class Popover extends UIComponent {
 		let child = React.Children.map(this.props.children, child => child );
 		this.hasOneChild = child.length === 1
 		if (!this.hasOneChild) {
-			console.log('Popover 接收且仅接收一个子元素')
+			console.warn('Popover 接收且仅接收一个子元素')
 		}
 	}
 	_measureContainer = (visible = false) => {
@@ -240,7 +240,6 @@ export default class Popover extends UIComponent {
 		let { triangleHeight, triangleWidth, placement } = this.props,
 			path;
 		
-		// 不支持 startsWidth
 		if (placement.indexOf('top') === 0) {
 			path = new Path()
 				.moveTo(0, 0)
@@ -270,10 +269,8 @@ export default class Popover extends UIComponent {
 		return path;
 	}
 	_getSurfaceSize() {
-		let { triangleHeight, triangleWidth, placement } = this.props,
-			surfaceSize;
+		let { triangleHeight, triangleWidth, placement } = this.props;
 		
-		// 不支持 startsWidth
 		if (placement.indexOf('top') === 0 || placement.indexOf('bottom') === 0) {
 			return {
 				width: triangleWidth,
@@ -343,7 +340,7 @@ export default class Popover extends UIComponent {
 					{cnt}
 				</View>
 				{showTriangle ? (
-					<View style={[{position: 'absolute'}, trianglePos]}>
+					<View style={[{position: 'absolute', backgroundColor: 'transparent'}, trianglePos]}>
 						<Surface {...surfaceSize}>
 							<Shape d={path} fill={style.overlayContainer.backgroundColor} />
 						</Surface>
