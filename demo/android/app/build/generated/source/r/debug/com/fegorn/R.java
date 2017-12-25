@@ -2024,6 +2024,8 @@ containing a value of this type.
         public static final int Animation_AppCompat_Dialog=0x7f09007c;
         public static final int Animation_AppCompat_DropDownUp=0x7f09007d;
         public static final int Animation_Catalyst_RedBox=0x7f09007e;
+        /**  Customize your theme here. 
+         */
         public static final int AppTheme=0x7f09007f;
         public static final int Base_AlertDialog_AppCompat=0x7f090080;
         public static final int Base_AlertDialog_AppCompat_Light=0x7f090081;

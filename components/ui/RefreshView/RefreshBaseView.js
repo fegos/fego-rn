@@ -505,14 +505,14 @@ export default class JBRefreshBaseView extends Component {
 	}
 
 	renderNormalContent() {
-		let type = this.props.styleType + '_pulling';
+		// let type = this.props.styleType + '_pulling';
 		return (
 			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 				{
 					this.imageViewArray.map((value, index) => {
 						return (
 							<Image
-								source={{ uri: value, bundle: type }}
+								source={value}
 								ref={'topImage' + index}
 								key={index}
 								style={{
@@ -540,14 +540,14 @@ export default class JBRefreshBaseView extends Component {
 		return this.props.customView;
 	}
 	renderBottomContent() {
-		let type = this.props.styleType + '_loading';
+		// let type = this.props.styleType + '_loading';
 		return (
 			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 				{
 					this.imageBottomViewArray.map((value, index) => {
 						return (
 							<Image
-								source={{ uri: value, bundle: type }}
+								source={value}
 								ref={'bottomImage' + index}
 								key={index}
 								style={{
