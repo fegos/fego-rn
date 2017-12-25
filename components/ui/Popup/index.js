@@ -120,7 +120,6 @@ export default class Popup extends UIComponent {
 	_getPosition(visible, aniIn, aniOut) {
 		const { aniOutFn } = this.props;
 		aniOut = this._getAniOut(aniIn, aniOut);
-		console.log(this.closeType, aniIn, aniOut)
 		switch (visible ? aniIn : aniOut) {
 			case 'bottom':
 				return visible ? 0 : height;

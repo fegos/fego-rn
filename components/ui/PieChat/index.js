@@ -60,16 +60,13 @@ export default class PieChat extends Component {
 	// }
 
 	_animations = () => {
-
 		var animatedArray = [];
 		for (var index = 0; index < this.props.percentArray.length; index++) {
 			animatedArray.push(Animated.timing(this.state.animationArray[index], {
 				duration: this.props.duration,
 				toValue: 10
 			}));
-
 		}
-		// console.log('animation');
 		Animated.sequence(animatedArray).start();
 	}
 

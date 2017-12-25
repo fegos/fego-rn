@@ -119,8 +119,6 @@ export default class Progress extends UIComponent {
 		if (br && br < h / 2) {
 			br = h / 2;
 		}
-		// console.log(curStyle);
-		// console.log('border width: ', bw, 'border radius: ', br);
 
 		const outerStyle = [
 			curStyle.container,

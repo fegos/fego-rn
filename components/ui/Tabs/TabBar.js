@@ -72,7 +72,6 @@ export default class DefaultTabBar extends Component {
 					duration: 350
 				}
 			).start( () => {
-				console.log('tabbar scroll end')
 				this._handler = null;
 				this.props.onAnimationEnd(index)
 			})

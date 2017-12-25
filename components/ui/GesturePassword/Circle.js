@@ -47,9 +47,6 @@ export default class Circle extends Component {
 		return (
 			<View
 				//onLayout={ (e) => {
-				//   //console.log('this._diameter = ' + this._diameter)
-				//   //console.log('e.nativeEvent')
-				//   //console.log(e.nativeEvent)
 				//}}
 				style={[
 					styles.container,

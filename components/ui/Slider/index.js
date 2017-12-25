@@ -182,7 +182,6 @@ export default class Slider extends UIComponent {
 
 	_handleStartShouldSetPanResponder = (e) => {
 		result = this._thumbHitTest(e);
-		console.log('shouldSetPanResponder: ', result);
 		return result;
 	}
 
@@ -323,7 +322,7 @@ export default class Slider extends UIComponent {
 	_thumbHitTest = (e) => {
 		var nativeEvent = e.nativeEvent;
 		var thumbTouchRect = this._getThumbTouchRect();
-		console.log('touch react: ', thumbTouchRect);
+		// console.log('touch react: ', thumbTouchRect);
 		return thumbTouchRect.containsPoint(nativeEvent.locationX, nativeEvent.locationY);
 	}
 

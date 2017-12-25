@@ -64,7 +64,6 @@ subTitle: 多选框
 </Checkbox.Group>
 
 <Checkbox.Group value={this.state.checkboxGroupValue} onChange={(values)=>{
-	console.log(values)
 	this.setState({
 		checkboxGroupValue: values
 	})

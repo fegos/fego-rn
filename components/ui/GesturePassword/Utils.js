@@ -271,9 +271,6 @@ export function reSortArray(originArr, start, end) {
 
 export function pointInMiddleLine(crossPoint, start, end) {
 	// console.log('======pointInMiddleLine======');
-	// console.log(crossPoint);
-	// console.log(start);
-	// console.log(end);
 	let result = false;
 	if (start.x === end.x) {
 		if ((crossPoint.y > start.y && crossPoint.y > end.y) ||
@@ -292,7 +289,6 @@ export function pointInMiddleLine(crossPoint, start, end) {
 	else {
 		result = true;
 	}
-	// console.log(result);
 	// console.log('======pointInMiddleLine======');
 	return result;
 }

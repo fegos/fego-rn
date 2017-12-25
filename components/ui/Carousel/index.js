@@ -249,7 +249,6 @@ export default class Carousel extends UIComponent {
 	}
 
 	// _onMomentumScrollEnd = (event) => {	
-	// 	console.log('NSIP Carousel: momentumScrollEnd')
 	// 	let { direction } = this.props,
 	// 		contentOffset = { ...event.nativeEvent.contentOffset },
 	// 		offset = direction === 'horizontal' ? contentOffset.x : contentOffset.y,
@@ -261,7 +260,6 @@ export default class Carousel extends UIComponent {
 	// 	// 		x: position * this.state.width,
 	// 	// 		y: position * this.state.height
 	// 	// 	}
-	// 	// 	console.log(position)
 	// 	// }
 
 	// 	this._placeCritical(page)
