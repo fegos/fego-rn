@@ -36,7 +36,7 @@
  * 组件名称
  * @author 姓名 
  */
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { View, Text } from 'react-native'
 import UIComponent from '../../common/UIComponent'
 

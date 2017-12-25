@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 
 import { Style } from '../../../common'
-import { Fetch, SocketIO } from 'fego-rn'
+import { SocketIO } from 'fego-rn'
 
 class TestView extends Component {
 	constructor(props) {

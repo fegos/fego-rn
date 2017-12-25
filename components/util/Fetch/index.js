@@ -1,1 +1,1 @@
-export { default } from 'nsip-fetch/es/pure'
+export { default } from 'axios'

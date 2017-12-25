@@ -6,5 +6,5 @@ module.exports =  {
 	base: 'api',
 	// 服务端口，配合webpack的代理使用
 	port: 3001,
-	dataDir: 'app/mock/data'
+	dataDir: 'demo/app/mock/data'
 }
