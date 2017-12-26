@@ -1,5 +1,5 @@
 node_modules
 demo/ios/fegoRN.xcodeproj/project.xcworkspace
-demo/android/.idea
+demo/android/.idea/
 demo/android/.gradle
 *.iml

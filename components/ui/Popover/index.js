@@ -388,17 +388,6 @@ export default class Popover extends UIComponent {
 			{ children, maskClosable, animateTime } = this.props,
 			{ visible, opacity } = this.state,
 			contentOffset = this._getOverlayPosition();
-	
-
-		let { showTriangle, triangleHeight, triangleWidth, offset, placement, content } = this.props,
-			cntLen = content.length,
-			path, surfaceSize, trianglePos;
-
-		if (showTriangle) {
-			trianglePos = this._getTrianglePosition();
-			path = this._getPath();
-			surfaceSize = this._getSurfaceSize();
-		}
 
 		return (
 			<View 
@@ -415,6 +404,7 @@ export default class Popover extends UIComponent {
 					animateAppear={false}
 					animationDuration={animateTime}
 					onClose={this._onHidePopover}
+					// ios 端能把这个样式下放到 _renderOverlay 方法返回的顶层元素上，但是 android 端不行，下放后整个popover 的 overlay 都不会显示
 					contentStyle={{
 						overflow: 'visible',
 						position: 'absolute',
