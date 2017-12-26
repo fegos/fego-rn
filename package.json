@@ -37,7 +37,7 @@
 		"bisheng-plugin-description": "^0.1.4",
 		"bisheng-plugin-react": "^0.5.8",
 		"bisheng-plugin-toc": "^0.4.4",
-		"enzyme": "^3.0.0",
+		"enzyme": "3.0.0",
 		"enzyme-adapter-react-16": "^1.0.0",
 		"esky-mock": "^1.0.5",
 		"jest": "21.2.1",
