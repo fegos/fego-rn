@@ -9,7 +9,6 @@ UI 类组件共有以下几种途径修改样式某一组件的样式：
 1. 作为开发者，在开发时可设置的样式：
 	- baseStyle ：组件提供的基础样式【必须】
 	- themeStyle ：组件提供的主题样式(部分组件提供)
-	- simpleStyle ：组件提供的简易样式 api (部分组件提供)
 
 2. 作为使用者，在使用时可设置的样式：
 	- baseStyle ：需通过静态方法 `setBaseStyle` 统一设置产品项目自定义的组件基础样式
@@ -17,7 +16,7 @@ UI 类组件共有以下几种途径修改样式某一组件的样式：
 	- styles ：使用者自定义样式对象，通过传递 styles prop 属性进行设置
 	- style ：容器样式，等效于 baseStyle.container，通过传递 style prop 属性进行设置
 	- propStyle ：以 Style 为后缀的 prop
-	- simpleStyle ：使用组件提供的简易样式 api
+	- simpleStyle ：使用组件提供的简易样式 api (部分组件提供)
 
 
 当通过各个方式设置同一样式时，样式生效的规则参照以下优先级
@@ -58,7 +57,7 @@ Button.baseStyle = {
 
 1. setBaseStyle:
 	
-	```
+	```jsx
 	Button.setBaseStyle(Button, {
 		text: {
 			color: 'red' // 则按钮的颜色默认都会显示的成红色

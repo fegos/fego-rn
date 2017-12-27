@@ -26,9 +26,11 @@
 6. propStyle 以Style为后缀的prop，例如 props.contentStyle
 7. simpleStyle 简易样式 例如 props.tipColor
 
-`注意`
+#### 注意
+
 1. 组件静态属性propTypes中不需要声明样式相关的props
 2. 简易样式simpleStyle 由静态属性simpleStyleProps定义
+
 
 ### 基本模板
 ~~~js
@@ -38,7 +40,7 @@
  */
 import React from 'react'
 import { View, Text } from 'react-native'
-import UIComponent from '../../common/UIComponent'
+import UIComponent from 'path to UIComponent'
 
 export default class SelfMod extends UIComponent {
 	static defaultProps = {

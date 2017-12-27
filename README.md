@@ -2,7 +2,8 @@
 - React Native 组件库
 
 ### 项目介绍
-- 基于 React Native 的移动开发库，提供 ios 和 android 两端的平台支持
+- 基于 React Native 的移动开发库
+- 提供 ios 和 android 两端的平台支持
 - 仅限 UI 组件和 Util 组件, 不涉及原生组件
 
 ### 支持平台
@@ -13,7 +14,7 @@
 - 组件命名以使用驼峰形式且首字母大写，例如：`ActivityIndicator`
 - 若无特殊情况组件不区分 ios 和 android 平台，统一为 `SomeComponent/index.js`, 不带 ios 或 android 后缀
 - API 设计规范[详见](components/README.md)
-- 组件样式[详见](components/STYLE.MD)
+- 组件样式[详见](components/ui/STYLE.MD)
 
 
 ### 目录结构
@@ -24,10 +25,10 @@
 | 	|—— common                  # 通用类
 |	|—— util                    # util 组件
 |	|—— ui                      # ui 组件
+|		|—— STYLE.md            # 关于样式的说明
 |	|—— index.js 
 |	|—— patch.js
 |	|—— README.md
-|	|—— STYLE.md
 |—— demo                        # demo 示例
 |	|—— android                 # android 工程
 |	|—— app                     # demo 源码
@@ -39,28 +40,6 @@
 |—— .babelrc                    # babel 配置
 |—— jest.config.js              # 测试配置文件
 |—— package.json                # 项目描述文件
-```
-
-### 安装
-```bash
-$ npm install fego-rn --save
-```
-
-### 使用
-```js
-// MyPage.js
-import { Button } from 'fego-rn'
-
-class MyPage extends React.Component {
-	render(){
-		return(
-			<View>
-				{/* your code */}
-				<Button type='primary' title='我是一个button' />
-			</View>
-		)
-	}
-} 
 ```
 
 ### 开发
@@ -108,6 +87,38 @@ class MyPage extends React.Component {
 	```bash
 	$ npm run site
 	```
+
+### 使用
+1. 安装
+
+```bash
+$ npm install fego-rn --save
+```
+
+2. 应用
+```js
+// MyPage.js
+import { Button } from 'fego-rn'
+
+class MyPage extends React.Component {
+	render(){
+		return(
+			<View>
+				{/* your code */}
+				<Button type='primary' title='我是一个button' />
+			</View>
+		)
+	}
+} 
+```
+
+#### *注意*
+- 组件，如 `Popup`, `Toast` 等都是依赖 `AppContainer` 设计的，因此在使用 fego-rn 时请使用 `AppContainer` 对应用进行包装
+	```js
+	import { AppContainer } from 'fego-rn'
+	AppRegistry.registerComponent('App', () => AppContainer.setApp(App) )
+	```
+
 
 ### 欢迎贡献
 有任何疑问或问题欢迎在[github issues](https://github.com/fegos/fego-rn/issues)里提问
