@@ -4,9 +4,15 @@ import { shallow } from 'enzyme'
 import Segment from '../index'
 
 describe('Segment Tests', () => {
+	let values;
+
+	beforeEach(() => {
+		values = ['栏目一', '栏目二', '栏目三'];
+	});
+
 	it('renders correctly', () => {
 		const tree = Renderer.create((
-			<Segment values={['栏目一', '栏目二', '栏目三']} defaultIndex={0} /> 
+			<Segment values={values} defaultIndex={0} /> 
 		)).toJSON();
 		
 		expect(tree).toMatchSnapshot();
@@ -14,7 +20,7 @@ describe('Segment Tests', () => {
 
 	it('press event', () => {
 		let handler = jest.fn();
-		let wrapper = shallow(<Segment values={['栏目一', '栏目二', '栏目三']} defaultIndex={0} onChange={handler} />);
+		let wrapper = shallow(<Segment values={values} defaultIndex={0} onChange={handler} />);
 		expect(wrapper.instance().state.index).toBe(0);
 		wrapper.childAt(1).simulate('press');
 		expect(wrapper.instance().state.index).toBe(1);
@@ -23,7 +29,7 @@ describe('Segment Tests', () => {
 
 	it('controled prop index', () => {
 		let handler = jest.fn();
-		let wrapper = shallow(<Segment values={['栏目一', '栏目二', '栏目三']} index={0} onChange={handler} />);
+		let wrapper = shallow(<Segment values={values} index={0} onChange={handler} />);
 		expect(wrapper.instance().state.index).toBe(0);
 		wrapper.childAt(1).simulate('press');
 		expect(wrapper.instance().state.index).toBe(0);
@@ -32,7 +38,7 @@ describe('Segment Tests', () => {
 
 	it('disabled segment', () => {
 		let handler = jest.fn();
-		let wrapper = shallow(<Segment values={['栏目一', '栏目二', '栏目三']} desabled={true} onChang={handler} />);
+		let wrapper = shallow(<Segment values={values} desabled={true} onChang={handler} />);
 		wrapper.childAt(1).simulate('press');
 		expect(handler).not.toHaveBeenCalled();
 	});

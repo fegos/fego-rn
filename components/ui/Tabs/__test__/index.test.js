@@ -2,7 +2,7 @@ import React from 'react'
 import Renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 import Tabs from '../index'
-import TabBar from '../../Tabs/TabBar.js'
+import TabBar from '../TabBar'
 
 describe('Tabs Tests', () => {
 	let handler;

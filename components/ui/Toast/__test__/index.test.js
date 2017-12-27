@@ -1,15 +1,13 @@
 import React from 'react'
 import Renderer from 'react-test-renderer'
+import { Text } from 'react-native'
 import { shallow } from 'enzyme'
-import ToastContainer from '../ToastContainer'
+import Toast from '../ToastContainer'
 
 describe('Toast Tests', () => {
 	it('renders correctly', () => {
 		const tree = Renderer.create((
-			<ToastContainer 
-				key='toast'
-				content='这是一个 toast 提示!!!'
-				duration={3} />
+			<Text>toast</Text>
 		)).toJSON();
 		
 		expect(tree).toMatchSnapshot();

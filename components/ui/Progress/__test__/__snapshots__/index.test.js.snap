@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Progress Tests renders correctly 1`] = `
+<View
+  onLayout={undefined}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ddd",
+        "borderRadius": 3,
+        "borderWidth": 0,
+        "height": 6,
+        "justifyContent": "center",
+      },
+      Object {
+        "borderColor": "transparent",
+        "borderRadius": 3,
+        "borderWidth": 0,
+        "width": 750,
+      },
+      null,
+      null,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#108ee9",
+          "borderRadius": 3,
+          "borderWidth": 0,
+          "flex": 1,
+          "height": 6,
+        },
+        Object {
+          "width": 0,
+        },
+        Object {
+          "borderColor": "#ddd",
+          "borderRadius": 3,
+          "borderWidth": 0,
+        },
+      ]
+    }
+  />
+</View>
+`;

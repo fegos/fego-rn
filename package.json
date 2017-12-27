@@ -54,6 +54,6 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"ios": "react-native run-ios --project-path demo/ios",
 		"android": "react-native run-android --root demo",
-		"test": "jest --verbose --config jest.config.js"
+		"test": "jest --bail --verbose --config jest.config.js"
 	}
 }

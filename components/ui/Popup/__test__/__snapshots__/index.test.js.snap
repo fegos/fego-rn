@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popup Tests renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 100,
+      },
+      Object {
+        "height": 1270,
+      },
+      Object {
+        "backgroundColor": "rgba(0,0,0,0)",
+        "flex": 1,
+      },
+      Object {
+        "justifyContent": "flex-start",
+      },
+    ]
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    collapsable={undefined}
+    hitSlop={undefined}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#000",
+        "bottom": 0,
+        "left": 0,
+        "opacity": 0.7,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0,
+      }
+    }
+    testID={undefined}
+  />
+  <View
+    collapsable={undefined}
+    style={
+      Object {
+        "backgroundColor": "#FFF",
+        "flexDirection": "column",
+        "transform": Array [
+          Object {
+            "translateY": 0,
+          },
+        ],
+        "zIndex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 0.5,
+          "borderColor": "#EEE",
+          "flexDirection": "row",
+          "height": 45,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#333",
+            "flex": 1,
+            "fontSize": 17,
+            "paddingLeft": 60,
+            "paddingRight": 60,
+            "textAlign": "center",
+          }
+        }
+      >
+        popup title
+      </Text>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 45,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 2,
+          }
+        }
+        testID={undefined}
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontSize": 16,
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+              Object {
+                "color": "#858DA0",
+                "fontSize": 18,
+                "paddingHorizontal": 10,
+              },
+              Object {},
+              Object {
+                "fontFamily": "FontAwesome",
+              },
+            ]
+          }
+        >
+          times-circle
+        </Text>
+      </View>
+    </View>
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+      >
+        从顶部浮出的模态
+      </Text>
+    </View>
+  </View>
+</View>
+`;

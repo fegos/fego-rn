@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toast Tests renders correctly 1`] = `
+exports[`PieChat Tests renders correctly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
   disabled={false}
   ellipsizeMode="tail"
 >
-  toast
+  piechat
 </Text>
 `;
