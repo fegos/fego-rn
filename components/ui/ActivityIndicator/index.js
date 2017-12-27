@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 import UIComponent from '../../common/UIComponent'
 
-export default class NSIPActivityIndicator extends UIComponent {
+export default class FEGOActivityIndicator extends UIComponent {
 	static defaultProps = {
 		visible: true,
 		color: '#999',

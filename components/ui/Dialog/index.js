@@ -11,7 +11,7 @@ import {
 	StyleSheet,
 	TouchableWithoutFeedback,
 } from 'react-native'
-import NSIPModal from '../Modal'
+import FEGOModal from '../Modal'
 import { tip, alert, confirm } from './tip'
 import UIComponent from '../../common/UIComponent'
 
@@ -171,7 +171,7 @@ export default class Dialog extends UIComponent {
 		let closeEl = this.crtClose(styles);
 		return (
 			<View style={styles.container}>
-				<NSIPModal
+				<FEGOModal
 					onClose={this._maskClose}
 					animationType={animationType}
 					animationDuration={animationDuration}
@@ -187,7 +187,7 @@ export default class Dialog extends UIComponent {
 						{footerEl}
 						{closeEl}
 					</View>
-				</NSIPModal>
+				</FEGOModal>
 			</View>
 		);
 	}

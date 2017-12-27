@@ -19,7 +19,7 @@ import {
 import UIComponent from '../../common/UIComponent'
 
 const screen = Dimensions.get('window');
-export default class NSIPModal extends UIComponent {
+export default class FEGOModal extends UIComponent {
 	static defaultProps = {
 		animationType: 'fade',
 		animateAppear: false,
@@ -206,7 +206,7 @@ export default class NSIPModal extends UIComponent {
 	}
 }
 // 基础样式
-NSIPModal.baseStyle = {
+FEGOModal.baseStyle = {
 	container: {
 		flex: 1,
 		backgroundColor: 'rgba(0,0,0,0)'
