@@ -1,0 +1,1622 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker Tests renders correctly 1`] = `
+<Modal
+  hardwareAccelerated={false}
+  onRequestClose={[Function]}
+  transparent={true}
+  visible={true}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0,0,0,0)",
+          "flex": 1,
+          "justifyContent": "flex-end",
+        },
+      ]
+    }
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hitSlop={undefined}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "opacity": 1,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      testID={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "backgroundColor": "black",
+              "opacity": 0.5,
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      collapsable={undefined}
+      style={
+        Object {
+          "backgroundColor": "white",
+          "transform": Array [
+            Object {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {},
+            false,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#ccc",
+              "borderBottomWidth": 1,
+              "flex": 0,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            collapsable={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "flex-start",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingHorizontal": 20,
+                "paddingVertical": 10,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "color": "#108ee9",
+                    "fontSize": 16,
+                  },
+                  Object {},
+                ]
+              }
+            >
+              取消
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#333",
+                "fontSize": 16,
+                "textAlign": "center",
+              }
+            }
+          >
+            请选择
+          </Text>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            collapsable={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingHorizontal": 20,
+                "paddingVertical": 10,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "color": "#108ee9",
+                    "fontSize": 16,
+                  },
+                  Object {},
+                ]
+              }
+            >
+              确定
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fff",
+                "flexDirection": "row",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "1970年",
+                    "textColor": undefined,
+                    "value": "1970",
+                  },
+                  Object {
+                    "label": "1971年",
+                    "textColor": undefined,
+                    "value": "1971",
+                  },
+                  Object {
+                    "label": "1972年",
+                    "textColor": undefined,
+                    "value": "1972",
+                  },
+                  Object {
+                    "label": "1973年",
+                    "textColor": undefined,
+                    "value": "1973",
+                  },
+                  Object {
+                    "label": "1974年",
+                    "textColor": undefined,
+                    "value": "1974",
+                  },
+                  Object {
+                    "label": "1975年",
+                    "textColor": undefined,
+                    "value": "1975",
+                  },
+                  Object {
+                    "label": "1976年",
+                    "textColor": undefined,
+                    "value": "1976",
+                  },
+                  Object {
+                    "label": "1977年",
+                    "textColor": undefined,
+                    "value": "1977",
+                  },
+                  Object {
+                    "label": "1978年",
+                    "textColor": undefined,
+                    "value": "1978",
+                  },
+                  Object {
+                    "label": "1979年",
+                    "textColor": undefined,
+                    "value": "1979",
+                  },
+                  Object {
+                    "label": "1980年",
+                    "textColor": undefined,
+                    "value": "1980",
+                  },
+                  Object {
+                    "label": "1981年",
+                    "textColor": undefined,
+                    "value": "1981",
+                  },
+                  Object {
+                    "label": "1982年",
+                    "textColor": undefined,
+                    "value": "1982",
+                  },
+                  Object {
+                    "label": "1983年",
+                    "textColor": undefined,
+                    "value": "1983",
+                  },
+                  Object {
+                    "label": "1984年",
+                    "textColor": undefined,
+                    "value": "1984",
+                  },
+                  Object {
+                    "label": "1985年",
+                    "textColor": undefined,
+                    "value": "1985",
+                  },
+                  Object {
+                    "label": "1986年",
+                    "textColor": undefined,
+                    "value": "1986",
+                  },
+                  Object {
+                    "label": "1987年",
+                    "textColor": undefined,
+                    "value": "1987",
+                  },
+                  Object {
+                    "label": "1988年",
+                    "textColor": undefined,
+                    "value": "1988",
+                  },
+                  Object {
+                    "label": "1989年",
+                    "textColor": undefined,
+                    "value": "1989",
+                  },
+                  Object {
+                    "label": "1990年",
+                    "textColor": undefined,
+                    "value": "1990",
+                  },
+                  Object {
+                    "label": "1991年",
+                    "textColor": undefined,
+                    "value": "1991",
+                  },
+                  Object {
+                    "label": "1992年",
+                    "textColor": undefined,
+                    "value": "1992",
+                  },
+                  Object {
+                    "label": "1993年",
+                    "textColor": undefined,
+                    "value": "1993",
+                  },
+                  Object {
+                    "label": "1994年",
+                    "textColor": undefined,
+                    "value": "1994",
+                  },
+                  Object {
+                    "label": "1995年",
+                    "textColor": undefined,
+                    "value": "1995",
+                  },
+                  Object {
+                    "label": "1996年",
+                    "textColor": undefined,
+                    "value": "1996",
+                  },
+                  Object {
+                    "label": "1997年",
+                    "textColor": undefined,
+                    "value": "1997",
+                  },
+                  Object {
+                    "label": "1998年",
+                    "textColor": undefined,
+                    "value": "1998",
+                  },
+                  Object {
+                    "label": "1999年",
+                    "textColor": undefined,
+                    "value": "1999",
+                  },
+                  Object {
+                    "label": "2000年",
+                    "textColor": undefined,
+                    "value": "2000",
+                  },
+                  Object {
+                    "label": "2001年",
+                    "textColor": undefined,
+                    "value": "2001",
+                  },
+                  Object {
+                    "label": "2002年",
+                    "textColor": undefined,
+                    "value": "2002",
+                  },
+                  Object {
+                    "label": "2003年",
+                    "textColor": undefined,
+                    "value": "2003",
+                  },
+                  Object {
+                    "label": "2004年",
+                    "textColor": undefined,
+                    "value": "2004",
+                  },
+                  Object {
+                    "label": "2005年",
+                    "textColor": undefined,
+                    "value": "2005",
+                  },
+                  Object {
+                    "label": "2006年",
+                    "textColor": undefined,
+                    "value": "2006",
+                  },
+                  Object {
+                    "label": "2007年",
+                    "textColor": undefined,
+                    "value": "2007",
+                  },
+                  Object {
+                    "label": "2008年",
+                    "textColor": undefined,
+                    "value": "2008",
+                  },
+                  Object {
+                    "label": "2009年",
+                    "textColor": undefined,
+                    "value": "2009",
+                  },
+                  Object {
+                    "label": "2010年",
+                    "textColor": undefined,
+                    "value": "2010",
+                  },
+                  Object {
+                    "label": "2011年",
+                    "textColor": undefined,
+                    "value": "2011",
+                  },
+                  Object {
+                    "label": "2012年",
+                    "textColor": undefined,
+                    "value": "2012",
+                  },
+                  Object {
+                    "label": "2013年",
+                    "textColor": undefined,
+                    "value": "2013",
+                  },
+                  Object {
+                    "label": "2014年",
+                    "textColor": undefined,
+                    "value": "2014",
+                  },
+                  Object {
+                    "label": "2015年",
+                    "textColor": undefined,
+                    "value": "2015",
+                  },
+                  Object {
+                    "label": "2016年",
+                    "textColor": undefined,
+                    "value": "2016",
+                  },
+                  Object {
+                    "label": "2017年",
+                    "textColor": undefined,
+                    "value": "2017",
+                  },
+                  Object {
+                    "label": "2018年",
+                    "textColor": undefined,
+                    "value": "2018",
+                  },
+                  Object {
+                    "label": "2019年",
+                    "textColor": undefined,
+                    "value": "2019",
+                  },
+                  Object {
+                    "label": "2020年",
+                    "textColor": undefined,
+                    "value": "2020",
+                  },
+                  Object {
+                    "label": "2021年",
+                    "textColor": undefined,
+                    "value": "2021",
+                  },
+                  Object {
+                    "label": "2022年",
+                    "textColor": undefined,
+                    "value": "2022",
+                  },
+                  Object {
+                    "label": "2023年",
+                    "textColor": undefined,
+                    "value": "2023",
+                  },
+                  Object {
+                    "label": "2024年",
+                    "textColor": undefined,
+                    "value": "2024",
+                  },
+                  Object {
+                    "label": "2025年",
+                    "textColor": undefined,
+                    "value": "2025",
+                  },
+                  Object {
+                    "label": "2026年",
+                    "textColor": undefined,
+                    "value": "2026",
+                  },
+                  Object {
+                    "label": "2027年",
+                    "textColor": undefined,
+                    "value": "2027",
+                  },
+                  Object {
+                    "label": "2028年",
+                    "textColor": undefined,
+                    "value": "2028",
+                  },
+                  Object {
+                    "label": "2029年",
+                    "textColor": undefined,
+                    "value": "2029",
+                  },
+                  Object {
+                    "label": "2030年",
+                    "textColor": undefined,
+                    "value": "2030",
+                  },
+                  Object {
+                    "label": "2031年",
+                    "textColor": undefined,
+                    "value": "2031",
+                  },
+                  Object {
+                    "label": "2032年",
+                    "textColor": undefined,
+                    "value": "2032",
+                  },
+                  Object {
+                    "label": "2033年",
+                    "textColor": undefined,
+                    "value": "2033",
+                  },
+                  Object {
+                    "label": "2034年",
+                    "textColor": undefined,
+                    "value": "2034",
+                  },
+                  Object {
+                    "label": "2035年",
+                    "textColor": undefined,
+                    "value": "2035",
+                  },
+                  Object {
+                    "label": "2036年",
+                    "textColor": undefined,
+                    "value": "2036",
+                  },
+                  Object {
+                    "label": "2037年",
+                    "textColor": undefined,
+                    "value": "2037",
+                  },
+                  Object {
+                    "label": "2038年",
+                    "textColor": undefined,
+                    "value": "2038",
+                  },
+                  Object {
+                    "label": "2039年",
+                    "textColor": undefined,
+                    "value": "2039",
+                  },
+                  Object {
+                    "label": "2040年",
+                    "textColor": undefined,
+                    "value": "2040",
+                  },
+                  Object {
+                    "label": "2041年",
+                    "textColor": undefined,
+                    "value": "2041",
+                  },
+                  Object {
+                    "label": "2042年",
+                    "textColor": undefined,
+                    "value": "2042",
+                  },
+                  Object {
+                    "label": "2043年",
+                    "textColor": undefined,
+                    "value": "2043",
+                  },
+                  Object {
+                    "label": "2044年",
+                    "textColor": undefined,
+                    "value": "2044",
+                  },
+                  Object {
+                    "label": "2045年",
+                    "textColor": undefined,
+                    "value": "2045",
+                  },
+                  Object {
+                    "label": "2046年",
+                    "textColor": undefined,
+                    "value": "2046",
+                  },
+                  Object {
+                    "label": "2047年",
+                    "textColor": undefined,
+                    "value": "2047",
+                  },
+                  Object {
+                    "label": "2048年",
+                    "textColor": undefined,
+                    "value": "2048",
+                  },
+                  Object {
+                    "label": "2049年",
+                    "textColor": undefined,
+                    "value": "2049",
+                  },
+                  Object {
+                    "label": "2050年",
+                    "textColor": undefined,
+                    "value": "2050",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              selectedIndex={47}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "1月",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                  Object {
+                    "label": "2月",
+                    "textColor": undefined,
+                    "value": "1",
+                  },
+                  Object {
+                    "label": "3月",
+                    "textColor": undefined,
+                    "value": "2",
+                  },
+                  Object {
+                    "label": "4月",
+                    "textColor": undefined,
+                    "value": "3",
+                  },
+                  Object {
+                    "label": "5月",
+                    "textColor": undefined,
+                    "value": "4",
+                  },
+                  Object {
+                    "label": "6月",
+                    "textColor": undefined,
+                    "value": "5",
+                  },
+                  Object {
+                    "label": "7月",
+                    "textColor": undefined,
+                    "value": "6",
+                  },
+                  Object {
+                    "label": "8月",
+                    "textColor": undefined,
+                    "value": "7",
+                  },
+                  Object {
+                    "label": "9月",
+                    "textColor": undefined,
+                    "value": "8",
+                  },
+                  Object {
+                    "label": "10月",
+                    "textColor": undefined,
+                    "value": "9",
+                  },
+                  Object {
+                    "label": "11月",
+                    "textColor": undefined,
+                    "value": "10",
+                  },
+                  Object {
+                    "label": "12月",
+                    "textColor": undefined,
+                    "value": "11",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              selectedIndex={11}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "1日",
+                    "textColor": undefined,
+                    "value": "1",
+                  },
+                  Object {
+                    "label": "2日",
+                    "textColor": undefined,
+                    "value": "2",
+                  },
+                  Object {
+                    "label": "3日",
+                    "textColor": undefined,
+                    "value": "3",
+                  },
+                  Object {
+                    "label": "4日",
+                    "textColor": undefined,
+                    "value": "4",
+                  },
+                  Object {
+                    "label": "5日",
+                    "textColor": undefined,
+                    "value": "5",
+                  },
+                  Object {
+                    "label": "6日",
+                    "textColor": undefined,
+                    "value": "6",
+                  },
+                  Object {
+                    "label": "7日",
+                    "textColor": undefined,
+                    "value": "7",
+                  },
+                  Object {
+                    "label": "8日",
+                    "textColor": undefined,
+                    "value": "8",
+                  },
+                  Object {
+                    "label": "9日",
+                    "textColor": undefined,
+                    "value": "9",
+                  },
+                  Object {
+                    "label": "10日",
+                    "textColor": undefined,
+                    "value": "10",
+                  },
+                  Object {
+                    "label": "11日",
+                    "textColor": undefined,
+                    "value": "11",
+                  },
+                  Object {
+                    "label": "12日",
+                    "textColor": undefined,
+                    "value": "12",
+                  },
+                  Object {
+                    "label": "13日",
+                    "textColor": undefined,
+                    "value": "13",
+                  },
+                  Object {
+                    "label": "14日",
+                    "textColor": undefined,
+                    "value": "14",
+                  },
+                  Object {
+                    "label": "15日",
+                    "textColor": undefined,
+                    "value": "15",
+                  },
+                  Object {
+                    "label": "16日",
+                    "textColor": undefined,
+                    "value": "16",
+                  },
+                  Object {
+                    "label": "17日",
+                    "textColor": undefined,
+                    "value": "17",
+                  },
+                  Object {
+                    "label": "18日",
+                    "textColor": undefined,
+                    "value": "18",
+                  },
+                  Object {
+                    "label": "19日",
+                    "textColor": undefined,
+                    "value": "19",
+                  },
+                  Object {
+                    "label": "20日",
+                    "textColor": undefined,
+                    "value": "20",
+                  },
+                  Object {
+                    "label": "21日",
+                    "textColor": undefined,
+                    "value": "21",
+                  },
+                  Object {
+                    "label": "22日",
+                    "textColor": undefined,
+                    "value": "22",
+                  },
+                  Object {
+                    "label": "23日",
+                    "textColor": undefined,
+                    "value": "23",
+                  },
+                  Object {
+                    "label": "24日",
+                    "textColor": undefined,
+                    "value": "24",
+                  },
+                  Object {
+                    "label": "25日",
+                    "textColor": undefined,
+                    "value": "25",
+                  },
+                  Object {
+                    "label": "26日",
+                    "textColor": undefined,
+                    "value": "26",
+                  },
+                  Object {
+                    "label": "27日",
+                    "textColor": undefined,
+                    "value": "27",
+                  },
+                  Object {
+                    "label": "28日",
+                    "textColor": undefined,
+                    "value": "28",
+                  },
+                  Object {
+                    "label": "29日",
+                    "textColor": undefined,
+                    "value": "29",
+                  },
+                  Object {
+                    "label": "30日",
+                    "textColor": undefined,
+                    "value": "30",
+                  },
+                  Object {
+                    "label": "31日",
+                    "textColor": undefined,
+                    "value": "31",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              selectedIndex={26}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</Modal>
+`;
+
+exports[`DatePicker Tests renders correctly 2`] = `
+<Modal
+  hardwareAccelerated={false}
+  onRequestClose={[Function]}
+  transparent={true}
+  visible={true}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0,0,0,0)",
+          "flex": 1,
+          "justifyContent": "flex-end",
+        },
+      ]
+    }
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hitSlop={undefined}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "opacity": 1,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      testID={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "backgroundColor": "black",
+              "opacity": 0.5,
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      collapsable={undefined}
+      style={
+        Object {
+          "backgroundColor": "white",
+          "transform": Array [
+            Object {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {},
+            false,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#ccc",
+              "borderBottomWidth": 1,
+              "flex": 0,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            collapsable={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "flex-start",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingHorizontal": 20,
+                "paddingVertical": 10,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "color": "#108ee9",
+                    "fontSize": 16,
+                  },
+                  Object {},
+                ]
+              }
+            >
+              取消
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#333",
+                "fontSize": 16,
+                "textAlign": "center",
+              }
+            }
+          >
+            请选择
+          </Text>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            collapsable={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingHorizontal": 20,
+                "paddingVertical": 10,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "color": "#108ee9",
+                    "fontSize": 16,
+                  },
+                  Object {},
+                ]
+              }
+            >
+              确定
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fff",
+                "flexDirection": "row",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "0时",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                  Object {
+                    "label": "1时",
+                    "textColor": undefined,
+                    "value": "1",
+                  },
+                  Object {
+                    "label": "2时",
+                    "textColor": undefined,
+                    "value": "2",
+                  },
+                  Object {
+                    "label": "3时",
+                    "textColor": undefined,
+                    "value": "3",
+                  },
+                  Object {
+                    "label": "4时",
+                    "textColor": undefined,
+                    "value": "4",
+                  },
+                  Object {
+                    "label": "5时",
+                    "textColor": undefined,
+                    "value": "5",
+                  },
+                  Object {
+                    "label": "6时",
+                    "textColor": undefined,
+                    "value": "6",
+                  },
+                  Object {
+                    "label": "7时",
+                    "textColor": undefined,
+                    "value": "7",
+                  },
+                  Object {
+                    "label": "8时",
+                    "textColor": undefined,
+                    "value": "8",
+                  },
+                  Object {
+                    "label": "9时",
+                    "textColor": undefined,
+                    "value": "9",
+                  },
+                  Object {
+                    "label": "10时",
+                    "textColor": undefined,
+                    "value": "10",
+                  },
+                  Object {
+                    "label": "11时",
+                    "textColor": undefined,
+                    "value": "11",
+                  },
+                  Object {
+                    "label": "12时",
+                    "textColor": undefined,
+                    "value": "12",
+                  },
+                  Object {
+                    "label": "13时",
+                    "textColor": undefined,
+                    "value": "13",
+                  },
+                  Object {
+                    "label": "14时",
+                    "textColor": undefined,
+                    "value": "14",
+                  },
+                  Object {
+                    "label": "15时",
+                    "textColor": undefined,
+                    "value": "15",
+                  },
+                  Object {
+                    "label": "16时",
+                    "textColor": undefined,
+                    "value": "16",
+                  },
+                  Object {
+                    "label": "17时",
+                    "textColor": undefined,
+                    "value": "17",
+                  },
+                  Object {
+                    "label": "18时",
+                    "textColor": undefined,
+                    "value": "18",
+                  },
+                  Object {
+                    "label": "19时",
+                    "textColor": undefined,
+                    "value": "19",
+                  },
+                  Object {
+                    "label": "20时",
+                    "textColor": undefined,
+                    "value": "20",
+                  },
+                  Object {
+                    "label": "21时",
+                    "textColor": undefined,
+                    "value": "21",
+                  },
+                  Object {
+                    "label": "22时",
+                    "textColor": undefined,
+                    "value": "22",
+                  },
+                  Object {
+                    "label": "23时",
+                    "textColor": undefined,
+                    "value": "23",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              selectedIndex={16}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "justifyContent": "flex-start",
+              }
+            }
+          >
+            <RCTPicker
+              items={
+                Array [
+                  Object {
+                    "label": "0分",
+                    "textColor": undefined,
+                    "value": "0",
+                  },
+                  Object {
+                    "label": "1分",
+                    "textColor": undefined,
+                    "value": "1",
+                  },
+                  Object {
+                    "label": "2分",
+                    "textColor": undefined,
+                    "value": "2",
+                  },
+                  Object {
+                    "label": "3分",
+                    "textColor": undefined,
+                    "value": "3",
+                  },
+                  Object {
+                    "label": "4分",
+                    "textColor": undefined,
+                    "value": "4",
+                  },
+                  Object {
+                    "label": "5分",
+                    "textColor": undefined,
+                    "value": "5",
+                  },
+                  Object {
+                    "label": "6分",
+                    "textColor": undefined,
+                    "value": "6",
+                  },
+                  Object {
+                    "label": "7分",
+                    "textColor": undefined,
+                    "value": "7",
+                  },
+                  Object {
+                    "label": "8分",
+                    "textColor": undefined,
+                    "value": "8",
+                  },
+                  Object {
+                    "label": "9分",
+                    "textColor": undefined,
+                    "value": "9",
+                  },
+                  Object {
+                    "label": "10分",
+                    "textColor": undefined,
+                    "value": "10",
+                  },
+                  Object {
+                    "label": "11分",
+                    "textColor": undefined,
+                    "value": "11",
+                  },
+                  Object {
+                    "label": "12分",
+                    "textColor": undefined,
+                    "value": "12",
+                  },
+                  Object {
+                    "label": "13分",
+                    "textColor": undefined,
+                    "value": "13",
+                  },
+                  Object {
+                    "label": "14分",
+                    "textColor": undefined,
+                    "value": "14",
+                  },
+                  Object {
+                    "label": "15分",
+                    "textColor": undefined,
+                    "value": "15",
+                  },
+                  Object {
+                    "label": "16分",
+                    "textColor": undefined,
+                    "value": "16",
+                  },
+                  Object {
+                    "label": "17分",
+                    "textColor": undefined,
+                    "value": "17",
+                  },
+                  Object {
+                    "label": "18分",
+                    "textColor": undefined,
+                    "value": "18",
+                  },
+                  Object {
+                    "label": "19分",
+                    "textColor": undefined,
+                    "value": "19",
+                  },
+                  Object {
+                    "label": "20分",
+                    "textColor": undefined,
+                    "value": "20",
+                  },
+                  Object {
+                    "label": "21分",
+                    "textColor": undefined,
+                    "value": "21",
+                  },
+                  Object {
+                    "label": "22分",
+                    "textColor": undefined,
+                    "value": "22",
+                  },
+                  Object {
+                    "label": "23分",
+                    "textColor": undefined,
+                    "value": "23",
+                  },
+                  Object {
+                    "label": "24分",
+                    "textColor": undefined,
+                    "value": "24",
+                  },
+                  Object {
+                    "label": "25分",
+                    "textColor": undefined,
+                    "value": "25",
+                  },
+                  Object {
+                    "label": "26分",
+                    "textColor": undefined,
+                    "value": "26",
+                  },
+                  Object {
+                    "label": "27分",
+                    "textColor": undefined,
+                    "value": "27",
+                  },
+                  Object {
+                    "label": "28分",
+                    "textColor": undefined,
+                    "value": "28",
+                  },
+                  Object {
+                    "label": "29分",
+                    "textColor": undefined,
+                    "value": "29",
+                  },
+                  Object {
+                    "label": "30分",
+                    "textColor": undefined,
+                    "value": "30",
+                  },
+                  Object {
+                    "label": "31分",
+                    "textColor": undefined,
+                    "value": "31",
+                  },
+                  Object {
+                    "label": "32分",
+                    "textColor": undefined,
+                    "value": "32",
+                  },
+                  Object {
+                    "label": "33分",
+                    "textColor": undefined,
+                    "value": "33",
+                  },
+                  Object {
+                    "label": "34分",
+                    "textColor": undefined,
+                    "value": "34",
+                  },
+                  Object {
+                    "label": "35分",
+                    "textColor": undefined,
+                    "value": "35",
+                  },
+                  Object {
+                    "label": "36分",
+                    "textColor": undefined,
+                    "value": "36",
+                  },
+                  Object {
+                    "label": "37分",
+                    "textColor": undefined,
+                    "value": "37",
+                  },
+                  Object {
+                    "label": "38分",
+                    "textColor": undefined,
+                    "value": "38",
+                  },
+                  Object {
+                    "label": "39分",
+                    "textColor": undefined,
+                    "value": "39",
+                  },
+                  Object {
+                    "label": "40分",
+                    "textColor": undefined,
+                    "value": "40",
+                  },
+                  Object {
+                    "label": "41分",
+                    "textColor": undefined,
+                    "value": "41",
+                  },
+                  Object {
+                    "label": "42分",
+                    "textColor": undefined,
+                    "value": "42",
+                  },
+                  Object {
+                    "label": "43分",
+                    "textColor": undefined,
+                    "value": "43",
+                  },
+                  Object {
+                    "label": "44分",
+                    "textColor": undefined,
+                    "value": "44",
+                  },
+                  Object {
+                    "label": "45分",
+                    "textColor": undefined,
+                    "value": "45",
+                  },
+                  Object {
+                    "label": "46分",
+                    "textColor": undefined,
+                    "value": "46",
+                  },
+                  Object {
+                    "label": "47分",
+                    "textColor": undefined,
+                    "value": "47",
+                  },
+                  Object {
+                    "label": "48分",
+                    "textColor": undefined,
+                    "value": "48",
+                  },
+                  Object {
+                    "label": "49分",
+                    "textColor": undefined,
+                    "value": "49",
+                  },
+                  Object {
+                    "label": "50分",
+                    "textColor": undefined,
+                    "value": "50",
+                  },
+                  Object {
+                    "label": "51分",
+                    "textColor": undefined,
+                    "value": "51",
+                  },
+                  Object {
+                    "label": "52分",
+                    "textColor": undefined,
+                    "value": "52",
+                  },
+                  Object {
+                    "label": "53分",
+                    "textColor": undefined,
+                    "value": "53",
+                  },
+                  Object {
+                    "label": "54分",
+                    "textColor": undefined,
+                    "value": "54",
+                  },
+                  Object {
+                    "label": "55分",
+                    "textColor": undefined,
+                    "value": "55",
+                  },
+                  Object {
+                    "label": "56分",
+                    "textColor": undefined,
+                    "value": "56",
+                  },
+                  Object {
+                    "label": "57分",
+                    "textColor": undefined,
+                    "value": "57",
+                  },
+                  Object {
+                    "label": "58分",
+                    "textColor": undefined,
+                    "value": "58",
+                  },
+                  Object {
+                    "label": "59分",
+                    "textColor": undefined,
+                    "value": "59",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              selectedIndex={13}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</Modal>
+`;
+
+exports[`DatePicker Tests renders correctly 3`] = `null`;

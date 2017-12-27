@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PickerView Tests renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+        "flexDirection": "row",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+  >
+    <RCTPicker
+      items={
+        Array [
+          Object {
+            "label": "item1",
+            "textColor": undefined,
+            "value": "1",
+          },
+          Object {
+            "label": "item2",
+            "textColor": undefined,
+            "value": "2",
+          },
+          Object {
+            "label": "item3",
+            "textColor": undefined,
+            "value": "3",
+          },
+          Object {
+            "label": "item4",
+            "textColor": undefined,
+            "value": "4",
+          },
+          Object {
+            "label": "item5",
+            "textColor": undefined,
+            "value": "5",
+          },
+        ]
+      }
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      selectedIndex={0}
+      style={
+        Array [
+          Object {
+            "height": 216,
+          },
+          undefined,
+        ]
+      }
+    />
+  </View>
+</View>
+`;
