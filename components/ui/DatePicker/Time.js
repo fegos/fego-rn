@@ -11,7 +11,7 @@ import UIComponent from '../../common/UIComponent'
 import Picker from '../Picker'
 import PickerView from '../PickerView'
 
-export default class DatePicker extends UIComponent {
+export default class TimePicker extends UIComponent {
 	static defaultProps = {
 		initialValue: new Date()
 	}
@@ -179,12 +179,13 @@ export default class DatePicker extends UIComponent {
 	}
 
 	render() {
-		let { maskClosable, visible, minuteStep, showInModal } = this.props,
+		let { maskClosable, visible, minuteStep, showInModal, initialValue, mode, minDate, maxDate, ...rest } = this.props,
 			{ hour, minute, data } = this.state,
 			_data1 = data[1].filter((d, i) => (i % minuteStep) === 0);
 		let Ele = showInModal ? Picker : PickerView;
 		return (
 			<Ele
+				{...rest}
 				data={[data[0], _data1]}
 				visible={visible}
 				value={[hour.toString(), minute.toString()]}

@@ -9,8 +9,8 @@ import {
 } from 'react-native'
 import UIComponent from '../../common/UIComponent'
 import Picker from '../Picker'
-import DateMode from './Date'
-import TimeMode from './Time'
+import DateModePicker from './Date'
+import TimeModePicker from './Time'
 
 export default class DatePicker extends UIComponent {
 	static defaultProps = {
@@ -82,11 +82,11 @@ export default class DatePicker extends UIComponent {
 
 		switch (mode) {
 			case 'date': 
-				return <DateMode {...this.props} {...callbacks}/>;
+				return <DateModePicker {...this.props} {...callbacks}/>;
 			case 'datetime': 
-				break;
+				return null;
 			case 'time': 
-				return <TimeMode {...this.props} {...callbacks}/>;
+				return <TimeModePicker {...this.props} {...callbacks}/>;
 			default: 
 				return null;
 		}

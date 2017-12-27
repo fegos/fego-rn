@@ -247,11 +247,12 @@ export default class DatePicker extends UIComponent {
 	}
 
 	render() {
-		let { maskClosable, visible, showInModal } = this.props,
+		let { maskClosable, visible, showInModal, initialValue, mode, minDate, maxDate, minuteStep, ...rest } = this.props,
 			{ year, month, date} = this.state;
 		let Ele = showInModal ? Picker : PickerView;
 		return (
 			<Ele
+				{...rest}
 				data={this.state.data}
 				visible={visible}
 				value={[year.toString(), month.toString(), date.toString()]}
