@@ -1,5 +1,5 @@
 ---
-title: PieChat
+title: PieChart
 subTitle: 饼图
 ---
 
@@ -28,7 +28,7 @@ componentWillReceiveProps(nextProps) {
 
 ### example
 ```
-<PieChat
+<PieChart
 	percentArray={[0.4, 0.6]}
 	colorArray={['#4d84eb', '#fca63e']}
 	outerRadius={40}
@@ -38,14 +38,14 @@ componentWillReceiveProps(nextProps) {
 ```
 ### 属性
 ```
-PieChat.propTypes = {
+PieChart.propTypes = {
 	percentArray: PropTypes.array.isRequired,
 	colorArray: PropTypes.array.isRequired,
 	innerRadius: PropTypes.number,
 	outerRadius: PropTypes.number.isRequired,
 	duration: PropTypes.number,
 };
-PieChat.defaultProps = {
+PieChart.defaultProps = {
 	innerRadius: 0,
 	duration: 1500,
 }
@@ -59,3 +59,4 @@ PieChat.defaultProps = {
 | `innerRadius` | `number` | 扇形内环半径，默认为0（圆形），扇形效果需设置，需小于外环半径|
 | `outerRadius` | `number` | 扇形外环半径，必填|
 | `duration` | `number` | 每段动画时长，默认1500毫秒 |
+| `configArray` | `array` | 其他配置，eg: `[,{stroke:'red',strokeWidth:1,strokeDash:[2,5]},,{stroke:'black',strokeWidth:1,strokeDash:[2,5]}]` |

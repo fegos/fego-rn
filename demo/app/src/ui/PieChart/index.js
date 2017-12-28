@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import { PieChat } from 'fego-rn'
+import { PieChart } from 'fego-rn'
 
-export default class PieChatView extends Component {
+export default class PieChartView extends Component {
 
 	constructor(props) {
 		super(props);
@@ -29,7 +29,7 @@ export default class PieChatView extends Component {
 		return (
 			<View style={privateStyle.bgStyle}>
 				<View style={privateStyle.pieStyle}>
-					<PieChat
+					<PieChart
 						percentArray={[0.2,0.1, 0.4,0.3]}
 						colorArray={['#4d84eb', '#fca63e','green','yellow']}
 						outerRadius={40}

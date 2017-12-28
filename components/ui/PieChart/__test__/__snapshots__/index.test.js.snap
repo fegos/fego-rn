@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PieChat Tests renders correctly 1`] = `
+exports[`PieChart Tests renders correctly 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
   disabled={false}
   ellipsizeMode="tail"
 >
-  piechat
+  PieChart
 </Text>
 `;

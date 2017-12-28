@@ -7,19 +7,28 @@ const { Surface, Shape, Path, Group } = ART;
 
 var AnimatedWedge = Animated.createAnimatedComponent(Wedge);
 
-export default class PieChat extends Component {
+export default class PieChart extends Component {
 	static propTypes = {
+		// 饼图数据
 		percentArray: PropTypes.array.isRequired,
+		// 饼图颜色
 		colorArray: PropTypes.array.isRequired,
+		// 饼图内直径
 		innerRadius: PropTypes.number,
+		// 饼图外直径
 		outerRadius: PropTypes.number.isRequired,
+		// 动画执行时间
 		duration: PropTypes.number,
+		// 配置, eg: [,{stroke:'red',strokeWidth:1,strokeDash:[2,5]},,{stroke:'black',strokeWidth:1,strokeDash:[2,5]}]
 		configArray: PropTypes.array,
 	}
 
 	static defaultProps = {
+		// 饼图内直径
 		innerRadius: 0,
+		// 动画执行时间
 		duration: 1500,
+		// 配置, eg: [,{stroke:'red',strokeWidth:1,strokeDash:[2,5]},,{stroke:'black',strokeWidth:1,strokeDash:[2,5]}]
 		configArray: [],
 	}
 
@@ -211,4 +220,4 @@ export default class PieChat extends Component {
 	}
 }
 
-PieChat.Wedge = Wedge
+PieChart.Wedge = Wedge

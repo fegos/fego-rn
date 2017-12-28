@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, ART, Animated, ScrollView, Text, Dimensions } from 'react-native';
-import { PieChat } from 'fego-rn'
-const Wedge = PieChat.Wedge
+import { PieChart } from 'fego-rn'
+const Wedge = PieChart.Wedge
 const { Surface, Shape, Path, Group, LinearGradient, RadialGradient } = ART;
 
 /**
@@ -128,7 +128,7 @@ export default class TestART extends Component {
 				</Surface>
 				<Text style={{ margin: 10 }}>绘制环形</Text>
 				<Animated.View style={{ opacity: this.state.fadeAnim }}>
-					<PieChat
+					<PieChart
 						percentArray={[1]}
 						colorArray={['#4d84eb', '#fca63e', '#892265']}
 						outerRadius={40}

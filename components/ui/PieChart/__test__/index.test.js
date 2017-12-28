@@ -2,12 +2,12 @@ import React from 'react'
 import Renderer from 'react-test-renderer'
 import { Text } from 'react-native'
 import { shallow } from 'enzyme'
-import PieChat from '../index'
+import PieChart from '../index'
 
-describe('PieChat Tests', () => {
+describe('PieChart Tests', () => {
 	let Comp;
 	beforeEach(() => {
-		Comp = <PieChat
+		Comp = <PieChart
 			percentArray={[0.2, 0.1, 0.4, 0.3]}
 			colorArray={['red', 'yellow','blue','green']}
 			outerRadius={40}
@@ -16,7 +16,7 @@ describe('PieChat Tests', () => {
 		/>
 	})
 	it('renders correctly', () => {
-		const tree = Renderer.create(<Text>piechat</Text>).toJSON();
+		const tree = Renderer.create(<Text>PieChart</Text>).toJSON();
 		expect(tree).toMatchSnapshot();
 	});
 

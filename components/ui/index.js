@@ -18,7 +18,7 @@ import Modal from './Modal'
 import MonthPicker from './MonthPicker'
 import Picker from './Picker'
 import PickerView from './PickerView'
-import PieChat from './PieChat'
+import PieChart from './PieChart'
 import Popover from './Popover'
 import Popup from './Popup'
 import Progress from './Progress'
@@ -48,7 +48,7 @@ export {
 	MonthPicker,
 	Picker,
 	PickerView,
-	PieChat,
+	PieChart,
 	Popover,
 	Popup,
 	Progress,
