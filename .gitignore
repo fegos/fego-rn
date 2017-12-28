@@ -2,5 +2,7 @@ node_modules
 demo/ios/fegoRN.xcodeproj/project.xcworkspace
 demo/android/.idea
 demo/android/.gradle
+demo/android/gradle
+demo/android/build
 *.iml
 demo/android/local.properties
