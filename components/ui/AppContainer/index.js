@@ -7,7 +7,7 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import TopView from './TopView'
-import { RNMessage } from '../../util'
+import { RNMessage } from '../../common'
 let App;
 class AppContainer extends Component {
 	/**

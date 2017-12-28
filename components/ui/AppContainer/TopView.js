@@ -5,7 +5,7 @@
  */
 import React, { Component } from 'react'
 import { View, AppRegistry, StyleSheet } from 'react-native'
-import { RNMessage } from '../../util'
+import { RNMessage } from '../../common'
 
 export default class TopView extends Component {
 	state = {
