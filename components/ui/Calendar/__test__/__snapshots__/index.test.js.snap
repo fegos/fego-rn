@@ -2765,10 +2765,7 @@ exports[`Calendar Tests renders correctly 1`] = `
                   "justifyContent": "center",
                   "width": 60,
                 },
-                Object {
-                  "backgroundColor": "#ecf6ff",
-                  "borderColor": "#1188e9",
-                },
+                false,
                 Object {
                   "backgroundColor": "#1188e9",
                   "borderColor": "#1188e9",
@@ -2789,9 +2786,7 @@ exports[`Calendar Tests renders correctly 1`] = `
                     "fontSize": 28,
                   },
                   Object {},
-                  Object {
-                    "color": "#1188e9",
-                  },
+                  false,
                   Object {
                     "color": "#fff",
                   },
@@ -2802,25 +2797,6 @@ exports[`Calendar Tests renders correctly 1`] = `
             </Text>
           </View>
         </View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-                "color": "#1188e9",
-                "fontSize": 24,
-                "marginTop": 10,
-                "textAlign": "center",
-              },
-            ]
-          }
-        >
-          今天
-        </Text>
       </View>
       <View
         style={
@@ -2870,7 +2846,10 @@ exports[`Calendar Tests renders correctly 1`] = `
                   "justifyContent": "center",
                   "width": 60,
                 },
-                false,
+                Object {
+                  "backgroundColor": "#ecf6ff",
+                  "borderColor": "#1188e9",
+                },
                 false,
               ]
             }
@@ -2888,7 +2867,9 @@ exports[`Calendar Tests renders correctly 1`] = `
                     "fontSize": 28,
                   },
                   Object {},
-                  false,
+                  Object {
+                    "color": "#1188e9",
+                  },
                   false,
                 ]
               }
@@ -2897,6 +2878,25 @@ exports[`Calendar Tests renders correctly 1`] = `
             </Text>
           </View>
         </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "color": "#1188e9",
+                "fontSize": 24,
+                "marginTop": 10,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          今天
+        </Text>
       </View>
       <View
         style={
