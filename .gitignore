@@ -1,5 +1,7 @@
 node_modules
 demo/ios/fegoRN.xcodeproj/project.xcworkspace
+demo/ios/fegoRN.xcodeproj/xcuserdata
+demo/ios/fegoRN.xcodeproj/xcshareddata
 demo/android/.idea
 demo/android/.gradle
 demo/android/gradle
