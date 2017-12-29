@@ -22,7 +22,7 @@ theme
 	├── Component.jsx # 单个组件的页面
 	├── ComponentIndex.jsx # 组件索引页
 	├── Home.jsx # 首页
-	├── NotFound.jsx # 出错页面，必须
+	├── NotFound.jsx # 出错页面，必需
 	└── index.jsx
 ```
 
@@ -55,5 +55,12 @@ module.exports = {
 
 ## 启动服务
 ```bash
+# 根目录下执行
 $ npm run site
+```
+
+## 编译
+```bash
+# 根目录下执行
+$ npm run build-site
 ```

@@ -34,7 +34,7 @@
 |	|—— app                     # demo 源码
 |	|—— ios                     # ios 工程
 |—— site                        # 组件文档站点的目录
-| 	|—— output                  # bisheng 输出文件夹
+| 	|—— build                   # bisheng 输出文件夹
 |	|—— theme                   # bisheng 主题文件夹
 |	|—— bisheng.config.js       # bisheng 配置文件
 |—— .babelrc                    # babel 配置
