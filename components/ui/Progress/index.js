@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import { View, StyleSheet, Animated, Dimensions, } from 'react-native';
+import { View, StyleSheet, Animated, Dimensions } from 'react-native';
 import UIComponent from '../../common/UIComponent'
 
 export default class Progress extends UIComponent {
@@ -21,6 +21,14 @@ export default class Progress extends UIComponent {
 			attr: 'backgroundColor'
 		}
 	}
+
+	// static simpleStyleProps = {
+	// 	containColor: {
+	// 		name: 'progressBar',
+	// 		attr: 'backgroundColor'
+	// 	}
+	// }
+
 	static propTypes = {
 		//进度0-100
 		percent: PropTypes.number,
@@ -77,16 +85,6 @@ export default class Progress extends UIComponent {
 			}).start();
 		}
 	}
-
-	// onLayout = (e) => {
-	// 	let w = this.viewWidth;
-	// 	if (!w || w > e.nativeEvent.layout.width) {
-	// this.setState({
-	// 	wrapWidth: e.nativeEvent.layout.width,
-	// });
-	// viewWidth = nativeEvent.layout.width;
-	// 	}
-	// }
 
 	_normalPercent = (percent) => {
 		let widthPercent = 0;
@@ -152,7 +150,7 @@ export default class Progress extends UIComponent {
 		}
 
 		return (
-			<View onLayout={this.onLayout} style={outerStyle}>
+			<View style={outerStyle}>
 				{child}
 			</View>);
 	}
@@ -224,7 +222,7 @@ Progress.baseStyle = {
 	container: {
 		backgroundColor: '#ddd',
 		justifyContent: 'center',
-		borderRadius: 1,
+		borderRadius: 0,
 		borderWidth: 0,		
 	},
 	progressBar: {
