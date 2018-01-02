@@ -1,18 +1,16 @@
-.vscode
-
-# android
-local.properties
-.idea
-deploy
+node_modules
+demo/android/.idea
+demo/android/.gradle
 *.iml
-build
-.gradle
+demo/android/local.properties
+*.log
 
-# ios
+## Build generated
+build/
+DerivedData
 Pods
 Podfile.lock
+*.xcuserstate
 xcuserdata
-
-# js
-node_modules
-yarn.lock
+*.hmap
+*.ipa
