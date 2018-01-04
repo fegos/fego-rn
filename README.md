@@ -41,7 +41,7 @@
   │   └── bisheng.onfig.js            # bisheng 配置文件
   ├── .babel                          # babel 配置
   ├── jest.config.js                  # jest 测试配置文件
-  └── package.json                    # 辅助脚本文件夹
+  └── package.json                    # 项目描述文件
 ```
 
 ### 开发
