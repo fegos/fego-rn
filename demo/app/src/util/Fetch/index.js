@@ -5,117 +5,279 @@ import { Style } from '../../../common'
 import { Fetch, Button } from 'fego-rn'
 
 class TestView extends Component {
+	static navigationOptions = {
+		title: '网络请求组件，基于Axios封装'
+	}
+
 	constructor(props) {
 		super(props);
 		this.state = {
 			showView: false,
-			fetchMsg: 'fetchMsg',
+			fetchMsg: '--',
 			list: []
 		};
 	}
-	fetchData() {
-		this.setState({
-			fetchMsg: '数据加载中...'
-		})
-		Fetch.get('http://localhost:3001/api/test/fetch/list', {
-			params: {
-				pageSize: 10,
-				pageNo: 3
-			}
-		}).then(res => {
+
+	__requestResult(isOK, obj) {
+		if (isOK) {
 			this.setState({
 				fetchMsg: '成功',
-				list: res.data.data.result
+				list: obj.data.data.result
 			})
-		}).catch(err => {
-			if (!err) return;
+		}
+		else {
 			this.setState({
-				fetchMsg: '失败 ' + err.message
+				fetchMsg: '失败 ' + obj.message,
+				list: []
 			})
-		});
+		}
 	}
-	// fetchData2() {
-	// 	this.setState({
-	// 		fetchMsg: '数据加载中...'
-	// 	})
-	// 	this.fetch = Fetch.create({
-	// 		// canAbort: false
-	// 	});
-	// 	this.fetch.get('http://localhost:3001/api/test/fetch/list', {
-	// 		pageSize: 10,
-	// 		pageNo: 3
-	// 	}).then(res => {
-	// 		this.setState({
-	// 			fetchMsg: '成功',
-	// 			list: res.datadata.result
-	// 		})
-	// 	}).catch(err => {
-	// 		if (!err) {
-	// 			this.setState({
-	// 				fetchMsg: '请求被忽略了，此时页面不用提示异常，由拦截器统一处理'
-	// 			})
-	// 			return;
-	// 		}
-	// 		this.setState({
-	// 			fetchMsg: '失败 ' + err.message
-	// 		})
-	// 	});
-	// }
-	// fetchData3() {
-	// 	this.setState({
-	// 		fetchMsg: '数据加载中...'
-	// 	})
-	// 	Fetch.create({ hostKey: 'other', timeout: 2000 }).get('other/host').then(data => {
-	// 		this.setState({
-	// 			fetchMsg: '成功'
-	// 		})
-	// 	}).catch(err => {
-	// 		if (!err) return;
-	// 		this.setState({
-	// 			fetchMsg: '失败 ' + err.message,
-	// 			result: 'hostKey=other :' + err.url
-	// 		})
-	// 	});
-	// }
-	// abort() {
-	// 	this.fetch.abort();
-	// }
-	fetchTimeout() {
-		this.setState({
-			fetchMsg: '数据加载中...'
-		})
-		Fetch.create({ timeout: 300 }).get('http://localhost:3001/api/test/fetch/list').then(res => {
-			this.setState({
-				fetchMsg: '成功',
-				list: res.data.data.result
-			})
-		}).catch(err => {
-			if (!err) return;
-			this.setState({
-				fetchMsg: '失败 ' + err.message
-			})
-		});
-	}
+
 	render() {
 		let { navigator } = this.props
 		return (
-			<ScrollView>
-				<View style={Style.container}>
-					<Text style={Style.text}>请求状态：{this.state.fetchMsg}</Text>
-					<Button title="请求数据" onPress={this.fetchData.bind(this)}></Button>
-					<Button title="请求超时" onPress={this.fetchTimeout.bind(this)}></Button>
-					{/*<Button title="请求2" onPress={this.fetchData2.bind(this)}></Button>
-					<Button title="忽略请求2" onPress={this.abort.bind(this)}></Button>
-					<Button title="请求不同的host，延迟2秒超时" onPress={this.fetchData3.bind(this)}></Button>*/}
-					<Text style={Style.title}>请求结果</Text>
-					<Text style={Style.text}>{this.state.result}</Text>
-					<Text style={Style.title}>数据列表</Text>
-					{this.state.list.map((item, i) => {
-						return <Text style={Style.text} key={item.id}>数据项{i + 1}:{item.name} {item.desc}</Text>
-					})}
+			<View style={Style.container}>
+				<View style={{ flex: 1, padding: 10, borderWidth: 5, borderColor: '#123123' }}>
+					<ScrollView>
+
+						<View style={localStyle.item}>
+							<Text style={localStyle.code}>
+								{
+									`初始化:设置host
+-----------------------------------
+Fetch.defaults.baseURL = 'http://localhost:3001/api'
+Fetch.defaults.timeout = 1000`
+								}
+							</Text>
+							<Button title="初始化" onPress={() => {
+								Fetch.defaults.baseURL = 'http://localhost:3001/api'
+								Fetch.defaults.timeout = 20000
+								// Fetch.testCustom('http://localhost:3001/api')
+							}} />
+						</View>
+
+
+						<View style={localStyle.item}>
+							<Text style={localStyle.code}>
+								{
+									`Fetch Get请求示例：
+-----------------------------------
+Fetch.get('/test/fetch/list?p=xxx')
+.then(res => {
+	this.__requestResult(true, res) 
+}).catch(err => {
+	this.__requestResult(false, err) 
+});`
+								}
+							</Text>
+							<Button title="Get使用方法，点击测试" onPress={() => {
+								this.setState({
+									fetchMsg: '数据加载中...',
+									list: []
+								})
+								Fetch.get('/test/fetch/list?a=100').then(res => {
+									this.__requestResult(true, res)
+								}).catch(err => {
+									this.__requestResult(false, err)
+								});
+							}} />
+						</View>
+
+
+						<View style={localStyle.item}>
+							<Text style={localStyle.code}>
+								{
+									`Fetch Post请求示例：
+-----------------------------------
+Fetch.post('/test/fetch/list',{p:'xxx'})
+.then(res => {
+	this.__requestResult(true, res) 
+}).catch(err => {
+	this.__requestResult(false, err) 
+});`
+								}
+							</Text>
+							<Button title="Post使用方法，点击测试" onPress={() => {
+								this.setState({
+									fetchMsg: '数据加载中...',
+									list: []
+								})
+								Fetch.post('/test/fetch/list', { p: 'xxx' }).then(res => {
+									this.__requestResult(true, res)
+								}).catch(err => {
+									this.__requestResult(false, err)
+								});
+							}} />
+						</View>
+
+						<View style={localStyle.item}>
+							<Text style={localStyle.code}>
+								{
+									`Fetch 取消请求示例,目前必须是get情况cancel：
+-----------------------------------
+var CancelToken = Fetch.CancelToken;
+var source = CancelToken.source();
+Fetch.get('/test/fetch/cancel', 
+	{ cancelToken: source.token }
+).then(res => {
+	this.__requestResult(true, res) 
+}).catch((error) => {
+	this.__requestResult(false, err) 
+	if (Fetch.isCancel(error)) {
+		console.log('Request canceled', error.message);
+	} 
+});
+	
+setTimeout(() => {
+	//取消请求（消息参数是可选的）
+	source.cancel('操作被用户取消。');
+	this.setState({
+		fetchMsg: '操作被用户取消。。',
+		list: []
+	})
+}, 3000)`
+								}
+							</Text>
+							<Button title="取消请求，点击测试" onPress={() => {
+								this.setState({
+									fetchMsg: '数据加载中...',
+									list: []
+								})
+
+								var CancelToken = Fetch.CancelToken;
+								var source = CancelToken.source();
+								Fetch.get('/test/fetch/cancel', { cancelToken: source.token }).then(res => {
+									this.__requestResult(true, res)
+								}).catch((error) => {
+									console.log(error.message);
+									this.__requestResult(false, error)
+									if (Fetch.isCancel(error)) {
+										console.log('Request canceled', error.message);
+									} else {
+										// 处理错误
+									}
+								});
+
+								//取消请求（消息参数是可选的）
+								setTimeout(() => {
+									console.log('========')
+									source.cancel('操作被用户取消。');
+									this.setState({
+										fetchMsg: '操作被用户取消。。',
+										list: []
+									})
+								}, 3000)
+
+							}} />
+						</View>
+
+						<View style={localStyle.item}>
+							<Text style={localStyle.code}>
+								{
+									`				 axios.get('/user?ID=12345')
+					  .then(function (response) {
+							console.log(response);
+					  })
+					  .catch(function (error) {
+							   console.log(error);
+					   });`
+								}
+							</Text>
+							<Button title="拦截设置，点击测试" onPress={() => {
+								this.setState({
+									fetchMsg: '数据加载中...',
+									list: []
+								})
+								Fetch.get('http://localhost:3001/api/test/fetch/list', {
+									params: {
+										pageSize: 10,
+										pageNo: 3
+									}
+								}).then(res => {
+									this.__requestResult(true, res)
+								}).catch(err => {
+									this.__requestResult(false, err)
+								});
+							}} />
+						</View>
+
+						<View>
+							<Text style={localStyle.code}>
+								{
+									`				 axios.get('/user?ID=12345')
+							  .then(function (response) {
+									console.log(response);
+							  })
+							  .catch(function (error) {
+							   		console.log(error);
+							   });`
+								}
+							</Text>
+							<Button title="并发请求，点击测试" onPress={() => {
+
+							}} />
+						</View>
+
+						<View style={localStyle.item}>
+							<Button title="超时设置，点击测试" onPress={() => {
+
+							}} />
+							<Text style={localStyle.code}>
+								{
+									`				 axios.get('/user?ID=12345')
+							  .then(function (response) {
+									console.log(response);
+							  })
+							  .catch(function (error) {
+							   		console.log(error);
+							   });`
+								}
+							</Text>
+						</View>
+						<View style={localStyle.item}>
+							<Text style={localStyle.code}>
+								{
+									`				 axios.get('/user?ID=12345')
+						  .then(function (response) {
+								console.log(response);
+						  })
+						  .catch(function (error) {
+								   console.log(error);
+						   });`
+								}
+							</Text>
+							<Button title="自定义实例，点击测试" onPress={() => {
+
+							}} />
+						</View>
+					</ScrollView>
 				</View>
-			</ScrollView>
+				<View style={{ flex: 0.2, flexDirection: 'row', padding: 10, borderWidth: 5, borderColor: '#123123', alignItems: 'center' }}>
+					<View style={{ flex: 4 }}>
+						<Text style={localStyle.code}>状态：{this.state.fetchMsg}</Text>
+					</View>
+					<View style={{ flex: 6 }}>
+						<ScrollView>
+							{this.state.list.map((item, i) => {
+								return <Text style={Style.text} key={item.id}>数据项{i + 1}:{item.name} {item.desc}</Text>
+							})}
+						</ScrollView>
+					</View>
+				</View>
+			</View>
+
 		)
+	}
+}
+
+let localStyle = {
+	item: {
+		borderWidth: 5,
+		borderColor: '#345678',
+		padding: 5
+	},
+	code: {
+		textAlign: 'left', color: 'white', backgroundColor: 'black', lineHeight: 25, marginVertical: 10
 	}
 }
 
