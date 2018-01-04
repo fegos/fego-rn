@@ -14,7 +14,7 @@
 - 组件命名以使用驼峰形式且首字母大写，例如：`ActivityIndicator`
 - 若无特殊情况组件不区分 ios 和 android 平台，统一为 `SomeComponent/index.js`, 不带 ios 或 android 后缀
 - API 设计规范[详见](components/README.md)
-- 组件样式[详见](components/ui/STYLE.MD)
+- 组件样式[详见](components/ui/STYLE.md)
 
 
 ### 目录结构
