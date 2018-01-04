@@ -41,5 +41,27 @@ module.exports = {
 				}
 			}
 		}
+	},
+	'test/fetch/username': {
+		delay: 1000,
+		response: function (req, res) {
+			// 动态数据
+			return {
+				'retcode': 200,
+				'retdesc': '消息',
+				'username': 'username'
+			}
+		}
+	},
+	'test/fetch/nickname': {
+		delay: 2000,
+		response: function (req, res) {
+			// 动态数据
+			return {
+				'retcode': 200,
+				'retdesc': '消息',
+				'nickname': 'nickname'
+			}
+		}
 	}
 }

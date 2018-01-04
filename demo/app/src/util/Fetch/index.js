@@ -231,32 +231,49 @@ setTimeout(() => {
 						<View>
 							<Text style={localStyle.code}>
 								{
-									`				 axios.get('/user?ID=12345')
-							  .then(function (response) {
-									console.log(response);
-							  })
-							  .catch(function (error) {
-							   		console.log(error);
-							   });`
+									`function getUserAccount() {
+										return axios.get('/user/12345');
+									  }
+									  
+									  function getUserPermissions() {
+										return axios.get('/user/12345/permissions');
+									  }
+									  
+									  axios.all([getUserAccount(), getUserPermissions()])
+										.then(axios.spread(function (acct, perms) {
+										  // Both requests are now complete
+										}));`
 								}
 							</Text>
 							<Button title="并发请求，点击测试" onPress={() => {
+								this.setState({
+									fetchMsg: '数据加载中...',
+									list: []
+								})
+								function getUserName() {
+									return Fetch.get('/test/fetch/username');
+								}
 
+								function getNickName() {
+									return Fetch.get('/test/fetch/nickname');
+								}
+								let that = this
+								Fetch.all([getUserName(), getNickName()])
+									.then(
+									Fetch.spread(function (username, nickname) {
+										that.setState({
+											fetchMsg: '成功',
+											list: [
+												{ name: username.data.username },
+												{ name: nickname.data.nickname }
+											]
+										})
+									})
+									);
 							}} />
 						</View>
 
 						<View style={localStyle.item}>
-							<Text style={localStyle.code}>
-								{
-									`				 axios.get('/user?ID=12345')
-						  .then(function (response) {
-								console.log(response);
-						  })
-						  .catch(function (error) {
-								   console.log(error);
-						   });`
-								}
-							</Text>
 							<Button title="自定义实例，点击测试" onPress={() => {
 
 							}} />
