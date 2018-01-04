@@ -19,7 +19,9 @@
 	"bugs": {
 		"url": "http://github.com/fegos/fego-rn/issues"
 	},
-	"files": ["components"],
+	"files": [
+		"components"
+	],
 	"license": "MIT",
 	"dependencies": {
 		"axios": "^0.17.1",

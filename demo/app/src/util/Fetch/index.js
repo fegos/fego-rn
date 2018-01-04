@@ -56,6 +56,62 @@ Fetch.defaults.timeout = 1000`
 							}} />
 						</View>
 
+						<View style={localStyle.item}>
+							<Text style={localStyle.code}>
+								{
+									`Fetch.interceptors.request.use(function (config) {
+										if (config.method == 'post') {
+											let data = config.data
+											function encrypt(params) {
+												params = { encrypt: '00000' }
+												return Promise.resolve(params)
+											}
+											return encrypt(data).then((data) => {
+												config.data = data
+												return config;
+											})
+										}
+										else {
+											return config;
+										}
+									}, function (error) {
+										return Promise.reject(error);
+									});
+	
+									Fetch.interceptors.response.use(function (response) {
+										return response.data;
+									}, function (error) {
+										return Promise.reject(error);
+									});`
+								}
+							</Text>
+							<Button title="拦截设置，点击测试" onPress={() => {
+								Fetch.interceptors.request.use(function (config) {
+									if (config.method == 'post') {
+										let data = config.data
+										function encrypt(params) {
+											params = { encrypt: '00000' }
+											return Promise.resolve(params)
+										}
+										return encrypt(data).then((data) => {
+											config.data = data
+											return config;
+										})
+									}
+									else {
+										return config;
+									}
+								}, function (error) {
+									return Promise.reject(error);
+								});
+
+								Fetch.interceptors.response.use(function (response) {
+									return response.data;
+								}, function (error) {
+									return Promise.reject(error);
+								});
+							}} />
+						</View>
 
 						<View style={localStyle.item}>
 							<Text style={localStyle.code}>
@@ -158,46 +214,17 @@ setTimeout(() => {
 									}
 								});
 
-								//取消请求（消息参数是可选的）
-								setTimeout(() => {
+								function cancelRequest() {
 									console.log('========')
 									source.cancel('操作被用户取消。');
 									this.setState({
 										fetchMsg: '操作被用户取消。。',
 										list: []
 									})
-								}, 3000)
-
-							}} />
-						</View>
-
-						<View style={localStyle.item}>
-							<Text style={localStyle.code}>
-								{
-									`				 axios.get('/user?ID=12345')
-					  .then(function (response) {
-							console.log(response);
-					  })
-					  .catch(function (error) {
-							   console.log(error);
-					   });`
 								}
-							</Text>
-							<Button title="拦截设置，点击测试" onPress={() => {
-								this.setState({
-									fetchMsg: '数据加载中...',
-									list: []
-								})
-								Fetch.get('http://localhost:3001/api/test/fetch/list', {
-									params: {
-										pageSize: 10,
-										pageNo: 3
-									}
-								}).then(res => {
-									this.__requestResult(true, res)
-								}).catch(err => {
-									this.__requestResult(false, err)
-								});
+								//取消请求（消息参数是可选的）
+								setTimeout(cancelRequest.bind(this), 3000)
+
 							}} />
 						</View>
 
@@ -218,22 +245,6 @@ setTimeout(() => {
 							}} />
 						</View>
 
-						<View style={localStyle.item}>
-							<Button title="超时设置，点击测试" onPress={() => {
-
-							}} />
-							<Text style={localStyle.code}>
-								{
-									`				 axios.get('/user?ID=12345')
-							  .then(function (response) {
-									console.log(response);
-							  })
-							  .catch(function (error) {
-							   		console.log(error);
-							   });`
-								}
-							</Text>
-						</View>
 						<View style={localStyle.item}>
 							<Text style={localStyle.code}>
 								{
