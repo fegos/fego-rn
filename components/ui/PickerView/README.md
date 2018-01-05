@@ -12,8 +12,15 @@ subTitle: 选择器
 ### 示例代码
 
 ```js
-import PickerView from 'somewhere'
-<PickerView data={pickerData} {...otherProps}/>
+<PickerView
+	data={pickerData}
+	initialValue={['xican','niupai','qi']}
+	cascade={true}
+	cols={3}
+	onChange={(selectedValue, selectedIndex, selectedLabel) => {
+			console.log('onValueChange ', selectedValue, selectedIndex, selectedLabel)
+	}}
+/>
 
 ```
 
@@ -25,8 +32,9 @@ import PickerView from 'somewhere'
 ----|-----|------|------
 | data | 选择器的数据源 | array | [ ] |
 | cascade | 选择器是否级联 | bool | false |
-| cols | 列数,级联式时有的级数 | number | - |
-| initialValue | picker 初始值，格式为[v1, v2, v3]，对应数据源的相应级层value | array | [ ] |
+| cols | 列数,级联时需要提供 | number | - |
+| value | 内容值，受控属性，非受控时使用initialValue | array | - |
+| initialValue | 初始值，非受控属性，格式为[v1, v2, v3]，受控时使用value | array | [ ] |
 | onChange | 每列数据选择变化后的回调函数 | Function(selectedValue, selectedIndex, selectedLabel){} | - |
 | onReady | 准备就绪的回调函数 | Function(function(selectedValue, selectedIndex, selectedLabel){}){} | - |
 
@@ -34,11 +42,13 @@ import PickerView from 'somewhere'
 
 属性 | 说明 | 适用类型
 ----|-----|------
-
+| container | pickerview容器样式 | View |
 
 ### props data 说明
 
-#### data 的数据格式为 `Array<{value, label}>` 或 `Array<Array<{value, label}>>`: 
+#### 非级联时，每个数组表示一列数据
+data 的数据格式为 `Array<{value, label}>` 或 `Array<Array<{value, label}>>`:   
+
 
 + PivkerView 只含一列数据
 ```html
@@ -51,7 +61,7 @@ import PickerView from 'somewhere'
 }]
 ```
 
-+ PivkerView 含两列数据
++ PivkerView 含两列以上数据
 ```html
 [
 	[{
@@ -71,7 +81,8 @@ import PickerView from 'somewhere'
 	}]
 ]
 ```
-#### 每项数据除了 label 和 value 两个属性外，还有第三个属性：children，表示级联式，该项值下一级的数据
+#### 级联时，children表示下一列数据
+每项数据除了 label(用于展示) 和 value(用于标识) 两个属性外，还有第三个属性：children，表示级联式，该项值下一级的数据
 
 ```html
 [{
