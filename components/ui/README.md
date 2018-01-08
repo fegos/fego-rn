@@ -18,13 +18,56 @@
 下面优先级由低到高
 > 优先级：baseStyle < themeStyle < styles < style < propStyle < simpleStyle
 
-1. baseStyle  组件基础样式【必须】
-2. setBaseStyle 由产品项目自定义基础样式
-3. setThemeStyle 由产品项目自定义主题样式
-4. props.styles 开发者自定义样式类
-5. props.style 容器样式等效于styles.container
-6. propStyle 以Style为后缀的prop，例如 props.contentStyle
-7. simpleStyle 简易样式 例如 props.tipColor
+1. baseStyle 组件基础样式【必须】,可以通过setBaseStyle进行全局变更,格式:
+```
+{  
+	styleName1:{
+		stylePropsName:stylePropsValue,
+			...
+	},
+	styleName2:{
+		stylePropsName:stylePropsValue,
+		...
+	}
+}
+```
+2. themeStyle 自定义主题样式，如字体种类1、2、3，按钮种类1、2、3,可以通过setThemeStyle进行全局变更,是对baseStyle的一种组合,格式:
+```
+   {
+	   themeName:{
+		   styleName1:{
+			   stylePropsName:stylePropsValue,
+			   ...
+			},
+		   styleName2:{
+			   stylePropsName:stylePropsValue,
+			   ...
+		   },
+		   ...
+		},
+		...
+	}
+```
+
+3. props.styles 开发者自定义样式类,是对props.style的一种组合
+   格式:
+   {
+	   container:{
+		   stylePropsName:stylePropsValue,
+	   },
+	   styleName:{
+		   stylePropsName:stylePropsValue,
+	   },
+	   ...
+	}
+
+4. props.style 容器样式等效于styles.container,默认样式属性
+
+5. propStyle 以Style为后缀的prop，例如 props.contentStyle
+
+6. simpleStyle 简易样式 例如 props.tipColor,
+   需要在组件定义的时候预先声明好simpleStyleProps
+   由prop.styles引申的一种写法
 
 #### 注意
 

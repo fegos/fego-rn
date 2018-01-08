@@ -5,15 +5,58 @@
  * 
 【样式优先级】
 下面优先级由低到高
-> 优先级：baseStyle < themeStyle < styles < style < propStyle < simpleStyle
+优先级：baseStyle < themeStyle < styles < style < propStyle < simpleStyle
 
-1. baseStyle 组件基础样式【必须】
-2. setBaseStyle 由产品项目自定义基础样式
-3. setThemeStyle 由产品项目自定义主题样式
-4. props.styles 开发者自定义样式类
-5. props.style 容器样式等效于styles.container
-6. propStyle 以Style为后缀的prop，例如 props.contentStyle
-7. simpleStyle 简易样式 例如 props.tipColor
+1. baseStyle 组件基础样式【必须】,可以通过setBaseStyle进行全局变更,
+   格式:
+   {
+	   styleName1:{
+		   stylePropsName:stylePropsValue,
+		   ...
+		},
+		styleName2:{
+		   stylePropsName:stylePropsValue,
+		   ...
+		}
+   }
+
+2. themeStyle 自定义主题样式，
+   如字体种类1、2、3，按钮种类1、2、3,可以通过setThemeStyle进行全局变更,是对baseStyle的一种组合
+   格式:
+   {
+	   themeName:{
+		   styleName1:{
+			   stylePropsName:stylePropsValue,
+			   ...
+			},
+		   styleName2:{
+			   stylePropsName:stylePropsValue,
+			   ...
+		   },
+		   ...
+		},
+		...
+	}
+
+3. props.styles 开发者自定义样式类,是对props.style的一种组合
+   格式:
+   {
+	   container:{
+		   stylePropsName:stylePropsValue,
+	   },
+	   styleName:{
+		   stylePropsName:stylePropsValue,
+	   },
+	   ...
+	}
+
+4. props.style 容器样式等效于styles.container,默认样式属性
+
+5. propStyle 以Style为后缀的prop，例如 props.contentStyle
+
+6. simpleStyle 简易样式 例如 props.tipColor,
+   需要在组件定义的时候预先声明好simpleStyleProps
+   由prop.styles引申的一种写法
  */
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
@@ -24,7 +67,7 @@ export default class UIComponent extends Component {
 	// constructor(props){
 	// 	super(props)
 	// }
-	
+
 	// 基础样式【必需】
 	static baseStyle = {}
 	/**
@@ -32,7 +75,7 @@ export default class UIComponent extends Component {
 	 * UIComponent.setBaseStyle(Button, {});
 	 */
 	static setBaseStyle(_class, style = {}) {
-		if(_class && _class.baseStyle){
+		if (_class && _class.baseStyle) {
 			return merge(_class.baseStyle, style);
 		}
 	}
@@ -42,7 +85,7 @@ export default class UIComponent extends Component {
 	 * 设置默认主题样式
 	 */
 	static setThemeStyle(_class, style = {}) {
-		if(_class && _class.themeStyle){
+		if (_class && _class.themeStyle) {
 			return merge(_class.themeStyle, style);
 		}
 	}
@@ -84,7 +127,7 @@ export default class UIComponent extends Component {
 	 * 挂载前执行一次
 	 */
 	componentWillMount() {
-		this._handlPropStyle()
+		this._handlePropStyle()
 		this.updateStyle();
 	}
 	/**
@@ -103,14 +146,14 @@ export default class UIComponent extends Component {
 	 */
 	shouldComponentUpdate(nextProps, nextState) {
 		// props 或 state 有变化是才render
-		if(!isEqual(nextProps, this.props)) return true;
-		if(nextState && !isEqual(nextState, this.state)) return true;
+		if (!isEqual(nextProps, this.props)) return true;
+		if (nextState && !isEqual(nextState, this.state)) return true;
 		return false;
 	}
 	/**
 	 * 更新this.style，若有必要子类可调用该方法刷新style
 	 */
-	updateStyle(nextProps){
+	updateStyle(nextProps) {
 		// console.log(this.constructor.name + ': updateStyle')
 		return this.style = this._getStyle(nextProps);
 	}
@@ -124,12 +167,12 @@ export default class UIComponent extends Component {
 		// 静态属性
 		let { baseStyle, themeStyle, simpleStyleProps, autoStyleSheet } = this.constructor;
 		// 检查基础样式是否合法
-		if(!baseStyle || typeof baseStyle !== 'object'){
+		if (!baseStyle || typeof baseStyle !== 'object') {
 			console.warn('UI组件缺少合法的基础样式baseStyle!')
 			return;
 		}
 		// 检查是否需要主题样式
-		if(themeStyle && typeof themeStyle === 'object'){
+		if (themeStyle && typeof themeStyle === 'object') {
 			themeStyle = this._getThemeStyle(props);
 		}
 		// 容器样式对象 等效于 styles.container
@@ -139,7 +182,7 @@ export default class UIComponent extends Component {
 		let propStyle = this._getPropStyle(props);
 		// 简易样式声明
 		let simpleStyle = {}
-		if(simpleStyleProps){
+		if (simpleStyleProps) {
 			simpleStyle = this._getSimpleStyle(props);
 		}
 		// 优先级 baseStyle < themeStyle < styles < style < propStyle < simpleStyle(简易样式声明)
@@ -151,8 +194,8 @@ export default class UIComponent extends Component {
 	 */
 	_getThemeStyle(props) {
 		let themeStyle = this.constructor.themeStyle;
-		let styleArr= [];
-		for(let k in themeStyle){
+		let styleArr = [];
+		for (let k in themeStyle) {
 			let propValue = props[k];
 			// 例如 themeStyle.type.primary
 			styleArr.push(themeStyle[k][propValue])
@@ -163,14 +206,14 @@ export default class UIComponent extends Component {
 	 * 获取简易prop样式
 	 * 由simpleStyleProps 声明，详情见其定义说明
 	 */
-	_getSimpleStyle(props){
+	_getSimpleStyle(props) {
 		let simpleStyle = {};
 		let simpleStyleProps = this.constructor.simpleStyleProps;
-		for(let k in simpleStyleProps){
+		for (let k in simpleStyleProps) {
 			let propValue = props[k];
-			if(propValue){
+			if (propValue) {
 				let styleDefine = simpleStyleProps[k];
-				let styleObj = simpleStyle[styleDefine.name] = simpleStyle[styleDefine.name]||{};
+				let styleObj = simpleStyle[styleDefine.name] = simpleStyle[styleDefine.name] || {};
 				styleObj[styleDefine.attr] = propValue;
 			}
 		}
@@ -181,11 +224,11 @@ export default class UIComponent extends Component {
 	 * 格式*Style，是以Style结尾的prop
 	 * 例如： contentStyle = { color: '#FFF' } 会在这里 转换成 { content: { color: '#FFF' } }
 	 */
-	_getPropStyle(props){
+	_getPropStyle(props) {
 		let style = {};
-		this._propStyleArr.forEach(k =>{
+		this._propStyleArr.forEach(k => {
 			let fullStyle = this._mergeStyle(props[k]);
-			k = k.replace(/Style$/,'');
+			k = k.replace(/Style$/, '');
 			style[k] = fullStyle;
 		})
 		return style;
@@ -194,17 +237,17 @@ export default class UIComponent extends Component {
 	 * 合并样式 支持数组形式
 	 * @param {*} style 
 	 */
-	_mergeStyle(style){
-		if(!style) return {}
-		if(style.constructor === Array){
+	_mergeStyle(style) {
+		if (!style) return {}
+		if (style.constructor === Array) {
 			style.unshift({});
 			return merge.apply(null, style);
 		}
 		return merge({}, style);
 	}
-	_handlPropStyle(){
-		for( let k in this.props){
-			if(/(.*)Style$/.test(k)){
+	_handlePropStyle() {
+		for (let k in this.props) {
+			if (/(.*)Style$/.test(k)) {
 				this._propStyleArr.push(k)
 			}
 		}
