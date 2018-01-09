@@ -43,6 +43,7 @@
 		"enzyme": "3.0.0",
 		"enzyme-adapter-react-16": "^1.0.0",
 		"esky-mock": "^1.0.5",
+		"socket-mock": "^1.0.1",
 		"jest": "21.2.1",
 		"react-document-title": "^2.0.3",
 		"react-dom": "^16.0.0",
@@ -52,6 +53,7 @@
 	"scripts": {
 		"init": "yarn install --no-optional -s --registry=https://registry.npm.taobao.org && cd demo/ios && pod install",
 		"mock": "esky-mock -c demo/app/mock/conf.js",
+		"socket": "socket-mock -c demo/app/mock/sconfig.js",
 		"site": "bisheng start -c site/bisheng.config.js",
 		"build-site": "bisheng build -c site/bisheng.config.js",
 		"start": "node node_modules/react-native/local-cli/cli.js start",

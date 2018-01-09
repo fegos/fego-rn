@@ -16,77 +16,85 @@ class TestView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			fetchMsg: '',
+			serverTime: '',
+			status: '',
 			msg: '',
 		};
 	}
 
-	_fetchSocketData = () => {
-		let socket = SocketIO.create('http://api.hhtcex.com', { path: '/app/socket.io', jsonp: false });
+	_socketConnect = () => {
+		if (this.socket) {
+			this.socket.disconnect()
+		}
+		this.socket = SocketIO.create('http://localhost:9096');
 
 		// 连接socket成功
-		socket.onConnectedHandler(this._onConnectEvent);
-
-		// 连接服务器成功
-		socket.onServerConnectedHandler(this._onServerConnectedEvent);
-
-		// 接受同步信息
-		socket.recSyncHandler(this._recSyncEvent);
-
-		let data = {
-			traderId: 'xxxxeeeeddd',
-			token: 'goooooood'
-		};
-		socket.reqSync(data);
-		//接受市场行情信息
-		socket.recQuoteHandler(this._recQuoteData);
-
-		// socket断开链接
-		socket.onDisonnectedHandler(this._onDisconnectEvent);
+		this.socket.on('connect', this._onConnectEvent)
+		//心跳
+		this.socket.on('serverHeartbeatEvent', this._recHeartbeatEventEvent)
+		//自定义消息
+		this.socket.on('serverTestEvent', this._recTestEvent)
+		// 断开链接
+		this.socket.on('disconnect', this._onDisconnectEvent)
 
 		this.setState({
-			fetchMsg: '连接中...'
+			status: '连接中...'
 		})
 	}
 
 	_onConnectEvent = (socket) => {
 		this.setState({
-			fetchMsg: '连接成功',
-			msg: `${this.state.msg}\nsocket连接成功：${socket}`
+			status: '连接中',
+		});
+	}
+	_recHeartbeatEventEvent = (data) => {
+		this.setState({
+			serverTime: data.timestamp,
 		});
 	}
 
-	_onServerConnectedEvent = (socket) => {
+	_recTestEvent = (data) => {
 		this.setState({
-			msg: `${this.state.msg}\n服务器连接成功：${socket}`
+			msg: `${this.state.msg}\n信息：${data.test}`
 		})
 	}
 
 	_onDisconnectEvent = (socket) => {
 		this.setState({
-			msg: `${this.state.msg}\n与socket断开连接：${socket}`
-		})
-	}
-
-	_recSyncEvent = (data) => {
-		this.setState({
-			msg: `${this.state.msg}\n服务器同步信息：${data}`
+			status: '断开连接',
 		});
 	}
 
-	_recQuoteData = (data) => {
-		this.setState({
-			msg: `${this.state.msg}\n行情信息：${data}`
-		});
+	_sendSocketMsg = () => {
+		let data = {
+			traderId: 'xxxxeeeeddd',
+			token: 'goooooood'
+		};
+		this.socket.emit('serverTestEvent', data);
+	}
+
+	_socketDisConnect = () => {
+		this.socket.disconnect()
+		this.socket = null
+	}
+
+	componentWillUnmount() {
+		if (this.socket) {
+			this.socket.disconnect()
+			this.socket = null
+		}
 	}
 
 	render() {
 		return (
 			<View>
-				<Button title="请求数据" onPress={this._fetchSocketData}></Button>
-				<Text style={Style.text}>请求状态：</Text>
-				<Text style={{ padding: 5 }}>{this.state.fetchMsg}</Text>
-				<Text style={Style.text}>请求状态：</Text>
+				<Button title="连接" onPress={this._socketConnect}></Button>
+				<Button title="发送消息" onPress={this._sendSocketMsg}></Button>
+				<Button title="断开连接" onPress={this._socketDisConnect}></Button>
+
+				<Text style={Style.text}>状态：{this.state.status}</Text>
+				<Text style={Style.text}>服务器时间：{this.state.serverTime}</Text>
+				<Text style={Style.text}>收发数据：</Text>
 				<ScrollView>
 					<Text style={{ padding: 5 }}>{this.state.msg}</Text>
 				</ScrollView>
