@@ -23,7 +23,8 @@ class TestView extends Component {
 				content: `初始化:设置host
 				-----------------------------------
 				Fetch.defaults.baseURL = 'http://localhost:3001/api'
-				Fetch.defaults.timeout = 1000`
+				Fetch.defaults.timeout = 1000
+				`
 			},
 			{
 				title: '拦截设置',
@@ -144,12 +145,14 @@ class TestView extends Component {
 							Fetch.interceptors.request.use(function (config) {
 								if (config.method == 'post') {
 									let data = config.data
+									//异步处理
 									return Promise.resolve({ encrypt: '00000' }).then((data) => {
 										config.data = data
 										return config;
 									})
 								}
 								else {
+									//同步处理
 									return config;
 								}
 							}, function (error) {
@@ -222,6 +225,25 @@ class TestView extends Component {
 							}
 						});
 
+						var source1 = CancelToken.source();
+						Fetch.get('/test/fetch/cancel', { cancelToken: source1.token }).then(res => {
+							this.__requestResult(true, res)
+						}).catch((error) => {
+							console.log(error.message);
+							this.__requestResult(false, error)
+							if (Fetch.isCancel(error)) {
+								console.log('Request canceled', error.message);
+							} else {
+								// 处理错误
+							}
+						});
+
+						Fetch.get('/test/fetch/list').then(res => {
+							this.__requestResult(true, res)
+						}).catch((error) => {
+							this.__requestResult(false, error)
+						});
+
 						function cancelRequest() {
 							console.log('========')
 							source.cancel('操作被用户取消。');
@@ -263,8 +285,9 @@ class TestView extends Component {
 										{ name: nickname.data.nickname }
 									]
 								})
+							})).catch((error) => {
+								this.__requestResult(false, error)
 							})
-							);
 					}} />
 				</View >
 		}
