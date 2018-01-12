@@ -68,7 +68,7 @@ export default class NPSwitch extends UIComponent {
 				this.start.pos = this.state.position._value;
 				this.start.moved = false;
 				this.start.active = this.state.active;
-				this.start.stateChanged = false;
+				this.start.distance = 0;
 			},
 			//当触摸移动调用
 			onPanResponderMove: (evt, gestureState) => {
@@ -97,15 +97,7 @@ export default class NPSwitch extends UIComponent {
 					}
 				}
 				var currentPos = this.state.position._value;
-				this._swipe(currentPos, this.start.pos,
-					() => {
-						if (!this.start.active) this.start.stateChanged = true;
-						// this._changeActiveOn()
-					},
-					() => {
-						if (this.start.active) this.start.stateChanged = true;
-						// this._changeActiveOff()
-					});
+				this.start.distance += Math.abs(gestureState.moveX);				
 			},
 			//监视器被要求终止
 			onPanResponderTerminationRequest: (evt, gestureState) => true,
@@ -113,11 +105,11 @@ export default class NPSwitch extends UIComponent {
 			onPanResponderRelease: (evt, gestureState) => {
 				// console.log("onPanResponderRelease");
 				this.setState({ pressed: false });
-				let currentPos = this.state.position._value;
-				if (!this.start.moved || (Math.abs(currentPos - this.start.pos) < 5 && !this.start.stateChanged)) {
+				let currentPos = this.state.position._value;					
+				if(this.start.distance < 5){
 					this.toggle();
 					return;
-				}				
+				}			
 				this._swipe(currentPos, this.start.pos, this._changeActiveOn, this._changeActiveOff);
 			},
 			//响应被终止
