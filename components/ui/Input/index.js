@@ -299,6 +299,8 @@ Input.baseStyle = {
 		flex: 1,
 		height: 48,
 		backgroundColor: '#FFF',
+		includeFontPadding: false,
+		textAlignVertical: 'center',
 		fontSize: 14,
 	},
 	extra: {

@@ -30,10 +30,10 @@ subTitle: 输入框
 ----|-----|------|------
 | last | 是否是一组输入框里的最后一个输入框, 默认输入框有 borderBottom, 但最后一个没有 | boolean | false |
 | label | 输入框label | string or element | - |
-| type | 输入框类型 | string | text |
+| type | 输入框类型，目前支持(text,number,phone,bankCard) | string | text |
 | keyboardType | 键盘类型，不传则参考type自动判断键盘类型 | string | - |
 | placeholder | 无输入文字时显示的提示文案 | string | - |
-| clear | 是否显示清楚按钮 | boolean | false |
+| clear | 是否显示清除按钮 | boolean | false |
 | value | 受控属性：需配合 onChange 使用更新数据 value | string | - |
 | defaultValue | 非控属性 | string | '' |
 | editable | 输入框是否可编辑 | boolean | true |
