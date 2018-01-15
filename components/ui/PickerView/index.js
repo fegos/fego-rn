@@ -23,9 +23,9 @@ class PickerView extends UIComponent {
 		// picker 初始值
 		initialValue: [],
 		// 每列数据选择变化后的回调函数
-		onChange: (indexArr, valueArr, labelArr)=>{},
+		onChange: (indexArr, valueArr, labelArr) => { },
 		// 准备就绪的回调函数
-		onReady: (indexArr, valueArr, labelArr)=>{},
+		onReady: (indexArr, valueArr, labelArr) => { },
 	}
 
 	static propTypes = {
@@ -56,14 +56,16 @@ class PickerView extends UIComponent {
 	componentWillReceiveProps(nextProps) {
 		super.componentWillReceiveProps()
 
-		if (nextProps.data.toString() !== this.props.data.toString()) {
+		if(!isArrayEquals(nextProps.data,this.props.data))
+		{
 			this._handleData(nextProps)
 		}
+		
 		if (nextProps.value !== undefined && nextProps.value.toString() !== this.props.value.toString()) {
 			let { cascade, value } = nextProps,
 				pickerData = cascade ? this.state.cascadeData : this.data,
 				label = [], index = [];
-			
+
 			pickerData.forEach((data, i) => {
 				data.forEach((d, j) => {
 					if (d.value === value[i]) {
@@ -83,13 +85,13 @@ class PickerView extends UIComponent {
 
 	componentDidMount() {
 		let { selectedValue, selectedIndex, selectedLabel } = this.state
-		this.props.onReady( selectedValue, selectedIndex, selectedLabel )
+		this.props.onReady(selectedValue, selectedIndex, selectedLabel)
 	}
 
 	_handleData(props) {
 		let multiRoll = props.data[0] instanceof Array;
 
-		if ( multiRoll ) {
+		if (multiRoll) {
 			this.data = props.data
 		} else {
 			this.data = [props.data]
@@ -99,7 +101,7 @@ class PickerView extends UIComponent {
 	_getInitialState(props) {
 		let { cascade } = props
 
-		if ( cascade ) {
+		if (cascade) {
 			this.state = this._getCascadeInitialState()
 		} else {
 			this.state = this._getUnCascadeInitialState()
@@ -112,21 +114,21 @@ class PickerView extends UIComponent {
 			initialValue = 'value' in this.props ? this.props.value : this.props.initialValue,
 			selectedIndex = [], selectedValue = [], selectedLabel = []
 
-		if ( initialValue.length ) { // 有初始值
+		if (initialValue.length) { // 有初始值
 			selectedValue = initialValue.slice()
-			for ( let i=0; i<len; i++ ) {
+			for (let i = 0; i < len; i++) {
 				let arr = data[i],
 					l = arr.length
 
-				for ( let j=0; j<l; j++ ) {
-					if ( arr[j].value === selectedValue[i] ) {
+				for (let j = 0; j < l; j++) {
+					if (arr[j].value === selectedValue[i]) {
 						selectedIndex.push(j)
-						selectedLabel.push( arr[j].label )
+						selectedLabel.push(arr[j].label)
 					}
 				}
 			}
 		} else { // 无初始值
-			for ( let i=0; i<len; i++ ) {
+			for (let i = 0; i < len; i++) {
 				selectedIndex.push(0)
 				selectedValue.push(data[i][0].value)
 				selectedLabel.push(data[i][0].label)
@@ -140,27 +142,27 @@ class PickerView extends UIComponent {
 		}
 	}
 
-	_getCascadeInitialState () {
-		let { cols, data } = this.props, 
+	_getCascadeInitialState() {
+		let { cols, data } = this.props,
 			initialValue = 'value' in this.props ? this.props.value : this.props.initialValue,
 			cascadeData = [], selectedIndex = [], selectedValue = [], selectedLabel = []
 
 		cascadeData[0] = data.concat()
 		var i = 0
-		for (i=0; i< cols; i++) {
+		for (i = 0; i < cols; i++) {
 			let item = cascadeData[i][0], index = 0
-			cascadeData[i].map( (data, ind) => {
-				if ( data.value === initialValue[i] ) {
+			cascadeData[i].map((data, ind) => {
+				if (data.value === initialValue[i]) {
 					item = data
 					index = ind
 				}
-			} )
+			})
 
-			if ( item ) {
-				if ( item.children ) cascadeData.push(item.children)
+			if (item) {
+				if (item.children) cascadeData.push(item.children)
 				selectedIndex.push(index)
-				selectedValue.push( item.value)
-				selectedLabel.push( item.label)
+				selectedValue.push(item.value)
+				selectedLabel.push(item.label)
 			}
 		}
 
@@ -172,26 +174,42 @@ class PickerView extends UIComponent {
 		}
 	}
 
+	isArrayEquals = (left, right) => {
+		if (!left && !right) return true
+		if (left.length !== right.length) return false
+		for (var i = 0, l = left.length; i < l; i++) {
+			// Check if we have nested arrays
+			if (left[i] instanceof Array && right[i] instanceof Array) {
+				// recurse into the nested arrays
+				if (!left[i].equals(right[i]))
+					return false;
+			}
+			else if (left[i] != right[i]) {
+				return false
+			}
+		}
+		return true
+	}
 	/**
 	 * @param d picker 一项的数据
 	 * @param index picker 这一项的数据在 picker 整个数据数组中的下标
 	 * @param newValue 新选中的值对应的value
 	 * @param newIndex 新选中的值在 d 中的下边
 	 */
-	_onChange = ( d, index, newValue, newIndex ) => {
+	_onChange = (d, index, newValue, newIndex) => {
 		let { cols, cascade } = this.props,
 			label = d[newIndex].label,
 			{ selectedIndex, selectedValue, selectedLabel } = this.state
-			_selectedValue = selectedValue.concat(),
+		_selectedValue = selectedValue.concat(),
 			_selectedIndex = selectedIndex.concat(),
 			_selectedLabel = selectedLabel.concat(),
 			_state = {};
 
-		if ( cascade ) { // 级联
+		if (cascade) { // 级联
 			let cascadeData = this.state.cascadeData.concat()
 
-			cascadeData.splice(index+1) // state 中保存的数据中的前index+1列的数据不用变，只需要级联变化之后的列数据
-			if ( d[newIndex].children ) cascadeData.push( d[newIndex].children )
+			cascadeData.splice(index + 1) // state 中保存的数据中的前index+1列的数据不用变，只需要级联变化之后的列数据
+			if (d[newIndex].children) cascadeData.push(d[newIndex].children)
 			// 存储的选中信息则是需要从变化的这一列开始重新计算
 			_selectedValue.splice(index)
 			_selectedIndex.splice(index)
@@ -200,15 +218,15 @@ class PickerView extends UIComponent {
 			_selectedIndex.push(newIndex)
 			_selectedLabel.push(label)
 
-			for (let i=index+1; i< cols; i++) {
+			for (let i = index + 1; i < cols; i++) {
 				let cData = cascadeData[i][0], cIndex = 0
 
-				if ( cData ){
-					_selectedValue.push( cData.value)
+				if (cData) {
+					_selectedValue.push(cData.value)
 					_selectedIndex.push(cIndex)
-					_selectedLabel.push( cData.label)
+					_selectedLabel.push(cData.label)
 
-					if ( cData.children ){
+					if (cData.children) {
 						cascadeData.push(cData.children)
 					}
 				}
@@ -234,7 +252,7 @@ class PickerView extends UIComponent {
 		 * componentWillRecieveProps 会使用到 cascadeData
 		 * 所以保证 state 更新完后再进行 onChange 回调
 		 */
-		this.setState(_state, ()=>{
+		this.setState(_state, () => {
 			this.props.onChange(_selectedValue, _selectedIndex, _selectedLabel)
 		})
 	}
@@ -250,22 +268,22 @@ class PickerView extends UIComponent {
 			return (
 				<PickerView.PickerRoll
 					key={index}
-					style={{flex: 1, justifyContent: 'flex-start'}}
+					style={{ flex: 1, justifyContent: 'flex-start' }}
 					data={rollData}
 					selectedIndex={this.state.selectedIndex[index]}
 					selectedValue={this.state.selectedValue[index]}
 					onValueChange={this._onChange.bind(this, rollData, index)}
 				>
-				{
-					Platform.OS === 'ios' && (
-					rollData.map((item) => (
-						<PickerItem
-							key={item.value}
-							value={item.value}
-							label={item.label}
-						/>
-					)))
-				}
+					{
+						Platform.OS === 'ios' && (
+							rollData.map((item) => (
+								<PickerItem
+									key={item.value}
+									value={item.value}
+									label={item.label}
+								/>
+							)))
+					}
 				</PickerView.PickerRoll>
 			)
 		})

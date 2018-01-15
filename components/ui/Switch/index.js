@@ -37,7 +37,10 @@ export default class NPSwitch extends UIComponent {
 		super.componentWillMount();
 		let style = this.style;
 		// 使用了active则defaultActive无效
-		let active = typeof this.props.active === 'boolean' ? this.props.active : this.props.defaultActive;
+		let { active, defaultActive, disabled} = this.props;
+		if( typeof active !== 'boolean'){
+			active = defaultActive;
+		}
 		this.start = {};
 		//动画起始位置
 		this.w = style.bar.width - Math.min(style.bar.height, style.button.borderRadius * 2);
@@ -57,19 +60,19 @@ export default class NPSwitch extends UIComponent {
 			onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
 
 			//监视器发出通知开始操作
-			onPanResponderGrant: (evt, gestureState) => {
-				if (this.props.disabled) return;
+			onPanResponderStart: (evt, gestureState) => {
+				if (disabled) return;
 
 				this.setState({ pressed: true });
 				this.start.x0 = gestureState.x0;
 				this.start.pos = this.state.position._value;
 				this.start.moved = false;
 				this.start.active = this.state.active;
-				this.start.stateChanged = false;
+				this.start.distance = 0;
 			},
 			//当触摸移动调用
 			onPanResponderMove: (evt, gestureState) => {
-				if (this.props.disabled) return;
+				if (disabled) return;
 				this.start.moved = true;
 				if (this.start.pos == 0) {
 					if (gestureState.dx <= this.state.width && gestureState.dx >= 0) {
@@ -94,15 +97,7 @@ export default class NPSwitch extends UIComponent {
 					}
 				}
 				var currentPos = this.state.position._value;
-				this._swipe(currentPos, this.start.pos,
-					() => {
-						if (!this.start.active) this.start.stateChanged = true;
-						// this._changeActiveOn()
-					},
-					() => {
-						if (this.start.active) this.start.stateChanged = true;
-						// this._changeActiveOff()
-					});
+				this.start.distance += Math.abs(gestureState.moveX);				
 			},
 			//监视器被要求终止
 			onPanResponderTerminationRequest: (evt, gestureState) => true,
@@ -110,17 +105,17 @@ export default class NPSwitch extends UIComponent {
 			onPanResponderRelease: (evt, gestureState) => {
 				// console.log("onPanResponderRelease");
 				this.setState({ pressed: false });
-				var currentPos = this.state.position._value;
-				if (!this.start.moved || (Math.abs(currentPos - this.start.pos) < 5 && !this.start.stateChanged)) {
+				let currentPos = this.state.position._value;					
+				if(this.start.distance < 5){
 					this.toggle();
 					return;
-				}
+				}			
 				this._swipe(currentPos, this.start.pos, this._changeActiveOn, this._changeActiveOff);
 			},
 			//响应被终止
 			onPanResponderTerminate: (evt, gestureState) => {
 				// console.log("onPanResponderTerminate");
-				var currentPos = this.state.position._value;
+				let currentPos = this.state.position._value;
 				this.setState({ pressed: false });
 				this._swipe(currentPos, this.start.pos, this._changeActiveOn, this._changeActiveOff);
 			},
@@ -140,21 +135,21 @@ export default class NPSwitch extends UIComponent {
 	 * 判断状态是否改变
 	 * @param {number} currentPosition 当前位置
 	 * @param {number} startingPosition 起始位置
-	 * @param {func} onChange 状态改变回调
-	 * @param {func} onTerminate 状态不发生改变回调
+	 * @param {func} onActive 状态变为active回调
+	 * @param {func} onInActive 状态变为inactive回调
 	 */
-	_swipe = (currentPosition, startingPosition, onChange, onTerminate) => {
+	_swipe = (currentPosition, startingPosition, onActive, onInActive) => {
 		if (currentPosition - startingPosition >= 0) {//向右滑动
 			if (currentPosition - startingPosition > this.state.width / 2 || startingPosition == this.state.width) {
-				onChange();
+				onActive();
 			} else {
-				onTerminate();
+				onInActive();
 			}
 		} else {//向左滑动
 			if (currentPosition - startingPosition < -this.state.width / 2) {
-				onTerminate();
+				onInActive();
 			} else {
-				onChange();
+				onActive();
 			}
 		}
 	}
@@ -185,26 +180,27 @@ export default class NPSwitch extends UIComponent {
 		).start();
 	}
 
+	_performAnim = (active) => {
+		active ? this._activateAni():this._deactivateAni();
+	}
+
 	/**
 	 * 改变状态值
 	 */
 	_changeActive = (newActive, propsUpdate=false) => {
 		let { onChange, active } = this.props
 		if(propsUpdate){
-			if(newActive){
-				this._activateAni();
-			}else{
-				this._deactivateAni();
-			}
+			this._performAnim(newActive);
 			return;
 		}
-		// 未使用受控props则自己控制状态
 		if (typeof active !== 'boolean') {
+			// 未使用受控props则自己控制状态
 			this.setState({ active: newActive });
-			if(newActive){
-				this._activateAni();
-			}else{
-				this._deactivateAni();
+			this._performAnim(newActive);
+		} else {
+			//受控状态下，滑动未过半，按钮需要回退到正确的位置
+			if(active === newActive){
+				this._performAnim(newActive);
 			}
 		}
 		onChange && onChange(newActive, this);

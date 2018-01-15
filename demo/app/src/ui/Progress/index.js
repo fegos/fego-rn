@@ -31,7 +31,7 @@ export default class Page extends Component {
 				<Progress progressBarColor='red' percent={60} />
 				<Text style={Style.title}>width = 200, height = 80</Text>
 				<View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', height: 100 }}>
-					<Progress style={{ width: 200, height: 80 }} type='border' percent={50} />
+					<Progress style={{ backgroundColor:'red', width: 200, height: 80 }} type='border' percent={50} />
 				</View>
 			</ScrollView>)
 	}
