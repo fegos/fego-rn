@@ -92,15 +92,3 @@ export default class PieChartView extends Component {
 		);
 	}
 }
-
-var privateStyle = StyleSheet.create({
-	bgStyle: {
-		flex: 1,
-	},
-	pieStyle: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-
-})
