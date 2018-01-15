@@ -10,7 +10,7 @@ export default class Page extends Component {
 		Toast.info('这是一个 toast 提示!!!', 3);
 	}
 	successToast() {
-		Toast.success('加载成功!!!', 3, null, false, { backgroundColor: '#3af568' });
+		Toast.success('加载成功!!!', 3,{ backgroundColor: '#3af568' });
 	}
 	failToast() {
 		Toast.fail('加载失败!!!', 3);
@@ -31,6 +31,19 @@ export default class Page extends Component {
 			Toast.hide();
 			Toast.info('5秒后手动关闭了Toast', 1);
 		}, 5000)
+	}
+	blackLoadingToast(){
+		Toast.loading('加载中...',2,{loadingColor:'black'});
+	}
+	callbackToast(){
+		Toast.info('动画结束后执行回调，显示执行回调',2,{ 
+			onClose:()=>{
+				console.log('回调执行');
+				setImmediate(()=>{
+					Toast.info('回调执行');
+				})
+			}
+		})
 	}
 	multToast() {
 		Toast.info('第一个持续3秒，2秒后触发下一个', 3);
@@ -53,6 +66,8 @@ export default class Page extends Component {
 					<ListItem onPress={this.failToast} title='失败 toast' />
 					<ListItem onPress={this.offline} title='网络 toast' />
 					<ListItem onPress={this.loadingToast} title='加载中，可操作，手动Toast.hide()' />
+					<ListItem onPress={this.blackLoadingToast} title='设置loading icon的颜色为黑色'/>
+					<ListItem onPress={this.callbackToast} title='带回调函数的Toast' />
 					<ListItem onPress={this.waitingToast} title='等待中，遮罩禁止操作，直到Toast.hide()' />
 					<ListItem onPress={this.multToast} title='多Toast连续触发' />
 					<ListItem onPress={e => {
@@ -61,7 +76,7 @@ export default class Page extends Component {
 								<Button title='按钮' style={{ marginBottom: 5 }} />
 								<Tag text='标签' />
 							</View>, {
-								duration: 0,
+								duration: 2,
 								styles: {
 									inner: {
 										padding: 10,

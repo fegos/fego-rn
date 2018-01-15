@@ -28,26 +28,26 @@ export default {
 	/**
 	 * 一般的消息提醒，无图标
 	 */
-	info(content, duration, onClose, mask, opt) {
-		return notice(content, { type: 'info', duration, onClose, mask, ...opt });
-	},
+	info(content, duration, opt) {
+		return notice(content, { type: 'info',duration, ...opt });
+	}, 
 	/**
 	 * 成功提示
 	 */
-	success(content, duration, onClose, mask, opt) {
-		return notice(content, { type: 'success', duration, onClose, mask, ...opt });
+	success(content, duration, opt) {
+		return notice(content, { type: 'success', duration, ...opt });
 	},
 	/**
 	 * 失败错误等提示
 	 */
-	fail(content, duration, onClose, mask, opt) {
-		return notice(content, { type: 'fail', duration, onClose, mask, ...opt });
+	fail(content, duration, opt) {
+		return notice(content, { type: 'fail', duration, ...opt });
 	},
 	/**
 	 * 离线，网络异常
 	 */
 	offline(content, duration, onClose, mask, opt) {
-		return notice(content, { type: 'offline', duration, onClose, mask, ...opt });
+		return notice(content, { type: 'offline', duration, ...opt });
 	},
 	// 加载默认文案
 	loadingText: '加载中...',
@@ -57,8 +57,8 @@ export default {
 	 * 需要的时候如下关闭
 	 * Toast.hide()
 	 */
-	loading(content = this.loadingText, duration = 0, onClose, mask, opt) {
-		return notice(content, { type: 'loading', duration, onClose, mask, ...opt });
+	loading(content = this.loadingText, duration = 0, opt) {
+		return notice(content, { type: 'loading', duration, ...opt });
 	},
 	// 加载默认文案
 	waitingText: '处理中...',
@@ -68,8 +68,8 @@ export default {
 	 * 需要的时候如下关闭
 	 * Toast.hide()
 	 */
-	waiting(content = this.waitingText, duration = 0, onClose, mask = true, opt) {
-		return notice(content, { type: 'loading', duration, onClose, mask, ...opt });
+	waiting(content = this.waitingText, duration = 0, opt) {
+		return notice(content, { type: 'loading', duration, mask:true, ...opt });
 	},
 	/**
 	 * type 如success等已定义，若未定义过则当字体的name使用

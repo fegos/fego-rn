@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, View } from 'react-native'
-import { Style } from '../../../common'
+import { Style, TestListView } from '../../../common'
 import { List, Switch } from 'fego-rn'
 
 const ListItem = List.ListItem;
@@ -38,7 +38,7 @@ export default class Page extends Component {
 						<Text>使用active则属于受控组件，组件状态由外部props控制</Text>
 					</ListItem>
 					<ListItem>
-						<Switch active={this.state.active1} onChange={active=>this.setState({ active: false })}/> 
+						<Switch active={this.state.active1} onChange={active=>this.setState({ active1: false })}/> 
 						<Text>错误的例子，需使用onChange更新</Text>
 					</ListItem>
 					<ListItem>
