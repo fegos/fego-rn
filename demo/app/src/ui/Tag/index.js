@@ -28,7 +28,7 @@ const style = StyleSheet.create({
 
 export default class Page extends Component {
 	state = {
-		selected1: true,
+		checked1: true,
 		selfTagSel: false,
 		closed1: false
 	}
@@ -53,9 +53,9 @@ export default class Page extends Component {
 					<Tag text='使用 text props' />
 					<Tag text='text属性' >children属性，text属性失效</Tag>
 					<Tag >默认为非控组件</Tag>
-					<Tag selected={this.state.selected1} onChange={
-						selected => this.setState({ selected1: selected })
-					} >受控属性：selected</Tag>
+					<Tag checked={this.state.checked1} onChange={
+						checked => this.setState({ checked1: checked })
+					} >受控属性：checked</Tag>
 
 					<Tag disabled>禁止的</Tag>
 
@@ -64,9 +64,9 @@ export default class Page extends Component {
 					}>受控属性：closed，开启关闭功能</Tag>
 
 					<Tag styles={{
-						selected: { borderColor: '#891232' }
-					}} selected={this.state.selfTagSel} onChange={
-						selected => this.setState({ selfTagSel: selected })
+						checked: { borderColor: '#891232' }
+					}} checked={this.state.selfTagSel} onChange={
+						checked => this.setState({ selfTagSel: checked })
 					}>
 						<View style={{ flexDirection: 'row' }}>
 							<Icon style={{ color: this.state.selfTagSel ? '#891232' : '#bbb' }} name="calendar-check-o" />
