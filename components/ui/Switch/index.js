@@ -60,7 +60,7 @@ export default class NPSwitch extends UIComponent {
 			onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
 
 			//监视器发出通知开始操作
-			onPanResponderGrant: (evt, gestureState) => {
+			onPanResponderStart: (evt, gestureState) => {
 				if (disabled) return;
 
 				this.setState({ pressed: true });
@@ -180,26 +180,27 @@ export default class NPSwitch extends UIComponent {
 		).start();
 	}
 
+	_performAnim = (active) => {
+		active ? this._activateAni():this._deactivateAni();
+	}
+
 	/**
 	 * 改变状态值
 	 */
 	_changeActive = (newActive, propsUpdate=false) => {
 		let { onChange, active } = this.props
 		if(propsUpdate){
-			if(newActive){
-				this._activateAni();
-			}else{
-				this._deactivateAni();
-			}
+			this._performAnim(newActive);
 			return;
 		}
-		// 未使用受控props则自己控制状态
 		if (typeof active !== 'boolean') {
+			// 未使用受控props则自己控制状态
 			this.setState({ active: newActive });
-			if(newActive){
-				this._activateAni();
-			}else{
-				this._deactivateAni();
+			this._performAnim(newActive);
+		} else {
+			//受控状态下，滑动未过半，按钮需要回退到正确的位置
+			if(active === newActive){
+				this._performAnim(newActive);
 			}
 		}
 		onChange && onChange(newActive, this);
