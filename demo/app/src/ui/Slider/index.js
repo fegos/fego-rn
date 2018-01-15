@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ScrollView, Text } from 'react-native'
 import { Style } from '../../../common'
-import { Slider } from 'fego-rn'
+import { Slider,Toast } from 'fego-rn'
 
 export default class Page extends Component {
 	constructor(props) {
@@ -20,6 +20,8 @@ export default class Page extends Component {
 				<Slider value={this.state.value} onValueChange={(value) => {
 					if (value < 50) {
 						this.setState({ value })
+					}else{
+						Toast.info('大于50，禁止在增大');
 					}
 				}} />
 

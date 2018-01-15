@@ -7,20 +7,14 @@ export default class PieChartView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			percent: 0.01,
-		}
-
+			percentArray: [0.1,0.1,0.7,0.1],
+		};
 	}
 
 	componentDidMount() {
 		this.setState({
-			percent: 0.4,
+			percentArray:[0.2,0.1, 0.4,0.3],
 		})
-		setTimeout(() => {
-			this.setState({
-				percent: 0.4,
-			})
-		}, 0);
 	}
 
 
@@ -30,11 +24,12 @@ export default class PieChartView extends Component {
 			<View style={privateStyle.bgStyle}>
 				<View style={privateStyle.pieStyle}>
 					<PieChart
-						percentArray={[0.2,0.1, 0.4,0.3]}
+						percentArray={this.state.percentArray}
 						colorArray={['#4d84eb', '#fca63e','green','yellow']}
 						outerRadius={40}
 						innerRadius={25}
-						duration={1000}
+						duration={1500}
+						animationType = 'synchron'
 						configArray={[,{stroke:'red',strokeWidth:1,strokeDash:[2,5]},,{stroke:'black',strokeWidth:1,strokeDash:[2,5]}]}
 					/>
 				</View>

@@ -6,7 +6,7 @@ import Wedge from './Wedge'
 const { Surface, Shape, Path, Group } = ART;
 
 var AnimatedWedge = Animated.createAnimatedComponent(Wedge);
-
+var circumference = 360;
 export default class PieChart extends Component {
 	static propTypes = {
 		// 饼图数据
@@ -17,6 +17,8 @@ export default class PieChart extends Component {
 		innerRadius: PropTypes.number,
 		// 饼图外直径
 		outerRadius: PropTypes.number.isRequired,
+		// 动画执行方式
+		animationType: PropTypes.oneOf(['sequence', 'synchron']),
 		// 动画执行时间
 		duration: PropTypes.number,
 		// 配置, eg: [,{stroke:'red',strokeWidth:1,strokeDash:[2,5]},,{stroke:'black',strokeWidth:1,strokeDash:[2,5]}]
@@ -30,12 +32,12 @@ export default class PieChart extends Component {
 		duration: 1500,
 		// 配置, eg: [,{stroke:'red',strokeWidth:1,strokeDash:[2,5]},,{stroke:'black',strokeWidth:1,strokeDash:[2,5]}]
 		configArray: [],
+		animationType: 'sequence',
 	}
 
 	constructor(props) {
 		super(props);
 
-		this.wedgeAngles = [];
 		this.animationArray = [];
 		this.endAngleArray = [];
 		//初始化动画对象
@@ -44,7 +46,7 @@ export default class PieChart extends Component {
 		}
 
 		this.state = {
-			animationArray: this.animationArray,
+			wedgeAngles :[]
 		};
 	}
 	//保留同步执行的动画效果
@@ -67,16 +69,27 @@ export default class PieChart extends Component {
 	// 		this.forceUpdate();
 	// 	});
 	// }
-
-	_animations = () => {
+	_sequenceAnimation = () => {
 		var animatedArray = [];
 		for (var index = 0; index < this.props.percentArray.length; index++) {
-			animatedArray.push(Animated.timing(this.state.animationArray[index], {
+			animatedArray.push(Animated.timing(this.animationArray[index], {
 				duration: this.props.duration,
-				toValue: 10
+				toValue: circumference
 			}));
 		}
 		Animated.sequence(animatedArray).start();
+	}
+	_syncAnimation = () => {
+		for (var index = 0; index < this.props.percentArray.length; index++) {
+			Animated.timing(this.animationArray[index], {
+				duration: this.props.duration,
+				toValue: circumference
+			}).start();
+		}
+	}
+
+	_animations = () => {
+		this.props.animationType === 'sequence' ? this._sequenceAnimation() : this._syncAnimation()
 	}
 
 	_handleData = () => {
@@ -96,28 +109,20 @@ export default class PieChart extends Component {
 
 		//添加动画对象数组
 		for (var index = 0; index < this.props.percentArray.length; index++) {
-			if (index === 0) {
-				wedgeAngles.push(this.state.animationArray[index].interpolate({
-					inputRange: [0, 10],
-					outputRange: [0, this.endAngleArray[index] * 360],
-					extrapolate: 'clamp'
-				}));
-			} else if (index === this.props.percentArray.length - 1) {
-				wedgeAngles.push(this.state.animationArray[index].interpolate({
-					inputRange: [0, 10],
-					outputRange: [this.endAngleArray[index - 1] * 360, 360],
-					extrapolate: 'clamp'
-				}));
-			}
-			else {
-				wedgeAngles.push(this.state.animationArray[index].interpolate({
-					inputRange: [0, 10],
-					outputRange: [this.endAngleArray[index - 1] * 360, this.endAngleArray[index - 1] * 360 + this.props.percentArray[index] * 360],
-					extrapolate: 'clamp'
-				}));
-			}
+			//起始角度
+			let startAngle = index === 0 ? 0 : this.endAngleArray[index - 1] * circumference;
+			//结束角度
+			let endAngle = startAngle + this.props.percentArray[index] * circumference;
+
+			wedgeAngles.push(this.animationArray[index].interpolate({
+				inputRange: [0, circumference],
+				outputRange: [startAngle, endAngle],
+				extrapolate: 'clamp'
+			}));
 		}
-		this.wedgeAngles = wedgeAngles;
+		this.setState({
+			wedgeAngles:wedgeAngles
+		})
 
 	}
 
@@ -140,9 +145,6 @@ export default class PieChart extends Component {
 			for (var index = 0; index < nextProps.percentArray.length; index++) {
 				this.animationArray.push(new Animated.Value(0));
 			};
-			this.setState({
-				animationArray: this.animationArray,
-			})
 		}
 	}
 
@@ -173,12 +175,13 @@ export default class PieChart extends Component {
 	// }
 
 	render() {
-		// const rotation = Platform.OS === 'ios' ? 0 : -90;
+		//if RN version <0.47 ,need rotation
+		//const rotation = Platform.OS === 'ios' ? 0 : -90;
 
 		return (
 			<Surface width={this.props.outerRadius * 2} height={this.props.outerRadius * 2}>
 				<Group originX={this.props.outerRadius} originY={this.props.outerRadius}>
-					{this.wedgeAngles.map((data, index) => {
+					{this.state.wedgeAngles.map((data, index) => {
 						let stroke;
 						let strokeWidth;
 						let strokeDash;
@@ -187,33 +190,18 @@ export default class PieChart extends Component {
 							strokeWidth = this.props.configArray[index].strokeWidth;
 							strokeDash = this.props.configArray[index].strokeDash
 						}
-						if (index === 0) {
-							return <AnimatedWedge
-								key={index}
-								outerRadius={this.props.outerRadius}
-								innerRadius={this.props.innerRadius}
-								startAngle={0}
-								stroke={stroke}
-								strokeWidth={strokeWidth}
-								strokeDash={strokeDash}
-								endAngle={this.wedgeAngles[index]}
-								fill={this.props.colorArray[index]}
-							/>
-						} else {
-							return <AnimatedWedge
-								key={index}
-								outerRadius={this.props.outerRadius}
-								innerRadius={this.props.innerRadius}
-								startAngle={this.endAngleArray[index - 1] * 360}
-								stroke={stroke}
-								strokeWidth={strokeWidth}
-								strokeDash={strokeDash}
-								endAngle={this.wedgeAngles[index]}
-								fill={this.props.colorArray[index]}
-							/>
-						}
+						return <AnimatedWedge
+							key={index}
+							outerRadius={this.props.outerRadius}
+							innerRadius={this.props.innerRadius}
+							startAngle={index === 0 ? index : this.endAngleArray[index - 1] * circumference}
+							stroke={stroke}
+							strokeWidth={strokeWidth}
+							strokeDash={strokeDash}
+							endAngle={this.state.wedgeAngles[index]}
+							fill={this.props.colorArray[index]}
+						/>
 					})}
-					{/* {this._handleCover()} */}
 				</Group>
 			</Surface>
 		)
