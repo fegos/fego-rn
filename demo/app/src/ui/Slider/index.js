@@ -14,17 +14,23 @@ export default class Page extends Component {
 	render() {
 		return (
 			<ScrollView style={Style.container}>
-				<Text style={Style.title} >slider value</Text>
-				<Text style={Style.text}>Value: {this.state.value}</Text>
-				<Slider value={this.state.value} onValueChange={(value) => this.setState({ value })} />
-				<Text style={Style.title}>type = circle</Text>
-				<Slider type='circle' value={20} />
-				<Text style={Style.title}>type = square</Text>
-				<Slider type='square' value={30} />
-				<Text style={Style.title}>size = large</Text>
-				<Slider size='large' value={40} />
-				<Text style={Style.title}>size = small</Text>
-				<Slider size='small' value={50} />
+				<Text style={Style.text}>Slider</Text>
+
+				<Text style={Style.title}>受控组件，Value: {this.state.value}</Text>
+				<Slider value={this.state.value} onValueChange={(value) => {
+					if (value < 50) {
+						this.setState({ value })
+					}
+				}} />
+
+				<Text style={Style.title}>非受控组件，type = circle</Text>
+				<Slider type='circle' defaultValue={20} />
+				<Text style={Style.title}>非受控组件，type = square</Text>
+				<Slider type='square' defaultValue={30} />
+				<Text style={Style.title}>非受控组件，size = large</Text>
+				<Slider size='large' defaultValue={40} />
+				<Text style={Style.title}>非受控组件，size = small</Text>
+				<Slider size='small' defaultValue={50} />
 			</ScrollView>
 		)
 	}

@@ -41,10 +41,6 @@ export default class Page extends Component {
 						<ActivityIndicator visible={this.state.toast1Visible} hasToast={true} size="large" color="#FFF" />
 					</ListItem>
 				</List>
-				
-
-				
-				
 			</ScrollView>
 		);
 	}
