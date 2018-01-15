@@ -49,26 +49,7 @@ export default class PieChart extends Component {
 			wedgeAngles :[]
 		};
 	}
-	//保留同步执行的动画效果
-	// explode = () => {
-	// 	Animated.timing(this.state.animation1, {
-	// 		duration: 1500,
-	// 		toValue: 10
-	// 	}).start(() => {
-	// 		// this.state.animation.setValue(0);
-	// 		this.forceUpdate();
-	// 	});
-	// }
 
-	// explode2 = () => {
-	// 	Animated.timing(this.state.animation2, {
-	// 		duration: 1500,
-	// 		toValue: 10
-	// 	}).start(() => {
-	// 		// this.state.animation.setValue(0);
-	// 		this.forceUpdate();
-	// 	});
-	// }
 	_sequenceAnimation = () => {
 		var animatedArray = [];
 		for (var index = 0; index < this.props.percentArray.length; index++) {
@@ -162,17 +143,6 @@ export default class PieChart extends Component {
 		this._handleData();
 		this._animations();
 	}
-
-	// _handleCover() {
-	// 	const radius = this.props.outerRadius;
-	// 	const coverRadius = this.props.innerRadius * 2;
-	// 	const coverPath = new Path()
-	// 		.moveTo(radius, this.props.outerRadius - this.props.innerRadius)
-	// 		.arc(0, coverRadius, this.props.innerRadius)
-	// 		.arc(0, -coverRadius, this.props.innerRadius)
-	// 		.close();
-	// 	return <Shape d={coverPath} fill={'white'} />;
-	// }
 
 	render() {
 		//if RN version <0.47 ,need rotation
