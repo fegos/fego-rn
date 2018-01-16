@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { View, StyleSheet, Animated, Dimensions } from 'react-native';
-import UIComponent from '../../common/UIComponent'
+import UIComponent from 'common/UIComponent'
 
 export default class Progress extends UIComponent {
 	static defaultProps = {
 		percent: 0,
-		position: 'normal',
+		position: 'normal', //`normal`, `top`
 		appearTransition: false,
-		type: 'default',
-		size: 'default',
+		type: 'default', //`default`, `retangle`, `border`, `progressBorder`, 
+		size: 'default', //`default`, `small`, `large`
 		showUnfill: true,
+		progressMarginLinear: false
 	};
 
 	static autoStyleSheet = false;
@@ -22,13 +23,6 @@ export default class Progress extends UIComponent {
 		}
 	}
 
-	// static simpleStyleProps = {
-	// 	containColor: {
-	// 		name: 'progressBar',
-	// 		attr: 'backgroundColor'
-	// 	}
-	// }
-
 	static propTypes = {
 		//进度0-100
 		percent: PropTypes.number,
@@ -36,35 +30,24 @@ export default class Progress extends UIComponent {
 		type: PropTypes.string,
 		// 尺寸 small default large 
 		size: PropTypes.string,
-		// 位置 fixed normal
+		// 位置 top normal
 		position: PropTypes.string,
 		// 显示进度未满区域
 		showUnfill: PropTypes.bool,
+		// 进度条右边缘是否呈线形
+		progressMarginLinear: PropTypes.bool
 	}
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			//wrapWidth: props.wrapWidth || Dimensions.get('window').width,
 			percentage: new Animated.Value(0),
 		};
 		this.viewWidth = Dimensions.get('window').width;
 	}
 
 	componentWillReceiveProps(nextProps) {
-		// if (nextProps.wrapWidth !== this.props.wrapWidth) {
-		// 	this.setState({
-		// 		wrapWidth: nextProps.wrapWidth
-		// 	});
-		// }
 		if (this.props.appearTransition && nextProps.percent !== this.props.percent) {
-			// this.setState({
-			// 	percentage: new Animated.Value(this._getPercentWidth(nextProps.percent))
-			// });
-			/**
-			 * 修改1：this._getPercentWidth(nextProps.percent) 的参数不对，_getPercentWidth 的第一个参数应该是 width
-			 * 修改2：当 appearTransition 为 true 时，percent 值的变化应该使用 start 来启动动画，不应该直接 setState
-			 */
 			let curStyle = this.style;
 			let w = curStyle.container ? (curStyle.container.width || this.viewWidth) : this.viewWidth;
 			let pw = this._getPercentWidth(w, nextProps.percent);
@@ -103,16 +86,20 @@ export default class Progress extends UIComponent {
 
 	render() {
 		let curStyle = this.style;
-		const { position, showUnfill } = this.props;
-		//确定view的宽度		
+		const { type, position, showUnfill, progressMarginLinear} = this.props;
+		//确定view的宽度。进度条bar和背景bar的半径同步，以背景bar的半径为准。边宽则各自控制		
 		let w = curStyle.container ? (curStyle.container.width || this.viewWidth) : this.viewWidth;
 		let h = curStyle.container ? (curStyle.container.height || 6) : 6;
 		let bw = curStyle.container ? (curStyle.container.borderWidth || 0) : 0;
 		let br = curStyle.container ? (curStyle.container.borderRadius || 0) : 0;
+		let pbw = curStyle.progressBar ? (curStyle.progressBar.borderWidth || 0) : 0;
 		
-		//控制borderWidth的宽度
+		// 控制borderWidth的宽度
 		if (bw && bw > h / 4) {
 			bw = h / 4;
+		}
+		if (pbw && pbw > h / 4) {
+			pbw = h / 4;
 		}
 		if (br && br < h / 2) {
 			br = h / 2;
@@ -123,10 +110,9 @@ export default class Progress extends UIComponent {
 			{
 				width: w,
 				borderRadius: br,
-				borderColor: 'transparent',
-				borderWidth: 0,
+				borderColor: showUnfill ? (curStyle.container ? curStyle.container.borderColor : 'transparent') : 'transparent',
 			},
-			position === 'fixed' ? {
+			position === 'top' ? {
 				position: 'absolute',
 				top: 0
 			} : null,
@@ -135,18 +121,19 @@ export default class Progress extends UIComponent {
 			},
 		];
 		const borderStyle = {
-			borderWidth: bw,
+			borderWidth: pbw,
 			borderRadius: br,
-			borderColor: showUnfill ? (curStyle.container ? curStyle.container.backgroundColor : 'transparent') : 'transparent',
+			borderColor: curStyle.progressBar ? curStyle.progressBar.borderColor : 'transparent',
+			// borderColor: showUnfill ? (curStyle.container ? curStyle.container.backgroundColor : 'transparent') : 'transparent',
 		};
 
 		let percentStyle = {}, child = null;
 		if (this.props.appearTransition) {
 			percentStyle.width = this.state.percentage;
-			child = <Animated.View style={[curStyle.progressBar, percentStyle, borderStyle]} />;
+			child = <Animated.View style={[curStyle.progressBar, percentStyle, borderStyle, progressMarginLinear? {borderTopRightRadius:0, borderBottomRightRadius:0}: null]} />;
 		} else {
 			percentStyle.width = this._getPercentWidth(w, this.props.percent);
-			child = <View style={[curStyle.progressBar, percentStyle, borderStyle]} />;
+			child = <View style={[curStyle.progressBar, percentStyle, borderStyle, progressMarginLinear? {borderTopRightRadius:0, borderBottomRightRadius:0}: null]} />;
 		}
 
 		return (
@@ -188,6 +175,16 @@ Progress.themeStyle = {
 				borderRadius: 3,
 				borderWidth: StyleSheet.hairlineWidth,
 			}
+		},
+		progressBorder: {
+			container: {
+				borderRadius: 3,
+				borderWidth: 0,
+			},
+			progressBar: {
+				borderRadius: 3,
+				borderWidth: StyleSheet.hairlineWidth,
+			}
 		}
 	},
 	size: {
@@ -217,6 +214,7 @@ Progress.themeStyle = {
 		}
 	}
 }
+
 // 默认基础样式 
 Progress.baseStyle = {
 	container: {

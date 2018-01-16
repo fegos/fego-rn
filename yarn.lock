@@ -6752,6 +6752,12 @@ react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "http://registry.npm.taobao.org/react-error-overlay/download/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
 
+react-native-collapsible@^0.9.0:
+  version "0.9.0"
+  resolved "http://registry.npm.taobao.org/react-native-collapsible/download/react-native-collapsible-0.9.0.tgz#207849faa15493820d19fa6a5e58f7c7b6c1b910"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/react-native-dismiss-keyboard/download/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
@@ -7696,6 +7702,19 @@ sntp@2.x.x:
   resolved "http://registry.npm.taobao.org/sntp/download/sntp-2.1.0.tgz#2c6cec14fedc2222739caf9b5c3d85d1cc5a2cc8"
   dependencies:
     hoek "4.x.x"
+
+socket-mock@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/socket-mock/download/socket-mock-1.0.1.tgz#765184e1acf411c83807b304229e3312b22a0368"
+  dependencies:
+    body-parser "1.17.1"
+    chokidar "1.6.1"
+    commander "2.8.1"
+    cookie-parser "1.4.3"
+    express "4.14.0"
+    mockjs "1.0.0"
+    multer "1.3.0"
+    socket.io "^1.7.3"
 
 socket.io-adapter@0.5.0:
   version "0.5.0"
