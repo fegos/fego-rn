@@ -5,7 +5,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { View, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native'
-import UIComponent from '../../common/UIComponent'
+import UIComponent from 'common/UIComponent'
 
 export default class Segment extends UIComponent {
 	static defaultProps = {

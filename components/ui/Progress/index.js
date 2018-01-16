@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { View, StyleSheet, Animated, Dimensions } from 'react-native';
-import UIComponent from '../../common/UIComponent'
+import UIComponent from 'common/UIComponent'
 
 export default class Progress extends UIComponent {
 	static defaultProps = {
@@ -21,13 +21,6 @@ export default class Progress extends UIComponent {
 			attr: 'backgroundColor'
 		}
 	}
-
-	// static simpleStyleProps = {
-	// 	containColor: {
-	// 		name: 'progressBar',
-	// 		attr: 'backgroundColor'
-	// 	}
-	// }
 
 	static propTypes = {
 		//进度0-100
@@ -52,15 +45,7 @@ export default class Progress extends UIComponent {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		// if (nextProps.wrapWidth !== this.props.wrapWidth) {
-		// 	this.setState({
-		// 		wrapWidth: nextProps.wrapWidth
-		// 	});
-		// }
 		if (this.props.appearTransition && nextProps.percent !== this.props.percent) {
-			// this.setState({
-			// 	percentage: new Animated.Value(this._getPercentWidth(nextProps.percent))
-			// });
 			/**
 			 * 修改1：this._getPercentWidth(nextProps.percent) 的参数不对，_getPercentWidth 的第一个参数应该是 width
 			 * 修改2：当 appearTransition 为 true 时，percent 值的变化应该使用 start 来启动动画，不应该直接 setState
@@ -217,6 +202,7 @@ Progress.themeStyle = {
 		}
 	}
 }
+
 // 默认基础样式 
 Progress.baseStyle = {
 	container: {
