@@ -6,7 +6,7 @@ subTitle: 月份选择器
 # 月份选择控件 MonthPicker
 
 ### 组件描述
-- 月份选择器，统一由 Popup 来充当 MonthPicker 的容器
+- 月份选择器，非受控组件，由 Popup 来充当 MonthPicker 的容器，通过onselect取值，支持自定义数据及格式数据内容为data ([{value,label}])
 
 
 ### 示例代码

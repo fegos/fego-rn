@@ -13,26 +13,23 @@ const ListItem = List.ListItem;
 
 const itemHeight = 50
 
+
 export default class MonthPicker extends UIComponent {
 	static defaultProps = {
 		// 内容，设置此属性可覆盖 MonthPicker 默认的选项
 		data: [],
 		// 初始选中的值，默认选中最后一个
 		initialValue: '',
-		// 受控属性，是否显示组件
-		// visible: false,
 		// 关闭回调
-		onClose: () => {},
+		onClose: () => { },
 		// 选中回调,参数为选中的对象和所在数据下标
-		onSelect: (obj, index) => {},
+		onSelect: (obj, index) => { },
 	}
 	static propTypes = {
 		// 内容，设置此属性可覆盖 MonthPicker 默认的选项
 		data: PropTypes.array,
 		// 初始选中的值，默认选中最后一个
 		initialValue: PropTypes.string,
-		// 受控属性，是否显示组件
-		// visible: PropTypes.bool,
 		// 关闭回调
 		onClose: PropTypes.func,
 		// 选中回调
@@ -40,42 +37,40 @@ export default class MonthPicker extends UIComponent {
 	}
 	static months = []
 	static startMonth = '201609'
-	static setStartMonths ( value ) {
+	static setStartMonths(value) {
 		MonthPicker.startMonth = value
 	}
-	static getMonths () {
-		let months = [], 
-			now = new Date(), 
-			nowYear = now.getFullYear(), 
-			nowMonth = now.getMonth()+1,
+	static getMonths() {
+		let months = [],
+			now = new Date(),
+			nowYear = now.getFullYear(),
+			nowMonth = now.getMonth() + 1,
 			nowDate = now.getDate(),
 			sm = MonthPicker.startMonth,
 			startYear = parseInt(sm.slice(0, 4)),
 			startMonth = parseInt(sm.slice(4))
 
-		for ( let i=startYear; i<=nowYear; i++ ) {
-			for ( let j=1; j<= 12; j++ ) {
-				if ( i === startYear && j < startMonth ) continue
-				else if ( i === nowYear && j > nowMonth) continue
+		for (let i = startYear; i <= nowYear; i++) {
+			for (let j = 1; j <= 12; j++) {
+				if (i === startYear && j < startMonth) continue
+				else if (i === nowYear && j > nowMonth) continue
 				else {
 					// 格式化月份数据
-					j = ( j < 10 ? '0' : '' ) + j
+					j = (j < 10 ? '0' : '') + j
 					let label = MonthPicker.format(i, j)
-					months.push( {
+					months.push({
 						label: label,
-						value: ''+i+j
-					} )
+						value: '' + i + j
+					})
 				}
 			}
 		}
 		MonthPicker.months = months
 		return months
 	}
-	static format (year, month) {
-		return ''+year+'年'+month+'月'
+	static format(year, month) {
+		return '' + year + '年' + month + '月'
 	}
-
-	static autoStyleSheet = false
 
 	constructor(props) {
 		super(props)
@@ -97,17 +92,17 @@ export default class MonthPicker extends UIComponent {
 
 	_getInitialState(props) {
 		let months = this.months,
-			{ initialValue, visible } = props,
+			{ initialValue } = props,
 			value = '', index = 0
-		if ( initialValue ) {
-			months.forEach( (m, i) => {
+		if (initialValue) {
+			months.forEach((m, i) => {
 				if (m.value === initialValue) {
 					value = m.value
 					index = i
 				}
-			} )
+			})
 		} else {
-			let lastMonthIndex = months.length-1
+			let lastMonthIndex = months.length - 1
 			value = months[lastMonthIndex].value
 			index = lastMonthIndex
 		}
@@ -115,7 +110,7 @@ export default class MonthPicker extends UIComponent {
 		return {
 			value,
 			index,
-			// visible
+
 		}
 	}
 
@@ -133,8 +128,8 @@ export default class MonthPicker extends UIComponent {
 
 	_onLayout = () => {
 		let { index } = this.state
-		if ( this.scrollView && index > (this.viewCount - 1) ) {
-			let offsetY = ( index - (this.viewCount - 1) ) * itemHeight
+		if (this.scrollView && index > (this.viewCount - 1)) {
+			let offsetY = (index - (this.viewCount - 1)) * itemHeight
 			this.scrollView.scrollTo({ x: 0, y: offsetY, animated: false })
 		}
 	}
@@ -142,7 +137,7 @@ export default class MonthPicker extends UIComponent {
 	_onScrollEndDrag = (e) => {
 		let offset = e.nativeEvent.contentOffset.y,
 			t = offset / itemHeight
-			count = (offset%itemHeight) > (itemHeight/2) ? Math.ceil(t) : Math.floor(t)
+		count = (offset % itemHeight) > (itemHeight / 2) ? Math.ceil(t) : Math.floor(t)
 
 		if (count < 0) {
 			count = 0
@@ -158,10 +153,10 @@ export default class MonthPicker extends UIComponent {
 	render() {
 		let { value } = this.state, style = this.style
 		return (
-			<View style={[style.container, {height: this.containerHeight}]}>
-				<View style={[style.list, {height: this.listHeight}]} onLayout={this._onLayout}>
+			<View style={[style.container, { height: this.containerHeight }]}>
+				<View style={[style.list, { height: this.listHeight }]} onLayout={this._onLayout}>
 					<ScrollView
-						ref={c=>this.scrollView = c}
+						ref={c => this.scrollView = c}
 						bounce={false}
 						alwaysBounceHorizontal={false}
 						alwaysBounceVertical={false}
@@ -171,11 +166,11 @@ export default class MonthPicker extends UIComponent {
 						onScrollEndDrag={this._onScrollEndDrag}
 					>
 						<List>
-							{ this.months.map( (m, i) => (
+							{this.months.map((m, i) => (
 								<ListItem key={m.value} onPress={this._onSelect.bind(this, m, i)} style={style.item}>
 									<Text style={[style.text, m.value === value && style.selectedText]}>{m.label}</Text>
 								</ListItem>
-							) ) }
+							))}
 						</List>
 					</ScrollView>
 				</View>
@@ -216,7 +211,7 @@ MonthPicker.baseStyle = {
 	btn: {
 		height: 44,
 		borderWidth: 0,
-		marginTop: 10,	
+		marginTop: 10,
 		backgroundColor: '#ffffff'
 	}
 }
