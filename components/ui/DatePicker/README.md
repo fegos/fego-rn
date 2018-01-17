@@ -7,12 +7,43 @@ subTitle: 日期选择器
 
 ### 组件描述
 - 日期选择器，可用于选择日期(date模式)，也可用于选择时间(time模式)
+- 日期为year,month(1-12),day,hour,minute格式
+- mode为time时，日期间隔最好不能超过一天
 
 ### 示例代码
 
 ```html
-import DatePicker from 'somewhere'
-<DatePicker mode='date'/>
+	<DatePicker 
+		mode='date' 
+		minDate={new Date(2014,6,10)}
+		maxDate={new Date(2027,10,20)}
+		initialValue={new Date(2017,11,16)}
+		title='日期模式'
+		visible={this.state.visible1}
+		onClose={()=>{this.setState({visible1: false})}}
+		onConfirm={(val, idx, label, pickerType) => {
+			console.log(val, idx, label)
+			this.setState({
+			picker1Str: label.join('')
+			})
+		}}
+		onChange={(v, i, l)=>{
+		console.log(v, i, l)
+		}}
+	/>
+	<DatePicker 
+		mode='time' 
+		okText='fine'
+		minDate={new Date(2017,8,14, 15, 40)}
+		maxDate={new Date(2017,8,14, 18, 3)}
+		initialValue={new Date(2017,8,14, 20, 20)}
+		minuteStep={5} 
+		visible={this.state.visible2}
+		onClose={()=>{this.setState({visible2: false})}}
+			onConfirm={(val, idx, label, pickerType) => this.setState({
+				picker2Str: label.join('')
+		})}
+	/>
 ```
 
 ## API
@@ -37,7 +68,4 @@ import DatePicker from 'somewhere'
 | onChange | 每列数据选择变化后的回调函数 | Function(selectedValue, selectedIndex, selectedLabel){} | - |
 
 
-### 样式对象styles
 
-属性 | 说明 | 适用类型
-----|-----|------

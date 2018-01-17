@@ -16,7 +16,7 @@ export default class TimePicker extends UIComponent {
 		initialValue: new Date(),
 		minuteStep:1,
 		minDate:new Date(),
-		maxDate:new Date(new Date().getMilliseconds()+1000*60*60*24),//默认多一天
+		maxDate:new Date(new Date().getTime()+1000*60*60*2),
 	}
 	static propTypes = {
 		// 初始时间

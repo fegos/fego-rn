@@ -29,7 +29,7 @@ export default class Page extends Component {
 					mode='date' 
 					minDate={new Date(2014,6,10)}
 					maxDate={new Date(2027,10,20)}
-					initialValue={new Date(2017,1,16)}
+					initialValue={new Date(2017,11,16)}
 					title='日期模式'
 					visible={this.state.visible1}
 					onClose={()=>{this.setState({visible1: false})}}

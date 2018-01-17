@@ -11,9 +11,23 @@ import UIComponent from '../../common/UIComponent'
 import Picker from '../Picker'
 import PickerView from '../PickerView'
 
+//data必须是year,month（1-12）,day
+
 export default class DatePicker extends UIComponent {
 	static defaultProps = {
-		initialValue: new Date()
+		initialValue: new Date(),
+		minDate:new Date(),
+		maxDate:new Date(new Date().getTime()+1000*60*60*24*31*30),//默认多一年
+	}
+
+	static propTypes = {
+		// 初始时间
+		initialValue: PropTypes.instanceOf(Date),
+		//最小日期
+		minDate:PropTypes.instanceOf(Date),
+		//最大日期
+		maxDate:PropTypes.instanceOf(Date)
+
 	}
 	constructor(props) {
 		super(props)
@@ -28,19 +42,20 @@ export default class DatePicker extends UIComponent {
 	_handleInitialValue(props) {
 		let { initialValue, minDate, maxDate } = props;
 		let _initialValue = initialValue,
-			year = _initialValue.getFullYear(),
-			month = _initialValue.getMonth(),
+			//解决日期输入格式
+			year = _initialValue.getMonth() == 0 ? _initialValue.getFullYear() - 1 : _initialValue.getFullYear(),
+			month = _initialValue.getMonth() == 0 ? 11 : _initialValue.getMonth() - 1,
 			date = _initialValue.getDate();
 
 		// 有最小时最大时，需判断初始值是否合法
-		if (minDate || maxDate){
+		if (minDate || maxDate) {
 			let mYear, mMonth, mDate;
 			if (minDate) {
 				mYear = minDate.getFullYear(),
-				mMonth = minDate.getMonth(),
-				mDate = minDate.getDate();
+					mMonth = minDate.getMonth(),
+					mDate = minDate.getDate();
 			}
-			
+
 			// 保证在比较的时候只比较年月日，时间相同
 			let iniT = new Date(year, month, date).getTime(),
 				minT = minDate && (new Date(mYear, mMonth, mDate).getTime()),
@@ -93,22 +108,22 @@ export default class DatePicker extends UIComponent {
 		this.maxDate = _maxDate;
 
 		let yearArray = [], monthArray = [], dateArray = [];
-		for (let i=this.minYear; i<=this.maxYear; i++) {
+		for (let i = this.minYear; i <= this.maxYear; i++) {
 			yearArray.push({
-				label: i+'年',
-				value: i+''
+				label: i + '年',
+				value: i + ''
 			})
 		}
-		for (let i=0; i<12; i++) {
+		for (let i = 0; i < 12; i++) {
 			monthArray.push({
-				label: (i+1)+'月',
-				value: i+''
+				label: (i + 1) + '月',
+				value: i + ''
 			})
 		}
-		for (let i=1; i<=31; i++) {
+		for (let i = 1; i <= 31; i++) {
 			dateArray.push({
-				label: i+'日',
-				value: i+''
+				label: i + '日',
+				value: i + ''
 			})
 		}
 		this.yearArray = yearArray
@@ -131,7 +146,7 @@ export default class DatePicker extends UIComponent {
 			[yearIdx, monthIdx, dateIdx] = idx,
 			[yearLabel, monthLabel, dateLabel] = label;
 		let newD = this._getDatePickerData(year, month, date);
-		
+
 		newD.forEach((data, i) => {
 			let item = data.filter(d => d.value === val[i]);
 			if (!item.length) {
@@ -168,7 +183,7 @@ export default class DatePicker extends UIComponent {
 			labelArr: [yearLabel, monthLabel, dateLabel]
 		};
 	}
-	_getDaysInMonth (year, month) {
+	_getDaysInMonth(year, month) {
 		return new Date(year, month, 0).getDate();
 	}
 	_getDatePickerData(year, month, date) {
@@ -176,7 +191,7 @@ export default class DatePicker extends UIComponent {
 			valueMonth = parseInt(month),
 			valueDate = parseInt(date),
 			monthArr, dateArr,
-			maxDateThisMonth = this._getDaysInMonth(valueYear, valueMonth+1),
+			maxDateThisMonth = this._getDaysInMonth(valueYear, valueMonth + 1),
 			monthStart, // slice 方法第一个参数，表示起始位置
 			monthEnd, // slice 方法第二个参数，表示结束位置的下一个位置
 			dateStart, // slice 方法第一个参数，表示起始位置
@@ -185,7 +200,7 @@ export default class DatePicker extends UIComponent {
 		if (valueYear === this.minYear && valueYear === this.maxYear) {
 			// 选中的年份 === 最小年份 === 最大年份，则月份的范围只能是 [minDate.minMonth, this.maxMonth]
 			monthStart = this.minMonth;
-			monthEnd = this.maxMonth+1;
+			monthEnd = this.maxMonth + 1;
 
 			if (valueMonth === this.minMonth && valueMonth === this.maxMonth) {
 				// 选中的月份 === 最小月份 === 最大月份，则日期的范围只能是 [minDate.minDate, this.maxDate]
@@ -211,18 +226,18 @@ export default class DatePicker extends UIComponent {
 
 			if (valueMonth === this.minMonth) {
 				// 选中的月份 === 最小月份，则日期的范围只能是 [minDate.minDate, 月底]
-				dateStart = this.minDate-1;
+				dateStart = this.minDate - 1;
 				dateEnd = maxDateThisMonth;
 			} else {
 				// 其他情况 日期的范围只能是 [1号, 月底]
 				dateStart = 0;
 				dateEnd = maxDateThisMonth;
 			}
-			
+
 		} else if (valueYear === this.maxYear) {
 			// 选中的年份 === 最大年份，则月份的范围只能是 [1, maxDate.maxMonth]
 			monthStart = 0;
-			monthEnd = this.maxMonth+1;
+			monthEnd = this.maxMonth + 1;
 
 			if (valueMonth === this.maxMonth) {
 				// 选中的月份 === 最大月份，则日期的范围只能是 [0, maxDate.maxDate]
@@ -241,14 +256,15 @@ export default class DatePicker extends UIComponent {
 		}
 
 		monthArr = this.monthArray.slice(monthStart, monthEnd);
-		dateArr  = this.dateArray.slice(dateStart, dateEnd);
+		dateArr = this.dateArray.slice(dateStart, dateEnd);
 
 		return [this.yearArray, monthArr, dateArr]
 	}
 
 	render() {
+		//在constructor里面处理了initialValue，这里取出initialValue防止传递给下面
 		let { maskClosable, visible, showInModal, initialValue, mode, minDate, maxDate, minuteStep, ...rest } = this.props,
-			{ year, month, date} = this.state;
+			{ year, month, date } = this.state;
 		let Ele = showInModal ? Picker : PickerView;
 		return (
 			<Ele
