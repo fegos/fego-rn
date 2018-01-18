@@ -7,8 +7,6 @@ subTitle: 日期选择器
 
 ### 组件描述
 - 日期选择器，可用于选择日期(date模式)，也可用于选择时间(time模式)
-- 日期为year,month(1-12),day,hour,minute格式
-- mode为time时，日期间隔最好不能超过一天
 
 ### 示例代码
 

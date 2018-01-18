@@ -11,7 +11,6 @@ import UIComponent from '../../common/UIComponent'
 import Picker from '../Picker'
 import PickerView from '../PickerView'
 
-//data必须是year,month（1-12）,day
 
 export default class DatePicker extends UIComponent {
 	static defaultProps = {
@@ -43,8 +42,8 @@ export default class DatePicker extends UIComponent {
 		let { initialValue, minDate, maxDate } = props;
 		let _initialValue = initialValue,
 			//解决日期输入格式
-			year = _initialValue.getMonth() == 0 ? _initialValue.getFullYear() - 1 : _initialValue.getFullYear(),
-			month = _initialValue.getMonth() == 0 ? 11 : _initialValue.getMonth() - 1,
+			year = _initialValue.getFullYear(), 
+			month = _initialValue.getMonth() , 
 			date = _initialValue.getDate();
 
 		// 有最小时最大时，需判断初始值是否合法
@@ -52,8 +51,8 @@ export default class DatePicker extends UIComponent {
 			let mYear, mMonth, mDate;
 			if (minDate) {
 				mYear = minDate.getFullYear(),
-					mMonth = minDate.getMonth(),
-					mDate = minDate.getDate();
+				mMonth = minDate.getMonth(),
+				mDate = minDate.getDate();
 			}
 
 			// 保证在比较的时候只比较年月日，时间相同
