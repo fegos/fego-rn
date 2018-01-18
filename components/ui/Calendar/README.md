@@ -12,14 +12,17 @@ subTitle: 日历
 ### 示例代码
 
 ```html
-import CalendarPicker from 'CalendarPicker'
-
-<CalendarPicker />
-
-<CalendarPicker 
-	next='>'
-	prev='<'
-	{...otherProps} />
+<Calendar
+	maxDate={new Date(2017,5,8)}
+	minDate={new Date(2017,8,17)}
+	selectedDate={new Date(2017,6,20)}
+	onChange={(date)=>{this.setState({
+		date2: date
+	})}}
+	startFromMonday={true}
+	weekdays={[ '周一', '周二', '周三', '周四', '周五', '周六', '周日' ]}
+	owFixedSix={true}
+ />
 ```
 
 ## API
@@ -40,3 +43,22 @@ import CalendarPicker from 'CalendarPicker'
 | `next` | 下月翻页，可以是 `image` 这样的元素  | `string` or `element` | `>`|
 | `theme` | 组件的主题色, 目前暂只有 default | `string` | 'default' |
 | `rowFixed` | 日历是否固定显示6行 | `boolean` | `false` |
+
+
+### 样式对象styles
+
+属性 | 说明 | 适用类型
+----|-----|------
+| container | 样式容器 | View |
+| headerWrapper | 头部样式容器 | View |
+| title | 年月字体样式容器 | Text |
+| monthOperator | 前后月样式容器 | View |
+| pre | 前一个月样式容器 | View |
+| next | 下一个月样式容器 | View |
+| weekdayBarWrapper | 星期样式容器 | View |
+| barWeekday | 每个星期样式容器 | View |
+| bodyWrapper | 日期样式容器 | View |
+| bodyRow | day样式容器 | View |
+| selectedDayWrapper | 选中day样式容器 | View |
+| todayWrapper | 今天样式容器 | View |
+| todayText | 字体样式容器 | Text |
