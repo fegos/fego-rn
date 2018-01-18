@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import Day from './Day'
 
+//纯受控组件，通过calendar index里面的setState更新
 export default class Days extends Component {
 	static defaultProps = {
 	}

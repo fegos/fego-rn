@@ -20,7 +20,7 @@ export default class Page extends Component {
 				<Calendar defaultSelectedDate={this.state.date1} onChange={(date)=>{this.setState({
 					date1: date
 				})}}/>
-				<Text style={Style.title}>日历2使用非受控属性，可选日期范围：2017.06.08 - 2017.09.17；您选择的是：{this.state.date2.toString()}</Text>
+				<Text style={Style.title}>日历2使用受控属性，可选日期范围：2017.06.08 - 2017.09.17；您选择的是：{this.state.date2.toString()}</Text>
 				<Calendar
 					maxDate={maxDate}
 					minDate={minDate}
