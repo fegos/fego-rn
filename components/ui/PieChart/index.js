@@ -19,10 +19,16 @@ export default class PieChart extends Component {
 		outerRadius: PropTypes.number.isRequired,
 		// 动画执行方式
 		animationType: PropTypes.oneOf(['sequence', 'synchron']),
+		// 开始动画的角度
+		rotation:PropTypes.number,
+		// 动画执行方向，是否为顺时针
+		isClockwise: PropTypes.bool,
 		// 动画执行时间
 		duration: PropTypes.number,
 		// 配置, eg: [,{stroke:'red',strokeWidth:1,strokeDash:[2,5]},,{stroke:'black',strokeWidth:1,strokeDash:[2,5]}]
 		configArray: PropTypes.array,
+		// 动画结束时的回调函数
+		animationEndCallBack: PropTypes.func,
 	}
 
 	static defaultProps = {
@@ -30,9 +36,14 @@ export default class PieChart extends Component {
 		innerRadius: 0,
 		// 动画执行时间
 		duration: 1500,
+		// 开始动画的角度
+		rotation:0,
 		// 配置, eg: [,{stroke:'red',strokeWidth:1,strokeDash:[2,5]},,{stroke:'black',strokeWidth:1,strokeDash:[2,5]}]
 		configArray: [],
+		//顺序执行
 		animationType: 'sequence',
+		//顺时针显示
+		isClockwise: true,
 	}
 
 	constructor(props) {
@@ -46,7 +57,7 @@ export default class PieChart extends Component {
 		}
 
 		this.state = {
-			wedgeAngles :[]
+			wedgeAngles: []
 		};
 	}
 
@@ -58,15 +69,18 @@ export default class PieChart extends Component {
 				toValue: circumference
 			}));
 		}
-		Animated.sequence(animatedArray).start();
+		Animated.sequence(animatedArray).start(this.props.animationEndCallBack);
 	}
 	_syncAnimation = () => {
+		var animatedArray = [];
 		for (var index = 0; index < this.props.percentArray.length; index++) {
-			Animated.timing(this.animationArray[index], {
+			animatedArray.push(Animated.timing(this.animationArray[index], {
 				duration: this.props.duration,
 				toValue: circumference
-			}).start();
+			}));
 		}
+		Animated.parallel(animatedArray).start(this.props.animationEndCallBack);
+
 	}
 
 	_animations = () => {
@@ -84,7 +98,7 @@ export default class PieChart extends Component {
 			for (var index2 = 0; index2 <= index; index2++) {
 				sum += this.props.percentArray[index2];
 			}
-			endAngleArray.push(sum);
+			this.props.isClockwise ? endAngleArray.push(sum) : endAngleArray.push(1 - sum);
 		}
 		this.endAngleArray = endAngleArray;
 
@@ -93,7 +107,10 @@ export default class PieChart extends Component {
 			//起始角度
 			let startAngle = index === 0 ? 0 : this.endAngleArray[index - 1] * circumference;
 			//结束角度
-			let endAngle = startAngle + this.props.percentArray[index] * circumference;
+
+			let endAngle = this.props.isClockwise ?
+				startAngle + this.props.percentArray[index] * circumference :
+				startAngle - this.props.percentArray[index] * circumference;
 
 			wedgeAngles.push(this.animationArray[index].interpolate({
 				inputRange: [0, circumference],
@@ -102,7 +119,7 @@ export default class PieChart extends Component {
 			}));
 		}
 		this.setState({
-			wedgeAngles:wedgeAngles
+			wedgeAngles: wedgeAngles
 		})
 
 	}
@@ -145,12 +162,9 @@ export default class PieChart extends Component {
 	}
 
 	render() {
-		//if RN version <0.47 ,need rotation
-		//const rotation = Platform.OS === 'ios' ? 0 : -90;
-
 		return (
-			<Surface width={this.props.outerRadius * 2} height={this.props.outerRadius * 2}>
-				<Group originX={this.props.outerRadius} originY={this.props.outerRadius}>
+			<Surface rotation={-90} width={this.props.outerRadius * 2} height={this.props.outerRadius * 2}>
+				<Group rotation={this.props.rotation} originX={this.props.outerRadius} originY={this.props.outerRadius}>
 					{this.state.wedgeAngles.map((data, index) => {
 						let stroke;
 						let strokeWidth;
@@ -160,15 +174,17 @@ export default class PieChart extends Component {
 							strokeWidth = this.props.configArray[index].strokeWidth;
 							strokeDash = this.props.configArray[index].strokeDash
 						}
+						let startAngle = index === 0 ? index : this.endAngleArray[index - 1] * circumference;
+						let endAngle = this.state.wedgeAngles[index];
 						return <AnimatedWedge
 							key={index}
 							outerRadius={this.props.outerRadius}
 							innerRadius={this.props.innerRadius}
-							startAngle={index === 0 ? index : this.endAngleArray[index - 1] * circumference}
+							startAngle={this.props.isClockwise ? startAngle : endAngle}
 							stroke={stroke}
 							strokeWidth={strokeWidth}
 							strokeDash={strokeDash}
-							endAngle={this.state.wedgeAngles[index]}
+							endAngle={this.props.isClockwise ? endAngle : startAngle}
 							fill={this.props.colorArray[index]}
 						/>
 					})}
