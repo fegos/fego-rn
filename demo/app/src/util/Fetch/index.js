@@ -115,6 +115,10 @@ class TestView extends Component {
 					.then(axios.spread(function (acct, perms) {
 					  // Both requests are now complete
 					}));`
+			},
+			{
+				title: '文件上传',
+				content: ``
 			}
 		];
 		this.__renderHeader = this.__renderHeader.bind(this)
@@ -131,6 +135,7 @@ class TestView extends Component {
 					<Button title="初始化"
 						onPress={() => {
 							Fetch.defaults.baseURL = 'http://localhost:3001/api'
+							// Fetch.defaults.baseURL = 'http://localhost:3000'
 							Fetch.defaults.timeout = 20000
 							// Fetch.testCustom('http://localhost:3001/api')
 						}} />
@@ -290,6 +295,35 @@ class TestView extends Component {
 							})
 					}} />
 				</View >
+		}
+		else if (index == 6) {
+			content = <View >
+				<Text style={localStyle.code}>{code}</Text>
+				<Button title="文件上传，点击测试" onPress={() => {
+					this.setState({
+						fetchMsg: '文件上传中...',
+						list: []
+					})
+					var data = new FormData();
+					data.append('foo', 'bar');
+					data.append('file', '/Users/wangxiang/Desktop/1.txt');
+
+					var config = {
+						onUploadProgress: function (progressEvent) {
+							console.log(progressEvent);
+							var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+						}
+					};
+
+					Fetch.put('/upload/server', data, config)
+						.then(function (res) {
+							console.log(res);
+						})
+						.catch(function (err) {
+							console.log(err);
+						});
+				}} />
+			</View>
 		}
 		return content
 	}
