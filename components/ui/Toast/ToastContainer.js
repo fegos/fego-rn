@@ -13,7 +13,8 @@ export default class ToastConatiner extends UIComponent {
 			fail: 'times-circle',
 			offline: 'meh-o'
 		},
-		offsetY: 0
+		offsetY: 0,
+		loadingColor: 'white'
 	}
 	anim = '';
 	static propTypes = {
@@ -34,7 +35,9 @@ export default class ToastConatiner extends UIComponent {
 		// Y轴偏移量
 		offsetY: PropTypes.number,
 		// 动画结束
-		onAnimationEnd: PropTypes.func
+		onAnimationEnd: PropTypes.func,
+		// loading动画的颜色
+		loadingColor:PropTypes.string
 	}
 	static simpleStyleProps = {
 		backgroundColor: {
@@ -49,7 +52,7 @@ export default class ToastConatiner extends UIComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			fadeAmin: new Animated.Value(0),
+			fadeAnim: new Animated.Value(0),
 		}
 	}
 	componentDidMount() {
@@ -59,11 +62,11 @@ export default class ToastConatiner extends UIComponent {
 			this.anim = null;
 		}
 		const animArr = [
-			timing(this.state.fadeAmin, { toValue: 1, duration: 200 }),
+			timing(this.state.fadeAnim, { toValue: 1, duration: 200 }),
 			Animated.delay(duration * 1000)
 		];
 		if (duration > 0) {
-			animArr.push(timing(this.state.fadeAmin, { toValue: 0, duration: 200 }));
+			animArr.push(timing(this.state.fadeAnim, { toValue: 0, duration: 200 }));
 		}
 		this.anim = Animated.sequence(animArr);
 		this.anim.start(() => {
@@ -86,11 +89,11 @@ export default class ToastConatiner extends UIComponent {
 	}
 	render() {
 		let style = this.style
-		const { type = '', content, mask, iconFamily, iconTypes, offsetY } = this.props;
+		const { type = '', content, mask, iconFamily, iconTypes, offsetY,loadingColor } = this.props;
 		let iconDom = null;
 		let contentDom = content;
 		if (type === 'loading') {
-			iconDom = <ActivityIndicator animating style={[style.centering]} color="white" size="large" />;
+			iconDom = <ActivityIndicator style={[style.centering]} color={loadingColor} size="large" />;
 		} else if (type === 'info') {
 			iconDom = null;
 		} else if (type) {
@@ -101,7 +104,7 @@ export default class ToastConatiner extends UIComponent {
 		}
 		return (
 			<Animated.View 
-				style={[style.container, mask ? style.mask : null, { top: offsetY, opacity: this.state.fadeAmin }]} 
+				style={[style.container, mask ? style.mask : null, { top: offsetY, opacity: this.state.fadeAnim }]} 
 				pointerEvents={mask ? 'auto' : 'box-none'}>
 					<View style={[iconDom ? style.innerWithIcon : {}, style.inner]}>
 						{iconDom}
@@ -153,5 +156,5 @@ ToastConatiner.baseStyle = {
 		alignItems: 'center',
 		justifyContent: 'center',
 		padding: 9,
-	},
+	}
 };

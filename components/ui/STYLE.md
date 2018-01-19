@@ -68,14 +68,15 @@ Button.baseStyle = {
 2. styles
 	
 	```jsx
-	<Button styles={{
+	let styleObj = {
 		container: {
 			backgroundColor: 'blue'  // 则按钮的颜色会显示的成蓝色
-		}
+		},
 		text: {
 			fontSize: 14  // 则按钮的文字会显示的成14号字体大小
 		}
-	}} />
+	}
+	<Button styles={styleObj} />
 	```
 3. style
 

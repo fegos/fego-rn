@@ -54,8 +54,8 @@ export default class Page extends Component {
 				</Button>
 				</View>
 				<View style={{flexDirection: 'row'}}>
-					<Button type="primary" title="左按钮" style={{flex: 1, borderRadius: 0}}/>
-					<Button type="danger" title="右按钮" style={{flex: 2, borderRadius: 0}}/>
+					<Button type="primary" title="左按钮flex:1" style={{flex: 1, borderRadius: 0}}/>
+					<Button type="danger" title="右按钮flex:2" style={{flex: 2, borderRadius: 0}}/>
 				</View>
 			</ScrollView>
 			</View>
