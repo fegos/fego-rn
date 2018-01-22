@@ -30,6 +30,7 @@ export default class Icon extends Component {
 		name: PropTypes.string.isRequired,
 		size: PropTypes.number,
 		color: PropTypes.string,
+		// 字体库名称
 		family: PropTypes.string
 	}
 	/**
@@ -58,7 +59,7 @@ export default class Icon extends Component {
 		}
 		// 样式优先级 baseStyle style simpleStyle
 		props.style = [baseStyle.container, style, simpleStyle, { fontFamily: family }]
-		return <Text {...props}>{glyph}{this.props.children}</Text>
+		return <Text {...props}>{glyph}</Text>
 	}
 }
 const baseStyle = {
