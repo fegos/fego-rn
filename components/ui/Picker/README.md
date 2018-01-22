@@ -17,8 +17,6 @@ subTitle: 选择器
 		visible={this.state.picker3Visible}
 		onClose={()=>{this.setState({picker3Visible:false})}}
 		initialValue={['chuancai','jiachang','yu']}
-		cascade={true}
-		cols={3}
 		onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
 			console.log('onConfirm: ', selectedValue, selectedIndex, selectedLabel)
 			this.setState({ picker3Value: selectedLabel.join('') })
@@ -30,7 +28,7 @@ subTitle: 选择器
 ```
 
 ### 说明
-> Picker 的实现依赖于 PickerView, 将 PickerView 放在模态里面，因此其部分 props (eg: cascade, cols, initialValue, onChange) 以及数据源 data 的含义都与 PickerView 一致
+> Picker 的实现依赖于 PickerView, 将 PickerView 放在模态里面，因此其部分 props (eg:initialValue, onChange) 以及数据源 data 的含义都与 PickerView 一致
 
 
 ## API
@@ -40,8 +38,6 @@ subTitle: 选择器
 属性 | 说明 | 类型 | 默认值
 ----|-----|------|------
 | data | 选择器的数据源 | array | [ ] |
-| cascade | 选择器是否级联 | bool | false |
-| cols | 列数,级联式时有的级数 | number | - |
 | initialValue | picker 初始值，格式为[v1, v2, v3]，对应数据源的相应级层value | array | [ ] |
 | onChange | 每列数据选择变化后的回调函数 | Function(selectedValue, selectedIndex, selectedLabel){} | - |
 | visible | 是否可见 | bool | false |

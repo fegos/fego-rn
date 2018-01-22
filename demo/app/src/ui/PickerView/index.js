@@ -158,8 +158,6 @@ export default class Page extends Component {
 					<PickerView
 						data={pickerData3}
 						initialValue={['xican','niupai','qi']}
-						cascade={true}
-						cols={3}
 						onChange={(selectedValue, selectedIndex, selectedLabel) => {
 							console.log('onValueChange ', selectedValue, selectedIndex, selectedLabel)
 						}}

@@ -36,7 +36,7 @@ export default class PickerAndroid extends UIComponent {
 
 	componentWillReceiveProps(nextProps) {
 		super.componentWillReceiveProps()
-		this._scrollTo(nextProps.selectedIndex, false)
+		this._scrollTo(nextProps.selectedIndex, true)
 	}
 
 	_scrollTo (index, animated=true) {
@@ -115,7 +115,7 @@ export default class PickerAndroid extends UIComponent {
 	}
 
 	_onLayout = () => {
-		this._scrollTo(this.props.selectedIndex, false);
+		this._scrollTo(this.props.selectedIndex, true);
 	}
 
 	render() {

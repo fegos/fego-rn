@@ -217,8 +217,6 @@ export default class Page extends Component {
 					visible={this.state.picker3Visible}
 					onClose={()=>{this.setState({picker3Visible:false})}}
 					initialValue={['chuancai','jiachang','yu']}
-					cascade={true}
-					cols={3}
 					onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
 						console.log('onConfirm: ', selectedValue, selectedIndex, selectedLabel)
 						this.setState({ picker3Value: selectedLabel.join('') })

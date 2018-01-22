@@ -15,8 +15,6 @@ subTitle: 选择器
 <PickerView
 	data={pickerData}
 	initialValue={['xican','niupai','qi']}
-	cascade={true}
-	cols={3}
 	onChange={(selectedValue, selectedIndex, selectedLabel) => {
 			console.log('onValueChange ', selectedValue, selectedIndex, selectedLabel)
 	}}
@@ -31,8 +29,6 @@ subTitle: 选择器
 属性 | 说明 | 类型 | 默认值
 ----|-----|------|------
 | data | 选择器的数据源 | array | [ ] |
-| cascade | 选择器是否级联 | bool | false |
-| cols | 列数,级联时需要提供 | number | - |
 | value | 内容值，受控属性，非受控时使用initialValue | array | - |
 | initialValue | 初始值，非受控属性，格式为[v1, v2, v3]，受控时使用value | array | [ ] |
 | onChange | 每列数据选择变化后的回调函数 | Function(selectedValue, selectedIndex, selectedLabel){} | - |
@@ -50,7 +46,7 @@ subTitle: 选择器
 data 的数据格式为 `Array<{value, label}>` 或 `Array<Array<{value, label}>>`:   
 
 
-+ PivkerView 只含一列数据
++ PickerView 只含一列数据
 ```html
 [{
 	label: '2011年',
@@ -61,7 +57,7 @@ data 的数据格式为 `Array<{value, label}>` 或 `Array<Array<{value, label}>
 }]
 ```
 
-+ PivkerView 含两列以上数据
++ PickerView 含两列以上数据
 ```html
 [
 	[{

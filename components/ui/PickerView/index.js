@@ -16,10 +16,6 @@ class PickerView extends UIComponent {
 	static defaultProps = {
 		// 传递的数据
 		data: [],
-		// 是否级联
-		cascade: false,
-		// 列数,级联时提供的列数
-		cols: 0,
 		// picker 初始值
 		initialValue: [],
 		// 每列数据选择变化后的回调函数
@@ -31,10 +27,6 @@ class PickerView extends UIComponent {
 	static propTypes = {
 		// 传递的数据
 		data: PropTypes.array,
-		// 是否级联
-		cascade: PropTypes.bool,
-		// 列数, 级联时提供的列数
-		cols: PropTypes.number,
 		//非受控属性: picker 初始值
 		initialValue: PropTypes.array,
 		//受控属性: picker 的值, 此時initiaValue失效
@@ -61,8 +53,8 @@ class PickerView extends UIComponent {
 		}
 
 		if (nextProps.value !== undefined && !this.isArrayEquals(nextProps.value, this.props.value)) {
-			let { cascade, value } = nextProps,
-				pickerData = cascade ? this.state.cascadeData : this.data,
+			let { value } = nextProps,
+				pickerData = this.cascade ? this.state.cascadeData : this.data,
 				label = [], index = [];
 
 			pickerData.forEach((data, i) => {
@@ -95,12 +87,45 @@ class PickerView extends UIComponent {
 		} else {
 			this.data = [props.data]
 		}
+
+		/*
+		this.cols 列数据：级联时依赖于children，如果只有一列必为非级联
+		this.cascade 是否级联： true 级联 false 非级联
+		*/
+		let cols = this._getChildrenLength(this.data[0])
+		this.cascade =  cols === 1 ? false : true
+		this.cols = this.cascade ? cols : this.data.length 
+		console.log("cascade:",this.cascade,"   cols:", this.cols)
+	}
+
+	/**
+	 * 获取级联数据cols
+	 * data 数组：级联数据
+	 * return 默认为1
+	 */
+	_getChildrenLength = (data) => {
+		max = 0;
+		data.forEach(d => {
+			tmp = this._traversalObject(d)
+			max = tmp > max ? tmp : max
+		})
+		return max + 1
+	}
+
+	/**
+	 * 递归变量对象，结合_getChildrenLength获得级联列数
+	 */
+	_traversalObject = (obj) => {
+		if ('children' in obj && obj['children'].length >= 1) {
+			return this._getChildrenLength(obj['children'])
+		} else {
+			return 0
+		}
 	}
 
 	_getInitialState = (props) => {
-		let { cascade } = props
-
-		if (cascade) {
+		// let { cascade } = props
+		if (this.cascade) {
 			this.state = this._getCascadeInitialState()
 		} else {
 			this.state = this._getUnCascadeInitialState()
@@ -142,11 +167,12 @@ class PickerView extends UIComponent {
 	}
 
 	_getCascadeInitialState = () => {
-		let { cols, data } = this.props,
+		let { data } = this.props,
 			initialValue = 'value' in this.props ? this.props.value : this.props.initialValue,
 			cascadeData = [], selectedIndex = [], selectedValue = [], selectedLabel = []
 
 		cascadeData[0] = data.concat()
+		let cols = this.cols
 		var i = 0
 		for (i = 0; i < cols; i++) {
 			let item = cascadeData[i][0], index = 0
@@ -197,15 +223,15 @@ class PickerView extends UIComponent {
 	 * @param newIndex 新选中的值在 d 中的下边
 	 */
 	_onChange = (d, index, newValue, newIndex) => {
-		let { cols, cascade } = this.props,
 			label = d[newIndex].label,
+			cols = this.cols,
 			{ selectedIndex, selectedValue, selectedLabel } = this.state
 		_selectedValue = selectedValue.concat(),
 			_selectedIndex = selectedIndex.concat(),
 			_selectedLabel = selectedLabel.concat(),
 			_state = {};
 
-		if (cascade) { // 级联
+		if (this.cascade) { // 级联
 			let cascadeData = this.state.cascadeData.concat()
 
 			cascadeData.splice(index + 1) // state 中保存的数据中的前index+1列的数据不用变，只需要级联变化之后的列数据
@@ -259,8 +285,8 @@ class PickerView extends UIComponent {
 	}
 
 	_renderRoll = () => {
-		let { cascade } = this.props,
-			pickerData = cascade ? this.state.cascadeData : this.data,
+		// let { cascade } = this.props,
+			pickerData = this.cascade ? this.state.cascadeData : this.data,
 			PickerItem = PickerIOS.Item;
 
 		return pickerData.map((rollData, index) => {

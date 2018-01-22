@@ -19,10 +19,6 @@ class Picker extends UIComponent {
 	static defaultProps = {
 		// 传递的数据
 		data: [],
-		// 是否级联
-		cascade: false,
-		// 列数，级联时有效
-		cols: 0,
 		// 非受控属性: picker 初始值
 		initialValue: [],
 		// 受控属性: 是否可见
@@ -46,10 +42,6 @@ class Picker extends UIComponent {
 	static propTypes = {
 		// 传递的数据
 		data: PropTypes.array,
-		// 是否级联
-		cascade: PropTypes.bool,
-		// 列数，级联时有效
-		cols: PropTypes.number,
 		// 非受控属性: picker 初始值
 		initialValue: PropTypes.array,
 		// 受控属性: picker 的值，作为受控属性使用，一般情况不建议使用，主要用于解决datePicker里data和selectedValue不匹配的情况
@@ -122,7 +114,7 @@ class Picker extends UIComponent {
 
 	render() {
 		let style = this.style,
-			{ cancelText, title, okText, data, cascade, cols, maskClosable } = this.props
+			{ cancelText, title, okText, data, maskClosable } = this.props
 
 		return (
 			<Modal
@@ -144,8 +136,6 @@ class Picker extends UIComponent {
 					</View>
 					<PickerView ref={(pw)=>{this._pickerView = pw}}
 						data={data}
-						cascade={cascade}
-						cols={cols}
 						value={this.state.selectedValue}
 						onChange={this._onChange}
 						onReady={this._onPickerViewReady}
