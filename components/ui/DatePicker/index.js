@@ -12,6 +12,7 @@ import Picker from '../Picker'
 import DateModePicker from './Date'
 import TimeModePicker from './Time'
 
+//非受控组件
 export default class DatePicker extends UIComponent {
 	static defaultProps = {
 		visible: false,
@@ -22,6 +23,7 @@ export default class DatePicker extends UIComponent {
 		cancelText: '取消',
 		showInModal: true,
 		maskClosable: true,
+		dateMode:'year-month-day',
 		onClose: ()=>{},
 		onConfirm: ()=>{},
 		format: ()=>{},
@@ -31,6 +33,8 @@ export default class DatePicker extends UIComponent {
 		visible: PropTypes.bool,
 		// 日期选择器模式，目前支持 'date', 'datetime', 'time'
 		mode: PropTypes.oneOf(['date', 'datetime', 'time']),
+		// 日期模式
+		dateMode:PropTypes.oneOf(['year-only','month-only','day-only','year-month','year-month-day','month-day']),
 		// picker 初始值
 		initialValue: PropTypes.instanceOf(Date),
 		// 可选的最小日期

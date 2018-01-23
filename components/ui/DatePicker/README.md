@@ -13,6 +13,7 @@ subTitle: 日期选择器
 ```html
 	<DatePicker 
 		mode='date' 
+		dateMode:'year-month-day',
 		minDate={new Date(2014,6,10)}
 		maxDate={new Date(2027,10,20)}
 		initialValue={new Date(2017,11,16)}
@@ -53,6 +54,7 @@ subTitle: 日期选择器
 | showInModal | 是否在模态中显示选择器 | bool | true |
 | visible | showInModal 为 true 时控制选择器是否可见，受控属性，需配合 onClose 使用 | bool | false |
 | mode | 选择器模式, 目前支持 'date' 和 'time' | string | 'date' |
+| dateMode | 选择器模式, 目前支持 'year-only','month-only','day-only','year-month','year-month-day','month-day'  | string | 'year-month-day' |
 | initialValue | picker 初始值，格式为[v1, v2, v3]，对应数据源的相应级层value | array | [ ] |
 | minDate | 可选的最小日期 | Date |  |
 | maxDate | 可选的最大日期 | Date |  |
