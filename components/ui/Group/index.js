@@ -1,6 +1,6 @@
 /**
- * RadioGroup
- * @author asy
+ * Group
+ * @author sxiaoxia
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -24,7 +24,7 @@ export default class Group extends UIComponent {
 		]),
 		// 状态改变回调
 		onChange: PropTypes.func,
-		// type：single单选；optional：多选
+		// type：single单选；multi：多选
 		type: PropTypes.string
 	}
 	constructor(props) {

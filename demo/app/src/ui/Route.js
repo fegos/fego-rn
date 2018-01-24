@@ -56,6 +56,12 @@ export default {
 			title: 'GesturePassword',
 		},
 	},
+	'ui/Group': {
+		screen: require('./Group').default,
+		navigationOptions: {
+			title: 'Group',
+		},
+	},
 	'ui/Icon': {
 		screen: require('./Icon').default,
 		navigationOptions: {

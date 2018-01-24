@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import { TouchableWithoutFeedback, View, Text } from 'react-native'
 import UIComponent from '../../common/UIComponent'
 import Icon from '../Icon'
-import Group from './Group'
+
 export default class Checkbox extends UIComponent {
 	static defaultProps = {
 		// 禁止操作
@@ -115,4 +115,3 @@ Checkbox.baseStyle = {
 		color: '#CCC'
 	}
 }
-Checkbox.Group = Group

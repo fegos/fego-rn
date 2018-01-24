@@ -75,7 +75,7 @@ export default class Tag extends UIComponent {
 			})
 		}
 		if (typeof onChange === 'function') {
-			onChange(_checked)
+			onChange(_checked, this)
 		}
 	}
 	_renderCloseBtn = () => {
