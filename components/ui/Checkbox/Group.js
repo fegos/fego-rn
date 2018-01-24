@@ -1,5 +1,5 @@
 /**
- * CheckboxGroup
+ * RadioGroup
  * @author asy
  */
 import React from 'react';
@@ -9,35 +9,40 @@ import UIComponent from '../../common/UIComponent';
 
 export default class Group extends UIComponent {
 	static defaultProps = {
-		// 默认选中的项对应的value
-		defaultValue: []
+		type: "single"
 	}
 	static propTypes = {
 		// 受控属性，选中的项对应的value，需配合onChange使用
-		value: PropTypes.array,
+		value: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.array
+		]),
 		// 非受控属性，默认选中的项对应的value
-		defaultValue: PropTypes.array,
+		defaultValue: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.array
+		]),
 		// 状态改变回调
 		onChange: PropTypes.func,
-		// 子元素
-		children: PropTypes.node,
+		// type：single单选；optional：多选
+		type: PropTypes.string
 	}
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			valueArr: 'value' in props ? props.value : props.defaultValue
+			value: 'value' in props ? props.value : props.defaultValue
 		}
 	}
 	componentWillReceiveProps(nextProps) {
 		if ('value' in nextProps && nextProps.value.toString() !== this.props.value.toString()) {
 			this.setState({
-				valueArr: nextProps.value
+				value: nextProps.value
 			})
 		}
 	}
 	updateSelectValue(value, checked) {
-		let valueArr = this.state.valueArr.concat();
+		let valueArr = this.state.value.concat();
 
 		if (checked) {
 			valueArr.push(value)
@@ -48,21 +53,27 @@ export default class Group extends UIComponent {
 		return valueArr;
 	}
 	onChange = (checked, ele) => {
-		let { onChange } = this.props,
-			_valueArr = this.updateSelectValue(ele.props.value, checked);
-		let s = this.state.valueArr;
+
+		let { onChange, type } = this.props, _value;
+		if (type == "single") {
+			_value = ele.props.value;
+		} else {
+			_value = this.updateSelectValue(ele.props.value, checked);
+		}
 		if (!('value' in this.props)) {
 			this.setState({
-				valueArr: _valueArr
+				value: _value
 			})
 		}
-		onChange instanceof Function && onChange(_valueArr, this)
+		onChange instanceof Function && onChange(_value, this)
 	}
 	render() {
+		let { type } = this.props, { value } = this.state;
+		console.log(type, value)
 		return (
 			<View style={this.style.container}>{
 				React.Children.map(this.props.children, (child) => React.cloneElement(child, {
-					checked: this.state.valueArr.indexOf(child.props.value) >= 0,
+					checked: type == "single" ? child.props.value === value : value.indexOf(child.props.value) >= 0,
 					onChange: this.onChange
 				}, child.props.children))
 			}</View>

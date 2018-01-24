@@ -115,5 +115,4 @@ Checkbox.baseStyle = {
 		color: '#CCC'
 	}
 }
-
 Checkbox.Group = Group

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import { TouchableWithoutFeedback, View, Text } from 'react-native'
 import UIComponent from '../../common/UIComponent'
 import Icon from '../Icon'
-import Group from './Group'
+import Group from '../Checkbox/Group'
 
 export default class Radio extends UIComponent {
 	static defaultProps = {
@@ -117,3 +117,4 @@ Radio.baseStyle = {
 	}
 }
 Radio.Group = Group
+// Radio.Group.props.type = "single"
