@@ -8,6 +8,7 @@ import {
 
 } from 'react-native'
 import UIComponent from '../../common/UIComponent'
+import ModalPickerView from '../Picker/ModalPickerView'
 import PickerView from '../PickerView'
 
 
@@ -131,6 +132,9 @@ export default class DatePicker extends UIComponent {
 		this.monthArray = monthArray
 		this.dateArray = dateArray
 	}
+	_onClose = () => {
+		this.props.onClose();
+	}
 
 	_handleReturnValue(valueArr, indexArr, labelArr)
 	{
@@ -170,7 +174,11 @@ export default class DatePicker extends UIComponent {
 		return [valueArr,indexArr,labelArr]
 	}
 
-
+	_onConfirm = (val, idx, label) => {
+		let { valueArr, indexArr, labelArr } = this._updateData(val, idx, label);
+		[ vArr, iArr, lArr ] = this._handleReturnValue(valueArr,indexArr,labelArr)
+		this.props.onConfirm(vArr, iArr, lArr, 'date');
+	}
 	_onChange = (val, idx, label) => {
 		let { valueArr, indexArr, labelArr } = this._updateData(val, idx, label);
 		this.props.onChange(valueArr, indexArr, labelArr, 'date');
@@ -365,16 +373,19 @@ export default class DatePicker extends UIComponent {
 
 	render() {
 		//在constructor里面处理了initialValue，这里取出initialValue防止传递给下面
-		let { maskClosable, visible,  initialValue, mode, minDate, maxDate, minuteStep, ...rest } = this.props,
+		let { maskClosable, visible, showInModal, initialValue, mode, minDate, maxDate, minuteStep, ...rest } = this.props,
 			{ year, month, date } = this.state;
-			this._dateModeData()
+		let Ele = showInModal ? ModalPickerView : PickerView;
+		this._dateModeData()
 		return (
-			<PickerView ref="pw2"
+			<Ele
 				{...rest}
 				data={this.renderData}
 				visible={visible}
 				value={this.renderValue}
 				maskClosable={maskClosable}
+				onClose={this._onClose}
+				onConfirm={this._onConfirm}
 				onChange={this._onChange}
 			/>
 		)

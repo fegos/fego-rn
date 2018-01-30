@@ -8,7 +8,6 @@ import {
 
 } from 'react-native'
 import UIComponent from '../../common/UIComponent'
-import Picker from '../Picker'
 import PickerView from '../PickerView'
 
 export default class TimePicker extends UIComponent {
@@ -117,13 +116,7 @@ export default class TimePicker extends UIComponent {
 		this.hourArray = hourArray
 		this.minuteArray = minuteArray
 	}
-	_onClose = () => {
-		this.props.onClose();
-	}
-	_onConfirm = (val, idx, label) => {
-		let { valueArr, indexArr, labelArr } = this._updateData(val, idx, label);
-		this.props.onConfirm(valueArr, indexArr, labelArr, 'time');
-	}
+
 	_onChange = (val, idx, label) => {
 		let { valueArr, indexArr, labelArr } = this._updateData(val, idx, label);
 		this.props.onChange(valueArr, indexArr, labelArr, 'time');
@@ -195,19 +188,16 @@ export default class TimePicker extends UIComponent {
 	}
 
 	render() {
-		let { maskClosable, visible, minuteStep, showInModal, initialValue, mode, minDate, maxDate, ...rest } = this.props,
+		let { maskClosable, visible, minuteStep, initialValue, mode, minDate, maxDate, ...rest } = this.props,
 			{ hour, minute, data } = this.state,
 			_data1 = data[1].filter((d, i) => (i % minuteStep) === 0);
-		let Ele = showInModal ? Picker : PickerView;
 		return (
-			<Ele
+			<PickerView ref="pw2"
 				{...rest}
 				data={[data[0], _data1]}
 				visible={visible}
 				value={[hour.toString(), minute.toString()]}
 				maskClosable={maskClosable}
-				onClose={this._onClose}
-				onConfirm={this._onConfirm}
 				onChange={this._onChange}
 			/>
 		)

@@ -22,11 +22,11 @@ const width = Dimensions.get('window').width
 class Picker extends UIComponent {
 	static defaultProps = {
 		//模式默认为datapicker
-		mode:"dataPicker",
+		mode: "datePicker",
 		//datePicker mode
 		datePickerMode: "date",
 		// datePicker date 显示模式
-		dateShowMode:"year-month",
+		dateShowMode: "year-month",
 		// 传递的数据
 		data: [],
 		// 非受控属性: picker 初始值
@@ -34,7 +34,7 @@ class Picker extends UIComponent {
 		// 受控属性: 是否可见
 		visible: false,
 		/*		modal		*/
-		modal:false,//是否为模态
+		modal: false,//是否为模态
 		maskClosable: true,// 点击蒙层是否允许关闭
 		/*		header 		*/
 		// 标题文案,
@@ -46,20 +46,28 @@ class Picker extends UIComponent {
 		/*		footer 		*/
 		//cancelText:'取消',同上接口
 		// 关闭弹框的回调函数
-		onClose: ()=>{},
+		onClose: () => { },
 		// 确定按钮的回调函数
-		onConfirm: (indexArr, valueArr, labelArr)=>{},
+		onConfirm: (indexArr, valueArr, labelArr) => { },
 		// 每列数据选择变化后的回调函数
-		onChange: (selectedIndex, selectedValue, selectedLabel)=>{},
+		onChange: (selectedIndex, selectedValue, selectedLabel) => { },
 	}
 
 	static propTypes = {
 		//picker模式，默认为dataPicker
-		mode:PropTypes.oneOf(['dataPicker', 'datePicker']),
+		mode: PropTypes.oneOf(['dataPicker', 'datePicker']),
 		//datePicker mode
 		datePickerMode: PropTypes.oneOf(['date', 'time']),
 		// datePicker date 显示模式
-		dateShowMode:PropTypes.oneOf(['year-only','month-only','day-only','year-month','year-month-day','month-day']),
+		dateShowMode: PropTypes.oneOf(['year-only', 'month-only', 'day-only', 'year-month', 'year-month-day', 'month-day']),
+		// 非受控属性：
+		defaultDateValue:PropTypes.instanceOf(Date),
+		// 可选的最小日期
+		minDate: PropTypes.instanceOf(Date),
+		// 可选的最大日期
+		maxDate: PropTypes.instanceOf(Date),
+		// 'time' 模式下的时间间隔
+		minuteStep: PropTypes.number,
 		// 传递的数据
 		data: PropTypes.array,
 		// 非受控属性: picker 初始值
@@ -69,7 +77,7 @@ class Picker extends UIComponent {
 		// 受控属性: 是否可见，受控属性，需配合 onClose 使用
 		visible: PropTypes.bool,
 		/*		modal		*/
-		modal:PropTypes.bool,//是否为模态
+		modal: PropTypes.bool,//是否为模态
 		maskClosable: PropTypes.bool,// 点击蒙层是否允许关闭
 		/*		header 		*/
 		// 标题文案
@@ -132,85 +140,80 @@ class Picker extends UIComponent {
 	}
 	_onPickerViewReady = (selectedValue, selectedIndex, selectedLabel) => {
 		this.setState({
-			selectedValue, 
+			selectedValue,
 		})
 	}
 
-	_renderDatePickerContenst=()=>{
-		return(<DatePicker 
-			mode='date' 
-			minDate={new Date(2014,6,10)}
-			maxDate={new Date(2027,10,20)}
-			initialValue={new Date(2017,1,16)}
-			title='日期模式'
-			visible={this.state.visible1}
-			onClose={()=>{this.setState({visible1: false})}}
-			onConfirm={(val, idx, label, pickerType) => {
-				console.log(val, idx, label)
-				this.setState({
-					picker1Str: label.join('')
-				})
-			}}
-			onChange={(v, i, l)=>{
-				console.log(v, i, l)
-			}}
-		/>)
-	}
-
-	_renderDataPickerContents=()=>{
+	_renderPickerContents = () => {
 		let style = this.style,
 			{ cancelText, title, okText, data } = this.props
-		return(	
-				<View style={[style.container, Platform.OS === 'android' && {paddingBottom: StatusBar.currentHeight}]}>
+
+		return (
+			<View style={[style.container, Platform.OS === 'android' && { paddingBottom: StatusBar.currentHeight }]}>
 				{/* header */}
-				{this.props.header?<View style={style.headerView}>
+				{this.props.header ? <View style={style.headerView}>
 					<TouchableOpacity style={[style.btn, style.cancelBtn]} onPress={this._onClose}>
 						<Text style={[style.btnText, style.cancelText]} >{cancelText}</Text>
 					</TouchableOpacity>
 					<Text style={style.title}>{title}</Text>
-					<TouchableOpacity style={[style.btn, style.okBtn]} onPress={this._onConfirm}>
+					<TouchableOpacity style={[style.btn, style.okBtn]} onPress={(e) => { this._onConfirm() }}>
 						<Text style={[style.btnText, style.okText]} >{okText}</Text>
 					</TouchableOpacity>
-				</View>:null}
+				</View> : null}
 
 				{/* middle */}
-				<PickerView ref={(pw)=>{this._pickerView = pw}}
-					data={data}
-					value={this.state.selectedValue}
-					onChange={this._onChange}
-					onReady={this._onPickerViewReady}
-				/>
+				{
+					this.props.mode === "dataPicker" ?
+						<PickerView ref={(pw) => { this._pickerView = pw }}
+							data={data}
+							value={this.state.selectedValue}
+							onChange={this._onChange}
+							onReady={this._onPickerViewReady}
+						/> :
+						<DatePicker ref={(pw) => {
+							if (pw) {
+								this._pickerView = pw.refs.pw1.refs.pw2
+							}
+						}}
+						mode={this.props.datePickerMode}
+						minDate={this.props.minDate}
+						maxDate={this.props.maxDate}
+						initialValue={this.props.defaultDateValue}
+						minuteStep={this.props.minuteStep} 
+						onChange={this._onChange}
+						/>
+				}
+
 
 				{/* footer */}
-				{this.props.footer?<View style={style.footerView}>
-				<TouchableOpacity style={[style.footerOKBtn]} onPress={this._onConfirm}>
+				{this.props.footer ? <View style={style.footerView}>
+					<TouchableOpacity style={[style.footerOKBtn]} onPress={this._onConfirm}>
 						<Text style={[style.btnText, style.footerOKText]} >{okText}</Text>
-				</TouchableOpacity>
-				<TouchableOpacity style={[style.footerCancelBtn]} onPress={this._onClose}>
+					</TouchableOpacity>
+					<TouchableOpacity style={[style.footerCancelBtn]} onPress={this._onClose}>
 						<Text style={[style.btnText, style.footerCancelText]} >{cancelText}</Text>
-				</TouchableOpacity>
-				</View>:null}
+					</TouchableOpacity>
+				</View> : null}
 
 			</View>
-			)
+		)
 	}
-	_renderViews=()=>
-	{
-		if(this.props.modal)
-		{
-			return(<Modal 
-					visible={this.state.visible}
-					maskClosable={this.props.maskClosable}
-					animationType='slide-up'
-					onClose={this._onClose}
-					styles={{container: {justifyContent: 'flex-end'}}}>
-					{this.props.mode==="dataPicker"?this._renderDataPickerContents():this._renderDatePickerContenst()}
-					</Modal>)
-		}else
-		{
-			return(<View>
-					{this.props.mode==="dataPicker"?this._renderDataPickerContents():this._renderDatePickerContenst()}
-				</View>)
+	_renderViews = () => {
+		if (this.props.modal) {
+			return (<Modal
+				visible={this.state.visible}
+				maskClosable={this.props.maskClosable}
+				animationType='slide-up'
+				onClose={this._onClose}
+				styles={{ container: { justifyContent: 'flex-end' } }}>
+				{this._renderPickerContents()}
+			</Modal>)
+		} else {
+
+			return (<View>
+				{this._renderPickerContents()}
+			</View>)
+
 		}
 	}
 
@@ -260,34 +263,34 @@ Picker.baseStyle = {
 		color: '#333'
 	},
 	// footer Toolbar
-	footerView:{
+	footerView: {
 		flex: 0,
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: 35
 	},
-	footerOKBtn:{
+	footerOKBtn: {
 		paddingVertical: 1,
 		justifyContent: 'center',
-		alignItems:'center',
+		alignItems: 'center',
 		borderTopWidth: 1,
 		borderTopColor: '#ccc',
-		width:width,
+		width: width,
 	},
-	footerCancelBtn:{
+	footerCancelBtn: {
 		paddingVertical: 1,
 		justifyContent: 'center',
-		alignItems:'center',
+		alignItems: 'center',
 		borderBottomWidth: 1,
 		borderBottomColor: '#ccc',
 		borderTopWidth: 1,
 		borderTopColor: '#ccc',
-		width:width,
+		width: width,
 	},
-	footerOKText:{
+	footerOKText: {
 		color: '#108ee9'
 	},
-	footerCancelText:{
+	footerCancelText: {
 		color: '#108ee9'
 	}
 }

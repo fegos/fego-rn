@@ -23,25 +23,25 @@ export default class DatePicker extends UIComponent {
 		cancelText: '取消',
 		showInModal: true,
 		maskClosable: true,
-		dateMode:'year-month-day',
-		onClose: ()=>{},
-		onConfirm: ()=>{},
-		format: ()=>{},
+		dateMode: 'year-month-day',
+		onClose: () => { },
+		onConfirm: () => { },
+		format: () => { },
 	}
 	static propTypes = {
 		// 是否可见，受控属性，需配合 onClose 使用
 		visible: PropTypes.bool,
-		// 日期选择器模式，目前支持 'date', 'datetime', 'time'
-		mode: PropTypes.oneOf(['date', 'datetime', 'time']),
+		// 日期选择器模式，目前支持 'date', 'time'
+		mode: PropTypes.oneOf(['date', 'time']),
 		// 日期模式
-		dateMode:PropTypes.oneOf(['year-only','month-only','day-only','year-month','year-month-day','month-day']),
+		dateMode: PropTypes.oneOf(['year-only', 'month-only', 'day-only', 'year-month', 'year-month-day', 'month-day']),
 		// picker 初始值
 		initialValue: PropTypes.instanceOf(Date),
 		// 可选的最小日期
 		minDate: PropTypes.instanceOf(Date),
 		// 可选的最大日期
 		maxDate: PropTypes.instanceOf(Date),
-		// 'datetime', 'time' 模式下的时间间隔
+		// 'time' 模式下的时间间隔
 		minuteStep: PropTypes.number,
 		// 模态框标题
 		title: PropTypes.string,
@@ -65,12 +65,6 @@ export default class DatePicker extends UIComponent {
 		super(props)
 	}
 
-	_onClose = () => {
-		this.props.onClose();
-	}
-	_onConfirm = (val, idx, label, pickerType) => {
-		this.props.onConfirm(val, idx, label, pickerType);
-	}
 	_onChange = (val, idx, label, pickerType) => {
 		let { onChange } = this.props;
 		onChange instanceof Function && onChange(val, idx, label, pickerType);
@@ -85,13 +79,11 @@ export default class DatePicker extends UIComponent {
 			};
 
 		switch (mode) {
-			case 'date': 
-				return <DateModePicker {...this.props} {...callbacks}/>;
-			case 'datetime': 
-				return null;
-			case 'time': 
-				return <TimeModePicker {...this.props} {...callbacks}/>;
-			default: 
+			case 'date':
+				return <DateModePicker ref="pw1" {...this.props} {...callbacks} />;
+			case 'time':
+				return <TimeModePicker ref="pw1" {...this.props} {...callbacks} />;
+			default:
 				return null;
 		}
 	}
