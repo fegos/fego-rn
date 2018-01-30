@@ -11,7 +11,7 @@ import {
 	ScrollView,
 	StatusBar
 } from 'react-native'
-import UIComponent from '../../common/UIComponent'
+import UIComponent from '../../../common/UIComponent'
 
 const itemHeight = 36
 

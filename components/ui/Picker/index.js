@@ -14,8 +14,8 @@ import {
 } from 'react-native'
 import UIComponent from '../../common/UIComponent'
 import Modal from '../Modal'
-import PickerView from '../PickerView'
-import DatePicker from '../DatePicker'
+import PickerView from './PickerView'
+import DatePicker from './DatePicker'
 
 const width = Dimensions.get('window').width
 

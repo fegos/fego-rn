@@ -7,8 +7,7 @@ import PropTypes from 'prop-types'
 import {
 
 } from 'react-native'
-import UIComponent from '../../common/UIComponent'
-import Picker from '../Picker'
+import UIComponent from '../../../common/UIComponent'
 import DateModePicker from './Date'
 import TimeModePicker from './Time'
 

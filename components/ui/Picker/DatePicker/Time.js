@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import {
 
 } from 'react-native'
-import UIComponent from '../../common/UIComponent'
+import UIComponent from '../../../common/UIComponent'
 import PickerView from '../PickerView'
 
 export default class TimePicker extends UIComponent {
