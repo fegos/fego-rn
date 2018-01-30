@@ -22,12 +22,12 @@ const width = Dimensions.get('window').width
 class Picker extends UIComponent {
 	static defaultProps = {
 		//模式默认为datapicker
-		mode: "datePicker",
+		mode: "dataPicker",
 		//datePicker mode
 		datePickerMode: "date",
 		// datePicker date 显示模式
-		dateShowMode: "year-month",
-		// 传递的数据
+		dateShowMode: "year-month-day",
+		// dataPicker模式下传递的数据
 		data: [],
 		// 非受控属性: picker 初始值
 		defaultValue: [],
@@ -68,7 +68,7 @@ class Picker extends UIComponent {
 		maxDate: PropTypes.instanceOf(Date),
 		// 'time' 模式下的时间间隔
 		minuteStep: PropTypes.number,
-		// 传递的数据
+		// dataPicker模式下传递的数据
 		data: PropTypes.array,
 		// 非受控属性: picker 初始值
 		defaultValue: PropTypes.array,
@@ -236,7 +236,7 @@ Picker.baseStyle = {
 		alignItems: 'center',
 		borderBottomWidth: 1,
 		borderBottomColor: '#ccc',
-		height: 40
+		height: 40,
 	},
 	btn: {
 		paddingHorizontal: 20,

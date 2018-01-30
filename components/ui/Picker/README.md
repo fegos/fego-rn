@@ -37,8 +37,16 @@ subTitle: 选择器
 
 属性 | 说明 | 类型 | 默认值
 ----|-----|------|------
+| modal | 是否模态 | boolean | false |
+| mode | 选择器的模式,支持'dataPicker，datePicker' | string | dataPicker |
+| datePickerMode | datePicker的模式，支持'date，time' | string | date |
+| dateShowMode | date的显示模式 支持 'year-only','month-only','day-only','year-month','year-month-day','month-day'  | string | 'year-month-day' |
 | data | 选择器的数据源 | array | [ ] |
-| initialValue | picker 初始值，格式为[v1, v2, v3]，对应数据源的相应级层value | array | [ ] |
+| minDate | 选择器的数据源 | 最小日期 | [ ] |
+| maxDate | 选择器的数据源 | 最大日期 | [ ] |
+| minuteStep | time模式下的步长 | integer | 1 |
+| defaultDateValue | date模式下默认选中的时间 | Date |  |
+| defaultValue | picker 初始值，格式为[v1, v2, v3]，对应数据源的相应级层value | array | [ ] |
 | onChange | 每列数据选择变化后的回调函数 | Function(selectedValue, selectedIndex, selectedLabel){} | - |
 | visible | 是否可见 | bool | false |
 | title | 标题 | string | 请选择 |

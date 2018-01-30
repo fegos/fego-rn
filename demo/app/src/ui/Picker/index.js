@@ -172,9 +172,13 @@ export default class Page extends Component {
 			picker1Value: '',
 			picker2Value: '',
 			picker3Value: '',
+			picker4Value: '',
+			picker5Value: '',
 			picker1Visible: false,
 			picker2Visible: false,
-			picker3Visible: false
+			picker3Visible: false,
+			picker4Visible: false,
+			picker5Visible: false
 		}
 	}
 
@@ -185,6 +189,8 @@ export default class Page extends Component {
 					<ListItem title={'多列非级联 Picker, 遮罩可点击关闭。您选择: '+this.state.picker1Value} onPress={()=>{this.setState({picker1Visible:true})}} />
 					<ListItem title={'单列非级联 Picker, 您选择: '+this.state.picker2Value} onPress={()=>{this.setState({picker2Visible:true})}} />
 					<ListItem title={'多列级联 Picker, 您选择: '+this.state.picker3Value} onPress={()=>{this.setState({picker3Visible:true})}} />
+					<ListItem title={'mode: datePicker datePickerMode:date dateShowMode: year-month-day Picker, 遮罩可点击关闭。您选择: '+this.state.picker4Value} onPress={()=>{this.setState({picker4Visible:true})}} />
+					<ListItem title={'datePickerMode:time mode: time, 遮罩可点击关闭。您选择: '+this.state.picker5Value} onPress={()=>{this.setState({picker5Visible:true})}} />
 				</List>
 				<Picker
 					data={pickerData1}
@@ -205,6 +211,7 @@ export default class Page extends Component {
 				/>
 				<Picker
 					data={pickerData2}
+					header={true}
 					visible={this.state.picker2Visible}
 					onClose={()=>{this.setState({picker2Visible:false})}}
 					onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
@@ -217,6 +224,7 @@ export default class Page extends Component {
 				/>
 				<Picker
 					data={pickerData3}
+					header={true}
 					visible={this.state.picker3Visible}
 					onClose={()=>{this.setState({picker3Visible:false})}}
 					initialValue={['chuancai','jiachang','yu']}
@@ -225,6 +233,39 @@ export default class Page extends Component {
 						this.setState({ picker3Value: selectedLabel.join('') })
 					}}
 					onChange={(selectedValue, selectedIndex, selectedLabel) => {
+						console.log('onChange: ', selectedValue, selectedIndex, selectedLabel)
+					}}
+				/>
+				<Picker
+					visible={this.state.picker4Visible}
+					modal={true}
+					header={true}
+					mode="datePicker"
+					datePickerMode= "date"
+					dateShowMode= "year-month-day"
+					maskClosable={true}
+					onClose={()=>{this.setState({picker4Visible:false})}}
+					onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
+						console.log('onConfirm: ', selectedValue, selectedIndex, selectedLabel)
+						this.setState({ picker4Value: selectedLabel.join('') })
+					}}
+					onChange={(selectedIndex, selectedValue, selectedLabel) => {
+						console.log('onChange: ', selectedValue, selectedIndex, selectedLabel)
+					}}
+				/>
+				<Picker
+					visible={this.state.picker5Visible}
+					modal={true}
+					footer={true}
+					mode="datePicker"
+					datePickerMode= "time"
+					maskClosable={true}
+					onClose={()=>{this.setState({picker5Visible:false})}}
+					onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
+						console.log('onConfirm: ', selectedValue, selectedIndex, selectedLabel)
+						this.setState({ picker5Value: selectedLabel.join('') })
+					}}
+					onChange={(selectedIndex, selectedValue, selectedLabel) => {
 						console.log('onChange: ', selectedValue, selectedIndex, selectedLabel)
 					}}
 				/>

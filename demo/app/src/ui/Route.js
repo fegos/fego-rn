@@ -38,12 +38,6 @@ export default {
 			title: 'Checkbox',
 		},
 	},
-	'ui/DatePicker': {
-		screen: require('./DatePicker').default,
-		navigationOptions: {
-			title: 'DatePicker',
-		},
-	},
 	'ui/Dialog': {
 		screen: require('./Dialog').default,
 		navigationOptions: {
@@ -96,12 +90,6 @@ export default {
 		screen: require('./Picker').default,
 		navigationOptions: {
 			title: 'Picker',
-		},
-	},
-	'ui/PickerView': {
-		screen: require('./PickerView').default,
-		navigationOptions: {
-			title: 'PickerView',
 		},
 	},
 	'ui/PieChart': {
