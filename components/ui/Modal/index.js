@@ -31,13 +31,21 @@ export default class FEGOModal extends UIComponent {
 		scale: true
 	}
 	static propTypes = {
+		// 是否可见
 		visible: PropTypes.bool,
+		// 点击遮罩是否可关闭
 		maskClosable: PropTypes.bool,
+		// 动画类型：none fade slide-up slide-down
 		animationType: PropTypes.string,
+		// 仅首次动画（只适用于进入页面就显示modal的情况，此时需要visible和该属性均为true）
 		animateAppear: PropTypes.bool,
+		// 动画时长
 		animationDuration: PropTypes.number,
+		// 关闭回调
 		onClose: PropTypes.func,
+		// 动画结束回调
 		onAnimationEnd: PropTypes.func,
+		// 规模
 		scale: PropTypes.bool,
 	}
 	constructor(props) {
@@ -82,13 +90,6 @@ export default class FEGOModal extends UIComponent {
 			this._animateDialog(props.visible);
 		}
 	}
-	// componentWillUnmount() {
-	// 	this._stopDialogAnim();
-	// 	this._stopMaskAnim();
-	// 	this.setState({
-	// 		modalVisible: false
-	// 	})
-	// }
 	_animateMask(visible) {
 		this._stopMaskAnim();
 		this.state.opacity.setValue(this._getOpacity(!visible));
@@ -171,7 +172,7 @@ export default class FEGOModal extends UIComponent {
 	_getScale(visible) {
 		if (this.props.scale) return visible ? 1 : 1.05;
 		return 1;
-		
+
 	}
 	_getOpacity(visible) {
 		return visible ? 1 : 0;
