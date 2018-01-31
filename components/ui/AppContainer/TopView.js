@@ -48,7 +48,7 @@ export default class TopView extends Component {
 	}
 	/**
 	 * 移除指定key的view
-	 * @param {String/Function} key 若为函数则作为filtr的判断条件
+	 * @param {String/Function} key 若为函数则作为filter的判断条件
 	 */
 	remove = (key) => {
 		if (!key) {
@@ -56,10 +56,10 @@ export default class TopView extends Component {
 			return;
 		}
 		let views;
-		if(typeof key === 'function'){
+		if (typeof key === 'function') {
 			// 移除条件参照key函数返回值，false则移除
 			views = this.state.views.filter(key);
-		}else{
+		} else {
 			// 移除相同key的元素
 			views = this.state.views.filter(view => view.key !== key)
 		}

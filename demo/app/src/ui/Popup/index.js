@@ -101,7 +101,7 @@ export default class Page extends Component {
 								visible: true,
 								aniIn: 'bottom',
 								location: 'bottom',
-								title: <Icon style={{ flex: 1, paddingHorizontal: 40 }} name='free-code-camp'>任意元素</Icon>,
+								title: <Icon style={{ flex: 1, paddingHorizontal: 40, textAlign: 'center' }} name='free-code-camp'></Icon>,
 								headerLeft: <View style={{ paddingHorizontal: 10 }}><Text style={{ fontSize: 12, color: '#999' }}>取消</Text></View>,
 								headerRight: '确定',
 							})
