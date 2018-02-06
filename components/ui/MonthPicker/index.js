@@ -4,12 +4,10 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import Button from '../Button'
-import List from '../List'
 import UIComponent from '../../common/UIComponent'
 
-const ListItem = List.ListItem;
 
 const itemHeight = 50
 
@@ -165,13 +163,15 @@ export default class MonthPicker extends UIComponent {
 						showsVerticalScrollIndicator={false}
 						onScrollEndDrag={this._onScrollEndDrag}
 					>
-						<List>
-							{this.months.map((m, i) => (
-								<ListItem key={m.value} onPress={this._onSelect.bind(this, m, i)} style={style.item}>
+
+						{this.months.map((m, i) => (
+							<TouchableOpacity onPress={this._onSelect.bind(this, m, i)} key={m.value}>
+								<View style={style.item}>
 									<Text style={[style.text, m.value === value && style.selectedText]}>{m.label}</Text>
-								</ListItem>
-							))}
-						</List>
+								</View>
+							</TouchableOpacity>
+						))}
+
 					</ScrollView>
 				</View>
 				<Button title='取消' onPress={this._onClose} style={style.btn} textColor='#858DA0' />
@@ -196,6 +196,9 @@ MonthPicker.baseStyle = {
 		paddingBottom: 16,
 		paddingTop: 16,
 		height: itemHeight,
+		backgroundColor: '#F1F1F3',
+		borderBottomColor: '#ededed',
+		borderBottomWidth: StyleSheet.hairlineWidth,
 	},
 	text: {
 		flex: 1,
