@@ -14,6 +14,7 @@ import GesturePassword from './GesturePassword'
 import Icon from './Icon'
 import Input from './Input'
 import List from './List'
+import Loading from './Loading'
 import Modal from './Modal'
 import MonthPicker from './MonthPicker'
 import Picker from './Picker'
@@ -44,6 +45,7 @@ export {
 	Icon,
 	Input,
 	List,
+	Loading,
 	Modal,
 	MonthPicker,
 	Picker,
