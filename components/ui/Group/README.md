@@ -39,4 +39,4 @@ subTitle: 组，可配和Checkbox、Radio、Tag组件使用，实现多选、单
 | value | 受控属性，选中的值，需配合 onChange 使用 | array[string]（多选）或string（单选） | - |
 | defaultValue | 非控属性，默认选中的值 | array[string]（多选）或string（单选） | [] |
 | onChange | 选择框变化回调 | function(checkedValues) | - |
-| type | 类型，multi代表多选，single代表单选 | string | single |
+| isSingle | 是否是单选 | bool | true |

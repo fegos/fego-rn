@@ -9,7 +9,7 @@ import UIComponent from '../../common/UIComponent';
 
 export default class Group extends UIComponent {
 	static defaultProps = {
-		type: "single"
+		isSingle: true
 	}
 	static propTypes = {
 		// 受控属性，选中的项对应的value，需配合onChange使用
@@ -24,8 +24,8 @@ export default class Group extends UIComponent {
 		]),
 		// 状态改变回调
 		onChange: PropTypes.func,
-		// type：single单选；multi：多选
-		type: PropTypes.string
+		// 是否是单选
+		isSingle: PropTypes.bool
 	}
 	constructor(props) {
 		super(props);
@@ -54,8 +54,8 @@ export default class Group extends UIComponent {
 	}
 	onChange = (checked, ele) => {
 
-		let { onChange, type } = this.props, _value;
-		if (type == "single") {
+		let { onChange, isSingle } = this.props, _value;
+		if (isSingle) {
 			_value = ele.props.value;
 		} else {
 			_value = this.updateSelectValue(ele.props.value, checked);
@@ -68,12 +68,12 @@ export default class Group extends UIComponent {
 		onChange instanceof Function && onChange(_value, this)
 	}
 	render() {
-		let { type } = this.props, { value } = this.state;
-		console.log(type, value)
+		let { isSingle } = this.props, { value } = this.state;
+		console.log(isSingle, value)
 		return (
 			<View style={this.style.container}>{
 				React.Children.map(this.props.children, (child) => React.cloneElement(child, {
-					checked: type == "single" ? child.props.value === value : value.indexOf(child.props.value) >= 0,
+					checked: isSingle ? child.props.value === value : value.indexOf(child.props.value) >= 0,
 					onChange: this.onChange
 				}, child.props.children))
 			}</View>

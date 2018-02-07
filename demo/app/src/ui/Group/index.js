@@ -19,7 +19,7 @@ export default class Page extends Component {
 				<List>
 					<ListItem>
 						<Text>Group非受控属性（多选）：</Text>
-						<Group defaultValue={['chinese']} type="multi">
+						<Group defaultValue={['chinese']} isSingle={false}>
 							<Checkbox value='english'>英语</Checkbox>
 							<Checkbox value='chinese'>语文</Checkbox>
 							<Checkbox value='math'>数学</Checkbox>
@@ -27,14 +27,14 @@ export default class Page extends Component {
 					</ListItem>
 					<ListItem>
 						<Text>Group受控属性（多选）：</Text>
-						<Group value={this.state.checkboxGroupValue} type="multi" onChange={(values) => {
+						<Group value={this.state.checkboxGroupValue} isSingle={false} onChange={(values) => {
 							console.log(values)
 							this.setState({
 								checkboxGroupValue: values
 							})
 						}}>
 							<Checkbox value='english'>英语</Checkbox>
-							<Checkbox value='chinese'>语文</Checkbox>
+							<Checkbox value='chinese' disabled>语文</Checkbox>
 							<Checkbox value='math'>数学</Checkbox>
 						</Group>
 					</ListItem>
@@ -57,7 +57,7 @@ export default class Page extends Component {
 							})
 						}}>
 							<Radio value='english'>英语</Radio>
-							<Radio value='chinese'>语文</Radio>
+							<Radio value='chinese' disabled>语文</Radio>
 							<Radio value='math'>数学</Radio>
 						</Group>
 					</ListItem>
@@ -80,7 +80,7 @@ export default class Page extends Component {
 							})
 						}}>
 							<Tag value='english'>英语</Tag>
-							<Tag value='chinese'>语文</Tag>
+							<Tag value='chinese' disabled>语文</Tag>
 							<Tag value='math'>数学</Tag>
 						</Group>
 					</ListItem>
