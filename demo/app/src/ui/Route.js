@@ -74,6 +74,12 @@ export default {
 			title: 'List',
 		},
 	},
+	'ui/Loading':{
+		screen: require('./Loading').default,
+		navigationOptions: {
+			title: 'Loading',
+		},
+	},
 	'ui/Modal': {
 		screen: require('./Modal').default,
 		navigationOptions: {
