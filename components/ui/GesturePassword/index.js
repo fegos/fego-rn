@@ -142,7 +142,6 @@ export default class GesturePassword extends UIComponent {
   }
 
   componentWillUnmount() {
-    super.componentWillUnmount();
     if (this._timer != null) {
       clearTimeout(this._timer);
       this._timer = null;
