@@ -6,10 +6,10 @@ import UIComponent from 'common/UIComponent'
 export default class Progress extends UIComponent {
 	static defaultProps = {
 		percent: 0,
-		position: 'normal', //`normal`, `top`
+		position: 'normal',
 		appearTransition: false,
-		type: 'default', //`default`, `retangle`, `border`, `progressBorder`, 
-		size: 'default', //`default`, `small`, `large`
+		type: 'default',
+		size: 'default', 
 		showUnfill: true,
 		progressMarginLinear: false
 	};
@@ -27,11 +27,11 @@ export default class Progress extends UIComponent {
 		//进度0-100
 		percent: PropTypes.number,
 		// 主题类型 default rectangle border
-		type: PropTypes.string,
+		type: PropTypes.oneOf(['default', 'retangle', 'border', 'progressBorder']),
 		// 尺寸 small default large 
-		size: PropTypes.string,
+		size: PropTypes.oneOf(['default', 'small', 'large']),
 		// 位置 top normal
-		position: PropTypes.string,
+		position: PropTypes.oneOf(['normal', 'normal']),
 		// 显示进度未满区域
 		showUnfill: PropTypes.bool,
 		// 进度条右边缘是否呈线形

@@ -31,6 +31,7 @@ export default class Segment extends UIComponent {
 			index: typeof props.index === 'number' ? props.index : props.defaultIndex
 		}
 	}
+	static autoStyleSheet = false
 	componentWillReceiveProps(nextProps) {
 		super.componentWillReceiveProps(nextProps)
 		if (nextProps.index !== this.props.index) {
@@ -56,12 +57,21 @@ export default class Segment extends UIComponent {
 		const style = this.style;
 		const { disabled, values, themeColor } = this.props;
 		const index = this.state.index;
+		const container = style.container
 		return values.map((val, i) => {
-			let firstItemStyle = null;
+			let distinctItemStyle = null;
 			let isActive = (i === index);
 			if (i === 0) {
-				firstItemStyle = {
-					borderLeftWidth: 0
+				distinctItemStyle = {
+					borderLeftWidth: 0,
+					borderTopLeftRadius : container.borderRadius?container.borderRadius:5,
+					borderBottomLeftRadius : container.borderRadius?container.borderRadius:5
+				};
+			} 
+			else if (i === values.length - 1) {
+				distinctItemStyle = {
+					borderTopRightRadius : container.borderRadius?container.borderRadius:5,
+					borderBottomRightRadius : container.borderRadius?container.borderRadius:5
 				};
 			}
 			const themeStyle = {}
@@ -72,7 +82,7 @@ export default class Segment extends UIComponent {
 				themeTextStyle.color = themeColor;
 			}
 			const itemStyle = [
-				style.item, firstItemStyle, 
+				style.item, distinctItemStyle, 
 				isActive ? style.itemActive : {}, 
 				themeStyle
 			]
@@ -119,7 +129,6 @@ Segment.baseStyle = {
 	},
 	item: {
 		flex: 1,
-		// height: 26,
 		paddingVertical: 5,
 		borderLeftWidth: StyleSheet.hairlineWidth,
 		borderStyle: 'solid',
