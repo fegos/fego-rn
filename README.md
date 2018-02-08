@@ -52,15 +52,17 @@
   $ npm run init
   ```
 
-2.运行 demo
+2.运行 demo包服务
 
   ```bash
   $ npm run start
 
-  # 随后在 xcode 或 Android Studio 中点击 `RUN` 运行项目即可
   ```
 
-3.也可以执行
+3.运行 模拟器
+
+> xcode 或 Android Studio 中点击 `RUN` 运行项目即可
+`或者使用下面的命令`
 
   ```bash
   # ios 端
@@ -130,9 +132,9 @@
 
 Mac升级后watchman不可用了，需要重装watchman。
 + 第一种解决方案：
-  1. 卸载: brew uninstall --force watchman
-  2. 删除文件: rm -rf /usr/local/var/run/watchman/
-  3. 重装: brew install watchman
+  - 卸载: brew uninstall --force watchman
+  - 删除文件: rm -rf /usr/local/var/run/watchman/
+  - 重装: brew install watchman
 + 第二种解决方案: 来自官方：https://facebook.github.io/watchman/docs/install.html
 
 
