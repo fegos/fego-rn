@@ -52,7 +52,6 @@ export default class GesturePasswordDemo extends Component {
           onFinish={this._onFinish}
           onReset={this._onReset}
           isPointNoChange={false}
-          isShowBorder
         />
       </View>
     );
@@ -83,8 +82,8 @@ export default class GesturePasswordDemo extends Component {
 
 	_renderDescription = () => (
 			<View style={{
- height: 158, paddingBottom: 10, justifyContent: 'flex-end', alignItems: 'center',
-}}
+        height: 158, paddingBottom: 10, justifyContent: 'flex-end', alignItems: 'center',
+  }}
 			>
 				{this._renderThumbnails()}
 				<Text

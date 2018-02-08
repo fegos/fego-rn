@@ -34,7 +34,8 @@ export default class GesturePassword extends UIComponent {
     isPointNoChange: false,
     showArrow: true,
     allowCross: true,
-    isShowBoder: false, // 用来标识手势线是从原点画（default） 还是从手势圆圈边缘画
+    isShowBorder: true,
+    isHideLine: true, // 是否隐藏连接点内的线
   }
 
   static simpleStyleProps = {
@@ -59,6 +60,8 @@ export default class GesturePassword extends UIComponent {
     showArrow: PropTypes.bool,
     // 是否显示边缘
     isShowBorder: PropTypes.bool,
+    // 是否隐藏连接点内的线
+    isHideLine: PropTypes.bool,
     // 是否允许穿过点
     allowCross: PropTypes.bool,
     // 开始手势回调
@@ -287,7 +290,7 @@ export default class GesturePassword extends UIComponent {
   }
 
   _addLine(line) {
-	  if (this.props.isShowBorder) {
+	  if (this.props.isHideLine) {
 	    const { start, end } = line;
 
 	    const dy = end.y - start.y;
@@ -387,7 +390,7 @@ export default class GesturePassword extends UIComponent {
 	  this.setState({
 	    segMentLines: [],
 	  });
-	  if (this.props.isShowBorder) {
+	  if (this.props.isHideLine) {
 	    const dy = end.y - start.y;
 	    const dx = end.x - start.x;
 	    const len = Math.sqrt(dx * dx + dy * dy);
@@ -536,14 +539,14 @@ export default class GesturePassword extends UIComponent {
 	    } else {
 	      // 落点任然在当前手势圆圈里，如果是isShowBorder=true无需处理
 	      if (point === this._currentPoint) {
-	        if (!this.props.isShowBorder) {
+	        if (!this.props.isHideLine) {
 	          this._updateLine(point, location, false, true);
 	        }
 	        return;
 	      }
 	      // 落点在已经激活的手势圆圈里
 	      if (this._sequence.includes(point.index)) {
-	        if (this.props.isShowBorder) {
+	        if (this.props.isHideLine) {
 	          // console.log('==000000000==');
 	          // console.log(point.origin);
 	          this._updateLine(this._currentPoint, point.origin, true, true, true);
