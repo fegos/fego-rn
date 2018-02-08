@@ -195,7 +195,7 @@ export default class Page extends Component {
 				<Picker
 					data={pickerData1}
 					visible={this.state.picker1Visible}
-					initialValue={['2013', '2', '22']}
+					defaultValue={['2013', '2', '22']}
 					maskClosable={true}
 					onClose={()=>{this.setState({picker1Visible:false})}}
 					onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
@@ -222,7 +222,7 @@ export default class Page extends Component {
 					data={pickerData3}
 					visible={this.state.picker3Visible}
 					onClose={()=>{this.setState({picker3Visible:false})}}
-					initialValue={['chuancai','jiachang','yu']}
+					defaultValue={['chuancai','jiachang','yu']}
 					onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
 						console.log('onConfirm: ', selectedValue, selectedIndex, selectedLabel)
 						this.setState({ picker3Value: selectedLabel.join('') })

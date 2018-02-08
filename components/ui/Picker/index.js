@@ -36,7 +36,7 @@ class Picker extends UIComponent {
 		footer: false,
 		footerVertical: true,
 		onClose: () => { },
-		onConfirm: (indexArr, valueArr, labelArr) => { },
+		onConfirm: (valueArr, indexArr, labelArr) => { },
 		onChange: (selectedIndex, selectedValue, selectedLabel) => { },
 	}
 
@@ -112,8 +112,8 @@ class Picker extends UIComponent {
 
 	// 确认按钮
 	_onConfirm = () => {
-		// 从pickerview取出选择的值
-		this.props.onConfirm(this.state.selectedValue, this._pickerView.state.selectedIndex, this._pickerView.state.selectedLabel)
+		// 从pickerview取出选择的值，避免某些值在date里面由于mode被截断
+		this.props.onConfirm(this._pickerView.state.selectedValue, this._pickerView.state.selectedIndex, this._pickerView.state.selectedLabel)
 		this.props.onClose()
 	}
 	// 取消按钮、关闭弹框

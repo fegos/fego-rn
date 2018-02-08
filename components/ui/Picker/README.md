@@ -40,7 +40,7 @@ subTitle: 选择器
 | modal | 是否模态 | boolean | false |
 | mode | 选择器的模式,支持'dataPicker，datePicker' | string | dataPicker |
 | datePickerMode | datePicker的模式，支持'date，time' | string | date |
-| dateShowMode | date的显示模式 支持 'year-only','month-only','day-only','year-month','year-month-day','month-day'  | string | 'year-month-day' |
+| dateMode | date的显示模式 支持 'year-only','month-only','day-only','year-month','year-month-day','month-day'  | string | 'year-month-day' |
 | data | 选择器的数据源 | array | [ ] |
 | minDate | 选择器的数据源 | 最小日期 | [ ] |
 | maxDate | 选择器的数据源 | 最大日期 | [ ] |

@@ -11,7 +11,7 @@ import {
 import Day from './Day'
 
 //纯受控组件，通过calendar index里面的setState更新
-export default class Days extends Component {
+export default class Month extends Component {
 	static defaultProps = {
 	}
 	static propTypes = {

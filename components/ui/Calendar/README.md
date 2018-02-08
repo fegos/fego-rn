@@ -3,7 +3,7 @@ title: Calendar
 subTitle: 日历
 ---
 
-# 日历组件 CalendarPicker
+# 日历组件 Calendar
 
 ### 组件描述
 - 提供日历选择功能

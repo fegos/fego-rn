@@ -12,15 +12,20 @@ import {
 
 import MonthPicker from "../MonthPicker"
 import Popup from "../Popup"
+import Picker from "../Picker"
+
 
 //纯受控组件，通过calendar index里面的setState更新
 export default class Header extends Component {
 	static defaultProps = {
+		scanMode: 'cascade',
 		mode: "year-month",
 		disabled: false,
 	}
 
 	static propTypes = {
+		//快速翻页模式
+		scanMode: PropTypes.oneOfType(['cascade', 'non-cascade']),
 		// 组件提供的日历范围最大日期
 		maxDate: PropTypes.instanceOf(Date),
 		// 组件提供的日历范围最小日期
@@ -52,16 +57,24 @@ export default class Header extends Component {
 	constructor(props) {
 		super(props)
 
+		this.state = {
+			scanVisible: false
+		}
 
-		switch (this.props.mode) {
-			case "year-month":
-				this.monthsData = this._monthPickerData()
-				this.scanCallback = this._changeMonths
-				break;
-			case "year-only":
-				this.yearData = this._yearPickerData()
-				this.scanCallback = this._changeYears
-				break;
+		if (this.props.scanMode === "cascade") {
+			this.dateData = this._dateDate()
+			this.scanCallback = this._changeDate
+		} else {
+			switch (this.props.mode) {
+				case "year-month":
+					this.monthsData = this._monthPickerData()
+					this.scanCallback = this._changeMonths
+					break;
+				case "year-only":
+					this.yearData = this._yearPickerData()
+					this.scanCallback = this._changeYears
+					break;
+			}
 		}
 	}
 
@@ -108,7 +121,22 @@ export default class Header extends Component {
 			)
 		)
 	}
-
+	//级联模式date数据
+	_dateDate = () => {
+		let { maxDate, minDate } = this.props
+		let current = new Date()
+		//默认前后一年
+		if (!minDate) {
+			minDate = new Date(current.getFullYear() - 10, current.getMonth())
+		}
+		if (!maxDate) {
+			maxDate = new Date(current.getFullYear() + 10, current.getMonth())
+		}
+		return { minDate, maxDate }
+	}
+	_changeDate = () => {
+		this.setState({ scanVisible: true })
+	}
 	//年月选择的形式
 	_monthPickerData = () => {
 		let { maxDate, minDate } = this.props
@@ -229,27 +257,46 @@ export default class Header extends Component {
 				</TouchableOpacity>
 			)
 		}
-
+		let { mode } = this.props
+		initialValue = new Date(year, month)
 		return (
-			<View style={styles.headerWrapper}>
-				<View style={styles.monthOperator}>
-					{previousBtn}
-				</View>
-				{
-					disabled ?
-						<Text style={[styles.title]}>
-							{year}年{months[month]}
-						</Text>
-						: <TouchableOpacity onPress={this.scanCallback}>
+			<View>
+				<View style={styles.headerWrapper}>
+					<View style={styles.monthOperator}>
+						{previousBtn}
+					</View>
+					{
+						disabled ?
 							<Text style={[styles.title]}>
 								{year}年{months[month]}
 							</Text>
-						</TouchableOpacity>
-				}
+							: <TouchableOpacity onPress={this.scanCallback}>
+								<Text style={[styles.title]}>
+									{year}年{months[month]}
+								</Text>
+							</TouchableOpacity>
+					}
 
-				<View style={styles.monthOperator}>
-					{nextBtn}
+					<View style={styles.monthOperator}>
+						{nextBtn}
+					</View>
 				</View>
+
+				<Picker
+					visible={this.state.scanVisible}
+					mode="datePicker"
+					datePickerMode="date"
+					dateMode={mode}
+					defaultDateValue={initialValue}
+					minDate={this.dateData.minDate}
+					maxDate={this.dateData.maxDate}
+					maskClosable={true}
+					onClose={() => { }}
+					onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
+						this.props.onChange(parseInt(selectedValue[0]), mode === "year-only" ? this.props.month : parseInt(selectedValue[1]))
+						this.setState({ scanVisible: false })
+					}}
+				/>
 			</View>
 		)
 	}

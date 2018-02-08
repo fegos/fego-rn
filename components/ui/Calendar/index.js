@@ -12,15 +12,15 @@ import {
 import UIComponent from '../../common/UIComponent'
 import Header from './Header'
 import WeekdayBar from './WeekdayBar'
-import Days from './Days'
+import Days from './Month'
 
 
 /**
- * @class CalendarPicker
+ * @class Calendar
  * 维护的 state 有：
  * month、year、selectedDate
  */
-export default class CalendarPicker extends UIComponent {
+export default class Calendar extends UIComponent {
 	static defaultProps = {
 		defaultSelectedDate: new Date(),
 		weekdays: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
@@ -189,7 +189,7 @@ export default class CalendarPicker extends UIComponent {
 const IPHONE6_WIDTH = 375;
 const scaler = Dimensions.get('window').width / IPHONE6_WIDTH
 
-CalendarPicker.baseStyle = {
+Calendar.baseStyle = {
 	// 容器
 	container: {
 		backgroundColor: '#fff',
@@ -285,7 +285,7 @@ CalendarPicker.baseStyle = {
 	},
 }
 
-CalendarPicker.themeStyle = {
+Calendar.themeStyle = {
 	theme: {
 		default: {
 			title: {
@@ -301,7 +301,8 @@ CalendarPicker.themeStyle = {
 				color: '#000'
 			},
 			dayText: {
-				color: '#000'
+				color: '#000',
+				fontWeight:"600",
 			},
 			selectedDay: {
 				color: '#fff'
