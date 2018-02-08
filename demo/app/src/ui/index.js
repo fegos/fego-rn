@@ -40,6 +40,7 @@ export default class Page extends Component {
 				{ title: '横屏切换标签页 Tabs', icon: 'tablet', page: 'ui/Tabs/RotateTabs' },
 				{ title: '小标签 Tag', icon: 'tag', page: 'ui/Tag' },
 				{ title: '轻提示 Toast', icon: 'comment-o', page: 'ui/Toast' },
+				{ title: '加载提示 Loading', icon: 'spinner', page:'ui/Loading'},
 				{ title: 'TestArt', page: 'ui/TestArt' },
 			]} />
 	}

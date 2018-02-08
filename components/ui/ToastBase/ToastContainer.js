@@ -8,6 +8,7 @@ export default class ToastConatiner extends UIComponent {
 	static defaultProps = {
 		duration: 2,
 		mask: false,
+		modal: false,
 		iconTypes: {
 			success: 'check-circle',
 			fail: 'times-circle',
@@ -24,8 +25,10 @@ export default class ToastConatiner extends UIComponent {
 		duration: PropTypes.number,
 		// 关闭回调
 		onClose: PropTypes.func,
-		// 是否响应遮罩点击
+		// 是否显示遮罩
 		mask: PropTypes.bool,
+		// 是否阻止用户点击
+		modal: PropTypes.bool,
 		// Toast类型
 		type: PropTypes.string,
 		// 图标字体
@@ -89,7 +92,8 @@ export default class ToastConatiner extends UIComponent {
 	}
 	render() {
 		let style = this.style
-		const { type = '', content, mask, iconFamily, iconTypes, offsetY,loadingColor } = this.props;
+		const { type = '', content, mask, modal, iconFamily, iconTypes, offsetY,loadingColor } = this.props;
+		console.log('mask: ',mask);
 		let iconDom = null;
 		let contentDom = content;
 		if (type === 'loading') {
@@ -105,7 +109,7 @@ export default class ToastConatiner extends UIComponent {
 		return (
 			<Animated.View 
 				style={[style.container, mask ? style.mask : null, { top: offsetY, opacity: this.state.fadeAnim }]} 
-				pointerEvents={mask ? 'auto' : 'box-none'}>
+				pointerEvents={modal ? 'auto' : 'box-none'}>
 					<View style={[iconDom ? style.innerWithIcon : {}, style.inner]}>
 						{iconDom}
 						{contentDom}
