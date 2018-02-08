@@ -17,7 +17,6 @@ const itemHeight = 36
 
 export default class PickerAndroid extends UIComponent {
 	static defaultProps = {
-		// 滚轮的值变化后的回调函数
 		onValueChange: ()=>{}
 	}
 

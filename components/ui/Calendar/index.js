@@ -22,23 +22,14 @@ import Days from './Days'
  */
 export default class CalendarPicker extends UIComponent {
 	static defaultProps = {
-		// 默认选中的日期，非受控属性
 		defaultSelectedDate: new Date(),
-		// 日历显示的星期文案
-		weekdays: [ '周日', '周一', '周二', '周三', '周四', '周五', '周六' ],
-		// 日历显示的月份文案
+		weekdays: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
 		months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-		// 是否从周一开始显示，默认周日开始，需搭配 weekdays 使用
 		startFromMonday: false,
-		// 上月翻页
 		prev: '<',
-		// 下月翻页
 		next: '>',
-		// 选中某个日期的回调
-		onChange: () => {},
-		// 组件的主题色
+		onChange: () => { },
 		theme: 'default',
-		// 组件是否固定显示六行
 		rowFixed: false
 	}
 
@@ -113,16 +104,16 @@ export default class CalendarPicker extends UIComponent {
 		let minDate = props.minDate,
 			maxDate = props.maxDate
 
-		if ( minDate ) {
+		if (minDate) {
 			minDate = new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate())
 		}
-		if ( maxDate ) {
-			let tmp = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate()+1) // 下一天的零点
-			maxDate = new Date( tmp.getTime() - 1 ) // 减一毫秒，成为当前的最后一个时刻点
+		if (maxDate) {
+			let tmp = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate() + 1) // 下一天的零点
+			maxDate = new Date(tmp.getTime() - 1) // 减一毫秒，成为当前的最后一个时刻点
 		}
 
 		try {
-			if ( minDate && maxDate && minDate >= maxDate ) {
+			if (minDate && maxDate && minDate >= maxDate) {
 				throw '日历可选最小日期应小于可选最大日期'
 			} else {
 				this._formedMinDate = minDate
@@ -132,7 +123,7 @@ export default class CalendarPicker extends UIComponent {
 			console.error('Calendar Picker error : ', err)
 		}
 	}
-	
+
 	// 选中某个日期的回调
 	onDayChange = (year, month, date) => {
 		let _date = new Date(year, month, date);

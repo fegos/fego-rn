@@ -14,13 +14,9 @@ const itemHeight = 50
 
 export default class MonthPicker extends UIComponent {
 	static defaultProps = {
-		// 内容，设置此属性可覆盖 MonthPicker 默认的选项
 		data: [],
-		// 初始选中的值，默认选中最后一个
 		initialValue: '',
-		// 关闭回调
 		onClose: () => { },
-		// 选中回调,参数为选中的对象和所在数据下标
 		onSelect: (obj, index) => { },
 	}
 	static propTypes = {

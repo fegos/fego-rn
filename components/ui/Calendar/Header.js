@@ -16,9 +16,7 @@ import Popup from "../Popup"
 //纯受控组件，通过calendar index里面的setState更新
 export default class Header extends Component {
 	static defaultProps = {
-		//快速翻页模式
-		mode: "year-only",
-		//禁用快速翻页
+		mode: "year-month",
 		disabled: false,
 	}
 

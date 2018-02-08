@@ -45,7 +45,7 @@ export default class Days extends Component {
 		let { onChange } = this.props;
 		onChange instanceof Function && onChange(year, month, date);
 	}
-	
+
 	_renderCalendarDay() {
 		let { styles } = this.props,
 			{ maxDate, minDate, selectedDate, year, month, startFromMonday } = this.props,
@@ -61,7 +61,7 @@ export default class Days extends Component {
 			firstDayIndex = startFromMonday ? prevMonthLastDayDateObj.getDay() : new Date(year, month, 1).getDay(), // 这个月的第一天在列中处于第几列的列下标
 			prevMonthLastDay = prevMonthLastDayDateObj.getDate(), // 上个月最后一天的号数，eg: 31号？30号？
 			prevMonthDayCount = firstDayIndex; // 需要显示的上个月的天数
-		
+
 		let prevMonthDay = prevMonthLastDay - prevMonthDayCount + 1,
 			nextMonthDay = 1;
 
@@ -70,14 +70,14 @@ export default class Days extends Component {
 
 			for (let j = 0; j < 7; j++) { // columns
 				let tmpDate, tmpMonth, tmpYear, tmpNotThisMonth;
-				
+
 				if (slotsAccumulator < prevMonthDayCount) { // 上个月的最后几天
 					tmpDate = prevMonthDay
 					tmpMonth = month - 1
 					tmpYear = year
 					tmpNotThisMonth = true
-					if ( tmpMonth < 0 ) {
-						tmpMonth = (tmpMonth+12) % 12
+					if (tmpMonth < 0) {
+						tmpMonth = (tmpMonth + 12) % 12
 						tmpYear--
 					}
 					prevMonthDay++
@@ -92,7 +92,7 @@ export default class Days extends Component {
 					tmpMonth = month + 1
 					tmpYear = year
 					tmpNotThisMonth = true
-					if ( tmpMonth >= 12 ) {
+					if (tmpMonth >= 12) {
 						tmpMonth = tmpMonth % 12
 						tmpYear++
 					}
@@ -109,7 +109,7 @@ export default class Days extends Component {
 					year={tmpYear}
 					notThisMonth={tmpNotThisMonth}
 					onChange={this.onPressDay}
-					day={startFromMonday ? (j+1) : j}
+					day={startFromMonday ? (j + 1) : j}
 					styles={styles}
 				/>)
 
@@ -119,7 +119,7 @@ export default class Days extends Component {
 			matrix[i].push(<View key={i} style={styles.bodyRow}>{columns}</View>)
 
 			// 组件是固定显示 6 行，还是显示到有下月的那行结束就不显示了
-			if ( this.props.rowFixed === false && currentDay === daysInMonth ) break
+			if (this.props.rowFixed === false && currentDay === daysInMonth) break
 		}
 
 		return matrix;

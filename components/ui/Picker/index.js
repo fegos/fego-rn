@@ -21,35 +21,22 @@ const width = Dimensions.get('window').width
 
 class Picker extends UIComponent {
 	static defaultProps = {
-		//模式默认为datapicker
 		mode: "dataPicker",
-		//datePicker mode
 		datePickerMode: "date",
-		// datePicker date 显示模式
-		dateShowMode: "year-month-day",
-		// dataPicker模式下传递的数据
+		dateMode: "year-month-day",
 		data: [],
-		// 非受控属性: picker 初始值
 		defaultValue: [],
-		// 受控属性: 是否可见
 		visible: false,
-		/*		modal		*/
-		modal: false,//是否为模态
-		maskClosable: true,// 点击蒙层是否允许关闭
-		/*		header 		*/
-		// 标题文案,
+		modal: true,
+		maskClosable: true,
+		header: true,
 		title: '请选择',
-		// 确定的文案
 		okText: '确定',
-		// 取消的文案
 		cancelText: '取消',
-		/*		footer 		*/
-		//cancelText:'取消',同上接口
-		// 关闭弹框的回调函数
+		footer: false,
+		footerVertical: true,
 		onClose: () => { },
-		// 确定按钮的回调函数
 		onConfirm: (indexArr, valueArr, labelArr) => { },
-		// 每列数据选择变化后的回调函数
 		onChange: (selectedIndex, selectedValue, selectedLabel) => { },
 	}
 
@@ -59,9 +46,9 @@ class Picker extends UIComponent {
 		//datePicker mode
 		datePickerMode: PropTypes.oneOf(['date', 'time']),
 		// datePicker date 显示模式
-		dateShowMode: PropTypes.oneOf(['year-only', 'month-only', 'day-only', 'year-month', 'year-month-day', 'month-day']),
+		dateMode: PropTypes.oneOf(['year-only', 'month-only', 'day-only', 'year-month', 'year-month-day', 'month-day']),
 		// 非受控属性：
-		defaultDateValue:PropTypes.instanceOf(Date),
+		defaultDateValue: PropTypes.instanceOf(Date),
 		// 可选的最小日期
 		minDate: PropTypes.instanceOf(Date),
 		// 可选的最大日期
@@ -80,6 +67,7 @@ class Picker extends UIComponent {
 		modal: PropTypes.bool,//是否为模态
 		maskClosable: PropTypes.bool,// 点击蒙层是否允许关闭
 		/*		header 		*/
+		header: PropTypes.bool,
 		// 标题文案
 		title: PropTypes.string,
 		// 取消的文案
@@ -87,6 +75,9 @@ class Picker extends UIComponent {
 		// 确定的文案
 		okText: PropTypes.string,
 		/*		footer 		*/
+		footer: PropTypes.bool,
+		//footer view 默认垂直布局还是水平布局
+		footerVertical: PropTypes.bool,
 		//cancelText:'取消',同上接口
 		// 关闭弹框的回调函数
 		onClose: PropTypes.func,
@@ -147,19 +138,10 @@ class Picker extends UIComponent {
 	_renderPickerContents = () => {
 		let style = this.style,
 			{ cancelText, title, okText, data } = this.props
-
 		return (
 			<View style={[style.container, Platform.OS === 'android' && { paddingBottom: StatusBar.currentHeight }]}>
 				{/* header */}
-				{this.props.header ? <View style={style.headerView}>
-					<TouchableOpacity style={[style.btn, style.cancelBtn]} onPress={this._onClose}>
-						<Text style={[style.btnText, style.cancelText]} >{cancelText}</Text>
-					</TouchableOpacity>
-					<Text style={style.title}>{title}</Text>
-					<TouchableOpacity style={[style.btn, style.okBtn]} onPress={(e) => { this._onConfirm() }}>
-						<Text style={[style.btnText, style.okText]} >{okText}</Text>
-					</TouchableOpacity>
-				</View> : null}
+				{this.props.header ? this._renderHeaderView(style, style.headerView, okText, title, cancelText) : null}
 
 				{/* middle */}
 				{
@@ -175,28 +157,41 @@ class Picker extends UIComponent {
 								this._pickerView = pw.refs.pw1.refs.pw2
 							}
 						}}
-						mode={this.props.datePickerMode}
-						minDate={this.props.minDate}
-						maxDate={this.props.maxDate}
-						initialValue={this.props.defaultDateValue}
-						minuteStep={this.props.minuteStep} 
-						onChange={this._onChange}
+							{...this.props}
+							mode={this.props.datePickerMode}
+							initialValue={this.props.defaultDateValue}
+							onChange={this._onChange}
 						/>
 				}
 
-
 				{/* footer */}
-				{this.props.footer ? <View style={style.footerView}>
-					<TouchableOpacity style={[style.footerOKBtn]} onPress={this._onConfirm}>
-						<Text style={[style.btnText, style.footerOKText]} >{okText}</Text>
-					</TouchableOpacity>
-					<TouchableOpacity style={[style.footerCancelBtn]} onPress={this._onClose}>
-						<Text style={[style.btnText, style.footerCancelText]} >{cancelText}</Text>
-					</TouchableOpacity>
-				</View> : null}
+				{this.props.footer ? this._renderFooterView(style, style.footerHorizontalView, okText, title, cancelText) : null}
 
 			</View>
 		)
+	}
+	_renderHeaderView = (style, containerStyle, okText, title, cancelText) => {
+		return (<View style={containerStyle}>
+			<TouchableOpacity style={[style.btn, style.cancelBtn]} onPress={this._onClose}>
+				<Text style={[style.btnText, style.cancelText]} >{cancelText}</Text>
+			</TouchableOpacity>
+			<Text style={style.title}>{title}</Text>
+			<TouchableOpacity style={[style.btn, style.okBtn]} onPress={(e) => { this._onConfirm() }}>
+				<Text style={[style.btnText, style.okText]} >{okText}</Text>
+			</TouchableOpacity>
+		</View>)
+	}
+	_renderFooterView = (style, containerStyle, okText, title, cancelText) => {
+		return (this.props.footerVertical ?
+			<View style={style.footerView}>
+				<TouchableOpacity style={[style.footerOKBtn]} onPress={this._onConfirm}>
+					<Text style={[style.btnText, style.footerOKText]} >{okText}</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={[style.footerCancelBtn]} onPress={this._onClose}>
+					<Text style={[style.btnText, style.footerCancelText]} >{cancelText}</Text>
+				</TouchableOpacity>
+			</View> ://水平的情况直接复用header
+			this._renderHeaderView(style, containerStyle, okText, title, cancelText))
 	}
 	_renderViews = () => {
 		if (this.props.modal) {
@@ -238,6 +233,15 @@ Picker.baseStyle = {
 		borderBottomColor: '#ccc',
 		height: 40,
 	},
+	footerHorizontalView: {
+		flex: 0,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		borderTopWidth: 1,
+		borderTopColor: '#ccc',
+		height: 40,
+	},
 	btn: {
 		paddingHorizontal: 20,
 		paddingVertical: 10,
@@ -267,7 +271,7 @@ Picker.baseStyle = {
 		flex: 0,
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: 35
+		height: 80
 	},
 	footerOKBtn: {
 		paddingVertical: 1,
@@ -276,6 +280,7 @@ Picker.baseStyle = {
 		borderTopWidth: 1,
 		borderTopColor: '#ccc',
 		width: width,
+		height: 40
 	},
 	footerCancelBtn: {
 		paddingVertical: 1,
@@ -286,6 +291,7 @@ Picker.baseStyle = {
 		borderTopWidth: 1,
 		borderTopColor: '#ccc',
 		width: width,
+		height: 40
 	},
 	footerOKText: {
 		color: '#108ee9'

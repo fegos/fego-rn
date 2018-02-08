@@ -189,16 +189,13 @@ export default class Page extends Component {
 					<ListItem title={'多列非级联 Picker, 遮罩可点击关闭。您选择: '+this.state.picker1Value} onPress={()=>{this.setState({picker1Visible:true})}} />
 					<ListItem title={'单列非级联 Picker, 您选择: '+this.state.picker2Value} onPress={()=>{this.setState({picker2Visible:true})}} />
 					<ListItem title={'多列级联 Picker, 您选择: '+this.state.picker3Value} onPress={()=>{this.setState({picker3Visible:true})}} />
-					<ListItem title={'mode: datePicker datePickerMode:date dateShowMode: year-month-day Picker, 遮罩可点击关闭。您选择: '+this.state.picker4Value} onPress={()=>{this.setState({picker4Visible:true})}} />
-					<ListItem title={'datePickerMode:time mode: time, 遮罩可点击关闭。您选择: '+this.state.picker5Value} onPress={()=>{this.setState({picker5Visible:true})}} />
+					<ListItem title={'datePicker date, 遮罩可点击关闭。您选择: '+this.state.picker4Value} onPress={()=>{this.setState({picker4Visible:true})}} />
+					<ListItem title={'datePicker time, 遮罩可点击关闭。您选择: '+this.state.picker5Value} onPress={()=>{this.setState({picker5Visible:true})}} />
 				</List>
 				<Picker
 					data={pickerData1}
 					visible={this.state.picker1Visible}
 					initialValue={['2013', '2', '22']}
-					modal={true}
-					header={true}
-					footer={true}
 					maskClosable={true}
 					onClose={()=>{this.setState({picker1Visible:false})}}
 					onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
@@ -211,7 +208,6 @@ export default class Page extends Component {
 				/>
 				<Picker
 					data={pickerData2}
-					header={true}
 					visible={this.state.picker2Visible}
 					onClose={()=>{this.setState({picker2Visible:false})}}
 					onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
@@ -224,7 +220,6 @@ export default class Page extends Component {
 				/>
 				<Picker
 					data={pickerData3}
-					header={true}
 					visible={this.state.picker3Visible}
 					onClose={()=>{this.setState({picker3Visible:false})}}
 					initialValue={['chuancai','jiachang','yu']}
@@ -238,11 +233,11 @@ export default class Page extends Component {
 				/>
 				<Picker
 					visible={this.state.picker4Visible}
-					modal={true}
-					header={true}
+					footer={true}
+					footerVertical={true}
 					mode="datePicker"
 					datePickerMode= "date"
-					dateShowMode= "year-month-day"
+					dateMode= "month-day"
 					maskClosable={true}
 					onClose={()=>{this.setState({picker4Visible:false})}}
 					onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
@@ -255,8 +250,8 @@ export default class Page extends Component {
 				/>
 				<Picker
 					visible={this.state.picker5Visible}
-					modal={true}
 					footer={true}
+					footerVertical={false}
 					mode="datePicker"
 					datePickerMode= "time"
 					maskClosable={true}

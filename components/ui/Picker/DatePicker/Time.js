@@ -13,23 +13,22 @@ import PickerView from '../PickerView'
 export default class TimePicker extends UIComponent {
 	static defaultProps = {
 		initialValue: new Date(),
-		minuteStep:1,
-		minDate:new Date(),
-		maxDate:new Date(new Date().getTime()+1000*60*60*2),
+		minuteStep: 1,
+		minDate: new Date(),
+		maxDate: new Date(new Date().getTime() + 1000 * 60 * 60 * 2),
 	}
 	static propTypes = {
 		// 初始时间
 		initialValue: PropTypes.instanceOf(Date),
 		//最小步长
-		minuteStep:PropTypes.number,
+		minuteStep: PropTypes.number,
 		//最小日期
-		minDate:PropTypes.instanceOf(Date),
+		minDate: PropTypes.instanceOf(Date),
 		//最大日期
-		maxDate:PropTypes.instanceOf(Date)
+		maxDate: PropTypes.instanceOf(Date)
 
 	}
-	constructor(props)
-	{
+	constructor(props) {
 		super(props);
 
 		this._initDate(props);
@@ -47,7 +46,7 @@ export default class TimePicker extends UIComponent {
 			hour = _initialValue.getHours(),
 			minute = _initialValue.getMinutes();
 		// 有最小时最大时，因此需判断初始值是否合法
-		if (minDate || maxDate){
+		if (minDate || maxDate) {
 			// 保证在比较的时候只比较时间，年月日相同
 			let y = initialValue.getFullYear(),
 				m = initialValue.getMonth(),
@@ -100,16 +99,16 @@ export default class TimePicker extends UIComponent {
 		this.maxMinute = maxMinute || 59;
 
 		let hourArray = [], minuteArray = [];
-		for (let i=this.minHour; i<=this.maxHour; i++) {
+		for (let i = this.minHour; i <= this.maxHour; i++) {
 			hourArray.push({
-				label: i+'时',
-				value: i+''
+				label: i + '时',
+				value: i + ''
 			})
 		}
-		for (let i=0; i<=59; i++) {
+		for (let i = 0; i <= 59; i++) {
 			minuteArray.push({
-				label: i+'分',
-				value: i+''
+				label: i + '分',
+				value: i + ''
 			})
 		}
 
@@ -126,7 +125,7 @@ export default class TimePicker extends UIComponent {
 			[hourIdx, minuteIdx] = idx,
 			[hourLabel, minuteLabel] = label,
 			newD = this._getTimePickerData(hour, minute);
-		
+
 		newD.forEach((data, i) => {
 			let item = data.filter(d => d.value === val[i]);
 			if (!item.length) {
@@ -167,7 +166,7 @@ export default class TimePicker extends UIComponent {
 		if (valueHour === this.minHour && valueHour === this.maxHour) {
 			// 选中的时 === 最小时 === 最大时(即只有hour只有一个，那么minute决定minuteArr长度)，则分的范围只能是 [this.minMinute, this.maxMinute]
 			minuteStart = this.minMinute;
-			minuteEnd = this.maxMinute+1;
+			minuteEnd = this.maxMinute + 1;
 		} else if (valueHour === this.minHour) {
 			// 选中的时 === 最小时(即hour不止一个，那么minminute决定minuteArr长度)，则分的范围只能是 [this.minMinute, 60]
 			minuteStart = this.minMinute;
@@ -175,7 +174,7 @@ export default class TimePicker extends UIComponent {
 		} else if (valueHour === this.maxHour) {
 			// 选中的时 === 最大时(即hour不止一个，那么maxminute决定minuteArr长度)，则分的范围只能是 [0, this.maxMinute]
 			minuteStart = 0;
-			minuteEnd = this.maxMinute+1;
+			minuteEnd = this.maxMinute + 1;
 		} else {
 			//中间时刻，默认所有minutes
 			minuteStart = 0;

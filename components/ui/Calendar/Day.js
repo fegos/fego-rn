@@ -45,24 +45,24 @@ export default class Day extends Component {
 	}
 	static today = new Date()
 
-	constructor (props) {
+	constructor(props) {
 		super(props)
 	}
 
-	_isToday () {
+	_isToday() {
 		let today = Day.today,
 			todayDate = today.getDate(),
 			todayMonth = today.getMonth(),
 			todayYear = today.getFullYear(),
 			{ date, month, year } = this.props;
-		
+
 		return todayDate === date && todayMonth === month && todayYear === year
 	}
 
 	_isSelectedDay() {
-		let { selectedDate, year, month, date} = this.props
-		return (selectedDate.getFullYear() === year) 
-			&& (selectedDate.getMonth() === month) 
+		let { selectedDate, year, month, date } = this.props
+		return (selectedDate.getFullYear() === year)
+			&& (selectedDate.getMonth() === month)
 			&& (selectedDate.getDate() === date)
 	}
 
@@ -84,22 +84,22 @@ export default class Day extends Component {
 
 		// date < this.props.minDate || date > this.props.maxDate 
 		if ((year < minYear)
-			|| (year === minYear && month < minMonth) 
+			|| (year === minYear && month < minMonth)
 			|| (year === minYear && month === minMonth && date < _minDate)
 			|| (year > maxYear)
-			|| (year === maxYear && month > maxMonth) 
+			|| (year === maxYear && month > maxMonth)
 			|| (year === maxYear && month === maxMonth && date > _maxDate)
 		) {
 			return true;
 		} else {
 			return false;
 		}
-		
+
 	}
 
 	onPress = () => {
 		let { onChange, year, month, date } = this.props;
-		onChange instanceof Function && onChange(year, month, date) 
+		onChange instanceof Function && onChange(year, month, date)
 	}
 
 	render() {
@@ -117,20 +117,20 @@ export default class Day extends Component {
 
 		return (
 			<View style={styles.dayWrapper}>
-			{
-				isDisabled ? (
-					<View style={[styles.dayInnerWrapper]}>
-						<Text style={[styles.dayText, styles.disabledText]}>{date}</Text>
-					</View>
-				) : (
-					<TouchableOpacity onPress={this.onPress}>
-						<View style={[styles.dayInnerWrapper, isToday && styles.todayWrapper, isSelected && styles.selectedDayWrapper]}>
-							<Text style={[styles.dayText, dayTextGray, isToday && styles.today, isSelected && styles.selectedDay]}>{date}</Text>
+				{
+					isDisabled ? (
+						<View style={[styles.dayInnerWrapper]}>
+							<Text style={[styles.dayText, styles.disabledText]}>{date}</Text>
 						</View>
-					</TouchableOpacity>
-				)
-			}
-			{isToday ? <Text style={[styles.todayText]}>今天</Text> : null}
+					) : (
+							<TouchableOpacity onPress={this.onPress}>
+								<View style={[styles.dayInnerWrapper, isToday && styles.todayWrapper, isSelected && styles.selectedDayWrapper]}>
+									<Text style={[styles.dayText, dayTextGray, isToday && styles.today, isSelected && styles.selectedDay]}>{date}</Text>
+								</View>
+							</TouchableOpacity>
+						)
+				}
+				{isToday ? <Text style={[styles.todayText]}>今天</Text> : null}
 			</View>
 		)
 	}

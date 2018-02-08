@@ -14,13 +14,9 @@ import PickerAndroid from './PickerAndroid'
 
 class PickerView extends UIComponent {
 	static defaultProps = {
-		// 传递的数据
 		data: [],
-		// picker 初始值
 		initialValue: [],
-		// 每列数据选择变化后的回调函数
 		onChange: (indexArr, valueArr, labelArr) => { },
-		// 准备就绪的回调函数
 		onReady: (indexArr, valueArr, labelArr) => { },
 	}
 

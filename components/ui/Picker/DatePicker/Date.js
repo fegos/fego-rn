@@ -14,20 +14,20 @@ import PickerView from '../PickerView'
 export default class DatePicker extends UIComponent {
 	static defaultProps = {
 		initialValue: new Date(),
-		minDate:new Date(),
-		maxDate:new Date(new Date().getTime()+1000*60*60*24*31*30),//默认多一年
-		dateMode:'year-month-day',
+		minDate: new Date(),
+		maxDate: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 31 * 30),//默认多一年
+		dateMode: 'year-month-day',
 	}
 
 	static propTypes = {
 		// 初始时间
 		initialValue: PropTypes.instanceOf(Date),
 		//最小日期
-		minDate:PropTypes.instanceOf(Date),
+		minDate: PropTypes.instanceOf(Date),
 		//最大日期
-		maxDate:PropTypes.instanceOf(Date),
+		maxDate: PropTypes.instanceOf(Date),
 		// 日期模式
-		dateMode:PropTypes.oneOf(['year-only','month-only','day-only','year-month','year-month-day','month-day']),
+		dateMode: PropTypes.oneOf(['year-only', 'month-only', 'day-only', 'year-month', 'year-month-day', 'month-day']),
 
 	}
 	constructor(props) {
@@ -44,8 +44,8 @@ export default class DatePicker extends UIComponent {
 		let { initialValue, minDate, maxDate } = props;
 		let _initialValue = initialValue,
 			//解决日期输入格式
-			year = _initialValue.getFullYear(), 
-			month = _initialValue.getMonth() , 
+			year = _initialValue.getFullYear(),
+			month = _initialValue.getMonth(),
 			date = _initialValue.getDate();
 
 		// 有最小时最大时，需判断初始值是否合法
@@ -53,8 +53,8 @@ export default class DatePicker extends UIComponent {
 			let mYear, mMonth, mDate;
 			if (minDate) {
 				mYear = minDate.getFullYear(),
-				mMonth = minDate.getMonth(),
-				mDate = minDate.getDate();
+					mMonth = minDate.getMonth(),
+					mDate = minDate.getDate();
 			}
 
 			// 保证在比较的时候只比较年月日，时间相同
@@ -132,86 +132,47 @@ export default class DatePicker extends UIComponent {
 		this.dateArray = dateArray
 	}
 
-	_handleReturnValue(valueArr, indexArr, labelArr)
-	{
-		switch(this.props.dateMode)
-		{
-			case 'year-only':
-			valueArr = valueArr.slice(0,1)
-			indexArr = valueArr.slice(0,1)
-			labelArr = labelArr.slice(0,1)
-			break;
-			case 'month-only':
-			valueArr = valueArr.slice(1,2)
-			indexArr = valueArr.slice(1,2)
-			labelArr = labelArr.slice(1,2)
-			break;
-			case 'day-only':
-			valueArr = valueArr.slice(2,3)
-			indexArr = valueArr.slice(2,3)
-			labelArr = labelArr.slice(2,3)
-			break;
-			case 'year-month':
-			valueArr = valueArr.slice(0,2)
-			indexArr = valueArr.slice(0,2)
-			labelArr = labelArr.slice(0,2)
-			break;
-			case 'year-month-day':
-			valueArr = valueArr.slice(0,3)
-			indexArr = valueArr.slice(0,3)
-			labelArr = labelArr.slice(0,3)
-			break;
-			case 'month-day':
-			valueArr = valueArr.slice(1,3)
-			indexArr = valueArr.slice(1,3)
-			labelArr = labelArr.slice(1,3)
-			break;
-		}
-		return [valueArr,indexArr,labelArr]
-	}
-
 
 	_onChange = (val, idx, label) => {
 		let { valueArr, indexArr, labelArr } = this._updateData(val, idx, label);
 		this.props.onChange(valueArr, indexArr, labelArr, 'date');
 	}
 	_updateData(val, idx, label) {
-		let { year, month, date } = this.state 
+		let { year, month, date } = this.state
 
-		switch(this.props.dateMode)
-		{
+		switch (this.props.dateMode) {
 			case 'year-only':
-			[year] = val;
-			[yearIdx]=idx;
-			[yearLabel]=label;
-			break;
+				[year] = val;
+				[yearIdx] = idx;
+				[yearLabel] = label;
+				break;
 			case 'month-only':
-			[month] = val;
-			[monthIdx]=idx;
-			[monthLabel]=label;
-			break;
+				[month] = val;
+				[monthIdx] = idx;
+				[monthLabel] = label;
+				break;
 			case 'day-only':
-			[date] = val;
-			[dateIdx]=idx;
-			[dateLabel]=label;
-			break;
+				[date] = val;
+				[dateIdx] = idx;
+				[dateLabel] = label;
+				break;
 			case 'year-month':
-			[year,month]=val;
-			[yearIdx,monthIdx]=idx;
-			[yearLabel,monthLabel]=label;
-			break;
+				[year, month] = val;
+				[yearIdx, monthIdx] = idx;
+				[yearLabel, monthLabel] = label;
+				break;
 			case 'year-month-day':
-			[year,month,date]=val;
-			[yearIdx,monthIdx,dateIdx]=idx;
-			[yearLabel,monthLabel,dateLabel]=label;
-			break;
+				[year, month, date] = val;
+				[yearIdx, monthIdx, dateIdx] = idx;
+				[yearLabel, monthLabel, dateLabel] = label;
+				break;
 			case 'month-day':
-			[month,date]=val;
-			[monthIdx,dateIdx]=idx;
-			[monthLabel,dateLabel]=label;
-			break;
+				[month, date] = val;
+				[monthIdx, dateIdx] = idx;
+				[monthLabel, dateLabel] = label;
+				break;
 		}
-			
+
 		let newD = this._getDatePickerData(year, month, date);
 		let v = [year, month, date]
 		newD.forEach((data, i) => {
@@ -328,46 +289,44 @@ export default class DatePicker extends UIComponent {
 		return [this.yearArray, monthArr, dateArr]
 	}
 
-	_dateModeData()
-	{
+	_dateModeData() {
 		let data = this.state.data
 		let res = []
 		let { year, month, date } = this.state;
-		switch(this.props.dateMode)
-		{
+		switch (this.props.dateMode) {
 			case 'year-only':
-			res = data.slice(0,1)
-			this.renderValue = [year.toString()]
-			break;
+				res = data.slice(0, 1)
+				this.renderValue = [year.toString()]
+				break;
 			case 'month-only':
-			res = data.slice(1,2)
-			this.renderValue = [month.toString()]
-			break;
+				res = data.slice(1, 2)
+				this.renderValue = [month.toString()]
+				break;
 			case 'day-only':
-			res = data.slice(2,3)
-			this.renderValue = [date.toString()]
-			break;
+				res = data.slice(2, 3)
+				this.renderValue = [date.toString()]
+				break;
 			case 'year-month':
-			res = data.slice(0,2)
-			this.renderValue = [year.toString(),month.toString()]
-			break;
+				res = data.slice(0, 2)
+				this.renderValue = [year.toString(), month.toString()]
+				break;
 			case 'year-month-day':
-			res = data.slice(0,3)
-			this.renderValue = [year.toString(),month.toString(),date.toString()]
-			break;
+				res = data.slice(0, 3)
+				this.renderValue = [year.toString(), month.toString(), date.toString()]
+				break;
 			case 'month-day':
-			res = data.slice(1,3)
-			this.renderValue = [month.toString(),date.toString()]
-			break;
+				res = data.slice(1, 3)
+				this.renderValue = [month.toString(), date.toString()]
+				break;
 		}
 		this.renderData = res
 	}
 
 	render() {
 		//在constructor里面处理了initialValue，这里取出initialValue防止传递给下面
-		let { maskClosable, visible,  initialValue, mode, minDate, maxDate, minuteStep, ...rest } = this.props,
+		let { maskClosable, visible, initialValue, mode, minDate, maxDate, minuteStep, ...rest } = this.props,
 			{ year, month, date } = this.state;
-			this._dateModeData()
+		this._dateModeData()
 		return (
 			<PickerView ref="pw2"
 				{...rest}
