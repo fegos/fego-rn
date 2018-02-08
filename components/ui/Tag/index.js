@@ -15,7 +15,7 @@ import Icon from '../Icon'
 
 export default class Tag extends UIComponent {
 	static defaultProps = {
-		defaultSelected: false,
+		defaultChecked: false,
 		closeIconName: 'times-circle'
 	}
 	static propTypes = {
@@ -32,9 +32,9 @@ export default class Tag extends UIComponent {
 			PropTypes.node
 		]),
 		// 受控属性：选中状态，需配合onChange使用
-		selected: PropTypes.bool,
+		checked: PropTypes.bool,
 		// 非控属性：默认选中状态
-		defaultSelected: PropTypes.bool,
+		defaultChecked: PropTypes.bool,
 		// 禁止状态
 		disabled: PropTypes.bool,
 		// 受控属性：关闭状态，需配合onClose使用
@@ -49,14 +49,14 @@ export default class Tag extends UIComponent {
 	constructor(props) {
 		super(props)
 		this.state = {
-			selected: typeof props.selected === 'boolean' ? props.selected : props.defaultSelected
+			checked: typeof props.checked === 'boolean' ? props.checked : props.defaultChecked
 		}
 	}
 	componentWillReceiveProps(nextProps) {
 		super.componentWillReceiveProps(nextProps)
-		if (this.props.selected !== nextProps.selected) {
+		if (this.props.checked !== nextProps.checked) {
 			this.setState({
-				selected: nextProps.selected
+				checked: nextProps.checked
 			})
 		}
 	}
@@ -67,15 +67,15 @@ export default class Tag extends UIComponent {
 		}
 	}
 	_onClick = () => {
-		let { onChange, selected } = this.props;
-		let _selected = !this.state.selected;
-		if (typeof selected !== 'boolean') {
+		let { onChange, checked } = this.props;
+		let _checked = !this.state.checked;
+		if (typeof checked !== 'boolean') {
 			this.setState({
-				selected: _selected
+				checked: _checked
 			})
 		}
 		if (typeof onChange === 'function') {
-			onChange(_selected)
+			onChange(_checked)
 		}
 	}
 	_renderCloseBtn = () => {
@@ -96,7 +96,7 @@ export default class Tag extends UIComponent {
 		let { text, children, disabled } = this.props;
 		let inner = children ? children : text;
 		if (typeof inner === 'string') {
-			inner = <Text style={[style.text, this.state.selected ? style.textSelected : {}, disabled ? style.textdisabled : {}]}>{inner}</Text>
+			inner = <Text style={[style.text, this.state.checked ? style.textChecked : {}, disabled ? style.textdisabled : {}]}>{inner}</Text>
 		}
 		return inner
 	}
@@ -104,7 +104,7 @@ export default class Tag extends UIComponent {
 	render() {
 		let style = this.style;
 		let { disabled, closed } = this.props;
-		let { selected } = this.state;
+		let { checked } = this.state;
 		let innerEl = this._renderInner();
 		let colseEl = this._renderCloseBtn();
 		// 已关闭
@@ -123,7 +123,7 @@ export default class Tag extends UIComponent {
 		// 正常状态
 		return (
 			<TouchableWithoutFeedback onPress={this._onClick}>
-				<View style={[style.container, selected ? style.selected : {}]}>
+				<View style={[style.container, checked ? style.checked : {}]}>
 					{innerEl}
 					{colseEl}
 				</View>
@@ -148,7 +148,7 @@ Tag.baseStyle = {
 		borderColor: "#ddd",
 		backgroundColor: '#ddd'
 	},
-	selected: {
+	checked: {
 		borderColor: "#108ee9",
 		backgroundColor: '#FFF'
 	},
@@ -156,7 +156,7 @@ Tag.baseStyle = {
 		fontSize: 12,
 		color: '#888'
 	},
-	textSelected: {
+	textChecked: {
 		color: '#108ee9'
 	},
 	textDisabled: {

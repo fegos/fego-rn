@@ -13,6 +13,6 @@ subTitle: 长连接
 ### 示例代码
 
 ```html
-	let socket = SocketIO.create('http://kline.hhtcex.com', { jsonp: false });
+	let socket = SocketIO.create('http://localhost:9096');
 ```
 

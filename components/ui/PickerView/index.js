@@ -18,7 +18,7 @@ class PickerView extends UIComponent {
 		data: [],
 		// 是否级联
 		cascade: false,
-		// 列数,级联时共有的级数
+		// 列数,级联时提供的列数
 		cols: 0,
 		// picker 初始值
 		initialValue: [],
@@ -33,11 +33,11 @@ class PickerView extends UIComponent {
 		data: PropTypes.array,
 		// 是否级联
 		cascade: PropTypes.bool,
-		// 列数,级联式时有的级数
+		// 列数, 级联时提供的列数
 		cols: PropTypes.number,
-		// picker 初始值
+		//非受控属性: picker 初始值
 		initialValue: PropTypes.array,
-		// picker 的值，作为受控属性使用，一般情况不建议使用，主要用于解决datePicker里data和selectedValue不匹配的情况
+		//受控属性: picker 的值, 此時initiaValue失效
 		value: PropTypes.array,
 		// 每列数据选择变化后的回调函数
 		onChange: PropTypes.func,
@@ -56,12 +56,11 @@ class PickerView extends UIComponent {
 	componentWillReceiveProps(nextProps) {
 		super.componentWillReceiveProps()
 
-		if(!isArrayEquals(nextProps.data,this.props.data))
-		{
+		if (!this.isArrayEquals(nextProps.data, this.props.data)) {
 			this._handleData(nextProps)
 		}
-		
-		if (nextProps.value !== undefined && nextProps.value.toString() !== this.props.value.toString()) {
+
+		if (nextProps.value !== undefined && !this.isArrayEquals(nextProps.value, this.props.value)) {
 			let { cascade, value } = nextProps,
 				pickerData = cascade ? this.state.cascadeData : this.data,
 				label = [], index = [];
@@ -88,7 +87,7 @@ class PickerView extends UIComponent {
 		this.props.onReady(selectedValue, selectedIndex, selectedLabel)
 	}
 
-	_handleData(props) {
+	_handleData = (props) => {
 		let multiRoll = props.data[0] instanceof Array;
 
 		if (multiRoll) {
@@ -98,7 +97,7 @@ class PickerView extends UIComponent {
 		}
 	}
 
-	_getInitialState(props) {
+	_getInitialState = (props) => {
 		let { cascade } = props
 
 		if (cascade) {
@@ -108,7 +107,7 @@ class PickerView extends UIComponent {
 		}
 	}
 
-	_getUnCascadeInitialState() {
+	_getUnCascadeInitialState = () => {
 		let data = this.data,
 			len = data.length,
 			initialValue = 'value' in this.props ? this.props.value : this.props.initialValue,
@@ -142,7 +141,7 @@ class PickerView extends UIComponent {
 		}
 	}
 
-	_getCascadeInitialState() {
+	_getCascadeInitialState = () => {
 		let { cols, data } = this.props,
 			initialValue = 'value' in this.props ? this.props.value : this.props.initialValue,
 			cascadeData = [], selectedIndex = [], selectedValue = [], selectedLabel = []
@@ -176,12 +175,13 @@ class PickerView extends UIComponent {
 
 	isArrayEquals = (left, right) => {
 		if (!left && !right) return true
+		if (!left || !right) return false
 		if (left.length !== right.length) return false
 		for (var i = 0, l = left.length; i < l; i++) {
 			// Check if we have nested arrays
 			if (left[i] instanceof Array && right[i] instanceof Array) {
 				// recurse into the nested arrays
-				if (!left[i].equals(right[i]))
+				if (!this.isArrayEquals(left[i], right[i]))
 					return false;
 			}
 			else if (left[i] != right[i]) {
@@ -239,6 +239,7 @@ class PickerView extends UIComponent {
 		}
 
 		if (this.props.value === undefined) {
+
 			_state = {
 				..._state,
 				selectedValue: _selectedValue,
@@ -272,7 +273,10 @@ class PickerView extends UIComponent {
 					data={rollData}
 					selectedIndex={this.state.selectedIndex[index]}
 					selectedValue={this.state.selectedValue[index]}
-					onValueChange={this._onChange.bind(this, rollData, index)}
+					//rollData、index是为了方便计算传入
+					onValueChange={(newValue, newIndex) => {
+						this._onChange(rollData, index, newValue, newIndex)
+					}}
 				>
 					{
 						Platform.OS === 'ios' && (

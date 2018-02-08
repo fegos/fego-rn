@@ -23,11 +23,11 @@ class Picker extends UIComponent {
 		cascade: false,
 		// 列数，级联时有效
 		cols: 0,
-		// picker 初始值
+		// 非受控属性: picker 初始值
 		initialValue: [],
-		// 受控属性是否可见
+		// 受控属性: 是否可见
 		visible: false,
-		// 大标题文案,
+		// 标题文案,
 		title: '请选择',
 		// 确定的文案
 		okText: '确定',
@@ -48,15 +48,15 @@ class Picker extends UIComponent {
 		data: PropTypes.array,
 		// 是否级联
 		cascade: PropTypes.bool,
-		// 列数
+		// 列数，级联时有效
 		cols: PropTypes.number,
-		// picker 初始值
+		// 非受控属性: picker 初始值
 		initialValue: PropTypes.array,
-		// picker 的值，作为受控属性使用，一般情况不建议使用，主要用于解决datePicker里data和selectedValue不匹配的情况
+		// 受控属性: picker 的值，作为受控属性使用，一般情况不建议使用，主要用于解决datePicker里data和selectedValue不匹配的情况
 		value: PropTypes.array,
-		// 是否可见，受控属性，需配合 onClose 使用
+		// 受控属性: 是否可见，受控属性，需配合 onClose 使用
 		visible: PropTypes.bool,
-		// 大标题文案
+		// 标题文案
 		title: PropTypes.string,
 		// 取消的文案
 		cancelText: PropTypes.string,
@@ -97,7 +97,7 @@ class Picker extends UIComponent {
 
 	// 确认按钮
 	_onConfirm = () => {
-		// Picker 自己不处理数据，也不维护index,label, 所以先从pickerview取吧，以后可以优化
+		// 从pickerview取出选择的值
 		this.props.onConfirm(this.state.selectedValue, this._pickerView.state.selectedIndex, this._pickerView.state.selectedLabel)
 		this.props.onClose()
 	}

@@ -13,25 +13,29 @@ export default class Page extends Component {
 	render() {
 		return (
 			<ScrollView style={[Style.container]}>
-				<Button type='primary' onPress={()=>{this.setState({p: this.state.p+10})}}>
-					<Text>单击更新进度</Text>
+				<Button style={{marginTop:6}} type='primary' onPress={()=>{this.setState({p: this.state.p+10})}}>
+					<Text style={{color:'white'}} >单击更新进度, 置于顶部:position = top, 显示进度条变化动画:appearTransition = true</Text>
 				</Button>
-				<Progress showUnfill={false} percent={this.state.p} appearTransition={true}/>
-				<Text style={Style.title}> showUnfill = false </Text>
-				<Progress showUnfill={false} percent={50} />
+				<Progress showUnfill={false} progressBarColor='yellow' position='top' percent={this.state.p} appearTransition={true}/>
+				<Text style={Style.title}> 剩余进度条不显示:showUnfill = false </Text>
+				<Progress showUnfill={false} percent={80} />
 				<Text style={Style.title}> size = large </Text>
-				<Progress size='large' percent={70} />
+				<Progress size='large' percent={60} />
 				<Text style={Style.title}> size = small </Text>
-				<Progress size='small' percent={60} />
-				<Text style={Style.title}> type = border </Text>
-				<Progress type='border' size='large' percent={40} />
-				<Text style={Style.title}> type = retangle </Text>
-				<Progress type='retangle' percent={30} />
-				<Text style={Style.title}> progressBarColor = red </Text>
-				<Progress progressBarColor='red' percent={60} />
-				<Text style={Style.title}>width = 200, height = 80</Text>
+				<Progress size='small' percent={40} />
+				<Text style={Style.title}> 显示边框:type = border </Text>
+				<Progress type='border' size='large' percent={20} />
+				<Text style={Style.title}> 只显示进度条的边框:type = progressBorder </Text>
+				<Progress type='progressBorder' size='large' percent={20} />
+				<Text style={Style.title}> 不按圆角显示:type = retangle </Text>
+				<Progress type='retangle' percent={40} />
+				<Text style={Style.title}> 进度条右边缘呈线形:progressMarginLinear = true </Text>
+				<Progress progressMarginLinear={true} size='large' percent={60} />
+				<Text style={Style.title}> 进度条显示黄色:progressBarColor = yellow </Text>
+				<Progress progressBarColor='yellow' percent={80} />
+				<Text style={Style.title}> 自定义:progressBarStyle = borderWidth:2, backgroundColor:'green', borderColor:'blue', borderTopRightRadius:0, borderBottomRightRadius:0 containerStyle = borderWidth:1, backgroundColor:'yellow', borderColor:'red', width: 200, height: 80  type = border</Text>
 				<View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', height: 100 }}>
-					<Progress style={{ backgroundColor:'red', width: 200, height: 80 }} type='border' percent={50} />
+					<Progress progressBarStyle={{ borderWidth:2, backgroundColor:'green', borderColor:'blue', borderTopRightRadius:0, borderBottomRightRadius:0}} containerStyle={{ borderWidth:1, backgroundColor:'yellow', borderColor:'red', width: 200, height: 80 }}  type='border' percent={50} />
 				</View>
 			</ScrollView>)
 	}

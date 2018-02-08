@@ -47,7 +47,10 @@ export default class Slider extends UIComponent {
 		type: PropTypes.string,
 		// 尺寸 small default large 
 		size: PropTypes.string,
+		// 受控属性：需配合onValueChange使用更新数据value
 		value: PropTypes.number,
+		// 非控属性：需使用this.refs.Slider.state.value获取选中状态
+		defaultValue: PropTypes.number,
 		step: PropTypes.number,
 		disabled: PropTypes.bool,
 		onValueChange: PropTypes.func,
@@ -62,7 +65,7 @@ export default class Slider extends UIComponent {
 		minimumValue: 0,
 		step: 1,
 		maximumValue: 100,
-		value: 0,
+		defaultValue: 0,
 		thumbTouchSize: {
 			width: 40,
 			height: 40
@@ -89,7 +92,7 @@ export default class Slider extends UIComponent {
 				height: 0
 			},
 			allMeasured: false,
-			value: new Animated.Value(this.props.value)
+			value: new Animated.Value(typeof this.props.value === 'number'?this.props.value:this.props.defaultValue)
 		}
 	}
 	render() {
@@ -175,7 +178,7 @@ export default class Slider extends UIComponent {
 			if (this.props.animateTransitions) {
 				this._setCurrentValueAnimated(newValue);
 			} else {
-				this._setCurrentValue(newValue);
+				this.state.value.setValue(newValue);
 			}
 		}
 	}
@@ -189,16 +192,16 @@ export default class Slider extends UIComponent {
 		return false;
 	}
 
-	_handlePanResponderGrant = () => {
+	_handlePanResponderGrant = (e, gestureState) => {
 		this._previousLeft = this._getThumbLeft(this._getCurrentValue());
-		this._fireChangeEvent('onSlidingStart');
+		this._fireChangeEvent('onSlidingStart',this._getValue(gestureState));
 	}
 	_handlePanResponderMove = (e, gestureState) => {
 		if (this.props.disabled) {
 			return;
 		}
 		this._setCurrentValue(this._getValue(gestureState));
-		this._fireChangeEvent('onValueChange');
+		this._fireChangeEvent('onValueChange',this._getValue(gestureState));
 	}
 	_handlePanResponderRequestEnd = (e, gestureState) => {
 		return false;
@@ -208,7 +211,7 @@ export default class Slider extends UIComponent {
 			return;
 		}
 		this._setCurrentValue(this._getValue(gestureState));
-		this._fireChangeEvent('onSlidingComplete');
+		typeof this.props.value ==='number' && this._fireChangeEvent('onSlidingComplete',this._getValue(gestureState));
 	}
 
 	_measureContainer = (x) => {
@@ -269,7 +272,7 @@ export default class Slider extends UIComponent {
 	}
 
 	_setCurrentValue(value) {
-		this.state.value.setValue(value);
+		typeof this.props.value !=='number' && this.state.value.setValue(value);
 	}
 
 	_setCurrentValueAnimated(value) {
@@ -279,9 +282,9 @@ export default class Slider extends UIComponent {
 		Animated[animationType](this.state.value, animationConfig).start();
 	}
 
-	_fireChangeEvent(event) {
+	_fireChangeEvent(event,value) {
 		if (this.props[event]) {
-			this.props[event](this._getCurrentValue());
+			this.props[event](value);
 		}
 	}
 

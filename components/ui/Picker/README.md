@@ -12,20 +12,25 @@ subTitle: 选择器
 ### 示例代码
 
 ```html
-import Picker from 'somewhere'
 <Picker
-	data={pickerData}
-	visible={this.state.pickerVisible}
-	onClose={()=>{this.setState({
-		pickerVisible: false
-	})}}
-	maskClosable={false}
-	{...otherProps}
+		data={pickerData3}
+		visible={this.state.picker3Visible}
+		onClose={()=>{this.setState({picker3Visible:false})}}
+		initialValue={['chuancai','jiachang','yu']}
+		cascade={true}
+		cols={3}
+		onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
+			console.log('onConfirm: ', selectedValue, selectedIndex, selectedLabel)
+			this.setState({ picker3Value: selectedLabel.join('') })
+		}}
+		onChange={(selectedValue, selectedIndex, selectedLabel) => {
+			console.log('onChange: ', selectedValue, selectedIndex, selectedLabel)
+		}}
 />
 ```
 
 ### 说明
-> Picker 的内部实现还是引用了 PickerView, 只是将 PickerView 放在了模态里，因此其部分 props (eg: cascade, cols, initialValue, onChange) 以及数据源 data 的含义都与 PickerView 一致
+> Picker 的实现依赖于 PickerView, 将 PickerView 放在模态里面，因此其部分 props (eg: cascade, cols, initialValue, onChange) 以及数据源 data 的含义都与 PickerView 一致
 
 
 ## API
@@ -40,7 +45,7 @@ import Picker from 'somewhere'
 | initialValue | picker 初始值，格式为[v1, v2, v3]，对应数据源的相应级层value | array | [ ] |
 | onChange | 每列数据选择变化后的回调函数 | Function(selectedValue, selectedIndex, selectedLabel){} | - |
 | visible | 是否可见 | bool | false |
-| title | 模态内标题 | string | 请选择 |
+| title | 标题 | string | 请选择 |
 | okText | 确定的文案 | string | 确定 |
 | cancelText | 取消的文案 | string | 取消 |
 | maskClosable | 点击蒙层是否允许关闭 | string | true |
@@ -51,10 +56,20 @@ import Picker from 'somewhere'
 
 属性 | 说明 | 适用类型
 ----|-----|------
+| container | picker容器样式 | View |
+| toolbarContainer | 工具条容器样式 | View |
+| btn | 工具条按钮基础容器样式 | View |
+| okBtn | 确认按钮容器样式 | View |
+| cancelBtn | 取消按钮容器样式 | View |
+| btnText | 按钮字体基础样式 | Text |
+| okText | 确定按钮字体样式 | Text |
+| cancelText | 取消按钮字体样式 | Text |
+| title | 标题字体样式 | Text |
 
 ### props data 说明
 
-#### data 的数据格式为 `Array<{value, label}>` 或 `Array<Array<{value, label}>>` 
+#### 非级联时，每个数组表示一列数据
+data 的数据格式为 `Array<{value, label}>` 或 `Array<Array<{value, label}>>` 
 
 + PivkerView 只含一列数据
 ```html
@@ -87,7 +102,8 @@ import Picker from 'somewhere'
 ]
 ```
 
-#### 每项数据除了 label 和 value 两个属性外，还有第三个属性：children，表示级联时该项值下一级的数据
+#### 级联时，children表示下一列数据
+每项数据除了 label 和 value 两个属性外，还有第三个属性：children，表示级联时该项值下一级的数据
 ```html
 [{
 	label: '川菜',

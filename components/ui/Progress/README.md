@@ -14,8 +14,10 @@ subTitle: 进度条
 <Progress/>
 <Progress type='border' percent={50}>type='border'</Progress>
 <Progress type='retangle' percent={40}></Progress>
+<Progress type='progressBorder' size='large' percent={20} />
 <Progress size='large' percent={30}>size='large'</Progress>
-<Progress style={{width:300}} percent={50}> 自定义style</Progress>
+<Progress progressBarStyle={{ backgroundColor:'green', borderColor:'blue', borderTopRightRadius:0, borderBottomRightRadius:0}} containerStyle={{ borderWidth:2, backgroundColor:'yellow', borderColor:'red', width: 200, height: 80 }}  type='border' percent={50} />
+<Progress progressMarginLinear={true} size='large' percent={60} />
 ```
 
 ## API
@@ -25,12 +27,12 @@ subTitle: 进度条
  属性|说明 | 类型 | 默认值
 ------|------|------|-----
 |percent|进度，0-100 |number|0|
-| type | 主题类型, 支持 `default`, `retangle`, `border`| string| default|
+| type | 主题类型, 支持 `default`, `retangle`, `border`, `progressBorder`| string| default|
 | size | 尺寸, 支持 `default`, `small`, `large`| string |default|
 |showUnfill|剩余进度条是否显示|bool|true|
 |appearTransition|是否显示进度条变化动画|bool|false|
-|position|进度条位置, 支持 `normal`, `fixed`|string|normal|
-
+|progressMarginLinear|进度条右边缘是否呈线形|bool|false|
+|position|进度条位置, 支持 `normal`, `top`|string|normal|
 
 ### 样式对象styles
 

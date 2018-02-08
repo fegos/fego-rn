@@ -1,5 +1,5 @@
 'use strict'
-module.exports =  {
+module.exports = {
 	// 请求默认的延迟时间
 	delay: 300,
 	// 基础路径，假数据的URL则省略该路径不写

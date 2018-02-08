@@ -22,7 +22,7 @@ export default class PickerAndroid extends UIComponent {
 	}
 
 	static propTypes = {
-		// 所有数据
+		// 数据
 		data: PropTypes.array,
 		// 滚轮的值变化后的回调函数
 		onValueChange: PropTypes.func,
