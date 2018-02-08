@@ -73,7 +73,7 @@ export default class Segment extends UIComponent {
 					borderTopRightRadius : container.borderRadius?container.borderRadius:5,
 					borderBottomRightRadius : container.borderRadius?container.borderRadius:5
 				};
-			}
+			} 
 			const themeStyle = {}
 			const themeTextStyle = {}
 			if(themeColor){
@@ -90,9 +90,11 @@ export default class Segment extends UIComponent {
 			return (
 				<TouchableWithoutFeedback key={i} onPress={(e) => this._onPress(i, val, e)}>
 					<View style={{
+						flexDirection: 'row',
 						flex: 1,
 						borderWidth: 0,
 					}} >
+						{this._renderDivideLine(i)}
 						<View style={itemStyle} >
 							<Text style={[style.itemText, isActive ? style.itemTextActive : themeTextStyle]}>
 								{val}
@@ -102,6 +104,20 @@ export default class Segment extends UIComponent {
 				</TouchableWithoutFeedback>
 			)
 		})
+	}
+	_renderDivideLine(index) {
+		const style = this.style;
+		var borderColor = style.item.borderColor;
+		const { themeColor } = this.props;
+		if (themeColor) {
+			borderColor = themeColor;
+		}
+		if (index > 0) {
+			return (
+				<View style={{backgroundColor: borderColor, width: StyleSheet.hairlineWidth}}/>
+			)
+		}
+		return null;
 	}
 	render() {
 		const style = this.style;
@@ -130,7 +146,7 @@ Segment.baseStyle = {
 	item: {
 		flex: 1,
 		paddingVertical: 5,
-		borderLeftWidth: StyleSheet.hairlineWidth,
+		// borderLeftWidth: StyleSheet.hairlineWidth,
 		borderStyle: 'solid',
 		alignItems: 'center',
 		justifyContent: 'center',
