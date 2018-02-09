@@ -1,11 +1,6 @@
-import React, {
-	Component,
-} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-	StyleSheet,
-	View,
-} from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 const styles = StyleSheet.create({
 	container: {
@@ -44,23 +39,24 @@ export default class Circle extends Component {
 	}
 
 	render() {
+		let {isFill,color,borderWidth,backgroundColor,radius,position} = this.props;
 		return (
 			<View
 				//onLayout={ (e) => {
 				//}}
 				style={[
 					styles.container,
-					this.props.isFill ?
-						{ backgroundColor: this.props.color, } :
-						{ borderColor: this.props.color, borderWidth: this.props.borderWidth, backgroundColor: this.props.backgroundColor },
+					isFill ?
+						{ backgroundColor: color, } :
+						{ borderColor: color, borderWidth:borderWidth, backgroundColor: backgroundColor },
 					{
 						width: this._diameter,
 						height: this._diameter,
-						borderRadius: this.props.radius,
+						borderRadius: radius,
 						//left: this.props.position.left - borderWidth,
 						//top: this.props.position.top - borderWidth,
-						left: this.props.position.left,
-						top: this.props.position.top,
+						left: position.left,
+						top: position.top,
 					}
 				]}>
 				{this.props.children}

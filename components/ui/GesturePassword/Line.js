@@ -42,16 +42,16 @@ export default class Line extends Component {
 	}
 
 	render() {
-		let transform = Utils.getLineTransform(this.props.start, this.props.end)
-
+		let {color,lineWidth,start,end} = this.props;
+		let transform = Utils.getLineTransform(start, end)
 		return (
 			<View
 				style={[styles.container, {
-					backgroundColor: this.props.color,
+					backgroundColor: color,
 					width: transform.distance,
-					height: this.props.lineWidth,
-					left: this.props.start.x,
-					top: this.props.start.y - this.props.lineWidth / 2,
+					height: lineWidth,
+					left: start.x,
+					top: start.y - lineWidth / 2,
 					transform: [{ translateX: transform.translateX },
 					{ translateY: transform.translateY },
 					{ rotateZ: transform.rotateRad + 'rad' }]
