@@ -52,15 +52,17 @@
   $ npm run init
   ```
 
-2.运行 demo
+2.运行 demo包服务
 
   ```bash
   $ npm run start
 
-  # 随后在 xcode 或 Android Studio 中点击 `RUN` 运行项目即可
   ```
 
-3.也可以执行
+3.运行 模拟器
+
+> xcode 或 Android Studio 中点击 `RUN` 运行项目即可
+`或者使用下面的命令`
 
   ```bash
   # ios 端
@@ -71,13 +73,13 @@
   ```
 
 4.启动假数据服务
- 
+
   ```bash
   $ npm run mock
   ```
 
 5.进行单元测试
- 
+
   ```bash
   $ npm run test
 
@@ -86,7 +88,7 @@
   ```
 
 6.启动站点服务
- 
+
   ```bash
   $ npm run site
   ```
@@ -98,7 +100,7 @@
   ```bash
   $ npm install fego-rn --save
   ```
-  
+
 2.应用
 
   ```js
@@ -114,7 +116,7 @@
         </View>
       )
     }
-  } 
+  }
   ```
 
 #### *注意*
@@ -123,6 +125,17 @@
   import { AppContainer } from 'fego-rn'
   AppRegistry.registerComponent('App', () => AppContainer.setApp(App) )
   ```
+
+### 常见问题
+
+#### 启动服务后报错 `Error watching file for changes: EMFILE`
+
+Mac升级后watchman不可用了，需要重装watchman。
++ 第一种解决方案：
+  - 卸载: brew uninstall --force watchman
+  - 删除文件: rm -rf /usr/local/var/run/watchman/
+  - 重装: brew install watchman
++ 第二种解决方案: 来自官方：https://facebook.github.io/watchman/docs/install.html
 
 
 ### 欢迎贡献
