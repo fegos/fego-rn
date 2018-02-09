@@ -164,13 +164,13 @@ export default class PieChart extends Component {
       <Surface rotation={-90} width={this.props.outerRadius * 2} height={this.props.outerRadius * 2}>
         <Group rotation={this.props.rotation} originX={this.props.outerRadius} originY={this.props.outerRadius}>
           {this.state.wedgeAngles.map((data, index) => {
-            let stroke;
-            let strokeWidth;
-            let strokeDash;
+            let rstroke;
+            let rstrokeWidth;
+            let rstrokeDash;
             if (this.props.configArray.length > 0 && this.props.configArray[index]) {
-              stroke = this.props.configArray[index].stroke;
-              strokeWidth = this.props.configArray[index].strokeWidth;
-              strokeDash = this.props.configArray[index].strokeDash;
+              rstroke = this.props.configArray[index].stroke;
+              rstrokeWidth = this.props.configArray[index].strokeWidth;
+              rstrokeDash = this.props.configArray[index].strokeDash;
             }
             const startAngle = index === 0 ? index : this.endAngleArray[index - 1] * circumference;
             const endAngle = this.state.wedgeAngles[index];
@@ -180,9 +180,9 @@ export default class PieChart extends Component {
                 outerRadius={this.props.outerRadius}
                 innerRadius={this.props.innerRadius}
                 startAngle={this.props.isClockwise ? startAngle : endAngle}
-                stroke={stroke}
-                strokeWidth={strokeWidth}
-                strokeDash={strokeDash}
+                stroke={rstroke}
+                strokeWidth={rstrokeWidth}
+                strokeDash={rstrokeDash}
                 endAngle={this.props.isClockwise ? endAngle : startAngle}
                 fill={this.props.colorArray[index]}
               />
