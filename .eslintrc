@@ -100,7 +100,10 @@
     "react/no-array-index-key": [
       0
     ],
-    "no-plusplus":[
+    "no-plusplus": [
+      0
+    ],
+    "no-sparse-arrays": [
       0
     ]
   }
