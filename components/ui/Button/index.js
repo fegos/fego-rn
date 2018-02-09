@@ -51,7 +51,9 @@ export default class Button extends UIComponent {
     onLongPress: PropTypes.func,
     onPressIn: PropTypes.func,
     onPressOut: PropTypes.func,
-    background: TouchableNativeFeedback.propTypes ? TouchableNativeFeedback.propTypes.background : PropTypes.any,
+    background: TouchableNativeFeedback.propTypes ?
+      TouchableNativeFeedback.propTypes.background :
+      PropTypes.any,
     accessibilityLabel: PropTypes.string,
     activeOpacity: PropTypes.number,
     allowFontScaling: PropTypes.bool,
