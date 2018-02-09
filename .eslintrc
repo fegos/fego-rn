@@ -37,6 +37,7 @@
     "jsx-a11y/click-events-have-key-events": [0],
     "jsx-a11y/anchor-is-valid": [0],
     "max-len": [1, {"code": 150}],
-    "no-unused-expressions": [1, {"allowShortCircuit": true}]
+    "no-unused-expressions": [1, {"allowShortCircuit": true}],
+    "react/forbid-prop-types": [0]
   }
 }
