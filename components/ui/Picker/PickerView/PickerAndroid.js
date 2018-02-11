@@ -3,21 +3,20 @@
  * ios 上使用 RN 原生的 PickerIOS
  * @author asyxu
  */
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
   ScrollView,
-  StatusBar
-} from 'react-native'
-import UIComponent from '../../../common/UIComponent'
+} from 'react-native';
+import UIComponent from '../../../common/UIComponent';
 
-const itemHeight = 36
+const itemHeight = 36;
 
 export default class PickerAndroid extends UIComponent {
   static defaultProps = {
-    onValueChange: () => { }
+    onValueChange: () => { },
   }
 
   static propTypes = {
@@ -29,61 +28,61 @@ export default class PickerAndroid extends UIComponent {
     selectedIndex: PropTypes.number,
   }
 
-  constructor(props, context) {
-    super(props, context)
-  }
 
   componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps()
-    this._scrollTo(nextProps.selectedIndex, true)
+    super.componentWillReceiveProps();
+    this._scrollTo(nextProps.selectedIndex, true);
   }
 
   _scrollTo(index, animated = true) {
     if (this._scrollView) {
-      this._scrollView.scrollTo({ x: 0, y: index * itemHeight, animated: animated })
+      this._scrollView.scrollTo({ x: 0, y: index * itemHeight, animated });
     }
   }
 
   _onMomentumScrollBegin = (event) => {
+    this.props.onMomentumScrollBegin && this.props.onMomentumScrollBegin(event);
   }
 
   _onMomentumScrollEnd = (event) => {
+    this.props.onMomentumScrollEnd && this.props.onMomentumScrollEnd(event);
   }
 
   _onScrollBeginDrag = (event) => {
+    this.props.onScrollBeginDrag && this.props.onScrollBeginDrag(event);
   }
 
   _onScrollEndDrag = (event) => {
-    let offset = event.nativeEvent.contentOffset.y,
-      t = offset / itemHeight,
-      index = (offset % itemHeight) >= (itemHeight / 2) ? Math.ceil(t) : Math.floor(t)
+    const offset = event.nativeEvent.contentOffset.y;
+    const t = offset / itemHeight;
+    const index = (offset % itemHeight) >= (itemHeight / 2) ? Math.ceil(t) : Math.floor(t);
 
     if (index !== this.props.selectedIndex) {
-      this._onValueChange(index)
+      this._onValueChange(index);
     } else {
-      this._scrollTo(index, true) // 对于那种只滚了一丢丢的情况，再滚回去
+      this._scrollTo(index, true); // 对于那种只滚了一丢丢的情况，再滚回去
     }
   }
 
   _onItemPress = (index) => {
     if (index !== this.props.selectedIndex) {
-      this._onValueChange(index)
+      this._onValueChange(index);
     }
   }
 
   _onValueChange(index) {
-    let { onValueChange, data } = this.props
-    let cur = data[index]
+    const { onValueChange, data } = this.props;
+    const cur = data[index];
     if (cur) {
-      onValueChange(cur.value, index)
+      onValueChange(cur.value, index);
     }
   }
 
   _renderItems() {
-    let style = this.style,
-      { data } = this.props,
-      len = data.length,
-      items = []
+    const { style } = this;
+    const { data } = this.props;
+    const len = data.length;
+    const items = [];
 
     data.forEach((item, i) => {
       items.push((
@@ -92,25 +91,25 @@ export default class PickerAndroid extends UIComponent {
             {item.label}
           </Text>
         </View>
-      ))
-    })
+      ));
+    });
 
-		/**
-		 * 在收尾各填充两个空白元素
-		 */
+    /**
+     * 在收尾各填充两个空白元素
+     */
     function emptyItem(i) {
       return (
         <View style={[style.item]} key={i}>
           <Text style={style.text} />
         </View>
-      )
+      );
     }
-    items.unshift(emptyItem(0))
-    items.unshift(emptyItem(1))
-    items.push(emptyItem(len + 2))
-    items.push(emptyItem(len + 1 + 2))
+    items.unshift(emptyItem(0));
+    items.unshift(emptyItem(1));
+    items.push(emptyItem(len + 2));
+    items.push(emptyItem(len + 1 + 2));
 
-    return items
+    return items;
   }
 
   _onLayout = () => {
@@ -118,16 +117,16 @@ export default class PickerAndroid extends UIComponent {
   }
 
   render() {
-    let style = this.style;
+    const { style } = this;
 
     return (
       <View style={style.container} onLayout={this._onLayout}>
         <View style={style.innerContainer}>
           <View style={style.selectedLine} />
-          <View style={style.mask} pointerEvents='none' />
-          <View style={[style.mask, style.maskBottom]} pointerEvents='none' />
+          <View style={style.mask} pointerEvents="none" />
+          <View style={[style.mask, style.maskBottom]} pointerEvents="none" />
           <ScrollView
-            ref={(c) => { this._scrollView = c }}
+            ref={(c) => { this._scrollView = c; }}
             pagingEnabled
             bounces={false}
             showsVerticalScrollIndicator={false}
@@ -143,14 +142,14 @@ export default class PickerAndroid extends UIComponent {
           </ScrollView>
         </View>
       </View>
-    )
+    );
   }
 }
 
 PickerAndroid.baseStyle = {
   container: {
-    height: itemHeight * 5 + 20,
-    paddingVertical: 10
+    height: (itemHeight * 5) + 20,
+    paddingVertical: 10,
   },
   innerContainer: {
     flex: 1,
@@ -177,7 +176,7 @@ PickerAndroid.baseStyle = {
     zIndex: 1,
   },
   maskBottom: {
-    marginTop: itemHeight * 3
+    marginTop: itemHeight * 3,
   },
   roll: {
     justifyContent: 'center',
@@ -191,6 +190,6 @@ PickerAndroid.baseStyle = {
   text: {
     color: '#333',
     fontSize: 16,
-    backgroundColor: 'transparent'
-  }
-}
+    backgroundColor: 'transparent',
+  },
+};

@@ -115,6 +115,15 @@
     ],
     "react/jsx-no-bind": [
       0
+    ],
+    "no-loop-func":[
+      0
+    ],
+    "array-callback-return":[
+      0
+    ],
+    "react/no-string-refs":[
+      0
     ]
   }
 }
