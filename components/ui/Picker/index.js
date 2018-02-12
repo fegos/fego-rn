@@ -13,7 +13,7 @@ import {
   Dimensions,
 } from 'react-native';
 import UIComponent from '../../common/UIComponent';
-import Modal from '../Modal';
+import AnimateModal from '../AnimateModal';
 import PickerView from './PickerView';
 import DatePicker from './DatePicker';
 
@@ -201,7 +201,7 @@ class Picker extends UIComponent {
   _renderViews = () => {
     if (this.props.modal) {
       return (
-        <Modal
+        <AnimateModal
           visible={this.state.visible}
           maskClosable={this.props.maskClosable}
           animationType="slide-up"
@@ -209,7 +209,7 @@ class Picker extends UIComponent {
           styles={{ container: { justifyContent: 'flex-end' } }}
         >
           {this._renderPickerContents()}
-        </Modal>
+        </AnimateModal>
       );
     } else {
       return (

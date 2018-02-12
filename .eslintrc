@@ -8,7 +8,7 @@
   },
   "rules": {
     "global-require": [
-      1
+      0
     ],
     "no-console": "off",
     "react/jsx-filename-extension": [
@@ -107,22 +107,7 @@
     "no-sparse-arrays": [
       0
     ],
-    "no-nested-ternary": [
-      0
-    ],
-    "no-continue": [
-      0
-    ],
-    "react/jsx-no-bind": [
-      0
-    ],
-    "no-loop-func":[
-      0
-    ],
-    "array-callback-return":[
-      0
-    ],
-    "react/no-string-refs":[
+    "no-mixed-operators": [
       0
     ]
   }

@@ -2,16 +2,16 @@ import React from 'react';
 import Renderer from 'react-test-renderer';
 import { View, Text } from 'react-native';
 import { shallow } from 'enzyme';
-import { describe, it, expect, jest, beforeEach } from 'jest';
-import Modal from '../index';
+import AnimateModal from '../index';
 
-describe('Modal Tests', () => {
-  let Comp;
-  let handler;
+
+describe('AnimateModal Tests', () => {
+  let Comp,
+    handler;
   beforeEach(() => {
     handler = jest.fn();
     Comp = (
-      <Modal
+      <AnimateModal
         visible
         animateAppear={false}
         onClose={handler}
@@ -19,7 +19,7 @@ describe('Modal Tests', () => {
         <View>
           <Text>简单模态框</Text>
         </View>
-      </Modal>
+      </AnimateModal>
     );
   });
 
@@ -31,10 +31,12 @@ describe('Modal Tests', () => {
   it('simple content test', () => {
     const wrapper = shallow(Comp);
 
-    expect(wrapper.contains(<View><Text>简单模态框</Text></View>)).toBe(true);
+    expect(wrapper.contains(<View>
+      <Text>简单模态框</Text>
+    </View>)).toBe(true);
   });
 
-  it('close modal', () => {
+  it('close AnimateModal', () => {
     const wrapper = shallow(Comp);
 
     wrapper.childAt(0).childAt(0).simulate('press');

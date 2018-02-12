@@ -17,7 +17,7 @@ import {
 import UIComponent from '../../common/UIComponent';
 
 const screen = Dimensions.get('window');
-export default class FEGOModal extends UIComponent {
+export default class AnimateModal extends UIComponent {
   static defaultProps = {
     animationType: 'fade',
     animateAppear: false,
@@ -25,7 +25,7 @@ export default class FEGOModal extends UIComponent {
     visible: false,
     maskClosable: true,
     onClose: () => { },
-    onAnimationEnd: () => { },
+    onAnimationEnd: (visible) => { console.log(visible); },
     scale: true,
   }
   static propTypes = {
@@ -34,7 +34,7 @@ export default class FEGOModal extends UIComponent {
     // 点击遮罩是否可关闭
     maskClosable: PropTypes.bool,
     // 动画类型：none fade slide-up slide-down
-    animationType: PropTypes.string,
+    animationType: PropTypes.oneOf(['none', 'fade', 'slide-up', 'slide-down']),
     // 仅首次动画（只适用于进入页面就显示modal的情况，此时需要visible和该属性均为true）
     animateAppear: PropTypes.bool,
     // 动画时长
@@ -151,58 +151,81 @@ export default class FEGOModal extends UIComponent {
       });
     }
   }
-  close() {
+
+  close = () => {
     this._animateDialog(false);
   }
-  _maskClose() {
+
+  _maskClose = () => {
     if (this.props.maskClosable) {
       this.props.onClose();
     }
   }
-  _getPosition(visible) {
+
+  _getPosition = (visible) => {
     if (visible) {
       return 0;
     }
     return this.props.animationType === 'slide-down' ? -screen.height : screen.height;
   }
-  _getScale(visible) {
+
+  _getScale = (visible) => {
     if (this.props.scale) return visible ? 1 : 1.05;
     return 1;
   }
-  _getOpacity(visible) {
-    return visible ? 1 : 0;
-  }
+
+  _getOpacity = visible => (visible ? 1 : 0);
+
   render() {
-    const { props } = this;
+    const {
+      position, scale, opacity, modalVisible,
+    } = this.state;
+    const { onClose, children, animationType } = this.props;
     const { style } = this;
 
-    if (!this.state.modalVisible) {
+    if (!modalVisible) {
       return null;
     }
     const animationStyleMap = {
       none: {},
-      slide: { transform: [{ translateY: this.state.position }] },
-      'slide-up': { transform: [{ translateY: this.state.position }] },
-      'slide-down': { transform: [{ translateY: this.state.position }] },
-      fade: { transform: [{ scale: this.state.scale }], opacity: this.state.opacity },
+      slide: { transform: [{ translateY: position }] },
+      'slide-up': { transform: [{ translateY: position }] },
+      'slide-down': { transform: [{ translateY: position }] },
+      fade: { transform: [{ scale }], opacity },
     };
-    return React.createElement(Modal, {
-      visible: true,
-      transparent: true,
-      onRequestClose: this.props.onClose.bind(this),
-    }, React.createElement(View, {
-      style: [style.container],
-    }, React.createElement(TouchableWithoutFeedback, {
-      onPress: this._maskClose.bind(this),
-    }, React.createElement(Animated.View, {
-      style: [style.absolute, { opacity: this.state.opacity }],
-    }, React.createElement(View, {
-      style: [style.absolute, style.mask],
-    }))), React.createElement(Animated.View, { style: [style.content, animationStyleMap[props.animationType]] }, this.props.children)));
+
+    return (
+      <Modal
+        visible
+        transparent
+        onRequestClose={onClose}
+      >
+        <View
+          style={style.container}
+        >
+          <TouchableWithoutFeedback
+            onPress={this._maskClose}
+          >
+            <Animated.View
+              style={[style.absolute, { opacity }]}
+            >
+              <View
+                style={[style.absolute, style.mask]}
+              />
+            </Animated.View>
+          </TouchableWithoutFeedback>
+          <Animated.View
+            style={[style.content, animationStyleMap[animationType]]}
+          >
+            {children}
+          </Animated.View>
+        </View>
+      </Modal >
+    );
   }
 }
 // 基础样式
-FEGOModal.baseStyle = {
+AnimateModal.baseStyle = {
   container: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0)',

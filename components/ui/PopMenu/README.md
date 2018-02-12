@@ -1,5 +1,5 @@
 ---
-title: Popover
+title: PopMenu
 subTitle: 气泡层
 ---
 
@@ -11,11 +11,11 @@ subTitle: 气泡层
 ### 示例代码
 
 ```html
-import Popover from 'somewhere'
+import PopMenu from 'somewhere'
 
-const Item=Popover.Item
+const Item=PopMenu.Item
 
-<Popover
+<PopMenu
 	placement='top'
 	title='title' 
 	maskClosable={false}
@@ -28,34 +28,34 @@ const Item=Popover.Item
 	]}
 >
 	<View>
-		<Text>Popover 只能有一个孩子</Text>
+		<Text>PopMenu 只能有一个孩子</Text>
 		<Text>我是第二个孩子</Text>
 	</View>
-</Popover>
+</PopMenu>
 
 ```
 
 #### 注意
 ```warning
-popoverStyle中的宽度应当与Popover.item保持一致
+popoverStyle中的宽度应当与PopMenu.item保持一致
 ```
 
 ## API
 
-### Popover props列表
+### PopMenu props列表
 属性 | 说明 | 类型 | 默认值
 ----|-----|------|------
-| title | Popover 标题 | node | '' |
-| content | Popover 的内容 | array | [] |
-| showTriangle | 是否显示 Popover 的三角 | bool | true |
+| title | PopMenu 标题 | node | '' |
+| content | PopMenu 的内容 | array | [] |
+| showTriangle | 是否显示 PopMenu 的三角 | bool | true |
 | triangleHeight | 三角形的高 | number | 8 |
 | triangleWidth | 三角形的宽 | number | 10 |
-| placement | Popover 出现的位置, 可选值有：'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight', 'left', 'leftTop', 'leftBottom', , 'right', 'rightTop', 'rightBottom' | string | 'bottom' |
-| offset | Popover 距离 trigger 的边距 | number | 5 |
-| maskClosable | 是否能点击遮罩关闭 Popover | bool | true |
+| placement | PopMenu 出现的位置, 可选值有：'top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight', 'left', 'leftTop', 'leftBottom', , 'right', 'rightTop', 'rightBottom' | string | 'bottom' |
+| offset | PopMenu 距离 trigger 的边距 | number | 5 |
+| maskClosable | 是否能点击遮罩关闭 PopMenu | bool | true |
 | animateTime | 动画时间 | number | 300 |
 
-### PopoverItem props列表
+### PopMenuItem props列表
 属性 | 说明 | 类型 | 默认值
 ----|-----|------|------
 | text | 显示的文案 | node | - |
