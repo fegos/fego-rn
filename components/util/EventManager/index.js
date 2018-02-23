@@ -25,15 +25,18 @@ export default class EventManager {
     if (typeof eventName !== 'string') return this;
     if (!isFunction(handler)) return this;
     const parseData = parseEventName(eventName);
-    eventName = parseData.name;
-    let cache = this.eventCache[eventName];
+
+    const eventRealName = parseData.name;
+    let cache = this.eventCache[eventRealName];
     if (!cache) {
-      cache = this.eventCache[eventName] = [];
+      cache = [];
+      this.eventCache[eventRealName] = [];
     }
     // 添加标志
-    handler.id = parseData.id || MUID++;
+    const handlerCopy = handler;
+    handlerCopy.id = parseData.id || MUID++;
     // 插入缓存
-    cache.push(handler);
+    cache.push(handlerCopy);
     return this;
   }
   /**
@@ -43,8 +46,10 @@ export default class EventManager {
   off(eventName, handler) {
     // 全卸载
     if (arguments.length === 0) {
-      for (const eventName in this.eventCache) {
-        this.eventCache[eventName].length = 0;
+      for (const name in this.eventCache) {
+        if ({}.hasOwnProperty.call(this.eventCache, name)) {
+          this.eventCache[name].length = 0;
+        }
       }
       return this;
     }
@@ -54,7 +59,9 @@ export default class EventManager {
     if (/^#.*/.test(eventName)) {
       const groupId = eventName.replace('#', '');
       for (const k in this.eventCache) {
-        this.eventCache[k] = this.eventCache[k].filter(fn => fn.id !== groupId);
+        if ({}.hasOwnProperty.call(this.eventCache, k)) {
+          this.eventCache[k] = this.eventCache[k].filter(fn => fn.id !== groupId);
+        }
       }
       return this;
     }
@@ -79,23 +86,23 @@ export default class EventManager {
   }
   one(eventName, handler) {
     if (typeof eventName !== 'string') return this;
-    let cache = this.eventCache[eventName],
-      me = this;
+    const cache = this.eventCache[eventName];
+    const me = this;
     if (!cache) return this;
     if (!isFunction(handler)) return this;
-    const fn = function () {
-      const ret = handler.apply(this, arguments);
+    const fn = function (...rest) {
+      const ret = handler.apply(this, rest);
       me.off(eventName, fn);
       return ret;
     };
     return me.on(eventName, fn);
   }
   emit(eventName, ...rest) {
-    let cache,
-      rs = {
-        rets: [],
-      },
-      me = this;
+    let cache;
+    const rs = {
+      rets: [],
+    };
+    const me = this;
     // 检测参数
     if (typeof eventName !== 'string') return rs;
     cache = this.eventCache[eventName || ''];
@@ -104,7 +111,7 @@ export default class EventManager {
     //
     // 获取事件缓存的副本，以允许事件修改缓存（卸载）
     cache = cache.slice(0);
-    cache.forEach((evt, i) => {
+    cache.forEach((evt) => {
       try { // 防止handler出现错误导致其余handler无法执行
         const ret = evt.apply(me, rest);
         rs.rets.push(ret);

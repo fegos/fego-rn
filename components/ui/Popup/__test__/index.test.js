@@ -2,7 +2,6 @@ import React from 'react';
 import Renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 import { View, Text } from 'react-native';
-import { describe, it, expect, jest, beforeEach } from 'jest';
 import Popup from '../index';
 
 describe('Popup Tests', () => {

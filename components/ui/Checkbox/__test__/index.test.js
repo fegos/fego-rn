@@ -1,7 +1,6 @@
 import React from 'react';
 import Renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { describe, it, expect, jest, beforeEach } from 'jest';
 import Checkbox from '../index';
 
 describe('Checkbox Tests', () => {

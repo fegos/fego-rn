@@ -2,7 +2,6 @@ import React from 'react';
 import { Text } from 'react-native';
 import Renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { describe, it, expect } from 'jest';
 import Icon from '../index';
 
 describe('Icon Tests', () => {

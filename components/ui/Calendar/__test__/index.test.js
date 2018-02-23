@@ -1,9 +1,7 @@
 import React from 'react';
 import Renderer from 'react-test-renderer';
-import { describe, it, expect } from 'jest';
 import { shallow } from 'enzyme';
 import Calendar from '../index';
-
 
 describe('Calendar Tests', () => {
   it('renders correctly', () => {

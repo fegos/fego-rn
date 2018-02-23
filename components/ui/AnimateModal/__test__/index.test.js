@@ -4,10 +4,9 @@ import { View, Text } from 'react-native';
 import { shallow } from 'enzyme';
 import AnimateModal from '../index';
 
-
 describe('AnimateModal Tests', () => {
-  let Comp,
-    handler;
+  let Comp;
+  let handler;
   beforeEach(() => {
     handler = jest.fn();
     Comp = (
@@ -31,9 +30,7 @@ describe('AnimateModal Tests', () => {
   it('simple content test', () => {
     const wrapper = shallow(Comp);
 
-    expect(wrapper.contains(<View>
-      <Text>简单模态框</Text>
-    </View>)).toBe(true);
+    expect(wrapper.contains(<View><Text>简单模态框</Text></View>)).toBe(true);
   });
 
   it('close AnimateModal', () => {
