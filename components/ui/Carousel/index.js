@@ -20,7 +20,7 @@ const windowWidth = Dimensions.get('window').width;
 
 export default class Carousel extends UIComponent {
   static defaultProps = {
-    mode: 'all',
+    mode: 'preload',
     preLoadPageCount: 5,
     childrenType: 'image',
     size: { width: windowWidth, height: windowWidth * 180 / 375 },
@@ -98,9 +98,10 @@ export default class Carousel extends UIComponent {
 
     this._prePage = 0;
     const { defaultPage, preLoadPageCount } = props;
+    this._scrollView = null;
     this.state = {
       size: props.size,
-      currPage: defaultPage,
+      currPage: 0,
       startPage: 0,
       endPage: preLoadPageCount - 1,
     };
@@ -245,10 +246,13 @@ export default class Carousel extends UIComponent {
       }
     }
 
+    // this.state.startPage = startPage;
+    // this.state.endPage = endPage;
+    // this.state.currPage = currPage;
     this.setState({
-      currPage,
       startPage,
       endPage,
+      currPage,
     }, () => {
       const { onChange } = this.props;
       onChange && onChange(currPage);
@@ -402,31 +406,36 @@ export default class Carousel extends UIComponent {
     } else {
       childrenCount = children.length;
     }
-    if (mode === 'preload') {
-      if (direction === 'horizontal') {
-        this._scrollTo((currPage - startPage) * width, 0, false);
-      } else {
-        this._scrollTo(0, (currPage - startPage) * height, false);
-      }
-    } else if (currPage === 0) {
-      if (direction === 'horizontal') {
-        if (childrenCount <= 1) {
-          this._scrollTo(0, 0, false);
-        } else {
-          this._scrollTo(width, 0, false);
+    setTimeout(
+      () => {
+        if (mode === 'preload') {
+          if (direction === 'horizontal') {
+            this._scrollTo((currPage - startPage) * width, 0, false);
+          } else {
+            this._scrollTo(0, (currPage - startPage) * height, false);
+          }
+        } else if (currPage === 0) {
+          if (direction === 'horizontal') {
+            if (childrenCount <= 1) {
+              this._scrollTo(0, 0, false);
+            } else {
+              this._scrollTo(width, 0, false);
+            }
+          } else if (childrenCount <= 1) {
+            this._scrollTo(0, 0, false);
+          } else {
+            this._scrollTo(0, height, false);
+          }
+        } else if (currPage === childrenCount - 1) {
+          if (direction === 'horizontal') {
+            this._scrollTo(childrenCount * width, 0, false);
+          } else {
+            this._scrollTo(0, childrenCount * height, false);
+          }
         }
-      } else if (childrenCount <= 1) {
-        this._scrollTo(0, 0, false);
-      } else {
-        this._scrollTo(0, height, false);
-      }
-    } else if (currPage === childrenCount - 1) {
-      if (direction === 'horizontal') {
-        this._scrollTo(childrenCount * width, 0, false);
-      } else {
-        this._scrollTo(0, childrenCount * height, false);
-      }
-    }
+      },
+      0
+    );
   }
 
 
@@ -443,7 +452,6 @@ export default class Carousel extends UIComponent {
     this.setState({
       size: { width: newWidth, height: newHeight },
     });
-    console.log('ndfaljdflajdlfjalf');
     this._placeCritical(this.state.currPage, this.state.startPage);
   }
 
@@ -513,6 +521,7 @@ export default class Carousel extends UIComponent {
         actualLoadPageCount = 1;
       }
     }
+
     const contentSize = {
       width: horizontal ? size.width * actualLoadPageCount : size.width,
       height: horizontal ? size.height : size.height * actualLoadPageCount,
@@ -536,23 +545,23 @@ export default class Carousel extends UIComponent {
           </View>
         );
       }
-      if (idx === currPage) {
-        const touchablePage = (
-          <TouchableWithoutFeedback
-            key={`page${idx}`}
-            ref={`page${idx}`}
-            style={{ ...size }}
-            onPress={this._onPress}
-          >
-            {page}
-          </TouchableWithoutFeedback>
-        );
-        scrollChildren.push(touchablePage);
-      } else {
-        scrollChildren.push(page);
-      }
+      const touchablePage = (
+        <TouchableWithoutFeedback
+          key={`page${idx}`}
+          ref={`page${idx}`}
+          style={{ ...size }}
+          onPress={this._onPress}
+        >
+          {page}
+        </TouchableWithoutFeedback>
+      );
+      scrollChildren.push(touchablePage);
     }
-
+    console.log(actualLoadPageCount, startPage, currPage, endPage);
+    if (currPage === 0) {
+      console.log('hh');
+    }
+    console.log(scrollChildren);
     return (
       <ScrollView
         ref={(c) => { this.scrollView = c; }}
@@ -571,13 +580,13 @@ export default class Carousel extends UIComponent {
           [
             {
               position: 'relative',
+              backgroundColor: 'red',
             },
             contentSize,
           ]}
         onLayout={
           (e) => {
-            console.log(e);
-            this._placeCritical(currPage, startPage);
+            // this._placeCritical(currPage, startPage);
           }
         }
       >
@@ -600,7 +609,7 @@ export default class Carousel extends UIComponent {
 
     for (let idx = 0; idx < childrenCount; idx++) {
       const dot = (
-        <TouchableWithoutFeedback key={`dot${idx}`} onPress={() => this._animateToPage(idx)} >
+        <TouchableWithoutFeedback key={`dot${idx}`} onPress={() => this._layoutPages(idx)} >
           <View
             style={idx === currPage ? activeDotStyle : normalDotStyle}
           />
