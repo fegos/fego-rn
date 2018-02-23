@@ -58,7 +58,7 @@
    需要在组件定义的时候预先声明好simpleStyleProps
    由prop.styles引申的一种写法
  */
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import merge from 'lodash/merge';
 import isEqual from 'lodash/isEqual';

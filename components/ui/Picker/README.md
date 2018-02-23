@@ -17,8 +17,6 @@ subTitle: 选择器
 		visible={this.state.picker3Visible}
 		onClose={()=>{this.setState({picker3Visible:false})}}
 		initialValue={['chuancai','jiachang','yu']}
-		cascade={true}
-		cols={3}
 		onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
 			console.log('onConfirm: ', selectedValue, selectedIndex, selectedLabel)
 			this.setState({ picker3Value: selectedLabel.join('') })
@@ -30,7 +28,7 @@ subTitle: 选择器
 ```
 
 ### 说明
-> Picker 的实现依赖于 PickerView, 将 PickerView 放在模态里面，因此其部分 props (eg: cascade, cols, initialValue, onChange) 以及数据源 data 的含义都与 PickerView 一致
+> Picker 的实现依赖于 PickerView, 将 PickerView 放在模态里面，因此其部分 props (eg:initialValue, onChange) 以及数据源 data 的含义都与 PickerView 一致
 
 
 ## API
@@ -39,10 +37,16 @@ subTitle: 选择器
 
 属性 | 说明 | 类型 | 默认值
 ----|-----|------|------
+| modal | 是否模态 | boolean | false |
+| mode | 选择器的模式,支持'dataPicker，datePicker' | string | dataPicker |
+| datePickerMode | datePicker的模式，支持'date，time' | string | date |
+| dateMode | date的显示模式 支持 'year-only','month-only','day-only','year-month','year-month-day','month-day'  | string | 'year-month-day' |
 | data | 选择器的数据源 | array | [ ] |
-| cascade | 选择器是否级联 | bool | false |
-| cols | 列数,级联式时有的级数 | number | - |
-| initialValue | picker 初始值，格式为[v1, v2, v3]，对应数据源的相应级层value | array | [ ] |
+| minDate | 选择器的数据源 | 最小日期 | [ ] |
+| maxDate | 选择器的数据源 | 最大日期 | [ ] |
+| minuteStep | time模式下的步长 | integer | 1 |
+| defaultDateValue | date模式下默认选中的时间 | Date |  |
+| defaultValue | picker 初始值，格式为[v1, v2, v3]，对应数据源的相应级层value | array | [ ] |
 | onChange | 每列数据选择变化后的回调函数 | Function(selectedValue, selectedIndex, selectedLabel){} | - |
 | visible | 是否可见 | bool | false |
 | title | 标题 | string | 请选择 |

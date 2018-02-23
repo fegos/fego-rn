@@ -36,8 +36,8 @@ export default class Page extends Component {
 						}}/>
 					</ListItem>
 					<ListItem styles={listItemStyle}>
-						<Text style={{ padding: 10 }}>主题色调：themeColor</Text>
-						<Segment values={this.state.values} themeColor='#981231'/> 
+						<Text style={{ padding: 10 }} >主题色调：themeColor</Text>
+						<Segment values={this.state.values} styles={{container:{borderRadius: 8}}} themeColor='#981231'/> 
 					</ListItem>
 				</List>
 			</ScrollView>

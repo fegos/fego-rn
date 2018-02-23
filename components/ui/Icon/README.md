@@ -15,20 +15,38 @@ subTitle: 图标
 ### 示例代码
 
 ```html
-<Icon name='user' />
-<Icon name='glass' color="#398812" />
-<Icon name='music' style={{ color: "#EE0000" }} />
-<Icon name='heart' color="#000" style={{ color: "#E00", fontSize: 20 }}  />
-<Icon name='search' style = {{
-	color: '#993311',
-	fontSize: 30,
-	padding: 10
-}} />
-<Icon name='check' size={40} family='entypo'>
-	<Text style={{ fontSize: 38, paddingLeft: 10 }}>checkbox</Text>
-</Icon>
-<Icon name='angle-right' size={40} />
+<Icon name='star' />
+<Icon name='star' color="#D8B080" />
+<Icon name='music' style={{ color: "#D8B080" }} />
+<Icon name='star' size={20} />
+<Icon name='music' style={{ fontSize: 20 }} />
+<Icon name='star' color="#D8B080" size={20} />
+<Icon name='music' style={{ color: '#D8B080', fontSize: 20 }} />
 ```
+
+### 使用说明
+
+添加自己的字体库名字与unicode码对应的文件，只需增加字体json文件或者js文件，内容格式如下：
+
+```
+// 图标名字：unicode码
+{
+	"aircraft-take-off": 61705,
+	"align-bottom": 61706,
+	"align-horizontal-middle": 61707,
+	...
+}
+```
+Icon的使用之前需要添加字体库（可以设置多个字体库，并可设置默认的字体库）：
+
+```
+Icon.setFamily({
+	entypo: require('./entypo.json'),
+	FontAwesome: require('./FontAwesome.json')
+})
+Icon.defaultProps.family = 'FontAwesome';
+```
+之后像示例一样使用即可。
 
 ## API
 

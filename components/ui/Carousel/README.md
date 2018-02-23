@@ -1,9 +1,9 @@
 ---
 title: Carousel
-subTitle: 走马灯
+subTitle: 轮播图
 ---
 
-# 走马灯组件 Carousel
+# Carousel（轮播图）
 
 ### 组件描述
 - 轮播组件，对于一组内容，可以用走马灯的形式进行轮播展现。
@@ -37,8 +37,8 @@ import Carousel from 'Carousel'
 | `interval` | 播放间隔的毫秒数 | `number` | 3000 |
 | `autoplay` | 是否自动播放 | `boolean` | true |
 | `infinite` | 是否无限循环播放 | `boolean` | true |
-| `indexPage` | 开始播放的索引, 0 开始计算 | `number` | 0 |
-| `onBeforeChange` | 切换面板前的回调函数，可以通过返回 false 来阻止轮播 | `function(fromPage, toPage)` | - |
+| `defaultIdx` | 开始播放的索引, 0 开始计算 | `number` | 0 |
+| `shouldChangePage` | 切换面板前的回调函数，可以通过返回 false 来阻止轮播 | `function(fromPage, toPage)` | - |
 | `onChange` | 切换面板后的回调函数，参数为切换后的 index (0 开始计算) | `function(page)` | - |
 | `onScrollBeginDrag` | 开始拖拽时的回调，参数为事件对象 | `function(event)` | - |
 | `showDot` | 是否显示面板指示点 | `boolean` | true |
@@ -58,6 +58,6 @@ import Carousel from 'Carousel'
 
 | 属性props | 类型 | 默认值 | 描述 |
 |----|----|------|-----------|
-| `onBeforeChange` | `function(fromPage, toPage)` | - | 切换面板前的回调函数，可以通过返回 false 来阻止轮播 |
+| `shouldChangePage` | `function(fromPage, toPage)` | - | 切换面板前的回调函数，可以通过返回 false 来阻止轮播 |
 | `onChange` | `function(page)` | - | 切换面板后的回调函数，参数为切换后的 index (0 开始计算) |
 | `onScrollBeginDrag` | `function(event)` | - | 开始拖拽时的回调，参数为事件对象 |

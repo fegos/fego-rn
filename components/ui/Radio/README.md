@@ -1,6 +1,6 @@
 ---
 title: Radio
-subTitle: 单选框
+subTitle: 单选框，一般与Group配合使用实现单选
 ---
 
 # 单选框
@@ -11,11 +11,13 @@ subTitle: 单选框
 ### 示例代码
 
 ```js
+<Radio disabled={true}>disabled</Radio>
+
 <Radio defaultChecked={false}>非受控组件：使用defaultChecked</Radio>
 
-<Radio checked={this.state.checked2} onChange={(checked)=>{
+<Radio checked={this.state.checked} onChange={(checked)=>{
 	this.setState({
-		checked2: checked
+		checked: checked
 	})
 }}>受控组件：使用checked</Radio>
 ```
@@ -43,38 +45,3 @@ subTitle: 单选框
 | text | 选择框文字样式 | Text |
 | checked | 选中时的样式 | Icon |
 | disabled | 禁止时的样式 | Icon，Text |
-
-
-### RadioGroup
-
-### 示例代码
-
-```js
-// Radio 需有 value 属性用于匹配选中非选中的值
-<Radio.Group>
-	<Radio value='english'>英语</Radio>
-	<Radio value='chinese'>语文</Radio>
-	<Radio value='math'>数学</Radio>
-</Radio.Group>
-
-<Radio.Group value={this.state.radioGroupValue} onChange={(value)=>{
-	this.setState({
-		radioGroupValue: value
-	})
-}}>
-	<Radio value='english'>英语</Radio>
-	<Radio value='chinese'>语文</Radio>
-	<Radio value='math'>数学</Radio>
-</Radio.Group>
-```
-
-## API
-
-### props列表
-
-属性 | 说明 | 类型 | 默认值
-----|-----|------|------
-| value | 受控属性，选中的值，需配合 onChange 使用 | stirng | - |
-| defaultValue | 非控属性，默认选中的值 | string | - |
-| onChange | 选择框变化回调 | function(checkedValue) | - |
-| children | 选择框 | Radio | - |

@@ -109,7 +109,7 @@ class Ori extends Component {
 				<Text style={Style.title}>使用非受控属性 defaultActiveKey = 'tab2'</Text>
 				<View style={{ height: 100 }}>
 					<Tabs
-						defaultActiveKey='tabs'
+						defaultActiveKey='tab2'
 						styles={TabStyles}
 					>
 						{tabs}

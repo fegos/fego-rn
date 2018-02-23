@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { ScrollView, View, Text, StyleSheet } from 'react-native'
 import { Style } from '../../../common'
 import { Icon } from 'fego-rn'
+import { List } from 'fego-rn'
+
+const ListItem = List.ListItem;
 
 class Example extends Component {
 	static navigationOptions = {
@@ -9,23 +12,49 @@ class Example extends Component {
 	}
 	render() {
 		return (
-			<ScrollView style={[Style.container, {paddingLeft: 20, paddingTop: 20}]}>
-				<Icon name='user' />
-				<Icon name='glass' color="#398812" />
-				<Icon name='music' style={{ color: "#EE0000" }} />
-				<Icon name='heart' color="#000" style={{ color: "#E00", fontSize: 20 }}  />
-				<Icon name='search' style = {{
-					color: '#993311',
-					fontSize: 30,
-					padding: 10
-				}} />
-				<Icon name='check' size={40} family='entypo'>
-					<Text style={{ fontSize: 38, paddingLeft: 10 }}>checkbox</Text>
-				</Icon>
-				<Icon name='angle-right' size={40} />
+			<ScrollView style={Style.container}>
+				<Text style={Style.title}>Icon</Text>
+				<List>
+					<ListItem>
+						<Text style={localStyle.text}>Icon默认样式</Text>
+						<Icon name='star' />
+					</ListItem>
+					<ListItem>
+						<Text style={localStyle.text}>Icon设置字体颜色</Text>
+						<Icon name='star' color="#D8B080" />
+					</ListItem>
+					<ListItem>
+						<Text style={localStyle.text}>Icon使用style设置字体颜色</Text>
+						<Icon name='music' style={{ color: "#D8B080" }} />
+					</ListItem>
+					<ListItem>
+						<Text style={localStyle.text}>Icon设置字体大小</Text>
+						<Icon name='star' size={20} />
+					</ListItem>
+					<ListItem>
+						<Text style={localStyle.text}>Icon使用style设置字体大小</Text>
+						<Icon name='music' style={{ fontSize: 20 }} />
+					</ListItem>
+					<ListItem>
+						<Text style={localStyle.text}>Icon简易属性设置字体样式</Text>
+						<Icon name='star' color="#D8B080" size={20} />
+					</ListItem>
+					<ListItem>
+						<Text style={localStyle.text}>Icon使用style设置字体样式</Text>
+						<Icon name='music' style={{ color: '#D8B080', fontSize: 20 }} />
+					</ListItem>
+				</List>
 			</ScrollView>
 		)
 	}
 }
+
+const localStyle = StyleSheet.create({
+	text: {
+		color: '#D8B080',
+		fontSize: 16,
+		flex: 1
+	}
+});
 
 export default Example
