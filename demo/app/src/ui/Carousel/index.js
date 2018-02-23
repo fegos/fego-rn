@@ -30,7 +30,7 @@ export default class Page extends Component {
 
     return (
       <ScrollView style={{ backgroundColor: '#fff' }}>
-        {/* <Text style={{ padding: 10, color: '#333' }}>空的轮播图</Text>
+        <Text style={{ padding: 10, color: '#333' }}>空的轮播图</Text>
         <Carousel
           source={source0}
         />
@@ -49,16 +49,16 @@ export default class Page extends Component {
         <Text style={{ padding: 10, color: '#333' }}>内容为四页的轮播图</Text>
         <Carousel
           source={source4}
-        /> */}
+        />
         <Text style={{ padding: 10, color: '#333' }}>内容为五页的轮播图</Text>
         <Carousel
           source={source5}
         />
-        {/* <Text style={{ padding: 10, color: '#333' }}>内容为六页的轮播图</Text>
+        <Text style={{ padding: 10, color: '#333' }}>内容为六页的轮播图</Text>
         <Carousel
           source={source6}
-        /> */}
-        {/* <Text style={{ padding: 10, color: '#333' }}>内容为七页的轮播图</Text>
+        />
+        <Text style={{ padding: 10, color: '#333' }}>内容为七页的轮播图</Text>
         <Carousel
           source={source7}
         />
@@ -85,7 +85,7 @@ export default class Page extends Component {
           styles={{ paginationContainer: { bottom: 20 } }}
         />
         <Text style={{ padding: 10, color: '#333' }}>垂直播放的走马灯,rect指示器,显示分页↓</Text>
-        <Carousel direction="vertical" dotType="rect" showPagination source={source4} /> */}
+        <Carousel direction="vertical" dotType="rect" showPagination source={source4} />
       </ScrollView>
     );
   }
