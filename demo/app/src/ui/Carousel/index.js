@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { ScrollView, Image, Dimensions, View, Text, TouchableHighlight } from 'react-native';
+import { ScrollView, Image, Text } from 'react-native';
 import { Carousel } from 'fego-rn';
-
-const { width } = Dimensions.get('window');
 
 const imageArray = [
   require('./img/car1.png'),

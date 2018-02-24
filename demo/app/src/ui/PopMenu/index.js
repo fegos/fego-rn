@@ -5,8 +5,8 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import { Style } from '../../../common';
 import { PopMenu, Item } from 'fego-rn';
+import { Style } from '../../../common';
 
 
 export default class PopTest extends Component {

@@ -116,7 +116,7 @@ class Tabs extends UIComponent {
     }, 0);
 
     // InteractionManager.runAfterInteractions(() => {
-    // 	this._scrollContent(this.state.curPageIdx, false);
+    //  this._scrollContent(this.state.curPageIdx, false);
     // })
   }
 
@@ -139,18 +139,18 @@ class Tabs extends UIComponent {
 
   _getTab(index) {
     let key = '';
-    let label = '';
+    let newLabel = '';
     // 找到当前 index 对应的 tab
-    this._tabs.forEach((t, idx) => {
+    this._tabs.forEach((t) => {
       if (t.index === index) {
         key = t._key;
-        label = t.label;
+        newLabel = t.label;
       }
     });
 
     return {
       key,
-      label,
+      label: newLabel,
     };
   }
 
@@ -225,8 +225,8 @@ class Tabs extends UIComponent {
 
     // 使用的是 Animated.ScrollView, 所以多了一层 _component
     // if (this._scrollView && this._scrollView._component && this._scrollView._component.scrollTo) {
-    // 	this._scrollView._component.scrollTo({ x: offset, y: 0, animated });
-    // 	this._scrollTabBar(nextPageIdx, animated);
+    //  this._scrollView._component.scrollTo({ x: offset, y: 0, animated });
+    //  this._scrollTabBar(nextPageIdx, animated);
     // }
 
     if (this._scrollView && this._scrollView.scrollTo) {
@@ -320,25 +320,23 @@ class Tabs extends UIComponent {
     const showedSceneKeys = this._showedSceneKeys;
 
     return this.props.children.map((child, idx) => {
+      let realChild = child;
+      if (compose && !((showedSceneKeys.indexOf(idx) >= 0) || (idx === curPageIdx))) {
+        realChild = <View tab={child.props.tab} />;
+      }
       return (
         <SceneComponent
           key={idx}
           shouldUpdated={this._shouldRenderSceneKey(idx, curPageIdx)}
           style={{ width: containerWidth }}
         >
-          {
-            compose ? (
-              (showedSceneKeys.indexOf(idx) >= 0) || (idx === curPageIdx) ? child : <View tab={child.props.tab} />
-            ) : (
-                child
-              )
-          }
+          {realChild}
         </SceneComponent>
       );
     });
   }
 
-  _onScroll = (e) => {
+  _onScroll = () => {
     // this.state._scrollX.setValue(e.nativeEvent.contentOffset.x)
   }
 
@@ -354,11 +352,11 @@ class Tabs extends UIComponent {
         automaticallyAdjustContentInsets={false}
         ref={(s) => { this._scrollView = s; }}
         // onScroll={Animated.event(
-        // 	[{
-        // 		nativeEvent: { contentOffset: { x: this.state._scrollX } }
-        // 	}], {
-        // 		useNativeDriver: true,
-        // 	})}
+        // [{
+        //  nativeEvent: { contentOffset: { x: this.state._scrollX } }
+        // }], {
+        //  useNativeDriver: true,
+        // })}
         onScroll={this._onScroll}
         onMomentumScrollBegin={this._onMomentumScrollBeginAndEnd}
         onMomentumScrollEnd={this._onMomentumScrollBeginAndEnd}
@@ -374,25 +372,13 @@ class Tabs extends UIComponent {
     );
   }
 
-  _scrollXListener = (containerWidth, { value }) => {
-    // this.state._aniScrollIdx.setValue((value / containerWidth));
-
-    // /**
-    //  * ios 里会出现触发两次 value 一样的回调，所以加以区别
-    //  */
-    // if ((this._prevValue !== value) && (value === containerWidth * this.state.curPageIdx)) {
-    // 	this._prevValue = value;
-    // 	this.props.onAnimationEnd();
-    // }
-  }
-
   _handleLayout = (e) => {
     const { width } = e.nativeEvent.layout;
     const { curPageIdx, containerWidth } = this.state;
-    let finalWidth = containerWidth;
+    // let finalWidth = containerWidth;
 
     if (Math.round(width) !== Math.round(containerWidth)) {
-      finalWidth = width;
+      // finalWidth = width;
 
       // this.state._scrollX.setValue(curPageIdx * width);
       // this.state._aniScrollIdx.setValue(curPageIdx);
@@ -404,15 +390,7 @@ class Tabs extends UIComponent {
         this._scrollContent(curPageIdx, false);
         if (this.handleLayoutTimer) clearTimeout(this.handleLayoutTimer);
       }, 0);
-
-
-      // InteractionManager.runAfterInteractions(() => {
-      // 	this._scrollContent(curPageIdx, false);
-      // })
     }
-
-    // if(this.listener) this.state._scrollX.removeListener(this.listener);
-    // this.listener = this.state._scrollX.addListener(this._scrollXListener.bind(this, finalWidth));
   }
 
   render() {

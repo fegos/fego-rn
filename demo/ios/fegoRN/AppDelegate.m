@@ -19,7 +19,7 @@
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"demo/index" fallbackResource:nil];
-
+//  jsCodeLocation = [NSURL URLWithString:@"http://10.235.19.239:8081/demo/index.bundle?platform=ios&dev=false&minify=true"];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"fego-rn"
                                                initialProperties:nil

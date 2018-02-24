@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, Image, PanResponder, Animated, Easing, Dimensions, StyleSheet, ScrollView, Platform } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  PanResponder,
+  Animated,
+  Easing,
+} from 'react-native';
+
 import PropTypes from 'prop-types';
 import imageViews from './ImageManager';
 import config from './RefreshConfig';
@@ -39,12 +47,30 @@ export default class JBRefreshBaseView extends Component {
     bottomIndicatorHeight: config.bottomHeight,
     duration: 300,
     refreshType: 'normal',
-    useLoadMore: false,
     customView: null,
     customBottomView: null,
     styleType: config.styleType,
+    onRefresh: null,
+    onLoadMore: null,
+    pullImageView: null,
+    loadMoreView: null,
   }
+
   static propTypes = {
+    // 顶部view高度
+    topIndicatorHeight: PropTypes.number,
+    // 底部view高度
+    bottomIndicatorHeight: PropTypes.number,
+    // 动画时间
+    duration: PropTypes.number,
+    // 刷新方式
+    refreshType: PropTypes.string,
+    // 自定义view
+    customView: PropTypes.node,
+    // 自定义底部view
+    customBottomView: PropTypes.node,
+    // 主题
+    styleType: config.styleType,
     // 告知外部，当前刷新状态的方法
     onStatusChange: PropTypes.func,
     // 下拉刷新函数
@@ -77,7 +103,6 @@ export default class JBRefreshBaseView extends Component {
 
     this.state = {
       pullPan: new Animated.ValueXY(this.defaultXY), // animatedView操作属性
-      scrollEnabled: true, // 使用this.isScrollable赋值，通过scrollenable来关闭响应
       flag: defaultFlag, // 当前的上下拉刷新状态
       height: 0, // layout时使用，给view宽高赋值
       // imageIndex: 0,  //当前显示图片的index
@@ -115,33 +140,33 @@ export default class JBRefreshBaseView extends Component {
     // this.setFlag(defaultFlag); //默认flag
   }
   /**
-	 * EventCaptureHandle
-	 */
-  _onStartShouldSetPanResponder = (e, gestureState) => false
-  _onStartShouldSetPanResponderCapture = (e, gestureState) => false
+  * EventCaptureHandle
+  */
+  _onStartShouldSetPanResponder = () => false
+  _onStartShouldSetPanResponderCapture = () => false
   _onMoveShouldSetPanResponder = (e, gestureState) => this._shouldBecomeCapture(e, gestureState)
   _onMoveShouldSetPanResponderCapture = (e, gestureState) => this._shouldBecomeCapture(e, gestureState)
-  _onPanResponderGrant = (e, gesture) => {
+  _onPanResponderGrant = () => {
   }
-  _onPanResponderStart = (e, gesture) => {
+  _onPanResponderStart = () => {
   }
-  _onPanResponderEnd = (e, gesture) => {
+  _onPanResponderEnd = () => {
     this.setAndriodScrollable(true);
   }
-  _onPanResponderReject = (e, gestureState) => {
+  _onPanResponderReject = () => {
     this.setAndriodScrollable(true);
   }
-  _onPanResponderTerminationRequest = (evt, gestureState) => {
+  _onPanResponderTerminationRequest = () => {
     if (this.isLoadState() || this.isPullState()) {
       return false;
     } else {
       return true;
     }
   }
-  _onPanResponderTerminate = (evt, gestureState) => {
+  _onPanResponderTerminate = () => {
     // 另一个组件已经成为了新的响应者，所以当前手势将被取消。
   }
-  _onShouldBlockNativeResponder = (evt, gestureState) =>
+  _onShouldBlockNativeResponder = () =>
     // 返回一个布尔值，决定当前组件是否应该阻止原生组件成为JS响应者
     // 默认返回true。目前暂时只支持android。
     true
@@ -157,7 +182,7 @@ export default class JBRefreshBaseView extends Component {
     this.lastY = this.state.pullPan.y._value; // 记录上次滑动位置
 
     if (isUpGesture(gesture.dx, gesture.dy)) { // 上拉
-      if (this.props.useLoadMore && this.topOrBottomStatus == 'bottom') { // 当前已经在底部
+      if (this.props.useLoadMore && this.topOrBottomStatus === 'bottom') { // 当前已经在底部
         this.setAndriodScrollable(false);
         return true;
       } else { // 不在底部
@@ -166,7 +191,7 @@ export default class JBRefreshBaseView extends Component {
       }
     }
     if (isDownGesture(gesture.dx, gesture.dy)) { // 下拉
-      if (this.topOrBottomStatus == 'top') { // 在顶部则响应，scrollview关闭滚动
+      if (this.topOrBottomStatus === 'top') { // 在顶部则响应，scrollview关闭滚动
         this.setAndriodScrollable(false);
         return true;
       } else {
@@ -189,12 +214,12 @@ export default class JBRefreshBaseView extends Component {
         // 是任何下拉相关状态时，不响应
         return;
       }
-      if (this.flag.loadrelease /* || !this.isScrollable */ || this.topOrBottomStatus == 'bottom') {
+      if (this.flag.loadrelease /* || !this.isScrollable */ || this.topOrBottomStatus === 'bottom') {
         // 不可滑动，并且到达底部，直接移动view，并且处理相应状态
         this.state.pullPan.setValue({ x: this.defaultXY.x, y: this.lastY + gestureDy });
         // 不在loadrelease中
         if (!this.flag.loadrelease) {
-          if (this.props.refreshType == 'normal' && (this.imageBottomViewArray.length > 0)) {
+          if (this.props.refreshType === 'normal' && (this.imageBottomViewArray.length > 0)) {
             // 根据高度展示gif图
             const absY = Math.abs(gestureDy);
             let imageBottomIndex = Math.floor(absY / this.bottomIndicatorHeight * this.imageBottomViewArray.length);
@@ -208,28 +233,22 @@ export default class JBRefreshBaseView extends Component {
               // 调用回调方法
               this.setFlag(flagLoading);
             }
-          } else { // 上拉到位
-            if (!this.flag.loadok) {
-              // 调用回调方法
-              this.setFlag(flagLoadok);
-            }
+          } else if (!this.flag.loadok) {
+            this.setFlag(flagLoadok);
           }
         }
-        // } else {
-        // 	//既没在底部，又可以滑动，且不在Loadrelease状态中（可以滑动状态，安卓无法调用到此）
-        // 	this.scroll.scrollTo({ x: 0, y: gesture.dy * -1 });
       }
     } else if (isDownGesture(gesture.dx, gesture.dy)) { // 下拉
       if (this.isLoadState()) {
         // 是任何上拉相关状态时，不响应
         return;
       }
-      if (this.flag.pullrelease /* || !this.isScrollable */ || this.topOrBottomStatus == 'top') {
+      if (this.flag.pullrelease /* || !this.isScrollable */ || this.topOrBottomStatus === 'top') {
         // 到顶部之后还继续下拉，使用pan进行view的拉动
         this.state.pullPan.setValue({ x: this.defaultXY.x, y: this.lastY + gestureDy }); // gesture.dy/2 减速处理
         // 根据高度展示gif图
         if (!this.flag.pullrelease) {
-          if (this.props.refreshType == 'normal' && (this.imageViewArray.length > 0)) {
+          if (this.props.refreshType === 'normal' && (this.imageViewArray.length > 0)) {
             // 根据高度展示gif图
             const absY = Math.abs(gestureDy);
             let imageIndex = Math.floor(absY / this.topIndicatorHeight * this.imageViewArray.length);
@@ -242,27 +261,22 @@ export default class JBRefreshBaseView extends Component {
             if (!this.flag.pulling) {
               this.setFlag(flagPulling);
             }
-          } else { // 下拉到位
-            if (!this.flag.pullok) {
-              this.setFlag(flagPullok);
-            }
+          } else if (!this.flag.pullok) {
+            this.setFlag(flagPullok);
           }
         }
-        // } else {
-        // 	//没有到顶,scrollview仍可以滑动，
-        // 	this.scroll.scrollTo({ x: 0, y: gesture.dy * -1 });
       }
     }
   }
 
-  _onPanResponderRelease = (e, gesture) => {
+  _onPanResponderRelease = () => {
     // 根据flag状态进行相应的行为，上下拉未到位松开，则恢复默认位置，上下拉到位则调用回调方法，记录当前边界状态。
     if (this.flag.pulling) { // 没有下拉到位
       this.resolveHandler();// 重置状态
     }
     if (this.flag.pullok || this.flag.pullrelease) {
       if (!this.flag.pullrelease) { // 第一次下拉到位，不在释放状态
-        if (!this.timerPic && this.props.refreshType == 'normal') {
+        if (!this.timerPic && this.props.refreshType === 'normal') {
           this.timerPic = setInterval(this._loop.bind(this), config.pullingImageFrequence);
         }
         if (this.props.onRefresh) {
@@ -279,7 +293,7 @@ export default class JBRefreshBaseView extends Component {
     }
     if (this.flag.loadok || this.flag.loadrelease) { // 上拉到位
       if (!this.flag.loadrelease) {
-        if (!this.timerBottomPic && this.props.refreshType == 'normal') {
+        if (!this.timerBottomPic && this.props.refreshType === 'normal') {
           this.timerBottomPic = setInterval(this._loopBottom.bind(this), config.loadingImageFrequence);
         }
         if (this.props.onLoadMore) {
@@ -341,9 +355,9 @@ export default class JBRefreshBaseView extends Component {
   isPullState = () => this.flag.pulling || this.flag.pullok || this.flag.pullrelease
   isLoadState = () => this.flag.loading || this.flag.loadok || this.flag.loadrelease
   setFlag = (flag) => {
-    if (this.flag != flag) {
+    if (this.flag !== flag) {
       this.flag = flag;
-      if (this.props.refreshType == 'text') {
+      if (this.props.refreshType === 'text') {
         this.setState({ flag: this.flag });
       }
       // 通知当前状态
@@ -351,19 +365,17 @@ export default class JBRefreshBaseView extends Component {
     }
   }
 
-  /** 数据加载完成后调用此方法进行重置归位
-	*/
+  /**
+   * 数据加载完成后调用此方法进行重置归位
+  */
   refreshed = () => {
     this.resolveHandler();
   }
+
   loaded = () => {
     this.topOrBottomStatus = 'content';
     this.resolveHandler();
   }
-  // noMoreData = () => {
-  // 	this.resolveHandler();
-  // 	this.useLoadMore = false;
-  // }
 
   resolveHandler = () => {
     // if (this.flag.pullrelease && this.flag.loadrelease) { //仅触摸松开时才触发
@@ -384,7 +396,7 @@ export default class JBRefreshBaseView extends Component {
   setImageIndex = (index) => {
     if (this.refs[`topImage${index}`]) {
       for (let i = 1; i < this.imageViewArray.length; i++) {
-        if (i == index) {
+        if (i === index) {
           this.refs[`topImage${index}`].setNativeProps({ style: { opacity: 1 } });
         } else {
           this.refs[`topImage${i}`].setNativeProps({ style: { opacity: 0 } });
@@ -395,7 +407,7 @@ export default class JBRefreshBaseView extends Component {
   setBottomImageIndex = (index) => {
     if (this.refs[`bottomImage${index}`]) {
       for (let i = 1; i < this.imageBottomViewArray.length; i++) {
-        if (i == index) {
+        if (i === index) {
           this.refs[`bottomImage${index}`].setNativeProps({ style: { opacity: 1 } });
         } else {
           this.refs[`bottomImage${i}`].setNativeProps({ style: { opacity: 0 } });
@@ -455,7 +467,7 @@ export default class JBRefreshBaseView extends Component {
     }).start();
   }
   onLayout = (e) => {
-    if (this.state.width != e.nativeEvent.layout.width || this.state.height != e.nativeEvent.layout.height) {
+    if (this.state.width !== e.nativeEvent.layout.width || this.state.height !== e.nativeEvent.layout.height) {
       this.scrollContainer.setNativeProps({ style: { width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height } });
       this.width = e.nativeEvent.layout.width;
       this.height = e.nativeEvent.layout.height;
@@ -477,7 +489,7 @@ export default class JBRefreshBaseView extends Component {
       this.imageBottomIndex = this.loopBottomCount;
       this.setBottomImageIndex(this.loopBottomCount);
       // this.setState({
-      // 	imageBottomIndex: this.loopBottomCount,
+      //  imageBottomIndex: this.loopBottomCount,
       // });
     } else {
       this.loopBottomCount = 0;
@@ -566,13 +578,13 @@ export default class JBRefreshBaseView extends Component {
     const type = this.props.refreshType;
     let contents;
 
-    if (type == 'normal') {
+    if (type === 'normal') {
       contents = [this.renderNormalContent()];
     }
-    if (type == 'text') {
+    if (type === 'text') {
       contents = [this.rendeTextContent()];
     }
-    if (type == 'custom') {
+    if (type === 'custom') {
       contents = [this.rendeCustomContent()];
     }
     return (
@@ -593,13 +605,13 @@ export default class JBRefreshBaseView extends Component {
     const type = this.props.refreshType;
     let contents;
 
-    if (type == 'normal') {
+    if (type === 'normal') {
       contents = [this.renderBottomContent()];
     }
-    if (type == 'text') {
+    if (type === 'text') {
       contents = [this.rendeTextBottomContent()];
     }
-    if (type == 'custom') {
+    if (type === 'custom') {
       contents = [this.rendeCustomBottomContent()];
     }
     return (

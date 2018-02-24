@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 import {
   Text,
   View,
+  ViewPropTypes,
   Animated,
   ScrollView,
   StyleSheet,
@@ -12,7 +13,7 @@ import {
 export default class DefaultTabBar extends Component {
   static defaultProps = {
     activeIdx: null,
-    aniScrollIdx: null,
+    // aniScrollIdx: null,
     containerWidth: 0,
     viewWidth: 0,
     style: null,
@@ -31,7 +32,7 @@ export default class DefaultTabBar extends Component {
     // 当前激活的 tab 在 tabs 数组中的下标
     activeIdx: PropTypes.number,
     // animated value, 用户控制下划线的位置
-    aniScrollIdx: PropTypes.object, // animated value
+    // aniScrollIdx: PropTypes.object, // animated value
     // tabBar 容器宽
     containerWidth: PropTypes.number,
     // 内容区宽
@@ -43,15 +44,15 @@ export default class DefaultTabBar extends Component {
     // tabBar 位置更新后的回调
     onAnimationEnd: PropTypes.func,
     // tabBar 容器样式
-    style: View.propTypes.style,
+    style: ViewPropTypes.style,
     // tab 标签样式
-    tabStyle: View.propTypes.style,
+    tabStyle: ViewPropTypes.style,
     // tab 文字样式
     textStyle: Text.propTypes.style,
     // 激活态文字样式
     activeTextStyle: Text.propTypes.style,
     // 激活态下划线样式
-    activeUnderlineStyle: View.propTypes.style,
+    activeUnderlineStyle: ViewPropTypes.style,
   }
 
   constructor(props) {
@@ -122,7 +123,7 @@ export default class DefaultTabBar extends Component {
         accessible
         accessibilityLabel={tab.label}
         accessibilityTraits="button"
-        onPress={this._onTabClick.bind(this, tab)}
+        onPress={this._onTabClick}
       >
         <View style={this.props.tabStyle}>
           <Text style={[textStyle, _activeTextStyle]}>{tab.label}</Text>
@@ -133,12 +134,12 @@ export default class DefaultTabBar extends Component {
 
   render() {
     const {
-      containerWidth, viewWidth, tabs, style, activeIdx, activeUnderlineStyle, aniScrollIdx,
+      containerWidth, viewWidth, tabs, style, activeIdx, activeUnderlineStyle,
     } = this.props;
     const width = containerWidth || viewWidth;
 
     // let left = aniScrollIdx.interpolate({
-    // 	inputRange: [0, 1], outputRange: [0, this._itemWidth],
+    // inputRange: [0, 1], outputRange: [0, this._itemWidth],
     // });
 
     const cnt = (
@@ -157,11 +158,11 @@ export default class DefaultTabBar extends Component {
       <View style={[{ width: viewWidth }]} >
         <ScrollView
           horizontal
-					/**
-					 * 当值为true时，滚动条会停在滚动视图的尺寸的整数倍位置，可以用在水平分页上
-					 * 默认值为false
-					 * 此处为防止以后忘记以及加以提醒，还是显示的设置为 false
-					 */
+          /**
+            * 当值为true时，滚动条会停在滚动视图的尺寸的整数倍位置，可以用在水平分页上
+            * 默认值为false
+            * 此处为防止以后忘记以及加以提醒，还是显示的设置为 false
+          */
           pagingEnabled={false}
           automaticallyAdjustContentInsets={false}
           ref={(s) => { this._scrollView = s; }}

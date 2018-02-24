@@ -12,7 +12,6 @@ export default class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeKey: 'tab3',
     };
   }
 
@@ -26,9 +25,6 @@ export default class Page extends Component {
 
   _onChange = (key, tab) => {
     console.log('tab change, ', key, tab);
-    this.setState({
-      activeKey: key,
-    });
   }
 
   render() {
@@ -99,7 +95,7 @@ class Ori extends Component {
           </Tabs>
         </View>
 
-        <Text style={Style.title}>使用非受控属性 defaultActiveKey = 'tab2'</Text>
+        <Text style={Style.title}>使用非受控属性 defaultActiveKey= tab2 </Text>
         <View style={{ height: 100 }}>
           <Tabs
             defaultActiveKey="tab2"

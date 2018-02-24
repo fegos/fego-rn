@@ -1,49 +1,30 @@
-'use strict';
-
 import React, { Component } from 'react';
 import {
-    View,
-    ListView,
-    Image,
-    Text,
-    TouchableOpacity,
-    TouchableHighlight,
-    StyleSheet,
-    Alert,
-    ScrollView,
-    Dimensions,
-    InteractionManager,
-    AppRegistry,
+  View,
+  Text,
+  StyleSheet,
 } from 'react-native';
 
-import { RefreshView } from 'fego-rn'
+import { RefreshView } from 'fego-rn';
 
 export default class Page extends Component {
-    constructor(props) {
-        super(props);
-    }
+  onRefresh() {
+    console.log('refresh');
+    const self = this;
+    setTimeout(() => {
+      self.refs.PullRefresh.refreshed();
+    }, 2000);
+  }
 
-    onRefresh(){
-        console.log('refresh');
-        var self = this;
-        setTimeout(function(){
-            self.refs.PullRefresh.refreshed();
-        },2000);
-	}
-	
-	onLoadMore(PullRefresh) {
-		alert('123')
-	}
+  onLoadMore() {
+  }
 
-    render() {
-
-
-        return (
+  render() {
+    return (
             <View style={styles.container}>
-                <View style={styles.header}>
-                </View>
+                <View style={styles.header} />
 
-                <RefreshView ref="PullRefresh" onRefresh={()=>this.onRefresh()}>
+                <RefreshView ref="PullRefresh" onRefresh={() => this.onRefresh()}>
                     <View style={styles.scrollItem}><Text>Scroll1</Text></View>
                     <View style={styles.scrollItem}><Text>Scroll2</Text></View>
                     <View style={styles.scrollItem}><Text>Scroll3</Text></View>
@@ -52,31 +33,29 @@ export default class Page extends Component {
                     <View style={styles.scrollItem}><Text>Scroll6</Text></View>
                 </RefreshView>
             </View>
-        );
-    }
+    );
+  }
 }
 
 
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    header:{
-        height:64,
-        backgroundColor: '#293447',
-    },
-    scrollItem:{
-        flex:1,
-        height:80,
-        marginBottom:10,
-        backgroundColor: '#ccc',
-        alignItems:'center',
-      justifyContent:'center'
-    },
-    separator: {
-        height: 1,
-        backgroundColor: '#CCCCCC',
-      },
+  container: {
+    flex: 1,
+  },
+  header: {
+    height: 64,
+    backgroundColor: '#293447',
+  },
+  scrollItem: {
+    flex: 1,
+    height: 80,
+    marginBottom: 10,
+    backgroundColor: '#ccc',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#CCCCCC',
+  },
 });
-AppRegistry.registerComponent('demo', () => Projects);

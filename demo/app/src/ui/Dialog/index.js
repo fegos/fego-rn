@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text } from 'react-native';
-import { Style } from '../../../common';
 import { Button, Dialog } from 'fego-rn';
+import { Style } from '../../../common';
+
 
 export default class Page extends Component {
   constructor(props) {
@@ -11,9 +12,7 @@ export default class Page extends Component {
       fullScreenDialogVisible: false,
     };
   }
-  openSimple() {
-    this.setState({ simpleVisible: true });
-  }
+
   render() {
     return (
       <ScrollView style={Style.container}>
@@ -80,6 +79,8 @@ export default class Page extends Component {
         <Button onPress={() => Dialog.confirm(<Text style={{ color: '#338811' }}>这窗口点确定是没用的</Text>, (btn) => {
           if (btn.type === 'yes') {
             return false;
+          } else {
+            return true;
           }
         })}
         >可判断是否关闭
@@ -87,9 +88,9 @@ export default class Page extends Component {
         <Button onPress={() => { /* 假如有弹出多个弹窗的需求，需要使用timeout */
           Dialog.alert('第一个');
           Dialog.alert('第二个');
-          setTimeout((e) => {
+          setTimeout(() => {
             Dialog.alert('第三个');
-            setTimeout((e) => {
+            setTimeout(() => {
               Dialog.alert('第四个');
             }, 1000);
           }, 200);

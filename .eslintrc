@@ -110,6 +110,12 @@
     ],
     "no-mixed-operators": [
       0
+    ],
+    "guard-for-in": [
+      0
+    ],
+    "react/no-string-refs": [
+      0
     ]
   }
 }
