@@ -3,24 +3,18 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
   ScrollView,
-  ART,
 } from 'react-native';
 import { Style } from '../../../common';
-import { PopMenu } from 'fego-rn';
+import { PopMenu, Item } from 'fego-rn';
 
-const { width, height } = Dimensions.get('window');
-const Item = PopMenu.Item;
-const { Shape, Path, Surface } = ART;
 
 export default class PopTest extends Component {
-
   render() {
     const content = [
-      <Item text="添加新朋友" iconName="user" />,
-      <Item iconName="user"><Text>扫一扫</Text></Item>,
-      <Item iconName="user"><View><Text>帮助</Text></View></Item>,
+      <Item styles={{ container: { paddingLeft: 10, width: 120 } }} title="添加新朋友" iconName="user" />,
+      <Item styles={{ container: { paddingLeft: 10, width: 120 } }} iconName="user"><Text>扫一扫</Text></Item>,
+      <Item styles={{ container: { paddingLeft: 10, width: 120 } }} iconName="user"><View><Text>帮助</Text></View></Item>,
     ];
 
     return (
@@ -28,15 +22,16 @@ export default class PopTest extends Component {
         <View style={[itemStyle]}>
           <PopMenu
             content={[
-              <Item text="添加新朋友" iconName="user" />,
+              <Item styles={{ container: { paddingLeft: 10, width: 120 } }} title="添加新朋友" iconName="user" />,
               <Item
-                iconName='user'
+                styles={{ container: { paddingLeft: 10, width: 120 } }}
+                iconName="user"
                 onPress={() => {
                   this.props.navigation.navigate('ui/Button');
                 }}
               ><Text>扫一扫</Text>
               </Item>,
-              <Item><Text>帮助</Text></Item>,
+              <Item styles={{ container: { paddingLeft: 10, width: 120 } }} F><Text>帮助</Text></Item>,
             ]}
           >
             <View>
@@ -47,7 +42,7 @@ export default class PopTest extends Component {
           <View>
             <Text>点我没用哦</Text>
           </View>
-        </View>
+        </View >
 
         <View style={[itemStyle]}>
           <PopMenu
@@ -116,7 +111,7 @@ export default class PopTest extends Component {
           </PopMenu>
         </View>
 
-      </ScrollView>
+      </ScrollView >
     );
   }
 }

@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import { List } from 'fego-rn';
+import { Item } from 'fego-rn';
 import Style from './Style';
 
-const { ListItem } = List;
-export default class Page extends Component {
+export default class TestListView extends Component {
   _renderList(list = []) {
     const { navigation } = this.props;
     return (
-      <List>
+      <ScrollView>
         {list.map((item, i) => (
-          <ListItem
+          <Item
             key={i}
             iconName={item.icon || 'puzzle-piece'}
             title={item.title}
@@ -20,7 +19,7 @@ export default class Page extends Component {
             hasRightArrow
           />
         ))}
-      </List>
+      </ScrollView>
     );
   }
   _renderGroup(groupList = []) {

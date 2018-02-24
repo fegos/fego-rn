@@ -101,7 +101,7 @@ export default class Carousel extends UIComponent {
     this._scrollView = null;
     this.state = {
       size: props.size,
-      currPage: 0,
+      currPage: defaultPage,
       startPage: 0,
       endPage: preLoadPageCount - 1,
     };

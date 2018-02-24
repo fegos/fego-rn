@@ -68,12 +68,6 @@ export default {
       title: 'Input',
     },
   },
-  'ui/List': {
-    screen: require('./List').default,
-    navigationOptions: {
-      title: 'List',
-    },
-  },
   'ui/Loading': {
     screen: require('./Loading').default,
     navigationOptions: {

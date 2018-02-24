@@ -12,9 +12,9 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import Item from './Item';
 import UIComponent from '../../common/UIComponent';
 import AnimateModal from '../AnimateModal';
+import Item from '../Item';
 
 const { width, height } = Dimensions.get('window');
 const { Shape, Path, Surface } = ART;

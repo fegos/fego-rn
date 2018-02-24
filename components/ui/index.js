@@ -13,7 +13,7 @@ import Dialog from './Dialog';
 import GesturePassword from './GesturePassword';
 import Icon from './Icon';
 import Input from './Input';
-import List from './List';
+import Item from './Item';
 import Loading from './Loading';
 import AnimateModal from './AnimateModal';
 import MonthPicker from './MonthPicker';
@@ -44,7 +44,7 @@ export {
   GesturePassword,
   Icon,
   Input,
-  List,
+  Item,
   Loading,
   AnimateModal,
   MonthPicker,
