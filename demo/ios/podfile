@@ -25,7 +25,7 @@ def mainPods
 	'BatchedBridge'
 	]
 	# 如果你的RN版本 >= 0.42.0，则加入下面这行
-	pod "yoga", :path => '../../node_modules/react-native/ReactCommon/yoga'
+	pod "Yoga", :path => '../../node_modules/react-native/ReactCommon/yoga'
 end
 
 target 'fegoRN' do
