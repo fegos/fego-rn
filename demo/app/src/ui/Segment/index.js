@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, Text } from 'react-native';
-import { Style } from '../../../common';
 import { Item, Segment, Toast } from 'fego-rn';
+import { Style } from '../../../common';
 
 export default class Page extends Component {
   static navigationOptions = {
@@ -20,7 +20,7 @@ export default class Page extends Component {
         </Item>
         <Item styles={ItemStyle}>
           <Text style={{ padding: 10 }}>非控组件: 使用非控属性defaultIndex，默认0</Text>
-          <Segment values={this.state.values} onChange={(i) => { }} />
+          <Segment values={this.state.values} />
         </Item>
         <Item styles={ItemStyle}>
           <Text style={{ padding: 10 }}>受控组件：使用受控属性index，配合onChange更新</Text>
