@@ -25,18 +25,16 @@ export default class EventManager {
     if (typeof eventName !== 'string') return this;
     if (!isFunction(handler)) return this;
     const parseData = parseEventName(eventName);
-
-    const eventRealName = parseData.name;
-    let cache = this.eventCache[eventRealName];
+    eventName = parseData.name;
+    let cache = this.eventCache[eventName];
     if (!cache) {
-      cache = [];
-      this.eventCache[eventRealName] = [];
+      this.eventCache[eventName] = [];
+      cache = this.eventCache[eventName];
     }
     // 添加标志
-    const handlerCopy = handler;
-    handlerCopy.id = parseData.id || MUID++;
+    handler.id = parseData.id || MUID++;
     // 插入缓存
-    cache.push(handlerCopy);
+    cache.push(handler);
     return this;
   }
   /**
