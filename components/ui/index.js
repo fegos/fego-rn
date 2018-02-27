@@ -34,6 +34,7 @@ import Toast from './Toast';
 export {
   ActivityIndicator,
   AppContainer,
+  AnimateModal,
   Badge,
   Button,
   Calendar,
@@ -46,7 +47,6 @@ export {
   Input,
   Item,
   Loading,
-  AnimateModal,
   MonthPicker,
   Picker,
   PickerView,

@@ -1,11 +1,17 @@
 export default {
   'ui/index': {
-    screen: require('./index').default
+    screen: require('./index').default,
   },
   'ui/ActivityIndicator': {
     screen: require('./ActivityIndicator').default,
     navigationOptions: {
       title: 'ActivityIndicator',
+    },
+  },
+  'ui/AnimateModal': {
+    screen: require('./AnimateModal').default,
+    navigationOptions: {
+      title: 'AnimateModal',
     },
   },
   'ui/Badge': {
@@ -72,12 +78,6 @@ export default {
     screen: require('./Loading').default,
     navigationOptions: {
       title: 'Loading',
-    },
-  },
-  'ui/Modal': {
-    screen: require('./Modal').default,
-    navigationOptions: {
-      title: 'Modal',
     },
   },
   'ui/MonthPicker': {
@@ -181,5 +181,5 @@ export default {
     navigationOptions: {
       title: 'TestArt',
     },
-  }
-}
+  },
+};
