@@ -10,10 +10,10 @@ describe('Tabs Tests', () => {
   beforeEach(() => {
     content = [];
     const tabs = ['tab1', 'tab2', 'tab3'];
-    for (const key in tabs) {
+    tabs.forEach((index, key) => {
       const tab = tabs[key];
       content.push(<Tabs.TabPane tab={tab} key={tab} />);
-    }
+    });
   });
 
   it('renders correctly', () => {
@@ -28,7 +28,7 @@ describe('Tabs Tests', () => {
 
   it('shallow function', () => {
     const wrapper = shallow(<Tabs defaultActiveKey="0">
-        {content}
+      {content}
                             </Tabs>);
 
     expect(wrapper.find(TabBar)).toHaveLength(1);

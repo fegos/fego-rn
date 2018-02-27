@@ -10,6 +10,8 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
+let tabStyle;
+
 export default class DefaultTabBar extends Component {
   static defaultProps = {
     activeIdx: null,
@@ -183,7 +185,7 @@ export default class DefaultTabBar extends Component {
   }
 }
 
-const tabStyle = StyleSheet.create({
+tabStyle = StyleSheet.create({
   tabUnderline: {
     position: 'absolute',
     height: 4,
