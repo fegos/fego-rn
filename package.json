@@ -70,6 +70,6 @@
     "ios": "react-native run-ios --project-path demo/ios",
     "android": "react-native run-android --root demo",
     "test": "jest --bail --verbose --config jest.config.js",
-    "lint": "eslint components&& eslint demo"
+    "lint": "eslint components --quiet && eslint demo --quiet"
   }
 }
