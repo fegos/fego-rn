@@ -16,7 +16,9 @@ import UIComponent from '../../common/UIComponent';
 import AnimateModal from '../AnimateModal';
 import Item from '../Item';
 
-const { width, height } = Dimensions.get('window');
+const window = Dimensions.get('window');
+const screenWidth = window.width;
+const screenHeight = window.height;
 const { Shape, Path, Surface } = ART;
 
 export default class PopMenu extends UIComponent {
@@ -52,7 +54,7 @@ export default class PopMenu extends UIComponent {
     // 三角形的宽
     triangleWidth: PropTypes.number,
     // PopMenu 出现的位置
-    placement: PropTypes.oneOf(['top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight', 'left', 'leftTop', 'leftBottom', , 'right', 'rightTop', 'rightBottom']),
+    placement: PropTypes.oneOf(['top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom']),
     // PopMenu 距离 trigger 的边距
     offset: PropTypes.number,
     // 是否能点击遮罩关闭 PopMenu
@@ -83,8 +85,8 @@ export default class PopMenu extends UIComponent {
       const _state = {
         // 容器左上角点在屏幕中的位置
         original: {
-          X: pageX % width,
-          Y: pageY % height,
+          X: pageX % screenWidth,
+          Y: pageY % screenHeight,
         },
         // 容器的宽高
         triggerSize: {

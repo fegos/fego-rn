@@ -323,7 +323,7 @@ export default class JBRefreshBaseView extends Component {
       this.topOrBottomStatus = 'content';
     }
     // 回调
-    this.props.onScroll && this.props.onScroll(e);
+    if (this.props.onScroll) this.props.onScroll(e);
   }
   // 手指离开
   onScrollEndDrag = (e) => {
@@ -343,7 +343,7 @@ export default class JBRefreshBaseView extends Component {
     } else {
       this.topOrBottomStatus = 'content';
     }
-    this.props.onScrollEndDrag && this.props.onScrollEndDrag(e);
+    if (this.props.onScrollEndDrag) this.props.onScrollEndDrag(e);
   }
 
   setAndriodScrollable = (isEnable) => {
@@ -426,7 +426,7 @@ export default class JBRefreshBaseView extends Component {
       this.imageIndextimer = setInterval(() => {
         this.currentImageIndex--;
         if (this.currentImageIndex < 0) {
-          this.imageIndextimer && clearInterval(this.imageIndextimer);
+          if (this.imageIndextimer) clearInterval(this.imageIndextimer);
           this.imageIndextimer = null;
         } else {
           this.setImageIndex(this.currentImageIndex);
@@ -441,7 +441,7 @@ export default class JBRefreshBaseView extends Component {
       this.imageBottomIndextimer = setInterval(() => {
         this.currentBottomImageIndex--;
         if (this.currentBottomImageIndex < 0) {
-          this.imageBottomIndextimer && clearInterval(this.imageBottomIndextimer);
+          if (this.imageBottomIndextimer) clearInterval(this.imageBottomIndextimer);
           this.imageBottomIndextimer = null;
         } else {
           this.setImageIndex(this.currentBottomImageIndex);
