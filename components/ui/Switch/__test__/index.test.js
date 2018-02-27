@@ -1,41 +1,49 @@
-import React from 'react'
-import Renderer from 'react-test-renderer'
-import { shallow } from 'enzyme'
-import Switch from '../index'
+import React from 'react';
+import Renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
+import Switch from '../index';
 
 describe('Switch Tests', () => {
-	it('renders correctly', () => {
-		const tree = Renderer.create((
-			<Switch defaultActive={true} disabled={true} /> 
-		)).toJSON();
-		
-		expect(tree).toMatchSnapshot();
-	});
+  it('renders correctly', () => {
+    const tree = Renderer.create((<Switch
+      defaultActive
+      disabled
+    />
+    )).toJSON();
 
-	it('active state', () => {
-		let wrapper = shallow(<Switch defaultActive={true} /> );
-		expect(wrapper.instance().state.active).toBe(true);
-	});
+    expect(tree).toMatchSnapshot();
+  });
 
-	it('children length test', () => {
-		let wrapper = shallow(<Switch defaultActive={false} />);
-		expect(wrapper.children()).toHaveLength(2);
-	});
+  it('active state', () => {
+    const wrapper = shallow(<Switch defaultActive />);
+    expect(wrapper.instance().state.active).toBe(true);
+  });
 
-	it('press event', () => {
-		let handler = jest.fn();
-		let wrapper = shallow(<Switch active={false} onChange={handler} />);
-		expect(wrapper.instance().state.active).toBe(false);
+  it('children length test', () => {
+    const wrapper = shallow(<Switch defaultActive={false} />);
+    expect(wrapper.children()).toHaveLength(2);
+  });
 
-		wrapper.simulate('press');
-		// Switch 内部是依据 PanResponder 实现，PanResponder 需要组件 mount 才创建，因此此处不会调 onChange 回调
-		expect(handler).toHaveBeenCalledTimes(0);
-	});
+  it('press event', () => {
+    const handler = jest.fn();
+    const wrapper = shallow(<Switch
+      active={false}
+      onChange={handler}
+    />);
+    expect(wrapper.instance().state.active).toBe(false);
 
-	it('disabled Switch', () => {
-		let handler = jest.fn();
-		let wrapper = shallow(<Switch disabled={true} active={false} onChange={handler} />);
-		wrapper.simulate('press');
-		expect(handler).toHaveBeenCalledTimes(0);
-	});
-})
+    wrapper.simulate('press');
+    // Switch 内部是依据 PanResponder 实现，PanResponder 需要组件 mount 才创建，因此此处不会调 onChange 回调
+    expect(handler).toHaveBeenCalledTimes(0);
+  });
+
+  it('disabled Switch', () => {
+    const handler = jest.fn();
+    const wrapper = shallow(<Switch
+      disabled
+      active={false}
+      onChange={handler}
+    />);
+    wrapper.simulate('press'); expect(handler).toHaveBeenCalledTimes(0);
+  });
+});

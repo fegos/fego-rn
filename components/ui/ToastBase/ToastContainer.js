@@ -105,7 +105,7 @@ export default class ToastConatiner extends UIComponent {
     const {
       type = '', content, mask, modal, iconFamily, iconTypes, offsetY, loadingColor,
     } = this.props;
-    console.log('mask: ', mask);
+    // console.log('mask: ', mask);
     let iconDom = null;
     let contentDom = content;
     if (type === 'loading') {
