@@ -37,7 +37,9 @@ export default class Month extends Component {
 
   onPressDay = (year, month, date) => {
     const { onChange } = this.props;
-    onChange instanceof Function && onChange(year, month, date);
+    if (onChange instanceof Function) {
+      onChange(year, month, date);
+    }
   }
 
   _renderCalendarDay() {

@@ -45,9 +45,11 @@ export default class MonthPicker extends UIComponent {
 
     for (let i = startYear; i <= nowYear; i++) {
       for (let j = 1; j <= 12; j++) {
-        if (i === startYear && j < startMonth) continue;
-        else if (i === nowYear && j > nowMonth) continue;
-        else {
+        if (i === startYear && j < startMonth) {
+          // continue
+        } else if (i === nowYear && j > nowMonth) {
+          // continue
+        } else {
           // 格式化月份数据
           j = (j < 10 ? '0' : '') + j;
           const label = MonthPicker.format(i, j);
@@ -164,7 +166,14 @@ export default class MonthPicker extends UIComponent {
           >
 
             {this.months.map((m, i) => (
-              <TouchableOpacity onPress={this._onSelect.bind(this, m, i)} key={m.value}>
+              <TouchableOpacity
+                onPress={
+                () => {
+                  this._onSelect(m, i);
+                }
+              }
+                key={m.value}
+              >
                 <View style={style.item}>
                   <Text style={[style.text, m.value === value && style.selectedText]}>{m.label}</Text>
                 </View>

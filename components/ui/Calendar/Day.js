@@ -102,7 +102,9 @@ export default class Day extends Component {
     const {
       onChange, year, month, date,
     } = this.props;
-    onChange instanceof Function && onChange(year, month, date);
+    if (onChange instanceof Function) {
+      onChange(year, month, date);
+    }
   }
 
   render() {

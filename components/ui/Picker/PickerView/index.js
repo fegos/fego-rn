@@ -92,7 +92,6 @@ class PickerView extends UIComponent {
     const cols = this._getChildrenLength(this.data[0]);
     this.cascade = cols !== 1;
     this.cols = this.cascade ? cols : this.data.length;
-    console.log('cascade:', this.cascade, '   cols:', this.cols);
   }
 
   /**
@@ -175,16 +174,20 @@ class PickerView extends UIComponent {
     cascadeData[0] = data.concat();
     const { cols } = this;
     let i = 0;
-    for (i = 0; i < cols; i++) {
-      let item = cascadeData[i][0];
+    const getItemData = (colCascadeData) => {
+      let item = colCascadeData[0];
       let index = 0;
-      cascadeData[i].map((d, ind) => {
+      colCascadeData.forEach((d, ind) => {
         if (d.value === initialValue[i]) {
           item = d;
           index = ind;
         }
       });
+      return { item, index };
+    };
 
+    for (i = 0; i < cols; i++) {
+      const { item, index } = getItemData(cascadeData[i]);
       if (item) {
         if (item.children) cascadeData.push(item.children);
         selectedIndex.push(index);
