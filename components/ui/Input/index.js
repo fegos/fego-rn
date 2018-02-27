@@ -92,12 +92,14 @@ export default class Input extends UIComponent {
   inited = false // 用于控制只在初始化时使用 defaultValue 或 value 对 this.value 进行赋值
   componentDidMount() {
     if (this.props.autoFocus || this.props.focused) {
-      this.refs.input.focus();
+      // this.refs.input.focus();
+      this.input.focus();
     }
   }
   componentDidUpdate() {
     if (this.props.focused) {
-      this.refs.input.focus();
+      // this.refs.input.focus();
+      this.input.focus();
     }
   }
   _format(text) {
@@ -121,13 +123,15 @@ export default class Input extends UIComponent {
         text = text.replace(/\D/g, '').replace(/(....)(?=.)/g, '$1 ');
         break;
       case 'phone':
-        text = text.replace(/\D/g, '');
-        text = text.substring(0, maxLength || 11);
-        const valueLen = text.length;
-        if (valueLen > 3 && valueLen < 8) {
-          text = `${text.substr(0, 3)} ${text.substr(3)}`;
-        } else if (valueLen >= 8) {
-          text = `${text.substr(0, 3)} ${text.substr(3, 4)} ${text.substr(7)}`;
+        {
+          text = text.replace(/\D/g, '');
+          text = text.substring(0, maxLength || 11);
+          const valueLen = text.length;
+          if (valueLen > 3 && valueLen < 8) {
+            text = `${text.substr(0, 3)} ${text.substr(3)}`;
+          } else if (valueLen >= 8) {
+            text = `${text.substr(0, 3)} ${text.substr(3, 4)} ${text.substr(7)}`;
+          }
         }
         break;
       default:
@@ -145,15 +149,14 @@ export default class Input extends UIComponent {
       onChange(text, this);
     }
   }
-
+  /**
+   * this.value 才是维护的输入框的最新的输入内容，不应该是 this.props.value
+   * this.props.value 的话在使用受控属性 value 时是对的，
+   * 而在使用非受控属性 defaultValue 时，一般是不会传 value 这个属性的，此时this.props.value 为 undefined
+  */
   _onInputBlur = () => {
     if (this.props.onBlur) {
       // this.props.onBlur(this.props.value);
-      /**
-       * this.value 才是维护的输入框的最新的输入内容，不应该是 this.props.value
-       * this.props.value 的话在使用受控属性 value 时是对的，
-       * 而在使用非受控属性 defaultValue 时，一般是不会传 value 这个属性的，此时this.props.value 为 undefined
-       */
       this.props.onBlur(this.value);
     }
   }
@@ -167,10 +170,7 @@ export default class Input extends UIComponent {
   }
 
   _getKeyboardType() {
-    const {
-      type,
-      keyboardType,
-    } = this.props;
+    const { type, keyboardType } = this.props;
     if (keyboardType) return keyboardType;
     const keyboardTypeArray = ['default', 'email-address',
       'numeric', 'phone-pad', 'ascii-capable', 'numbers-and-punctuation',
@@ -293,7 +293,7 @@ export default class Input extends UIComponent {
 
     return (
       <TextInput
-        ref="input"
+        ref={(c) => { this.input = c; }}
         clearButtonMode={clear ? 'while-editing' : 'never'}
         underlineColorAndroid="transparent"
         {...valueProps}
@@ -310,9 +310,7 @@ export default class Input extends UIComponent {
   }
   render() {
     const { style } = this;
-    const {
-      last,
-    } = this.props;
+    const { last } = this.props;
     const InputEl = this._renderInput();
     const LabelEl = this._renderLabel();
     const ExtraEl = this._renderExtra();

@@ -16,18 +16,16 @@ export default class Page extends Component {
     return (
       <ScrollView style={Style.container}>
         <Text style={Style.title}>Input</Text>
-        <Input label="label标题" clear placeholder="带删除按钮，输入状态显示" />
+        <Input
+          label="label标题"
+          clear
+          placeholder="带删除按钮，输入状态显示"
+        />
         <Input
           label="错误状态"
           autoFocus
           error
           defaultValue="错误状态标红，且自动聚焦"
-          onFocus={() => {
-            // console.log('focus: ', v);
-          }}
-          onBlur={() => {
-            // console.log('blur: ', v);
-          }}
         />
         <Input
           label="正确示例"
@@ -38,15 +36,16 @@ export default class Page extends Component {
               inputValue1: v,
             });
           }}
-          onFocus={() => {
-            // console.log('focus: ', v);
-          }}
-          onBlur={() => {
-            // console.log('blur: ', v);
-          }}
         />
-        <Input label="自定义label宽度" labelStyle={{ width: 120, color: '#393' }} />
-        <Input label="标题" type="number" defaultValue="10000" extra="元" />
+        <Input
+          label="自定义label宽度"
+          labelStyle={{ width: 120, color: '#393' }}
+        />
+        <Input
+          label="标题"
+          type="number"
+          defaultValue="10000"
+        />
         <Input
           label="银行卡"
           type="bankCard"
@@ -63,9 +62,7 @@ export default class Page extends Component {
           type="phone"
           value={this.state.inputValue3}
           onChange={(v) => {
-            this.setState({
-              inputValue3: v,
-            });
+          this.setState({ inputValue3: v });
           }}
         />
         <Input defaultValue="输入域默认值，且无标题label" />

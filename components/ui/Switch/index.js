@@ -245,6 +245,18 @@ export default class NPSwitch extends UIComponent {
     const padding = borderRadius - style.bar.height / 2 + 1;
     const doublePadding = padding * 2 - 2;
     const halfPadding = doublePadding / 2;
+    let barStyle;
+    let btnStyle;
+    if (this.props.disabled) {
+      barStyle = style.barDisabled;
+      btnStyle = style.buttonDisabled;
+    } else if (this.state.active) {
+      barStyle = style.barActive;
+      btnStyle = this.state.pressed ? style.buttonPressActive : style.buttonActive;
+    } else {
+      barStyle = style.barInactive;
+      btnStyle = this.state.pressed ? style.buttonPressInactive : style.buttonInactive;
+    }
     return (
       <View
         {...this._panResponder.panHandlers}
@@ -257,8 +269,7 @@ export default class NPSwitch extends UIComponent {
       >
         <View style={[
             style.bar,
-            this.props.disabled ? style.barDisabled :
-            (this.state.active ? style.barActive : style.barInactive),
+            barStyle,
             { borderRadius: style.bar.height / 2 },
           ]}
         />
@@ -275,10 +286,7 @@ export default class NPSwitch extends UIComponent {
         >
           <Animated.View style={[
               style.button,
-              this.props.disabled ? style.buttonDisabled :
-              this.state.active ?
-              (this.state.pressed ? style.buttonPressActive : style.buttonActive) :
-              (this.state.pressed ? style.buttonPressInactive : style.buttonInactive),
+              btnStyle,
               {
                 height: borderRadius * 2,
                 width: borderRadius * 2,
