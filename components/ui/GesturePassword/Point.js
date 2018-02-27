@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Circle from './Circle';
@@ -55,53 +53,30 @@ export default class Point extends Component {
   render() {
     this._color = this.props.isWarning ? this.props.warningColor : (this.props.isActive ? this.props.activeColor : this.props.color);
 
-    return (<Circle
-      backgroundColor="transparent"
-      color={
-        this._color
-      }
-      radius={
-        this.props.radius
-      }
-      borderWidth={
-        this.props.isShowBorder ? 1 : 0
-      }
-      position={
-        this._outerCirclePosition
-      }
-    >
+    return (
       <Circle
-        isFill
-        color={
-        (this.props.isActive || this.props.isWarning) && !this.props.isNoChange ? this._color : 'transparent'
-      }
-        radius={
-        this._innerCircleRadius2
-      }
-        borderWidth={
-        this.props.borderWidth
-      }
-        position={
-        this._innerCirclePosition2
-      }
+        backgroundColor="transparent"
+        color={this._color}
+        radius={this.props.radius}
+        borderWidth={this.props.isShowBorder ? 1 : 0}
+        position={this._outerCirclePosition}
       >
       <Circle
         isFill
-        color={
-        this._color
-      }
-        radius={
-        this._innerCircleRadius
-      }
-        borderWidth={
-        this.props.borderWidth
-      }
-        position={
-        this._innerCirclePosition
-      }
+        color={(this.props.isActive || this.props.isWarning) && !this.props.isNoChange ? this._color : 'transparent'}
+        radius={this._innerCircleRadius2}
+        borderWidth={this.props.borderWidth}
+        position={this._innerCirclePosition2}
+      >
+      <Circle
+        isFill
+        color={this._color}
+        radius={this._innerCircleRadius}
+        borderWidth={this.props.borderWidth}
+        position={this._innerCirclePosition}
       />
       </Circle>
-            </Circle>
+      </Circle>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, Text } from 'react-native';
-import { Style } from '../../../common';
 import { Input } from 'fego-rn';
+import { Style } from '../../../common';
 
 export default class Page extends Component {
   static navigationOptions = {

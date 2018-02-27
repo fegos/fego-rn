@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { Style } from '../../../common';
+import { ScrollView } from 'react-native';
 import { Loading, Toast, Item } from 'fego-rn';
+import { Style } from '../../../common';
 
 export default class Page extends Component {
   loadingToast() {
     Loading.start();
-    setTimeout((e) => {
+    setTimeout(() => {
       Loading.stop();
       Toast.info('5秒后手动关闭了Loading', 1);
     }, 5000);
   }
   waitingToast() {
     Loading.startModal();
-    setTimeout((e) => {
+    setTimeout(() => {
       Loading.stop();
       Toast.info('5秒后手动关闭了Loading', 1);
     }, 5000);
@@ -21,7 +21,7 @@ export default class Page extends Component {
 
   waitingNomask() {
     Loading.startModal('处理中', false);
-    setTimeout((e) => {
+    setTimeout(() => {
       Loading.stop();
       Toast.info('5秒后手动关闭了Loading', 1);
     }, 5000);
@@ -41,14 +41,3 @@ export default class Page extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  text: {
-    color: '#333333',
-    flex: 1,
-  },
-  view: {
-    flexDirection: 'row',
-    marginTop: 10,
-  },
-});

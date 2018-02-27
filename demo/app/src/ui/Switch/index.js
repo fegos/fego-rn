@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, Text } from 'react-native';
-import { Style } from '../../../common';
 import { Item, Switch } from 'fego-rn';
+import { Style } from '../../../common';
 
 export default class Page extends Component {
   static navigationOptions = {
@@ -35,7 +35,7 @@ export default class Page extends Component {
           <Text>使用active则属于受控组件，组件状态由外部props控制</Text>
         </Item>
         <Item>
-          <Switch active={this.state.active1} onChange={active => this.setState({ active1: false })} />
+          <Switch active={this.state.active1} onChange={() => this.setState({ active1: false })} />
           <Text>错误的例子，需使用onChange更新</Text>
         </Item>
         <Item>

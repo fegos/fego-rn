@@ -429,9 +429,9 @@ _updateLine(
     segMentLines: [],
   });
   if (this.props.isHideLine) {
-    const dy = end.y - start.y;
-    const dx = end.x - start.x;
-    const len = Math.sqrt((dx * dx) + (dy * dy));
+    let dy = end.y - start.y;
+    let dx = end.x - start.x;
+    let len = Math.sqrt((dx * dx) + (dy * dy));
 
     const line = this._currentLine;
     // 更新线条
@@ -443,9 +443,9 @@ _updateLine(
       };
       if (endIsPointOrigin) {
         // 计算以end为中心的圆与point点之间的交点
-        const dx = start.x - end.x;
-        const dy = start.y - end.y;
-        const len = Math.sqrt(dx * dx + dy * dy);
+        dx = start.x - end.x;
+        dy = start.y - end.y;
+        len = Math.sqrt(dx * dx + dy * dy);
         end = {
           x: end.x + this._pointRadius * dx / len,
           y: end.y + this._pointRadius * dy / len,
@@ -493,7 +493,7 @@ _setToActive(point) {
 }
 
 _reset() {
-  const points = this.state.points.map((point, index) => {
+  const points = this.state.points.map((point) => {
     point.isActive = false;
     return point;
   });

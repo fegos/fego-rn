@@ -4,7 +4,7 @@
 // 26-4             x1-x2=|6 * outerRadius| && y1-y2=|6 * outerRadius|  gap=2
 
 function getLineDistance(start, end) {
-  return Math.sqrt(Math.pow(Math.abs(start.x - end.x), 2) + Math.pow(Math.abs(start.y - end.y), 2));
+  return Math.sqrt(Math.abs(start.x - end.x) ** 2 + Math.abs(start.y - end.y) ** 2);
 }
 
 export function isPointInPath(location, origin, radius) {
@@ -29,7 +29,7 @@ export function getLineTransform(start, end) {
   };
 }
 
-export function getArrowTransform(start, end, width, borderWidth, vertexDeg) {
+export function getArrowTransform(start, end, width, borderWidth) {
   const distance = getLineDistance(start, end);
   let rotateRad = Math.acos((end.x - start.x) / distance);
   if (start.y > end.y) {
@@ -56,17 +56,17 @@ export function getArrowTransform(start, end, width, borderWidth, vertexDeg) {
       translateX = -borderWidth * 1.5;
     }
   } else if (start.x > end.x && start.y > end.y) {
-    translateX = -Math.sqrt(Math.pow(borderWidth * 2.5, 2)) / 2;
-    translateY = -Math.sqrt(Math.pow(borderWidth * 2.5, 2)) / 2;
+    translateX = -Math.sqrt((borderWidth * 2.5) ** 2) / 2;
+    translateY = -Math.sqrt((borderWidth * 2.5) ** 2) / 2;
   } else if (start.x > end.x && end.y > start.y) {
-    translateX = -Math.sqrt(Math.pow(borderWidth * 2.5, 2)) / 2;
-    translateY = -Math.sqrt(Math.pow(borderWidth * 1.5, 2)) / 2;
+    translateX = -Math.sqrt((borderWidth * 2.5) ** 2) / 2;
+    translateY = -Math.sqrt((borderWidth * 1.5) ** 2) / 2;
   } else if (end.x > start.x && start.y > end.y) {
-    translateX = -Math.sqrt(Math.pow(borderWidth * 1.5, 2)) / 2;
-    translateY = -Math.sqrt(Math.pow(borderWidth * 2.5, 2)) / 2;
+    translateX = -Math.sqrt((borderWidth * 1.5) ** 2) / 2;
+    translateY = -Math.sqrt((borderWidth * 2.5) ** 2) / 2;
   } else {
-    translateX = -Math.sqrt(Math.pow(borderWidth * 1.5, 2)) / 2;
-    translateY = -Math.sqrt(Math.pow(borderWidth * 1.5, 2)) / 2;
+    translateX = -Math.sqrt((borderWidth * 1.5) ** 2) / 2;
+    translateY = -Math.sqrt((borderWidth * 2.5) ** 2) / 2;
   }
 
   return {
@@ -117,7 +117,7 @@ export function computerDistance(point1, point2, orgin) {
   // const C = x2 * y1 - x1 * y2;
 
   const distance = (Math.abs((y2 - y1) * x0 + (x1 - x2) * y0 + ((x2 * y1) - (x1 * y2)))) /
-    (Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x1 - x2, 2)));
+    (Math.sqrt((y2 - y1) ** 2 + (x1 - x2) ** 2));
 
   return distance;
 }
@@ -219,7 +219,7 @@ export function reSortArray(originArr, start, end) {
         return [crossPoint2, crossPoint1];
       }
     } else if (start.x === end.x) {
-      if (crossPoint1.point1.y < crossPoint1.point1.y) return originArr;
+      if (crossPoint1.point1.y < crossPoint2.point1.y) return originArr;
       else {
         return [crossPoint2, crossPoint1];
       }
