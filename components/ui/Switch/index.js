@@ -156,7 +156,7 @@ export default class NPSwitch extends UIComponent {
    */
   _swipe = (currentPosition, startingPosition, onActive, onInActive) => {
     if (currentPosition - startingPosition >= 0) { // 向右滑动
-      if (currentPosition - startingPosition > this.state.width / 2 || startingPosition == this.state.width) {
+      if (currentPosition - startingPosition > this.state.width / 2 || startingPosition === this.state.width) {
         onActive();
       } else {
         onInActive();
@@ -189,7 +189,11 @@ export default class NPSwitch extends UIComponent {
   }
 
   _performAnim = (active) => {
-    active ? this._activateAni() : this._deactivateAni();
+    if (active) {
+      this._activateAni();
+    } else {
+      this._deactivateAni();
+    }
   }
 
   /**
@@ -213,7 +217,9 @@ export default class NPSwitch extends UIComponent {
     } else if (active === newActive) {
       this._performAnim(newActive);
     }
-    onChange && onChange(newActive, this);
+    if (onChange) {
+      onChange(newActive, this);
+    }
   }
   _changeActiveOn = () => {
     this._changeActive(true);

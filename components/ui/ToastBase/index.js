@@ -3,7 +3,7 @@ import AppContainer from '../AppContainer';
 import ToastContainer from './ToastContainer';
 
 const topViewKey = 'toast';
-const hide = function () {
+const hide = () => {
   AppContainer.remove(topViewKey);
 };
 const notice = (content, opt) => {

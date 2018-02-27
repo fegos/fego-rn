@@ -51,8 +51,11 @@ export default class Point extends Component {
   }
 
   render() {
-    this._color = this.props.isWarning ? this.props.warningColor : (this.props.isActive ? this.props.activeColor : this.props.color);
-
+    // this._color = this.props.isWarning ? this.props.warningColor : (this.props.isActive ? this.props.activeColor : this.props.color);
+    this._color = this.props.warningColor;
+    if (!this.props.isWarning) {
+      this._color = this.props.isActive ? this.props.activeColor : this.props.color;
+    }
     return (
       <Circle
         backgroundColor="transparent"

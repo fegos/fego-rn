@@ -22,11 +22,11 @@ export default class Page extends Component {
           autoFocus
           error
           defaultValue="错误状态标红，且自动聚焦"
-          onFocus={(v) => {
-            console.log('focus: ', v);
+          onFocus={() => {
+            // console.log('focus: ', v);
           }}
-          onBlur={(v) => {
-            console.log('blur: ', v);
+          onBlur={() => {
+            // console.log('blur: ', v);
           }}
         />
         <Input
@@ -38,11 +38,11 @@ export default class Page extends Component {
               inputValue1: v,
             });
           }}
-          onFocus={(v) => {
-            console.log('focus: ', v);
+          onFocus={() => {
+            // console.log('focus: ', v);
           }}
-          onBlur={(v) => {
-            console.log('blur: ', v);
+          onBlur={() => {
+            // console.log('blur: ', v);
           }}
         />
         <Input label="自定义label宽度" labelStyle={{ width: 120, color: '#393' }} />

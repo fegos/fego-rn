@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
-import { Style } from '../../../common';
+import { ScrollView, View } from 'react-native';
 import { Toast, Item, Button, Tag } from 'fego-rn';
+import { Style } from '../../../common';
 
 export default class Page extends Component {
   showToast() {
@@ -19,7 +19,7 @@ export default class Page extends Component {
   callbackToast() {
     Toast.info('动画结束后执行回调，显示执行回调', 2, {
       onClose: () => {
-        console.log('回调执行');
+        // console.log('回调执行');
         setImmediate(() => {
           Toast.info('回调执行');
         });
@@ -28,11 +28,11 @@ export default class Page extends Component {
   }
   multToast() {
     Toast.info('第一个持续3秒，2秒后触发下一个', 3);
-    setTimeout((e) => {
+    setTimeout(() => {
       Toast.info('第二个持续10秒，2秒后触发下一个 ', 10);
-      setTimeout((e) => {
+      setTimeout(() => {
         Toast.info('第三个持续2秒，4秒后触发下一个 ', 2);
-        setTimeout((e) => {
+        setTimeout(() => {
           Toast.info('第四个持续5秒，结束', 5);
         }, 4000);
       }, 2000);
@@ -49,19 +49,19 @@ export default class Page extends Component {
         <Item onPress={this.callbackToast} title="带回调函数的Toast" />
         <Item onPress={this.multToast} title="多Toast连续触发" />
         <Item
-          onPress={(e) => {
+          onPress={() => {
             Toast.show(<View style={{ backgroundColor: '#F1AAAA', justifyContent: 'center' }}>
-              <Button title="按钮" style={{ marginBottom: 5 }} />
-              <Tag text="标签" />
-            </View>, {
-                duration: 2,
-                styles: {
-                  inner: {
-                    padding: 10,
-                    backgroundColor: '#F1AAAA',
-                  },
-                },
-              });
+                        <Button title="按钮" style={{ marginBottom: 5 }} />
+                        <Tag text="标签" />
+                       </View>, {
+                          duration: 2,
+                          styles: {
+                            inner: {
+                              padding: 10,
+                              backgroundColor: '#F1AAAA',
+                            },
+                          },
+                        });
           }}
           title="自定义内容"
         />
@@ -69,14 +69,3 @@ export default class Page extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  text: {
-    color: '#333333',
-    flex: 1,
-  },
-  view: {
-    flexDirection: 'row',
-    marginTop: 10,
-  },
-});
