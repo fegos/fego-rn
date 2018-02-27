@@ -45,6 +45,7 @@ export default class Page extends Component {
           label="标题"
           type="number"
           defaultValue="10000"
+          extra="元"
         />
         <Input
           label="银行卡"

@@ -213,9 +213,7 @@ export default class Input extends UIComponent {
     let extraChildren;
     if (typeof extra === 'undefined') return null;
     if (typeof extra === 'string') {
-      extraChildren = (
-        <Text style={style.extra}> {extra}</Text>
-      );
+      extraChildren = (<Text style={style.extra}>{extra}</Text>);
     } else if (React.isValidElement(extra)) {
       extraChildren = extra;
     }
@@ -223,7 +221,7 @@ export default class Input extends UIComponent {
     if (extraChildren) {
       return (
         <TouchableWithoutFeedback onPress={onExtraClick}>
-          <View > {extraChildren}</View>
+          <View>{extraChildren}</View>
         </TouchableWithoutFeedback>
       );
     }
