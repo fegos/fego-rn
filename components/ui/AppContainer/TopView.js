@@ -7,6 +7,18 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { RNMessage } from '../../common';
 
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    // 解决安卓端问题：无内容但界面不可点击
+    backgroundColor: 'rgba(0,0,0,0)',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+});
+
 export default class TopView extends Component {
   state = {
     views: [],
@@ -76,15 +88,3 @@ export default class TopView extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    // 解决安卓端问题：无内容但界面不可点击
-    backgroundColor: 'rgba(0,0,0,0)',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-});
