@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, StyleSheet } from 'react-native';
-import { Style } from '../../../common';
 import { Icon, Item } from 'fego-rn';
+import { Style } from '../../../common';
+
+const localStyle = StyleSheet.create({
+  text: {
+    color: '#D8B080',
+    fontSize: 16,
+    flex: 1,
+  },
+});
 
 class Example extends Component {
   static navigationOptions = {
@@ -43,13 +51,5 @@ class Example extends Component {
     );
   }
 }
-
-const localStyle = StyleSheet.create({
-  text: {
-    color: '#D8B080',
-    fontSize: 16,
-    flex: 1,
-  },
-});
 
 export default Example;

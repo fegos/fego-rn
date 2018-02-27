@@ -42,10 +42,20 @@ export default class Page extends Component {
         <Button type="primary" title="下一个Popup" onPress={() => this._popShow()} />
       </View>
     );
+    let direct = '';
+    if (this.popNum > 1) {
+      if (this.popNum % 2 > 0) {
+        direct = 'right';
+      } else {
+        direct = 'left';
+      }
+    } else {
+      direct = 'bottom';
+    }
     Popup.show(SelfView, {
       title: `第 ${this.popNum} 个Popup`,
       headerLeft: this.popNum > 1,
-      aniIn: this.popNum > 1 ? (this.popNum % 2 > 0 ? 'right' : 'left') : 'bottom',
+      aniIn: direct,
       // 退出方向可以自定义
       aniOutFn: type => (type === 'headerLeft' ? null : 'bottom'),
       onClose: (type) => {

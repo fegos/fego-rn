@@ -173,7 +173,7 @@ export default class Popup extends UIComponent {
     this.aniOpacity = Animated.timing(this.state.opacity, {
       toValue: this._getOpacity(visible),
       duration: this.props.aniTime,
-    }).start(function () {
+    }).start(() => {
       this.aniOpacity = null;
     });
   }

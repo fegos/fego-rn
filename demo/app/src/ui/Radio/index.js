@@ -26,7 +26,7 @@ export default class Page extends Component {
               });
             }}
           >受控组件：使用checked
-            </Radio>
+          </Radio>
         </Item>
         <Item>
           <Radio disabled>disabled</Radio>
