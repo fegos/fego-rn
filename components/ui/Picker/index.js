@@ -158,11 +158,7 @@ class Picker extends UIComponent {
             />
           ) : (
               <DatePicker
-                ref={(pw) => {
-                  if (pw) {
-                    this._pickerView = pw.refs.pw1.refs.pw2;
-                  }
-                }}
+                dataPickRef={(el) => { this._pickerView = el; }}
                 {...this.props}
                 mode={this.props.datePickerMode}
                 initialValue={this.props.defaultDateValue}

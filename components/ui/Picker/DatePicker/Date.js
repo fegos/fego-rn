@@ -342,12 +342,12 @@ export default class DatePicker extends UIComponent {
   render() {
     // 在constructor里面处理了initialValue，这里取出initialValue防止传递给下面
     const {
-      maskClosable, visible, initialValue, mode, minDate, maxDate, minuteStep, ...rest
+      maskClosable, visible, initialValue, mode, minDate, maxDate, minuteStep, pickRef, ...rest
     } = this.props;
     this._dateModeData();
     return (
       <PickerView
-        ref="pw2"
+        ref={pickRef}
         {...rest}
         data={this.renderData}
         visible={visible}

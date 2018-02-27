@@ -63,16 +63,16 @@ export default class DatePicker extends UIComponent {
   }
 
   render() {
-    const { mode } = this.props;
+    const { mode, dataPickRef } = this.props;
     const callbacks = {
       onChange: this._onChange,
     };
 
     switch (mode) {
       case 'date':
-        return <DateModePicker ref="pw1" {...this.props} {...callbacks} />;
+        return <DateModePicker pickRef={dataPickRef} {...this.props} {...callbacks} />;
       case 'time':
-        return <TimeModePicker ref="pw1" {...this.props} {...callbacks} />;
+        return <TimeModePicker timeRef={dataPickRef} {...this.props} {...callbacks} />;
       default:
         return null;
     }
