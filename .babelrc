@@ -1,14 +1,18 @@
 {
-  "presets": ["react-native"],
+  "presets": [
+    "react-native"
+  ],
   "plugins": [
     [
       "module-resolver",
       {
         "cwd": "babelrc",
-        "root": ["./"],
+        "root": [
+          "./"
+        ],
         "alias": {
-		  "fego-rn": "./components",
-		  "common": "./components/common"
+          "fego-rn": "./components",
+          "common": "./components/common"
         }
       }
     ]

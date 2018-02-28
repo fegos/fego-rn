@@ -324,9 +324,10 @@ class Tabs extends UIComponent {
       if (compose && !((showedSceneKeys.indexOf(idx) >= 0) || (idx === curPageIdx))) {
         realChild = <View tab={child.props.tab} />;
       }
+      const key = `sc${idx}`;
       return (
         <SceneComponent
-          key={idx}
+          key={key}
           shouldUpdated={this._shouldRenderSceneKey(idx, curPageIdx)}
           style={{ width: containerWidth }}
         >
