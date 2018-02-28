@@ -17,31 +17,18 @@
     "no-plusplus": [0],
     "no-mixed-operators": [0],
     "no-unused-expressions": [1],
+    "no-restricted-properties": [0],
     "class-methods-use-this": [0],
-    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
-    "react/prefer-stateless-function": [0],
-    "react/prop-types": [0],
-    "react/jsx-indent": [0],
-    "react/sort-comp": [0],
-    "react/no-multi-comp": [0],
-    "react/forbid-prop-types": [0],
-    "react/no-array-index-key": [0],
-    "react/jsx-wrap-multilines": [2, {
-      "declaration": "parens-new-line",
-      "assignment": "parens-new-line",
-      "return": "parens-new-line",
-      "arrow": "parens-new-line",
-      "condition": "parens-new-line",
-      "logical": "parens-new-line",
-      "prop": "ignore"
-    }],
-    "import/no-extraneous-dependencies": [0],
     "import/extensions": [0],
     "import/no-unresolved": [0],
-    "import/prefer-default-export": [0],
+    "import/no-extraneous-dependencies": [0],
     "jsx-a11y/no-static-element-interactions": [0],
     "jsx-a11y/no-noninteractive-element-interactions": [0],
     "jsx-a11y/click-events-have-key-events": [0],
-    "jsx-a11y/anchor-is-valid": [0]
+    "jsx-a11y/interactive-supports-focus": [0],
+    "react/prop-types": [0],
+    "react/no-direct-mutation-state": [2],
+    "react/jsx-no-target-blank": [0],
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }]
   }
 }
