@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View } from 'react-native';
 
-export default class TabPane extends Component {
+export default class TabPane extends PureComponent {
   render() {
     const { children, style = { flex: 1 }, ...rets } = this.props;
     return (

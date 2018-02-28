@@ -9,16 +9,17 @@ describe('Dialog Tests', () => {
   let handler;
   beforeEach(() => {
     handler = jest.fn();
-    Comp = (<Dialog
-      title="标题"
-      visible
-      animateAppear={false}
-      onClose={handler}
-    >
-      <View>
-        <Text>简单对话框</Text>Ï
-      </View>
-            </Dialog>
+    Comp = (
+      <Dialog
+        title="标题"
+        visible
+        animateAppear={false}
+        onClose={handler}
+      >
+        <View>
+          <Text>简单对话框</Text>Ï
+        </View>
+      </Dialog>
     );
   });
 
@@ -29,10 +30,12 @@ describe('Dialog Tests', () => {
 
   it('simple content test', () => {
     const wrapper = shallow(Comp);
-
-    expect(wrapper.contains(<View>
-                              <Text>简单对话框</Text>
-                            </View>)).toBe(true);
+    const targetView = (
+      <View>
+        <Text>简单对话框</Text>
+      </View>
+    );
+    expect(wrapper.contains(targetView)).toBe(true);
   });
 });
 

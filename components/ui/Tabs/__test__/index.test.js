@@ -27,9 +27,12 @@ describe('Tabs Tests', () => {
   });
 
   it('shallow function', () => {
-    const wrapper = shallow(<Tabs defaultActiveKey="0">
-      {content}
-                            </Tabs>);
+    const tabs = (
+      <Tabs defaultActiveKey="0">
+        {content}
+      </Tabs>
+    );
+    const wrapper = shallow(tabs);
 
     expect(wrapper.find(TabBar)).toHaveLength(1);
   });

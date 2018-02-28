@@ -30,7 +30,7 @@ export default class DefaultTabBar extends Component {
 
   static propTypes = {
     // tab 标签
-    tabs: PropTypes.array.isRequired,
+    tabs: PropTypes.arrayOf(PropTypes.any).isRequired,
     // 当前激活的 tab 在 tabs 数组中的下标
     activeIdx: PropTypes.number,
     // animated value, 用户控制下划线的位置

@@ -7,18 +7,21 @@ import Item from '../../Item';
 describe('PopMenu Tests', () => {
   it('renders correctly', () => {
     const content = [
-    <Item title="添加新朋友" iconName="user" />,
-    <Item iconName="user">
+      <Item title="添加新朋友" iconName="user" />,
+      <Item iconName="user">
         <Text>扫一扫</Text>
-    </Item>,
+      </Item>,
       <Item iconName="user"><View><Text>帮助</Text></View></Item>,
     ];
-    const tree = Renderer.create(<PopMenu
-      content={content}
-      placement="bottomLeft"
-    >
-      点我显示 popover 哦
-                                 </PopMenu>).toJSON();
+    const popMenu = (
+      <PopMenu
+        content={content}
+        placement="bottomLeft"
+      >
+        点我显示 popover 哦
+      </PopMenu>
+    );
+    const tree = Renderer.create(popMenu).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

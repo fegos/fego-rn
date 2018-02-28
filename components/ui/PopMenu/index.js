@@ -46,7 +46,7 @@ export default class PopMenu extends UIComponent {
     // PopMenu 标题
     title: PropTypes.node,
     // PopMenu 的内容
-    content: PropTypes.array,
+    content: PropTypes.arrayOf(PropTypes.any),
     // 控制PopMenu的三角形是否显示
     showTriangle: PropTypes.bool,
     // 三角形的高

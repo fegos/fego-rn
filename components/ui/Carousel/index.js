@@ -48,9 +48,9 @@ export default class Carousel extends UIComponent {
     // 子view种类
     childrenType: PropTypes.oneOf(['image', 'custom']),
     // 图片尺寸
-    size: PropTypes.object,
+    size: PropTypes.objectOf(PropTypes.number),
     // 图片资源
-    source: PropTypes.array,
+    source: PropTypes.arrayOf(PropTypes.any),
     // 非受控属性，初始从第几张开始显示
     defaultPage: PropTypes.number,
     // 显示方向

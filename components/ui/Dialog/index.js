@@ -52,7 +52,7 @@ export default class Dialog extends UIComponent {
     // 关闭
     onClose: PropTypes.func,
     // 底部按钮数组
-    footer: PropTypes.array,
+    footer: PropTypes.arrayOf(PropTypes.node),
     // 是否全屏
     fullScreen: PropTypes.bool,
     // 是否使用动画
@@ -172,10 +172,10 @@ export default class Dialog extends UIComponent {
       } else {
         borderBottomLeftRadius = i === footer.length - 1 ? borderRadius : 0;
       }
-
+      const key = `th${i}`;
       return (
         <TouchableHighlight
-          key={i}
+          key={key}
           style={[horizontalFlex, {
             /* 修复安卓按钮按住高亮时，若容器有圆角，边角仍然溢出的bug */
             borderBottomLeftRadius,

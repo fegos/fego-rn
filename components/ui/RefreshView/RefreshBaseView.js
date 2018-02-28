@@ -80,8 +80,8 @@ export default class JBRefreshBaseView extends Component {
     // 是否有loadmore
     useLoadMore: PropTypes.bool.isRequired,
     // 自定义的上下拉刷新gif
-    pullImageView: PropTypes.array,
-    loadMoreView: PropTypes.array,
+    pullImageView: PropTypes.arrayOf(PropTypes.any),
+    loadMoreView: PropTypes.arrayOf(PropTypes.any),
   }
 
   constructor(props) {
@@ -141,6 +141,47 @@ export default class JBRefreshBaseView extends Component {
     });
     // this.setFlag(defaultFlag); //默认flag
   }
+
+  // 手指离开
+  onScrollEndDrag = (e) => {
+    // 获取target做后续处理，判断当前是上拉下拉
+    const target = e.nativeEvent;
+    const offsetY = target.contentOffset.y;
+    const scrollContentHeight = target.contentSize.height;
+    const scrollHeight = target.layoutMeasurement.height;
+    const mixOffset = scrollContentHeight - scrollHeight;
+
+    if (offsetY <= 0) {
+      this.topOrBottomStatus = 'top';
+      this.scroll.scrollTo({ x: 0, y: 0, animated: false });
+    } else if (this.props.useLoadMore && offsetY >= mixOffset) {
+      this.topOrBottomStatus = 'bottom';
+      this.scroll.scrollToEnd({ animated: false });
+    } else {
+      this.topOrBottomStatus = 'content';
+    }
+    if (this.props.onScrollEndDrag) this.props.onScrollEndDrag(e);
+  }
+
+  // scrollview滑动函数，enable状态和scrollto是会调用此方法
+  onScroll = (e) => {
+    const target = e.nativeEvent;
+    const offsetY = target.contentOffset.y;
+    const scrollContentHeight = target.contentSize.height;
+    const scrollHeight = target.layoutMeasurement.height;
+    const mixOffset = scrollContentHeight - scrollHeight;
+    // 当到达底部和顶部时，禁止scrollview继续滑动
+    if (offsetY <= (0 + config.blurSize)) {
+      this.topOrBottomStatus = 'top';
+    } else if (this.props.useLoadMore && offsetY >= (mixOffset - config.blurSize)) {
+      this.topOrBottomStatus = 'bottom';
+    } else {
+      this.topOrBottomStatus = 'content';
+    }
+    // 回调
+    if (this.props.onScroll) this.props.onScroll(e);
+  }
+
   /**
   * EventCaptureHandle
   */
@@ -153,10 +194,10 @@ export default class JBRefreshBaseView extends Component {
   _onPanResponderStart = () => {
   }
   _onPanResponderEnd = () => {
-    this.setAndriodScrollable(true);
+    this._setAndriodScrollable(true);
   }
   _onPanResponderReject = () => {
-    this.setAndriodScrollable(true);
+    this._setAndriodScrollable(true);
   }
   _onPanResponderTerminationRequest = () => {
     if (this.isLoadState() || this.isPullState()) {
@@ -185,19 +226,19 @@ export default class JBRefreshBaseView extends Component {
 
     if (isUpGesture(gesture.dx, gesture.dy)) { // 上拉
       if (this.props.useLoadMore && this.topOrBottomStatus === 'bottom') { // 当前已经在底部
-        this.setAndriodScrollable(false);
+        this._setAndriodScrollable(false);
         return true;
       } else { // 不在底部
-        this.setAndriodScrollable(true);
+        this._setAndriodScrollable(true);
         return false;
       }
     }
     if (isDownGesture(gesture.dx, gesture.dy)) { // 下拉
       if (this.topOrBottomStatus === 'top') { // 在顶部则响应，scrollview关闭滚动
-        this.setAndriodScrollable(false);
+        this._setAndriodScrollable(false);
         return true;
       } else {
-        this.setAndriodScrollable(true);
+        this._setAndriodScrollable(true);
         return false;
       }
     }
@@ -228,7 +269,7 @@ export default class JBRefreshBaseView extends Component {
             imageBottomIndex = (imageBottomIndex > (this.imageBottomViewArray.length - 1)) ? this.imageBottomViewArray.length - 1 : imageBottomIndex;
             this.imageBottomIndex = imageBottomIndex;
             // 使用setnativeprops解决卡顿问题
-            this.setBottomImageIndex(imageBottomIndex);
+            this._setBottomImageIndex(imageBottomIndex);
           }
           if (gestureDy > -this.bottomIndicatorHeight) { // 正在上拉，没到位置
             if (!this.flag.loading) {
@@ -257,14 +298,14 @@ export default class JBRefreshBaseView extends Component {
             imageIndex = (imageIndex > (this.imageViewArray.length - 1)) ? this.imageViewArray.length - 1 : imageIndex;
             // 使用setnativeprops解决卡顿问题
             this.imageIndex = imageIndex;
-            this.setImageIndex(imageIndex);
+            this._setImageIndex(imageIndex);
           }
           if (gestureDy < this.topIndicatorHeight) { // 正在下拉
             if (!this.flag.pulling) {
-              this.setFlag(flagPulling);
+              this._setFlag(flagPulling);
             }
           } else if (!this.flag.pullok) {
-            this.setFlag(flagPullok);
+            this._setFlag(flagPullok);
           }
         }
       }
@@ -285,7 +326,7 @@ export default class JBRefreshBaseView extends Component {
           this.props.onRefresh(this);
         }
       }
-      this.setFlag(flagPullrelease); // 完成下拉，已松开
+      this._setFlag(flagPullrelease); // 完成下拉，已松开
 
       // 动画回到正在刷新位置
       this.refreshingStatus();
@@ -304,51 +345,13 @@ export default class JBRefreshBaseView extends Component {
           setTimeout(() => { this.resolveHandler(); }, 3000);
         }
       }
-      this.setFlag(flagLoadrelease); // 完成下拉，已松开
+      this._setFlag(flagLoadrelease); // 完成下拉，已松开
       this.loadingStatus();
     }
-    this.setAndriodScrollable(true);
-  }
-  // scrollview滑动函数，enable状态和scrollto是会调用此方法
-  onScroll = (e) => {
-    const target = e.nativeEvent;
-    const offsetY = target.contentOffset.y;
-    const scrollContentHeight = target.contentSize.height;
-    const scrollHeight = target.layoutMeasurement.height;
-    const mixOffset = scrollContentHeight - scrollHeight;
-    // 当到达底部和顶部时，禁止scrollview继续滑动
-    if (offsetY <= (0 + config.blurSize)) {
-      this.topOrBottomStatus = 'top';
-    } else if (this.props.useLoadMore && offsetY >= (mixOffset - config.blurSize)) {
-      this.topOrBottomStatus = 'bottom';
-    } else {
-      this.topOrBottomStatus = 'content';
-    }
-    // 回调
-    if (this.props.onScroll) this.props.onScroll(e);
-  }
-  // 手指离开
-  onScrollEndDrag = (e) => {
-    // 获取target做后续处理，判断当前是上拉下拉
-    const target = e.nativeEvent;
-    const offsetY = target.contentOffset.y;
-    const scrollContentHeight = target.contentSize.height;
-    const scrollHeight = target.layoutMeasurement.height;
-    const mixOffset = scrollContentHeight - scrollHeight;
-
-    if (offsetY <= 0) {
-      this.topOrBottomStatus = 'top';
-      this.scroll.scrollTo({ x: 0, y: 0, animated: false });
-    } else if (this.props.useLoadMore && offsetY >= mixOffset) {
-      this.topOrBottomStatus = 'bottom';
-      this.scroll.scrollToEnd({ animated: false });
-    } else {
-      this.topOrBottomStatus = 'content';
-    }
-    if (this.props.onScrollEndDrag) this.props.onScrollEndDrag(e);
+    this._setAndriodScrollable(true);
   }
 
-  setAndriodScrollable = (isEnable) => {
+  _setAndriodScrollable = (isEnable) => {
     // 安卓如果不设定scrollable为false，则下拉上下无法拉动
     this.scroll.setNativeProps({ scrollEnabled: isEnable });
     // (Platform.OS != 'ios') && this.scroll.setNativeProps({ scrollEnabled: isEnable });
@@ -356,7 +359,7 @@ export default class JBRefreshBaseView extends Component {
   // 状态判断函数
   isPullState = () => this.flag.pulling || this.flag.pullok || this.flag.pullrelease
   isLoadState = () => this.flag.loading || this.flag.loadok || this.flag.loadrelease
-  setFlag = (flag) => {
+  _setFlag = (flag) => {
     if (this.flag !== flag) {
       this.flag = flag;
       if (this.props.refreshType === 'text') {
@@ -382,12 +385,12 @@ export default class JBRefreshBaseView extends Component {
   resolveHandler = () => {
     // if (this.flag.pullrelease && this.flag.loadrelease) { //仅触摸松开时才触发
     this.resetPosition();
-    this.resetImageIndex();
+    this.re_setImageIndex();
     // }
   }
   // 恢复默认位置
   resetPosition = () => {
-    this.setFlag(defaultFlag);
+    this._setFlag(defaultFlag);
     Animated.timing(this.state.pullPan, {
       toValue: this.defaultXY,
       easing: Easing.linear,
@@ -395,7 +398,7 @@ export default class JBRefreshBaseView extends Component {
     }).start();
     this.clearTimers();
   }
-  setImageIndex = (index) => {
+  _setImageIndex = (index) => {
     if (this._refs[`topImage${index}`]) {
       for (let i = 1; i < this.imageViewArray.length; i++) {
         if (i === index) {
@@ -406,7 +409,7 @@ export default class JBRefreshBaseView extends Component {
       }
     }
   }
-  setBottomImageIndex = (index) => {
+  _setBottomImageIndex = (index) => {
     if (this._refs[`bottomImage${index}`]) {
       for (let i = 1; i < this.imageBottomViewArray.length; i++) {
         if (i === index) {
@@ -431,7 +434,7 @@ export default class JBRefreshBaseView extends Component {
           if (this.imageIndextimer) clearInterval(this.imageIndextimer);
           this.imageIndextimer = null;
         } else {
-          this.setImageIndex(this.currentImageIndex);
+          this._setImageIndex(this.currentImageIndex);
         }
       }, eachDuration / 2);
     }
@@ -446,7 +449,7 @@ export default class JBRefreshBaseView extends Component {
           if (this.imageBottomIndextimer) clearInterval(this.imageBottomIndextimer);
           this.imageBottomIndextimer = null;
         } else {
-          this.setImageIndex(this.currentBottomImageIndex);
+          this._setImageIndex(this.currentBottomImageIndex);
         }
       }, eachDuration / 2);
     }
@@ -468,7 +471,7 @@ export default class JBRefreshBaseView extends Component {
       duration: 300,
     }).start();
   }
-  onLayout = (e) => {
+  _onLayout = (e) => {
     if (this.state.width !== e.nativeEvent.layout.width || this.state.height !== e.nativeEvent.layout.height) {
       this.scrollContainer.setNativeProps({ style: { width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height } });
       this.width = e.nativeEvent.layout.width;
@@ -480,7 +483,7 @@ export default class JBRefreshBaseView extends Component {
     this.loopCount++;
     if (this.loopCount < this.imageViewArray.length) {
       this.imageIndex = this.loopCount;
-      this.setImageIndex(this.loopCount);
+      this._setImageIndex(this.loopCount);
     } else {
       this.loopCount = 0;
     }
@@ -489,7 +492,7 @@ export default class JBRefreshBaseView extends Component {
     this.loopBottomCount++;
     if (this.loopBottomCount < this.imageBottomViewArray.length) {
       this.imageBottomIndex = this.loopBottomCount;
-      this.setBottomImageIndex(this.loopBottomCount);
+      this._setBottomImageIndex(this.loopBottomCount);
       // this.setState({
       //  imageBottomIndex: this.loopBottomCount,
       // });
@@ -508,29 +511,6 @@ export default class JBRefreshBaseView extends Component {
     this.loopBottomCount = 0;
   }
 
-  renderNormalContent() {
-    // let type = this.props.styleType + '_pulling';
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        {
-          this.imageViewArray.map((value, index) => (
-            <Image
-              source={value}
-              ref={(el) => { this._refs[`topImage${index}`] = el; }}
-              key={index}
-              style={{
-                opacity: 0.0,
-                position: 'absolute',
-                width: 100,
-                height: 10,
-              }}
-              resizeMode="contain"
-            />
-          ))
-        }
-      </View>
-    );
-  }
   rendeTextContent() {
     const contents = [];
 
@@ -542,29 +522,7 @@ export default class JBRefreshBaseView extends Component {
   rendeCustomContent() {
     return this.props.customView;
   }
-  renderBottomContent() {
-    // let type = this.props.styleType + '_loading';
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        {
-          this.imageBottomViewArray.map((value, index) => (
-            <Image
-              source={value}
-              ref={(el) => { this._refs[`bottomImage${index}`] = el; }}
-              key={index}
-              style={{
-                opacity: 0.0,
-                position: 'absolute',
-                width: 100,
-                height: 10,
-              }}
-              resizeMode="contain"
-            />
-          ))
-        }
-      </View>
-    );
-  }
+
   rendeTextBottomContent() {
     const contents = [];
     if (this.isLoadState()) {
@@ -574,6 +532,58 @@ export default class JBRefreshBaseView extends Component {
   }
   rendeCustomBottomContent() {
     return this.props.customBottomView;
+  }
+  renderNormalContent() {
+    // let type = this.props.styleType + '_pulling';
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        {
+          this.imageViewArray.map((value, index) => {
+            const key = `topImage${index}`;
+            return (
+              <Image
+                source={value}
+                ref={(el) => { this._refs[`topImage${index}`] = el; }}
+                key={key}
+                style={{
+                  opacity: 0.0,
+                  position: 'absolute',
+                  width: 100,
+                  height: 10,
+                }}
+                resizeMode="contain"
+              />
+            );
+          })
+        }
+      </View>
+    );
+  }
+  renderBottomContent() {
+    // let type = this.props.styleType + '_loading';
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        {
+          this.imageBottomViewArray.map((value, index) => {
+            const key = `bottomImage${index}`;
+            return (
+              <Image
+                source={value}
+                ref={(el) => { this._refs[`bottomImage${index}`] = el; }}
+                key={key}
+                style={{
+                  opacity: 0.0,
+                  position: 'absolute',
+                  width: 100,
+                  height: 10,
+                }}
+                resizeMode="contain"
+              />
+            );
+          })
+        }
+      </View>
+    );
   }
 
   renderTopIndicator() {
@@ -598,7 +608,13 @@ export default class JBRefreshBaseView extends Component {
         height: this.topIndicatorHeight,
       }}
       >
-        {contents.map((item, index) => <View key={index}>{item}</View>)}
+        {contents.map((item, index) => {
+          const key = `item${index}`;
+          return (
+            <View key={key}>{item}</View>
+          );
+        })
+        }
       </View>
     );
   }
@@ -625,7 +641,12 @@ export default class JBRefreshBaseView extends Component {
         height: this.bottomIndicatorHeight,
       }}
       >
-        {contents.map((item, index) => <View key={index}>{item}</View>)}
+        {contents.map((item, index) => {
+          const key = `item${index}`;
+          return (
+            <View key={key}>{item}</View>
+          );
+        })}
       </View>
     );
   }
@@ -636,7 +657,7 @@ export default class JBRefreshBaseView extends Component {
         style={[{
           flex: 1, flexGrow: 1, flexDirection: 'column', zIndex: -999,
         }, this.props.style]}
-        onLayout={this.onLayout}
+        onLayout={this._onLayout}
       >
         <Animated.View
           ref={(animatedView) => { this.animatedView = animatedView; return animatedView; }}
