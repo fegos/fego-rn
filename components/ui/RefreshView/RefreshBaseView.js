@@ -101,6 +101,8 @@ export default class JBRefreshBaseView extends Component {
     this.imageIndex = 0; // 当前显示图片的index
     this.imageBottomIndex = 0; // bottom图面的index,图片可能不一样，需要分开处理
 
+    this._refs = {};
+
     this.state = {
       pullPan: new Animated.ValueXY(this.defaultXY), // animatedView操作属性
       flag: defaultFlag, // 当前的上下拉刷新状态
@@ -394,23 +396,23 @@ export default class JBRefreshBaseView extends Component {
     this.clearTimers();
   }
   setImageIndex = (index) => {
-    if (this.refs[`topImage${index}`]) {
+    if (this._refs[`topImage${index}`]) {
       for (let i = 1; i < this.imageViewArray.length; i++) {
         if (i === index) {
-          this.refs[`topImage${index}`].setNativeProps({ style: { opacity: 1 } });
+          this._refs[`topImage${index}`].setNativeProps({ style: { opacity: 1 } });
         } else {
-          this.refs[`topImage${i}`].setNativeProps({ style: { opacity: 0 } });
+          this._refs[`topImage${i}`].setNativeProps({ style: { opacity: 0 } });
         }
       }
     }
   }
   setBottomImageIndex = (index) => {
-    if (this.refs[`bottomImage${index}`]) {
+    if (this._refs[`bottomImage${index}`]) {
       for (let i = 1; i < this.imageBottomViewArray.length; i++) {
         if (i === index) {
-          this.refs[`bottomImage${index}`].setNativeProps({ style: { opacity: 1 } });
+          this._refs[`bottomImage${index}`].setNativeProps({ style: { opacity: 1 } });
         } else {
-          this.refs[`bottomImage${i}`].setNativeProps({ style: { opacity: 0 } });
+          this._refs[`bottomImage${i}`].setNativeProps({ style: { opacity: 0 } });
         }
       }
     }
@@ -514,7 +516,7 @@ export default class JBRefreshBaseView extends Component {
           this.imageViewArray.map((value, index) => (
             <Image
               source={value}
-              ref={`topImage${index}`}
+              ref={(el) => { this._refs[`topImage${index}`] = el; }}
               key={index}
               style={{
                 opacity: 0.0,
@@ -548,7 +550,7 @@ export default class JBRefreshBaseView extends Component {
           this.imageBottomViewArray.map((value, index) => (
             <Image
               source={value}
-              ref={`bottomImage${index}`}
+              ref={(el) => { this._refs[`bottomImage${index}`] = el; }}
               key={index}
               style={{
                 opacity: 0.0,
