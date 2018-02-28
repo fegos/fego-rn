@@ -108,20 +108,6 @@ export default class UIComponent extends Component {
    */
   static autoStyleSheet = true
   /**
-   * 组件当前有效的样式
-   * 由 componentWillMount，componentWillReceiveProps 负责刷新style
-   * 若子类使用上面的钩子则需要先调用父类方法，如 super.componentWillReceiveProps
-   */
-  style = {}
-  /**
-   * 合并方法lodash/merge的引用
-   */
-  merge = merge
-  /**
-   * 缓存需要处理的样式类prop,命名规则 *Style
-   */
-  _propStyleArr = []
-  /**
    * 挂载前执行一次
    */
   componentWillMount() {
@@ -148,6 +134,20 @@ export default class UIComponent extends Component {
     if (nextState && !isEqual(nextState, this.state)) return true;
     return false;
   }
+  /**
+   * 组件当前有效的样式
+   * 由 componentWillMount，componentWillReceiveProps 负责刷新style
+   * 若子类使用上面的钩子则需要先调用父类方法，如 super.componentWillReceiveProps
+   */
+  style = {}
+  /**
+   * 合并方法lodash/merge的引用
+   */
+  merge = merge
+  /**
+   * 缓存需要处理的样式类prop,命名规则 *Style
+   */
+  _propStyleArr = []
   /**
    * 更新this.style，若有必要子类可调用该方法刷新style
    */
