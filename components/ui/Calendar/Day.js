@@ -40,7 +40,14 @@ export default class Day extends Component {
     notThisMonth: PropTypes.bool.isRequired,
   }
   static today = new Date()
-
+  onPress = () => {
+    const {
+      onChange, year, month, date,
+    } = this.props;
+    if (onChange instanceof Function) {
+      onChange(year, month, date);
+    }
+  }
 
   _isToday() {
     const { today } = Day;
@@ -98,15 +105,6 @@ export default class Day extends Component {
     }
   }
 
-  onPress = () => {
-    const {
-      onChange, year, month, date,
-    } = this.props;
-    if (onChange instanceof Function) {
-      onChange(year, month, date);
-    }
-  }
-
   render() {
     const { styles } = this.props;
     const { day, date } = this.props;
@@ -129,11 +127,11 @@ export default class Day extends Component {
               <Text style={[styles.dayText, styles.disabledText]}>{date}</Text>
             </View>
           ) : (
-              <TouchableOpacity onPress={this.onPress}>
-                <View style={[styles.dayInnerWrapper, isToday && styles.todayWrapper, isSelected && styles.selectedDayWrapper]}>
-                  <Text style={[styles.dayText, dayTextGrayG, isToday && styles.today, isSelected && styles.selectedDay]}>{date}</Text>
-                </View>
-              </TouchableOpacity>
+            <TouchableOpacity onPress={this.onPress}>
+              <View style={[styles.dayInnerWrapper, isToday && styles.todayWrapper, isSelected && styles.selectedDayWrapper]}>
+                <Text style={[styles.dayText, dayTextGrayG, isToday && styles.today, isSelected && styles.selectedDay]}>{date}</Text>
+              </View>
+            </TouchableOpacity>
             )
         }
         {isToday ? <Text style={[styles.todayText]}>今天</Text> : null}

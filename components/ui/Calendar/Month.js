@@ -31,16 +31,17 @@ export default class Month extends Component {
   }
 
 
-  _getDaysInMonth(month, year) {
-    return new Date(year, month + 1, 0).getDate();
-  }
-
   onPressDay = (year, month, date) => {
     const { onChange } = this.props;
     if (onChange instanceof Function) {
       onChange(year, month, date);
     }
   }
+
+  _getDaysInMonth(month, year) {
+    return new Date(year, month + 1, 0).getDate();
+  }
+
 
   _renderCalendarDay() {
     const { styles } = this.props;

@@ -56,11 +56,11 @@ class Picker extends UIComponent {
     // 'time' 模式下的时间间隔
     minuteStep: PropTypes.number,
     // dataPicker模式下传递的数据
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(PropTypes.any),
     // 非受控属性: picker 初始值
-    defaultValue: PropTypes.array,
+    defaultValue: PropTypes.arrayOf(PropTypes.any),
     // 受控属性: picker 的值，作为受控属性使用，一般情况不建议使用，主要用于解决datePicker里data和selectedValue不匹配的情况
-    value: PropTypes.array,
+    value: PropTypes.arrayOf(PropTypes.any),
     // 受控属性: 是否可见，受控属性，需配合 onClose 使用
     visible: PropTypes.bool,
     /* modal */
@@ -157,13 +157,13 @@ class Picker extends UIComponent {
               onReady={this._onPickerViewReady}
             />
           ) : (
-              <DatePicker
-                dataPickRef={(el) => { this._pickerView = el; }}
-                {...this.props}
-                mode={this.props.datePickerMode}
-                initialValue={this.props.defaultDateValue}
-                onChange={this._onChange}
-              />
+            <DatePicker
+              dataPickRef={(el) => { this._pickerView = el; }}
+              {...this.props}
+              mode={this.props.datePickerMode}
+              initialValue={this.props.defaultDateValue}
+              onChange={this._onChange}
+            />
             )}
 
         {/* footer */}

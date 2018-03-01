@@ -21,7 +21,7 @@ export default class MonthPicker extends UIComponent {
   }
   static propTypes = {
     // 内容，设置此属性可覆盖 MonthPicker 默认的选项
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(PropTypes.any),
     // 初始选中的值，默认选中最后一个
     initialValue: PropTypes.string,
     // 关闭回调

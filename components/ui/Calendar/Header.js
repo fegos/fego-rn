@@ -33,7 +33,7 @@ export default class Header extends Component {
     // 当前年
     year: PropTypes.number.isRequired,
     // 日历显示的月份文案
-    months: PropTypes.array.isRequired,
+    months: PropTypes.arrayOf(PropTypes.string).isRequired,
     // 上月翻页
     prev: PropTypes.oneOfType([
       PropTypes.element,
@@ -244,11 +244,11 @@ export default class Header extends Component {
                 {year}年{months[month]}
               </Text>
             ) : (
-                <TouchableOpacity onPress={this.scanCallback}>
-                  <Text style={[styles.title]}>
-                    {year}年{months[month]}
-                  </Text>
-                </TouchableOpacity>
+              <TouchableOpacity onPress={this.scanCallback}>
+                <Text style={[styles.title]}>
+                  {year}年{months[month]}
+                </Text>
+              </TouchableOpacity>
               )
           }
 
