@@ -52,7 +52,7 @@ export default class Dialog extends UIComponent {
     // 关闭
     onClose: PropTypes.func,
     // 底部按钮数组
-    footer: PropTypes.arrayOf(PropTypes.node),
+    footer: PropTypes.arrayOf(PropTypes.any),
     // 是否全屏
     fullScreen: PropTypes.bool,
     // 是否使用动画
@@ -60,12 +60,9 @@ export default class Dialog extends UIComponent {
     // 一个特殊的按钮状态
     operation: PropTypes.bool,
     // 按钮点击颜色
-    underlayColor: '#EEE',
+    underlayColor: PropTypes.string,
     // 按钮类型
-    styleBtnMap: {
-      no: { color: '#666' },
-      yes: { color: '#337ab7' },
-    },
+    styleBtnMap: PropTypes.objectOf(PropTypes.any),
   }
 
   /**
