@@ -58,7 +58,6 @@
   },
   "peerDependencies": {
     "react": ">=16",
-    "react-dom": ">=16",
     "react-native": ">=0.47.0"
   },
   "scripts": {
