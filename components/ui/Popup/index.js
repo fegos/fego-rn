@@ -53,11 +53,17 @@ export default class Popup extends UIComponent {
       PropTypes.element,
     ]),
     iconFamily: PropTypes.string,
-    iconTypes: PropTypes.object,
+    iconTypes: PropTypes.objectOf(PropTypes.string),
     // 头部左侧区，false为关闭，也可传入自定义元素，字符串
-    headerLeft: PropTypes.any,
+    headerLeft: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.bool,
+    ]),
     // 头部右侧区，false为关闭，也可可传入自定义元素，字符串
-    headerRight: PropTypes.any,
+    headerRight: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.bool,
+    ]),
     // 高度偏移量，整体高度会减掉该高度。一般是导航栏的高度。
     offsetHeight: PropTypes.number,
     // 动画时间
