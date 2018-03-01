@@ -38,7 +38,7 @@ export default class ToastConatiner extends UIComponent {
     // 图标字体
     iconFamily: PropTypes.string,
     // 图标类型对象
-    iconTypes: PropTypes.object,
+    iconTypes: PropTypes.objectOf(PropTypes.string),
     // Y轴偏移量
     offsetY: PropTypes.number,
     // 动画结束
