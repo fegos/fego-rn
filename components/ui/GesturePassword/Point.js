@@ -64,21 +64,21 @@ export default class Point extends Component {
         borderWidth={this.props.isShowBorder ? 1 : 0}
         position={this._outerCirclePosition}
       >
-      <Circle
-        isFill
-        color={(this.props.isActive || this.props.isWarning) && !this.props.isNoChange ? this._color : 'transparent'}
-        radius={this._innerCircleRadius2}
-        borderWidth={this.props.borderWidth}
-        position={this._innerCirclePosition2}
-      >
-      <Circle
-        isFill
-        color={this._color}
-        radius={this._innerCircleRadius}
-        borderWidth={this.props.borderWidth}
-        position={this._innerCirclePosition}
-      />
-      </Circle>
+        <Circle
+          isFill
+          color={(this.props.isActive || this.props.isWarning) && !this.props.isNoChange ? this._color : 'transparent'}
+          radius={this._innerCircleRadius2}
+          borderWidth={this.props.borderWidth}
+          position={this._innerCirclePosition2}
+        >
+          <Circle
+            isFill
+            color={this._color}
+            radius={this._innerCircleRadius}
+            borderWidth={this.props.borderWidth}
+            position={this._innerCirclePosition}
+          />
+        </Circle>
       </Circle>
     );
   }

@@ -239,13 +239,13 @@ export default class Input extends UIComponent {
     if (error) {
       return (
         <TouchableWithoutFeedback onPress={onErrorClick}>
-        <View style={style.error}>
-          <Icon
-            family={errorIconFamily}
-            name={errorIconName}
-            style={[style.errorIcon, { color: errorColor }]}
-          />
-        </View>
+          <View style={style.error}>
+            <Icon
+              family={errorIconFamily}
+              name={errorIconName}
+              style={[style.errorIcon, { color: errorColor }]}
+            />
+          </View>
         </TouchableWithoutFeedback>
       );
     }
