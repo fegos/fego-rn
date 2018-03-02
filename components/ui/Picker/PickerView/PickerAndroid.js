@@ -21,7 +21,7 @@ export default class PickerAndroid extends UIComponent {
 
   static propTypes = {
     // 数据
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(PropTypes.array),
     // 滚轮的值变化后的回调函数
     onValueChange: PropTypes.func,
     // 选择的值的位置，作为受控属性使用
@@ -91,7 +91,7 @@ export default class PickerAndroid extends UIComponent {
     const items = [];
     data.forEach((item, i) => {
       items.push((
-        <View style={style.item} key={i + 2}>
+        <View style={style.item} key={item}>
           <Text
             onPress={() => {
             this._onItemPress(i);
