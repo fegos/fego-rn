@@ -3,6 +3,12 @@ import { ScrollView, Text } from 'react-native';
 import { Item, Segment, Toast } from 'fego-rn';
 import { Style } from '../../../common';
 
+const ItemStyle = {
+  content: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+};
 export default class Page extends Component {
   static navigationOptions = {
     title: '分段选择器',
@@ -44,10 +50,3 @@ export default class Page extends Component {
     );
   }
 }
-
-const ItemStyle = {
-  content: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
-};
