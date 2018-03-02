@@ -22,11 +22,11 @@ class PickerView extends UIComponent {
 
   static propTypes = {
     // 传递的数据
-    data: PropTypes.arrayOf(PropTypes.array),
+    data: PropTypes.arrayOf(PropTypes.object),
     // 非受控属性: picker 初始值
-    initialValue: PropTypes.arrayOf(PropTypes.array),
+    initialValue: PropTypes.arrayOf(PropTypes.string),
     // 受控属性: picker 的值, 此時initiaValue失效
-    value: PropTypes.arrayOf(PropTypes.array),
+    value: PropTypes.arrayOf(PropTypes.string),
     // 每列数据选择变化后的回调函数
     onChange: PropTypes.func,
     // 准备就绪的回调函数
