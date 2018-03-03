@@ -12,7 +12,7 @@ describe('AnimateModal Tests', () => {
     Comp = (
       <AnimateModal
         visible
-        animateAppear={false}
+        animateWhenMount={false}
         onClose={handler}
       >
         <View>

@@ -218,7 +218,7 @@ export default class Dialog extends UIComponent {
           contentStyle={styles.innerContent}
           visible={visible}
           onAnimationEnd={onAnimationEnd}
-          animateAppear={animateAppear}
+          animateWhenMount={animateAppear}
         >
           <View style={maxHeight} ref={this._saveRoot}>
             {headerEl}

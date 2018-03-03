@@ -47,9 +47,9 @@ describe('Carousel Tests', () => {
   });
 
   it('props test', () => {
-    const wrapper = shallow(<Carousel indexPage={1}>{content}</Carousel>);
+    const wrapper = shallow(<Carousel defaultPage={1}>{content}</Carousel>);
 
-    expect(wrapper.instance().state.currentPage).toBe(1);
+    expect(wrapper.instance().state.currPage).toBe(1);
     expect(wrapper.instance().props.dotType).toBe('circle');
   });
 });

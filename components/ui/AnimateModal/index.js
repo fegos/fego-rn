@@ -17,34 +17,35 @@ import {
 import UIComponent from '../../common/UIComponent';
 
 const screen = Dimensions.get('window');
+
 export default class AnimateModal extends UIComponent {
   static defaultProps = {
-    animationType: 'fade',
-    animateAppear: false,
-    animationDuration: 300,
     visible: false,
+    animationType: 'alert',
+    animationDuration: 200,
     maskClosable: true,
+    animateWhenMount: false,
+    springEffect: false,
     onClose: () => { },
     onAnimationEnd: (visible) => { console.log(visible); },
-    scale: true,
   }
   static propTypes = {
     // 是否可见
     visible: PropTypes.bool,
-    // 点击遮罩是否可关闭
-    maskClosable: PropTypes.bool,
-    // 动画类型：none fade slide-up slide-down
-    animationType: PropTypes.oneOf(['none', 'fade', 'slide-up', 'slide-down']),
-    // 仅首次动画（只适用于进入页面就显示modal的情况，此时需要visible和该属性均为true）
-    animateAppear: PropTypes.bool,
+    // 动画类型：none(没有)| fade（渐隐渐显）| slide（从底部出现）| slide-down（从顶部出现）| scale(放缩) | fade_scale(渐隐渐现放缩)|alert(弹窗)
+    animationType: PropTypes.oneOf(['none', 'fade', 'slide', 'slide-down', 'scale', 'fade-scale', 'alert']),
     // 动画时长
     animationDuration: PropTypes.number,
+    // 点击遮罩是否可关闭
+    maskClosable: PropTypes.bool,
+    // 首次加载动画
+    animateWhenMount: PropTypes.bool,
+    // 是否有弹簧效果
+    springEffect: PropTypes.bool,
     // 关闭回调
     onClose: PropTypes.func,
     // 动画结束回调
     onAnimationEnd: PropTypes.func,
-    // 规模
-    scale: PropTypes.bool,
   }
   constructor(props) {
     super(props);
@@ -56,17 +57,21 @@ export default class AnimateModal extends UIComponent {
       modalVisible: visible,
     };
   }
+
+  /**
+   * lifecycle
+   */
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps);
-    if (this.shouldComponentUpdate(nextProps)) {
-      // 一直可见，直到动画结束
+    if (this.props.visible !== nextProps.visible) {
       this.setState({
         modalVisible: true,
       });
+      this._animateDialog(nextProps.visible);
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.visible || this.props.visible !== nextProps.visible) {
+    if (this.props.visible !== nextProps.visible) {
       return true;
     }
     if (nextState) {
@@ -77,64 +82,131 @@ export default class AnimateModal extends UIComponent {
     return false;
   }
   componentDidMount() {
-    if (this.props.animateAppear && this.props.animationType !== 'none') {
-      this.componentDidUpdate({});
+    const { visible, animateWhenMount, animationType } = this.props;
+    if (visible && animateWhenMount && animationType !== 'none') {
+      this._animateDialog(visible);
     }
   }
-  componentDidUpdate(prevProps) {
-    const { props } = this;
 
-    if (prevProps.visible !== props.visible) {
-      this._animateDialog(props.visible);
+  /**
+   * 点击遮罩关闭
+   *
+   * @memberof AnimateModal
+   */
+  _maskClose = () => {
+    const { maskClosable, onClose } = this.props;
+    if (maskClosable && onClose) {
+      onClose();
     }
   }
-  _animateMask(visible) {
-    this._stopMaskAnim();
-    this.state.opacity.setValue(this._getOpacity(!visible));
-    this.animMask = Animated.timing(this.state.opacity, {
-      toValue: this._getOpacity(visible),
-      duration: this.props.animationDuration,
-    });
-    this.animMask.start(() => {
-      this.animMask = null;
-    });
-  }
-  _stopMaskAnim() {
-    if (this.animMask) {
-      this.animMask.stop();
-      this.animMask = null;
+
+  /**
+   * 动画结束回调
+   *
+   * @memberof AnimateModal
+   */
+  _onAnimationEnd = (visible) => {
+    const { onAnimationEnd } = this.props;
+    if (onAnimationEnd) {
+      onAnimationEnd(visible);
     }
   }
-  _stopDialogAnim() {
-    if (this.animDialog) {
-      this.animDialog.stop();
-      this.animDialog = null;
+
+  /**
+   * 数据处理区
+   *
+   * @memberof AnimateModal
+   */
+  _getPosition = (visible) => {
+    if (visible) {
+      return 0;
     }
+    return this.props.animationType === 'slide-down' ? -screen.height : screen.height;
   }
+  _getAlertScale = visible => (visible ? 1 : 1.2);
+
+  _getScale = visible => (visible ? 1 : 0);
+
+  _getOpacity = visible => (visible ? 1 : 0);
+
+  /**
+   * 动画部分
+   *
+   * @memberof AnimateModal
+   */
   _animateDialog(visible) {
-    const { animationType } = this.props;
-
+    const {
+      animationType, animationDuration, springEffect,
+    } = this.props;
+    const { position, scale, opacity } = this.state;
     this._stopDialogAnim();
-    this._animateMask(visible);
 
-    if (animationType !== 'none') {
-      if (animationType === 'slide' || animationType === 'slide-up' || animationType === 'slide-down') {
-        this.state.position.setValue(this._getPosition(!visible));
-        this.animDialog = Animated.timing(this.state.position, {
-          toValue: this._getPosition(visible),
-          duration: this.props.animationDuration,
-          easing: visible ? Easing.elastic(0.8) : undefined,
-        });
-      } else if (animationType === 'fade') {
-        this.animDialog = Animated.parallel([Animated.timing(this.state.opacity, {
-          toValue: this._getOpacity(visible),
-          duration: this.props.animationDuration,
-          easing: visible ? Easing.elastic(0.8) : undefined,
-        }), Animated.spring(this.state.scale, {
-          toValue: this._getScale(visible),
-          duration: this.props.animationDuration,
-          easing: visible ? Easing.elastic(0.8) : undefined,
-        })]);
+    if (animationType === 'none') {
+      opacity.setValue(this._getOpacity(visible));
+      this.setState({
+        modalVisible: visible,
+      });
+    } else {
+      this._animateMask(visible);
+      switch (animationType) {
+        case 'slide':
+        case 'slide-down':
+          position.setValue(this._getPosition(!visible));
+          this.animDialog = Animated.timing(position, {
+            toValue: this._getPosition(visible),
+            duration: animationDuration,
+            easing: visible && springEffect ? Easing.elastic(0.8) : undefined,
+          });
+          break;
+
+        case 'fade':
+          this.animDialog = Animated.timing(opacity, {
+            toValue: this._getOpacity(visible),
+            duration: animationDuration,
+          });
+          break;
+
+        case 'scale':
+          scale.setValue(this._getScale(!visible));
+          this.animDialog = Animated.timing(scale, {
+            toValue: this._getScale(visible),
+            duration: animationDuration,
+            easing: visible && springEffect ? Easing.elastic(0.8) : undefined,
+          });
+          break;
+
+        case 'fade-scale':
+          scale.setValue(this._getScale(!visible));
+          this.animDialog = Animated.parallel([Animated.timing(opacity, {
+            toValue: this._getOpacity(visible),
+            duration: animationDuration,
+          }), Animated.timing(scale, {
+            toValue: this._getScale(visible),
+            duration: animationDuration,
+            easing: visible && springEffect ? Easing.elastic(0.8) : undefined,
+          })]);
+          break;
+
+        case 'alert':
+          if (visible) {
+            scale.setValue(this._getAlertScale(!visible));
+            this.animDialog = Animated.parallel([Animated.timing(opacity, {
+              toValue: this._getOpacity(visible),
+              duration: animationDuration,
+            }), Animated.timing(scale, {
+              toValue: this._getAlertScale(visible),
+              duration: animationDuration,
+              easing: visible && springEffect ? Easing.elastic(0.8) : undefined,
+            })]);
+          } else {
+            this.animDialog = Animated.timing(opacity, {
+              toValue: this._getOpacity(visible),
+              duration: animationDuration,
+            });
+          }
+          break;
+
+        default: break;
       }
       this.animDialog.start(() => {
         this.animDialog = null;
@@ -143,44 +215,47 @@ export default class AnimateModal extends UIComponent {
             modalVisible: false,
           });
         }
-        this.props.onAnimationEnd(visible);
-      });
-    } else if (!visible) {
-      this.setState({
-        modalVisible: false,
+        this._onAnimationEnd(visible);
       });
     }
   }
+  _animateMask(visible) {
+    const { animationDuration } = this.props;
+    const { opacity } = this.state;
+    this._stopMaskAnim();
 
-  close = () => {
-    this._animateDialog(false);
+    opacity.setValue(this._getOpacity(!visible));
+    this.animMask = Animated.timing(opacity, {
+      toValue: this._getOpacity(visible),
+      duration: animationDuration,
+    });
+    this.animMask.start(() => {
+      this.animMask = null;
+    });
   }
-
-  _maskClose = () => {
-    if (this.props.maskClosable) {
-      this.props.onClose();
+  _stopDialogAnim() {
+    if (this.animDialog) {
+      this.animDialog.stop();
+      this.animDialog = null;
+    }
+  }
+  _stopMaskAnim() {
+    if (this.animMask) {
+      this.animMask.stop();
+      this.animMask = null;
     }
   }
 
-  _getPosition = (visible) => {
-    if (visible) {
-      return 0;
-    }
-    return this.props.animationType === 'slide-down' ? -screen.height : screen.height;
-  }
-
-  _getScale = (visible) => {
-    if (this.props.scale) return visible ? 1 : 1.05;
-    return 1;
-  }
-
-  _getOpacity = visible => (visible ? 1 : 0);
-
+  /**
+   * 渲染区
+   *
+   * @memberof AnimateModal
+   */
   render() {
     const {
       position, scale, opacity, modalVisible,
     } = this.state;
-    const { onClose, children, animationType } = this.props;
+    const { children, animationType } = this.props;
     const { style } = this;
 
     if (!modalVisible) {
@@ -189,16 +264,18 @@ export default class AnimateModal extends UIComponent {
     const animationStyleMap = {
       none: {},
       slide: { transform: [{ translateY: position }] },
-      'slide-up': { transform: [{ translateY: position }] },
       'slide-down': { transform: [{ translateY: position }] },
-      fade: { transform: [{ scale }], opacity },
+      fade: { opacity },
+      scale: { transform: [{ scale }] },
+      'fade-scale': { transform: [{ scale }], opacity },
+      alert: { transform: [{ scale }], opacity },
     };
 
     return (
       <Modal
         visible
         transparent
-        onRequestClose={onClose}
+        onRequestClose={this._maskClose}
       >
         <View
           style={style.container}
@@ -224,6 +301,7 @@ export default class AnimateModal extends UIComponent {
     );
   }
 }
+
 // 基础样式
 AnimateModal.baseStyle = {
   container: {
