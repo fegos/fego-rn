@@ -131,7 +131,7 @@ export default class Page extends Component {
             }}
             >第一级模态框（iOS只能显示到这一级）
             </Text>
-            <Button style={{ marginTop: 20 }} onPress={() => this.setState({ multiModalVisible: true })}>弹出第二级模态框</Button>
+            <Button style={{ marginTop: 20 }} onPress={() => this.setState({ mod2Visible: true })}>弹出第二级模态框</Button>
             <Button onPress={() => Dialog.alert('第一级模态框上的提示框')}>alert(iOS上无法正常显示)</Button>
             <Button onPress={() => this.setState({ multiModalVisible: false })}>关闭</Button>
           </View>

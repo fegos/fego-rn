@@ -40,10 +40,10 @@ describe('Carousel Tests', () => {
     // 非无限循环播放，那么三张会触发两次 onChange
     // 但是因为 shallow 是将 React 组件渲染成 Virtual DOM 对象
     // 所以其实是不会触发 didMount 里的计时器的...尴尬...
-    const onChangeHandler = jest.fn();
+    // const onChangeHandler = jest.fn();
     // const wrapper = shallow(<Carousel infinite={false} onChange={onChangeHandler}>{content}</Carousel>);
 
-    expect(onChangeHandler).toHaveBeenCalledTimes(0);
+    // expect(onChangeHandler).toHaveBeenCalledTimes(0);
   });
 
   it('props test', () => {

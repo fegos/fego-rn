@@ -3,6 +3,7 @@ import { ScrollView, Image, Text } from 'react-native';
 import { Carousel } from 'fego-rn';
 
 const imageArray = [
+  'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=964384135,2680536306&fm=15&gp=0.jpg',
   require('./img/car1.png'),
   require('./img/car2.jpg'),
   require('./img/car3.jpg'),
@@ -25,7 +26,14 @@ const source8 = imageArray.slice(0, 8);
 
 export default () =>
   (
-    <ScrollView style={{ backgroundColor: '#fff' }}>
+    <ScrollView
+      style={{ backgroundColor: '#fff' }}
+      onMomentumScrollEnd={
+        () => {
+          console.log('onMomentumScrollEnd')
+        }
+      }
+    >
       <Text style={{ padding: 10, color: '#333' }}>空的轮播图</Text>
       <Carousel
         source={source0}
