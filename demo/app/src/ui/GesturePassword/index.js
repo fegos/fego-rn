@@ -25,55 +25,16 @@ export default class GesturePasswordDemo extends Component {
   }
   componentWillMount() {
     // 判断屏幕的状态栏和导航栏是否存在，以便计算高度
-    const {
-      state,
-    } = this.props.navigation;
-    this.state.navigationHeight = state ? 44 : 0;
+    const { state } = this.props.navigation;
+    const height = state ? 44 : 0;
+    this.setState({
+      navigationHeight: height,
+    });
+    // this.state.navigationHeight = state ? 44 : 0;
   }
 
   componentDidMount() {
     this._cachedPassword = '13457'; // get cached gesture password
-  }
-
-  render() {
-    return (
-      <View style={
-        {
-          position: 'absolute',
-          top: -this.state.statusBarHeight - this.state.navigationHeight,
-        }
-      }
-      >
-        <GesturePassword
-          style={
-            {
-              paddingTop: 20 + 44,
-            }
-          }
-          isWarning={
-            this.state.isWarning
-          }
-          warningDuration={
-            1500
-          }
-          topComponent={
-            this._renderDescription()
-          }
-          bottomComponent={
-            this._renderActions()
-          }
-          onFinish={
-            this._onFinish
-          }
-          onReset={
-            this._onReset
-          }
-          isPointNoChange={
-            false
-          }
-        />
-      </View >
-    );
   }
 
   _renderThumbnails() {
@@ -210,5 +171,26 @@ export default class GesturePasswordDemo extends Component {
       });
     }
     Alert.alert(`password is ${password}`);
+  }
+
+  render() {
+    return (
+      <View style={{
+          position: 'absolute',
+          top: -this.state.statusBarHeight - this.state.navigationHeight,
+        }}
+      >
+        <GesturePassword
+          style={{ paddingTop: 20 + 44 }}
+          isWarning={this.state.isWarning}
+          warningDuration={1500}
+          topComponent={this._renderDescription()}
+          bottomComponent={this._renderActions()}
+          onFinish={this._onFinish}
+          onReset={this._onReset}
+          isPointNoChange={false}
+        />
+      </View >
+    );
   }
 }

@@ -316,10 +316,11 @@ _addSequence(index) {
 }
 
 _addArrow(arrow) {
-  this.state.arrows.push(arrow);
+  // this.state.arrows.push(arrow);
   const { arrows } = this.state;
   this.setState({
-    arrows,
+    // arrows: arrows.slice().push(arrow),
+    arrows: arrows.concat(arrow),
   });
 }
 
@@ -343,10 +344,10 @@ _addLine(line) {
       };
     }
   }
-  this.state.lines.push(line);
+  // this.state.lines.push(line);
   const { lines } = this.state;
   this.setState({
-    lines,
+    lines: lines.concat(line),
   });
 }
 
@@ -429,6 +430,9 @@ _updateLine(
   this.setState({
     segMentLines: [],
   });
+
+  const { lines } = this.state;
+
   if (this.props.isHideLine) {
     let dy = end.y - start.y;
     let dx = end.x - start.x;
@@ -455,7 +459,7 @@ _updateLine(
         if (segLines.length > 0) {
           if (!endPointHasActive) {
             for (let m = 0; m < segLines.length; m += 1) {
-              this.state.lines.push(segLines[m]);
+              lines.push(segLines[m]);
             }
           }
           this.setState({
@@ -480,7 +484,6 @@ _updateLine(
   }
 
   // 更新线条
-  const { lines } = this.state;
   this.setState({
     lines,
   });
