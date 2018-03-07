@@ -8,14 +8,11 @@ export default class PieChartView extends Component {
     super(props);
     this.state = {
       show: 'none',
-      percentArray: [0.1, 0.1, 0.7, 0.1],
     };
   }
 
   componentDidMount() {
-    this.setState({
-      percentArray: [0.2, 0.1, 0.4, 0.3],
-    });
+
   }
   _showTips = () => {
     this.setState({
@@ -110,7 +107,7 @@ export default class PieChartView extends Component {
             duration={1500}
             animationType="sequence"
             rotation={90}
-            configArray={[{ stroke: 'red', strokeWidth: 1, strokeDash: [2, 5] }, { stroke: 'black', strokeWidth: 1, strokeDash: [2, 5] }, ,]}
+            configArray={[{ stroke: 'red', strokeWidth: 1, strokeDash: [2, 5] }, { stroke: 'black', strokeWidth: 1, strokeDash: [2, 5] }, null, null]}
           />
         </Item>
         <Item>
@@ -123,7 +120,7 @@ export default class PieChartView extends Component {
             duration={1500}
             animationType="synchron"
             animationEndCallBack={() => { console.log('同步animationEndCallBack'); }}
-            configArray={[, { stroke: 'red', strokeWidth: 1, strokeDash: [2, 5] }, , { stroke: 'black', strokeWidth: 1, strokeDash: [2, 5] }]}
+            configArray={[null, { stroke: 'red', strokeWidth: 1, strokeDash: [2, 5] }, null, { stroke: 'black', strokeWidth: 1, strokeDash: [2, 5] }]}
           />
         </Item>
       </ScrollView>
