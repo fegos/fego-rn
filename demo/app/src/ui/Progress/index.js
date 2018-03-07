@@ -15,7 +15,7 @@ export default class Page extends Component {
     return (
       <ScrollView style={[Style.container]}>
         <Button style={{ marginTop: 6 }} type="primary" onPress={() => { this.setState({ p: this.state.p + 10 }); }}>
-        <Text style={{ color: 'white' }} >单击更新进度, 置于顶部:position = top, 显示进度条变化动画:appearTransition = true</Text>
+          <Text style={{ color: 'white' }} >单击更新进度, 置于顶部:position = top, 显示进度条变化动画:appearTransition = true</Text>
         </Button>
         <Progress showUnfill={false} progressBarColor="yellow" position="top" percent={this.state.p} appearTransition />
         <Text style={Style.title}> 剩余进度条不显示:showUnfill = false </Text>
@@ -37,17 +37,18 @@ export default class Page extends Component {
         <Text style={Style.title}> {"自定义:progressBarStyle = borderWidth:2, backgroundColor:'green', borderColor:'blue', borderTopRightRadius:0, borderBottomRightRadius:0 containerStyle = borderWidth:1, backgroundColor:'yellow', borderColor:'red', width: 200, height: 80  type = border"}</Text>
         <View style={{
           justifyContent: 'center', alignItems: 'center', flexDirection: 'row', height: 100,
-      }}>
-        <Progress
-          progressBarStyle={{
-            borderWidth: 2, backgroundColor: 'green', borderColor: 'blue', borderTopRightRadius: 0, borderBottomRightRadius: 0,
-          }}
-          containerStyle={{
-            borderWidth: 1, backgroundColor: 'yellow', borderColor: 'red', width: 200, height: 80
-          }}
-          type="border"
-          percent={50}
-        />
+        }}
+        >
+          <Progress
+            progressBarStyle={{
+              borderWidth: 2, backgroundColor: 'green', borderColor: 'blue', borderTopRightRadius: 0, borderBottomRightRadius: 0,
+            }}
+            containerStyle={{
+              borderWidth: 1, backgroundColor: 'yellow', borderColor: 'red', width: 200, height: 80,
+            }}
+            type="border"
+            percent={50}
+          />
         </View>
       </ScrollView>);
   }

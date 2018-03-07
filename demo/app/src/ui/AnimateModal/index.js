@@ -19,7 +19,7 @@ export default class Page extends Component {
   }
   render() {
     const {
-      officialAnimationType, officialModalVisible, animationType, visible, springEffect, maskClosable, multiModalVisible,
+      officialAnimationType, officialModalVisible, animationType, visible, springEffect, maskClosable,
     } = this.state;
     return (
       <ScrollView style={Style.container}>

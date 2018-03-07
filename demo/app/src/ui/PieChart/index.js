@@ -34,29 +34,29 @@ export default class PieChartView extends Component {
             <Text
               position="absolute"
               style={{
-              display: this.state.show, top: 40, left: 130, zIndex: 10, backgroundColor: 'transparent',
-            }}
+                display: this.state.show, top: 40, left: 130, zIndex: 10, backgroundColor: 'transparent',
+              }}
             >20%
             </Text>
             <Text
               position="absolute"
               style={{
-              display: this.state.show, top: 60, left: 150, zIndex: 10, backgroundColor: 'transparent',
-            }}
+                display: this.state.show, top: 60, left: 150, zIndex: 10, backgroundColor: 'transparent',
+              }}
             >10%
             </Text>
             <Text
               position="absolute"
               style={{
-              display: this.state.show, top: 95, left: 90, zIndex: 10, backgroundColor: 'transparent',
-            }}
+                display: this.state.show, top: 95, left: 90, zIndex: 10, backgroundColor: 'transparent',
+              }}
             >40%
             </Text>
             <Text
               position="absolute"
               style={{
-              display: this.state.show, top: 0, left: 40, zIndex: 10, backgroundColor: 'transparent',
-            }}
+                display: this.state.show, top: 0, left: 40, zIndex: 10, backgroundColor: 'transparent',
+              }}
             >30%
             </Text>
             <View position="absolute" style={{ top: 60, left: 60 }}>

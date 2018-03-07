@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  ScrollView,
-} from 'react-native';
+import { ScrollView } from 'react-native';
 import { Picker, Item } from 'fego-rn';
 
 const pickerData1 = [[{

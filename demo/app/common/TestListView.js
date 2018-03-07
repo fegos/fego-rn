@@ -8,9 +8,9 @@ export default class TestListView extends Component {
     const { navigation } = this.props;
     return (
       <ScrollView>
-        {list.map((item, i) => (
+        {list.map(item => (
           <Item
-            key={i}
+            key={item.title}
             iconName={item.icon || 'puzzle-piece'}
             title={item.title}
             onPress={() => {
@@ -23,8 +23,8 @@ export default class TestListView extends Component {
     );
   }
   _renderGroup(groupList = []) {
-    return groupList.map((item, i) => (
-      <View key={i}>
+    return groupList.map(item => (
+      <View key={item.title}>
         <Text style={{ color: '#396', backgroundColor: '#eee', padding: 10 }}>{item.title}</Text>
         {this._renderList(item.list)}
       </View>));

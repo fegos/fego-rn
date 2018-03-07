@@ -30,7 +30,7 @@ export default () =>
       style={{ backgroundColor: '#fff' }}
       onMomentumScrollEnd={
         () => {
-          console.log('onMomentumScrollEnd')
+          console.log('onMomentumScrollEnd');
         }
       }
     >

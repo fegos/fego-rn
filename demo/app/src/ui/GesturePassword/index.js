@@ -44,34 +44,34 @@ export default class GesturePasswordDemo extends Component {
         }
       }
       >
-      <GesturePassword
-        style={
-          {
-            paddingTop: 20 + 44,
+        <GesturePassword
+          style={
+            {
+              paddingTop: 20 + 44,
+            }
           }
-        }
-        isWarning={
-        this.state.isWarning
-      }
-        warningDuration={
-        1500
-      }
-        topComponent={
-        this._renderDescription()
-      }
-        bottomComponent={
-        this._renderActions()
-      }
-        onFinish={
-        this._onFinish
-      }
-        onReset={
-        this._onReset
-      }
-        isPointNoChange={
-        false
-      }
-      />
+          isWarning={
+            this.state.isWarning
+          }
+          warningDuration={
+            1500
+          }
+          topComponent={
+            this._renderDescription()
+          }
+          bottomComponent={
+            this._renderActions()
+          }
+          onFinish={
+            this._onFinish
+          }
+          onReset={
+            this._onReset
+          }
+          isPointNoChange={
+            false
+          }
+        />
       </View >
     );
   }
@@ -112,7 +112,7 @@ export default class GesturePasswordDemo extends Component {
         }
       }
       >
-      {thumbnails}
+        {thumbnails}
       </View>
     );
   }
@@ -127,8 +127,8 @@ export default class GesturePasswordDemo extends Component {
       }
     }
     >
-    {this._renderThumbnails()}
-    <Text style={
+      {this._renderThumbnails()}
+      <Text style={
         {
           fontFamily: '.HelveticaNeueInterface-MediumP4',
           fontSize: 14,
@@ -136,9 +136,9 @@ export default class GesturePasswordDemo extends Component {
           color: this.state.messageColor,
         }
       }
-    >
-    {this.state.message}
-    </Text>
+      >
+        {this.state.message}
+      </Text>
     </View >
   )
 
@@ -154,7 +154,7 @@ export default class GesturePasswordDemo extends Component {
       }
     }
     >
-    {
+      {
         /* <Button
                             style={{ margin: 10, height: 40, justifyContent: 'center', }}
                             textStyle={{fontSize: 14, color: '#A9A9A9'}}>

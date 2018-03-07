@@ -50,18 +50,21 @@ export default class Page extends Component {
         <Item onPress={this.multToast} title="多Toast连续触发" />
         <Item
           onPress={() => {
-            Toast.show(<View style={{ backgroundColor: '#F1AAAA', justifyContent: 'center' }}>
-                        <Button title="按钮" style={{ marginBottom: 5 }} />
-                        <Tag text="标签" />
-                       </View>, {
-                          duration: 2,
-                          styles: {
-                            inner: {
-                              padding: 10,
-                              backgroundColor: '#F1AAAA',
-                            },
-                          },
-                        });
+            Toast.show(
+              <View style={{ backgroundColor: '#F1AAAA', justifyContent: 'center' }}>
+                <Button title="按钮" style={{ marginBottom: 5 }} />
+                <Tag text="标签" />
+              </View>,
+              {
+                duration: 2,
+                styles: {
+                  inner: {
+                    padding: 10,
+                    backgroundColor: '#F1AAAA',
+                  },
+                },
+              },
+            );
           }}
           title="自定义内容"
         />
