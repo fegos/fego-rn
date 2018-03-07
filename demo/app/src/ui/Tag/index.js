@@ -35,7 +35,7 @@ export default class Page extends Component {
   }
   constructor(props) {
     super(props);
-    Tag.setBaseStyle(Tag, {
+    Tag.setBaseStyle({
       container: {
         marginLeft: 10,
         marginTop: 5,

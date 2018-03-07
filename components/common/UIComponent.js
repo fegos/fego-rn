@@ -68,11 +68,11 @@ export default class UIComponent extends Component {
   static baseStyle = {}
   /**
    * 设置默认基础样式
-   * UIComponent.setBaseStyle(Button, {});
+   * UIComponent.setBaseStyle({});
    */
-  static setBaseStyle(_class, style = {}) {
-    if (_class && _class.baseStyle) {
-      return merge(_class.baseStyle, style);
+  static setBaseStyle(style = {}) {
+    if (this.baseStyle) {
+      return merge(this.baseStyle, style);
     }
     return {};
   }

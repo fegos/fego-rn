@@ -56,9 +56,9 @@ Button.baseStyle = {
 使用者在使用 Button 组件时，可通过以下方式自定义 Button 的样式：
 
 1. setBaseStyle:
-	
+
 	```jsx
-	Button.setBaseStyle(Button, {
+	Button.setBaseStyle({
 		text: {
 			color: 'red' // 则按钮的颜色默认都会显示的成红色
 		}
@@ -66,7 +66,7 @@ Button.baseStyle = {
 	```
 2. themeStyle 同理
 2. styles
-	
+
 	```jsx
 	let styleObj = {
 		container: {
@@ -86,21 +86,21 @@ Button.baseStyle = {
 	}} />
 	```
 4. propStyle
-	
+
 	```jsx
 	<Button textStyle={{
 		color: 'yellow'  // 等同于设置 text，则按钮的颜色会显示的成黄色
 	}} />
 	```
 5. simpleStyle
-	
+
 	```jsx
 	<Button textSize={24} />  // 则按钮的文字会显示的成24号字体大小
 	```
 
-### simpleStyleProps 
+### simpleStyleProps
 - 规定了可以便捷的修改哪些样式
-	
+
 	```js
 	for(key in simpleStyleProps) {
 		// 简易样式的 api 名称
@@ -113,7 +113,7 @@ Button.baseStyle = {
 	}
 	```
 
-例如上面定义的 Button 组件，通过： 
+例如上面定义的 Button 组件，通过：
 
 ```js
 	static simpleStyleProps = {
