@@ -385,7 +385,7 @@ export default class JBRefreshBaseView extends Component {
   resolveHandler = () => {
     // if (this.flag.pullrelease && this.flag.loadrelease) { //仅触摸松开时才触发
     this.resetPosition();
-    this.re_setImageIndex();
+    this._setImageIndex();
     // }
   }
   // 恢复默认位置

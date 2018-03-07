@@ -8,6 +8,26 @@ import {
 
 import { RefreshView } from 'fego-rn';
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    height: 64,
+    backgroundColor: '#293447',
+  },
+  rowItem: {
+    flex: 1,
+    height: 120,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ccc',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#999',
+  },
+});
 export default class Page extends Component {
   constructor(props) {
     super(props);
@@ -58,24 +78,3 @@ export default class Page extends Component {
   }
 }
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    height: 64,
-    backgroundColor: '#293447',
-  },
-  rowItem: {
-    flex: 1,
-    height: 120,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ccc',
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#999',
-  },
-});

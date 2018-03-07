@@ -33,7 +33,7 @@ export default class Page extends Component {
     console.log('refresh');
     const self = this;
     setTimeout(() => {
-      self.refs.PullRefresh.refreshed();
+      self.PullRefresh.refreshed();
     }, 2000);
   }
 
@@ -45,7 +45,7 @@ export default class Page extends Component {
       <View style={styles.container}>
         <View style={styles.header} />
 
-        <RefreshView ref="PullRefresh" onRefresh={() => this.onRefresh()}>
+        <RefreshView ref={(c) => { this.PullRefresh = c; }} onRefresh={() => this.onRefresh()}>
           <View style={styles.scrollItem}><Text>Scroll1</Text></View>
           <View style={styles.scrollItem}><Text>Scroll2</Text></View>
           <View style={styles.scrollItem}><Text>Scroll3</Text></View>
