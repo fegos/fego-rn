@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "react": "16.0.0-alpha.12",
-    "react-dom": "^16.0.0",
+    "react-dom": "16.0.0-alpha.12",
     "react-native": "0.47.2",
     "babel-jest": "21.2.0",
     "babel-plugin-module-resolver": "^3.0.0",
@@ -57,9 +57,8 @@
     "react-navigation": "1.2.1"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "react-dom": ">=16",
-    "react-native": ">=0.47.0"
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.47.2"
   },
   "scripts": {
     "init": "yarn install --no-optional -s --registry=https://registry.npm.taobao.org && cd demo/ios && pod install",
@@ -70,7 +69,6 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "ios": "react-native run-ios --project-path demo/ios",
     "android": "react-native run-android --root demo",
-    "test": "jest --bail --verbose --config jest.config.js",
-    "lint": "eslint components --quiet && eslint demo --quiet"
+    "test": "jest --bail --verbose --config jest.config.js"
   }
 }
