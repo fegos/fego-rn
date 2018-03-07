@@ -12,6 +12,7 @@ export default class GesturePasswordDemo extends Component {
   constructor(props) {
     super(props);
     // 初始状态
+    const { state } = this.props.navigation;
     this.state = {
       isWarning: false,
       message: 'Verify your gesture password',
@@ -19,18 +20,9 @@ export default class GesturePasswordDemo extends Component {
       password: '',
       // thumbnails: [],
       statusBarHeight: 0,
-      navigationHeight: 0,
+      navigationHeight: state ? 44 : 0,
     };
     this._cachedPassword = '';
-  }
-  componentWillMount() {
-    // 判断屏幕的状态栏和导航栏是否存在，以便计算高度
-    const { state } = this.props.navigation;
-    const height = state ? 44 : 0;
-    this.setState({
-      navigationHeight: height,
-    });
-    // this.state.navigationHeight = state ? 44 : 0;
   }
 
   componentDidMount() {
