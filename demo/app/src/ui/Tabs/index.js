@@ -8,10 +8,49 @@ import {
 import { Tabs } from 'fego-rn';
 import { Style } from '../../../common';
 
+
+const TabStyles = {
+  tabBar: {
+    height: 34,
+  },
+  tabBarItem: {
+    backgroundColor: 'transparent',
+  },
+  activeUnderline: {
+    height: 3,
+  },
+};
+
+const TabStyles3 = {
+  tabBarItem: {
+    width: 80,
+    backgroundColor: 'transparent',
+    borderLeftColor: '#aaa',
+    borderLeftWidth: 1,
+  },
+  tabBar: {
+    height: 34,
+  },
+  activeUnderline: {
+    height: 3,
+    width: 50,
+    marginLeft: 15,
+  },
+};
+const viewStyle = {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#aaa',
+};
+
+
 export default class Page extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      activeKey1: 'tab1',
+      activeKey2: 'tab2',
     };
   }
 
@@ -30,15 +69,27 @@ export default class Page extends Component {
   render() {
     const keys = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5'];
     const tabs = [];
-    for (const tab in keys) {
-      const _key = keys[tab];
-      tabs.push(<Tabs.TabPane tab={_key} key={_key} />);
-    }
+    keys.forEach((key) => {
+      tabs.push(<Tabs.TabPane title={key} key={key} />);
+    });
+
+    const keys2 = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5', 'tab6', 'tab7', 'tab8', 'tab9', 'tab10'];
+    const tabs2 = [];
+    keys2.forEach((key) => {
+      const tab = (
+        <Tabs.TabPane title={key} key={key}>
+          <View style={viewStyle}>
+            <Text>key</Text>
+          </View>
+        </Tabs.TabPane>
+      );
+      tabs2.push(tab);
+    });
 
     return (
       <ScrollView style={Style.container}>
         <Text style={Style.title}>通过调用 onAnimationEnd 可以在 tab 动画结束后做一些操作</Text>
-        <View style={{ height: 35 }}>
+        <View style={{ height: 100 }}>
           <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: 'rgba(255,255,255,0.15)' }} />
           <Tabs
             defaultActiveKey="tab3"
@@ -46,42 +97,14 @@ export default class Page extends Component {
             onAnimationEnd={this._onAnimationEnd}
             styles={TabStyles}
             textColor="#333"
+            showUnderline={false}
+            activeTextColor="white"
+            activeBgColor="#108ee9"
           >
             {tabs}
           </Tabs>
           <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: 'rgba(255,255,255,0.15)' }} />
         </View>
-        <Ori />
-      </ScrollView>
-    );
-  }
-}
-
-class Ori extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeKey1: 'tab1',
-      activeKey2: 'tab2',
-    };
-  }
-
-  _onChange = (key, tab) => {
-    console.log('tab change ', key, tab);
-    this.setState({
-      activeKey2: key,
-    });
-  }
-
-  render() {
-    const keys = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5', 'tab6'];
-    const tabs = [];
-    for (const tab in keys) {
-      const _key = keys[tab];
-      tabs.push(<Tabs.TabPane tab={_key} key={_key} />);
-    }
-    return (
-      <ScrollView style={{ marginTop: 50 }}>
         <Text style={Style.title}>使用非受控属性，默认显示第一个 tab</Text>
         <View style={{ height: 100 }}>
           <Tabs
@@ -120,7 +143,11 @@ class Ori extends Component {
           <Tabs
             styles={TabStyles}
             activeKey={this.state.activeKey2}
-            onChange={this._onChange}
+            onChange={(key) => {
+              this.setState({
+                activeKey2: key,
+              });
+            }}
           >
             {tabs}
           </Tabs>
@@ -132,95 +159,10 @@ class Ori extends Component {
             styles={TabStyles3}
             defaultActiveKey="tab1"
           >
-            <Tabs.TabPane tab="tab1" key="tab1">
-              <View style={viewStyle}>
-                <Text>tab1</Text>
-              </View>
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="tab2" key="tab2">
-              <View style={viewStyle}>
-                <Text>tab2</Text>
-              </View>
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="tab3" key="tab3">
-              <View style={viewStyle}>
-                <Text>tab3</Text>
-              </View>
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="tab4" key="tab4">
-              <View style={viewStyle}>
-                <Text>tab4</Text>
-              </View>
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="tab5" key="tab5">
-              <View style={viewStyle}>
-                <Text>tab5</Text>
-              </View>
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="tab6" key="tab6">
-              <View style={viewStyle}>
-                <Text>tab6</Text>
-              </View>
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="tab7" key="tab7">
-              <View style={viewStyle}>
-                <Text>tab7</Text>
-              </View>
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="tab8" key="tab8">
-              <View style={viewStyle}>
-                <Text>tab8</Text>
-              </View>
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="tab9" key="tab9">
-              <View style={viewStyle}>
-                <Text>tab9</Text>
-              </View>
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="tab10" key="tab10">
-              <View style={viewStyle}>
-                <Text>tab10</Text>
-              </View>
-            </Tabs.TabPane>
+            {tabs2}
           </Tabs>
         </View>
-      </ScrollView>
+      </ScrollView >
     );
   }
 }
-
-const tabWidth = 80;
-const TabStyles = {
-  tab: {
-    backgroundColor: 'transparent',
-  },
-  bar: {
-    height: 34,
-  },
-  activeUnderline: {
-    height: 3,
-  },
-};
-const TabStyles3 = {
-  tab: {
-    width: tabWidth,
-    backgroundColor: 'transparent',
-    borderLeftColor: '#aaa',
-    borderLeftWidth: 1,
-  },
-  bar: {
-    width: tabWidth * 10,
-    height: 34,
-  },
-  activeUnderline: {
-    height: 3,
-    width: 50,
-    marginLeft: 15,
-  },
-};
-const viewStyle = {
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '#aaa',
-};

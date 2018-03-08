@@ -11,6 +11,25 @@ import { Style } from '../../../common';
 
 const { width, height } = Dimensions.get('window');
 
+
+const TabStyles = {
+  tabBar: {
+    height: 34,
+  },
+  tabBarItem: {
+    width: 80,
+    backgroundColor: 'transparent',
+    borderLeftColor: '#aaa',
+    borderLeftWidth: 1,
+  },
+  activeUnderline: {
+    height: 3,
+    width: 50,
+    marginLeft: 15,
+  },
+};
+
+
 export default class Page extends Component {
   constructor(props) {
     super(props);
@@ -27,27 +46,18 @@ export default class Page extends Component {
     });
   }
 
-  render() {
-    let contentView;
-    if (!this.state.horizontal) {
-      contentView = (
-        <View style={{ flex: 1 }}>
-          {this._renderAnimateView()}
-        </View>
-      );
-    } else {
-      contentView = (
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          {this._renderAnimateView()}
-        </View>
-      );
-    }
-    return (
-      <View style={{ flex: 1, backgroundColor: '#fafafa', alignItems: 'center' }}>
-        {contentView}
-      </View>
-    );
+  _handleDoubleClick = () => {
+    this.setState({
+      horizontal: !this.state.horizontal,
+    });
+    Animated.spring(this.anim, {
+      toValue: 0,
+      velocity: 3,
+      tension: -10,
+      friction: 1,
+    }).start();
   }
+
 
   _renderAnimateView = () => {
     const { horizontal } = this.state;
@@ -88,6 +98,22 @@ export default class Page extends Component {
     if (horizontal) {
       viewStyle = { width: height, height: 200, backgroundColor: '#eaeaea' };
     }
+    const keys = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5', 'tab6', 'tab7', 'tab8', 'tab9', 'tab10'];
+    const tabs = [];
+    keys.forEach((key) => {
+      const tab = (
+        <Tabs.TabPane title={key} key={key}>
+          <View style={viewStyle} >
+            <TouchableWithoutFeedback onPress={this._handleDoubleClick}>
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text>{key}, 单击切换横竖屏</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </Tabs.TabPane>
+      );
+      tabs.push(tab);
+    });
 
     const tabView = (
       <View style={[Style.container, { height: 250, width: horizontal ? height : width }]}>
@@ -96,103 +122,32 @@ export default class Page extends Component {
           activeKey={activeKey}
           onChange={this._onChange}
         >
-          <Tabs.TabPane tab="tab1" key="tab1">
-            <View style={viewStyle} >
-              <TouchableWithoutFeedback onPress={this._handleDoubleClick}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                  <Text>tab1, 单击切换横竖屏</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="tab2" key="tab2">
-            <View style={viewStyle} >
-              <TouchableWithoutFeedback onPress={this._handleDoubleClick}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                  <Text>tab2, 单击切换横竖屏</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="tab3" key="tab3">
-            <View style={viewStyle} >
-              <TouchableWithoutFeedback onPress={this._handleDoubleClick}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                  <Text>tab3, 单击切换横竖屏</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="tab4" key="tab4">
-            <View style={viewStyle} >
-              <TouchableWithoutFeedback onPress={this._handleDoubleClick}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                  <Text>tab4, 单击切换横竖屏</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="tab5" key="tab5">
-            <View style={viewStyle} >
-              <TouchableWithoutFeedback onPress={this._handleDoubleClick}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                  <Text>tab5, 单击切换横竖屏</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="tab6" key="tab6">
-            <View style={viewStyle} >
-              <TouchableWithoutFeedback onPress={this._handleDoubleClick}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                  <Text>tab6, 单击切换横竖屏</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="tab7" key="tab7">
-            <View style={viewStyle} >
-              <TouchableWithoutFeedback onPress={this._handleDoubleClick}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                  <Text>tab7, 单击切换横竖屏</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </Tabs.TabPane>
+          {tabs}
         </Tabs>
       </View>
     );
     return tabView;
   }
 
-  _handleDoubleClick = () => {
-    this.setState({
-      horizontal: !this.state.horizontal,
-    });
-    Animated.spring(this.anim, {
-      toValue: 0,
-      velocity: 3,
-      tension: -10,
-      friction: 1,
-    }).start();
+  render() {
+    let contentView;
+    if (!this.state.horizontal) {
+      contentView = (
+        <View style={{ flex: 1 }}>
+          {this._renderAnimateView()}
+        </View>
+      );
+    } else {
+      contentView = (
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          {this._renderAnimateView()}
+        </View>
+      );
+    }
+    return (
+      <View style={{ flex: 1, backgroundColor: '#fafafa', alignItems: 'center' }}>
+        {contentView}
+      </View>
+    );
   }
 }
-
-const tabWidth = 80;
-const TabStyles = {
-  tab: {
-    width: tabWidth,
-    backgroundColor: 'transparent',
-    borderLeftColor: '#aaa',
-    borderLeftWidth: 1,
-  },
-  bar: {
-    width: tabWidth * 7,
-    height: 34,
-  },
-  activeUnderline: {
-    height: 3,
-    width: 50,
-    marginLeft: 15,
-  },
-};
