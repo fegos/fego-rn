@@ -20,7 +20,7 @@
 
 1. baseStyle 组件基础样式【必须】,可以通过setBaseStyle进行全局变更,格式:
 ```
-{  
+{
 	styleName1:{
 		stylePropsName:stylePropsValue,
 			...
@@ -79,11 +79,11 @@
 ~~~js
 /**
  * 组件名称
- * @author 姓名 
+ * @author 姓名
  */
 import React from 'react'
 import { View, Text } from 'react-native'
-import UIComponent from 'path to UIComponent'
+import { UIComponent } from 'common'
 
 export default class SelfMod extends UIComponent {
 	static defaultProps = {

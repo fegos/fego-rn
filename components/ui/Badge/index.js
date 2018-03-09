@@ -4,7 +4,7 @@
  */
 import React from 'react';
 import { View } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 
 export default class Badge extends UIComponent {
   static defaultProps = {

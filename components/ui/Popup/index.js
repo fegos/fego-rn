@@ -10,7 +10,7 @@ import {
   Animated, Platform, StatusBar,
   StyleSheet,
 } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 import Icon from '../Icon';
 import Api from './Api';
 

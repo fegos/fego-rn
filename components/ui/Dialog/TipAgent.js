@@ -3,9 +3,9 @@
  */
 import React from 'react';
 import { Text, ScrollView } from 'react-native';
+import { UIComponent } from 'common';
 
 import Dialog from './index';
-import UIComponent from '../../common/UIComponent';
 
 export default class TipAgent extends UIComponent {
   constructor(props) {

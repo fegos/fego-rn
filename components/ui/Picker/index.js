@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 import AnimateModal from '../AnimateModal';
 import PickerView from './PickerView';
 import DatePicker from './DatePicker';

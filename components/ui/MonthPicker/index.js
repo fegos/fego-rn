@@ -5,12 +5,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import Button from '../Button';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 
+import Button from '../Button';
 
 const itemHeight = 50;
-
 
 export default class MonthPicker extends UIComponent {
   static defaultProps = {
@@ -168,10 +167,10 @@ export default class MonthPicker extends UIComponent {
             {this.months.map((m, i) => (
               <TouchableOpacity
                 onPress={
-                () => {
-                  this._onSelect(m, i);
+                  () => {
+                    this._onSelect(m, i);
+                  }
                 }
-              }
                 key={m.value}
               >
                 <View style={style.item}>

@@ -10,7 +10,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 import Icon from '../Icon';
 
 export default class Tag extends UIComponent {

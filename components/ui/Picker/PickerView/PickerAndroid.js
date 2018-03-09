@@ -10,7 +10,7 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import UIComponent from '../../../common/UIComponent';
+import { UIComponent } from 'common';
 
 const itemHeight = 36;
 
@@ -94,8 +94,8 @@ export default class PickerAndroid extends UIComponent {
         <View style={style.item} key={item}>
           <Text
             onPress={() => {
-            this._onItemPress(i);
-          }}
+              this._onItemPress(i);
+            }}
             style={style.text}
           >
             {item.label}

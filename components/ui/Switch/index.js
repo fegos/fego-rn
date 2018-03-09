@@ -11,7 +11,7 @@ import {
   TouchableHighlight,
   Animated,
 } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 
 export default class NPSwitch extends UIComponent {
   static defaultProps = {
@@ -261,17 +261,17 @@ export default class NPSwitch extends UIComponent {
       <View
         {...this._panResponder.panHandlers}
         style={
-        {
-          ...style.container,
-          padding,
+          {
+            ...style.container,
+            padding,
+          }
         }
-      }
       >
         <View style={[
-            style.bar,
-            barStyle,
-            { borderRadius: style.bar.height / 2 },
-          ]}
+          style.bar,
+          barStyle,
+          { borderRadius: style.bar.height / 2 },
+        ]}
         />
         <TouchableHighlight
           underlayColor="transparent"
@@ -285,18 +285,18 @@ export default class NPSwitch extends UIComponent {
           }}
         >
           <Animated.View style={[
-              style.button,
-              btnStyle,
-              {
-                height: borderRadius * 2,
-                width: borderRadius * 2,
-                top: halfPadding + style.bar.height / 2 - borderRadius,
-                left: style.bar.height / 2 > borderRadius ? halfPadding : halfPadding + style.bar.height / 2 - borderRadius,
-                transform: [{
-                  translateX: this.state.position,
-                }],
-              },
-            ]}
+            style.button,
+            btnStyle,
+            {
+              height: borderRadius * 2,
+              width: borderRadius * 2,
+              top: halfPadding + style.bar.height / 2 - borderRadius,
+              left: style.bar.height / 2 > borderRadius ? halfPadding : halfPadding + style.bar.height / 2 - borderRadius,
+              transform: [{
+                translateX: this.state.position,
+              }],
+            },
+          ]}
           />
         </TouchableHighlight>
       </View>

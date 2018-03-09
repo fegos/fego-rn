@@ -12,9 +12,11 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
+import { UIComponent } from 'common';
+
 import AnimateModal from '../AnimateModal';
 import { tip, alert, confirm } from './tip';
-import UIComponent from '../../common/UIComponent';
+
 
 const { maxHeight } = StyleSheet.create({
   maxHeight: {

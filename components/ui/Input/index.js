@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
 } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 import Icon from '../Icon';
 
 export default class Input extends UIComponent {
@@ -27,8 +27,8 @@ export default class Input extends UIComponent {
     error: false,
     errorColor: '#f50',
     errorIconName: 'exclamation-circle',
-    onExtraClick: () => {},
-    onErrorClick: () => {},
+    onExtraClick: () => { },
+    onErrorClick: () => { },
   }
   static propsType = {
     // 是否是一组输入框里的最后一个输入框

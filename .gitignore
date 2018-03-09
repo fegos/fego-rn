@@ -17,3 +17,4 @@ xcuserdata
 package-lock.json
 yarn.lock
 lint.txt
+sync.sh

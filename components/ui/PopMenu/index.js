@@ -12,7 +12,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 import AnimateModal from '../AnimateModal';
 import Item from '../Item';
 

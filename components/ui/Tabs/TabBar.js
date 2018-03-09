@@ -10,7 +10,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 
 const tabStyle = StyleSheet.create({
   underline: {
