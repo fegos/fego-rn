@@ -6,24 +6,21 @@ subTitle: 模态对话框
 # 模态对话框
 
 ### 组件描述
-- ios`同一时间只允许弹出一个模态`
-
-AnimateModal视图在iOS原生开发中熟称:"模态视图"，AnimateModal进行封装之后，可以弹出来覆盖包含React Native跟视图的原生界面(例如:UiViewControllView,Activity)。在使用React Native开发的混合应用中使用AnimateModal组件，可以让你使用RN开发的内容呈现在原生视图的上面。
-
-如果你使用React Native开发的应用，从根视图就开始开发起来了，那么你应该是Navigator导航器进行控制页面弹出，而不是使用AnimateModal模态视图。通过顶层的Navigator，你可以使用configureScene属性进行控制如何在你开发的App中呈现一个AnimateModal视图。
+- 对官方Modal进行了进一步封装，对Modal包裹的子视图提供了丰富的显示/消失动画（none|slide|slide-down|fade|scale|fade-scale|alert），除此之外提供了额外的配置项，以及动画执行结束回调。
 
 ### 示例代码
 ```html
 <AnimateModal
-	animationType='slide-down'
-	visible={this.state.simpleVisible}
-	animateAppear={true}
+	animationType='fade'
+	visible={this.state.visible}
+	animateWhenMount={true}
 	maskClosable={true}
-	onClose={() => this.setState({ simpleVisible: false })}
-	scale={false}>
+	onClose={() => this.setState({ visible: false })}
+	springEffect={false}
+>
 	<View>
-		<Text style={{ color: '#333' }}>简单模态框容器</Text>
-		<Button onPress={() => this.setState({ simpleVisible: false })}>关闭</Button>
+		<Text style={{ color: '#333' }}>AnimateModal</Text>
+		<Button onPress={() => this.setState({ visible: false })}>关闭</Button>
 	</View>
 </AnimateModal>
 ```
@@ -37,11 +34,13 @@ AnimateModal视图在iOS原生开发中熟称:"模态视图"，AnimateModal进�
 | visible | 是否可见 | bool | false |
 | maskStyle | 遮罩样式 | View.style |  |
 | contentStyle | 内容区样式 | View.style |  |
-| animationType | 动画类型：none fade slide-up slide-down | string | slide-up |
-| animateAppear | 仅首次动画（只适用于进入页面就显示AnimateModal的情况，此时需要visible和该属性均为true） | bool | false|
+| animationType | 动画类型：none fade slide slide-down scale fade-scale alert | string | alert |
+| animationDuration | 动画时长 | number | 200 |
+| maskClosable | 点击遮罩是否可以关闭 | bool | true |
+| animateWhenMount | 进入页面就显示AnimateModal的情况下是否执行动画 | bool | false|
+| springEffect | 动画是否有弹簧效果 | bool | false|
 | onClose | 关闭回调 | func | ()=>{}|
 | onAnimationEnd | 动画结束回调 | func | visible => {}|
-| scale | 规模（是否有缩放操作）| bool | true |
 
 ### 样式对象styles
 

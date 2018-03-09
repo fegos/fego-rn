@@ -12,9 +12,11 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
+import { UIComponent } from 'common';
+
 import AnimateModal from '../AnimateModal';
 import { tip, alert, confirm } from './tip';
-import UIComponent from '../../common/UIComponent';
+
 
 const { maxHeight } = StyleSheet.create({
   maxHeight: {
@@ -52,7 +54,7 @@ export default class Dialog extends UIComponent {
     // 关闭
     onClose: PropTypes.func,
     // 底部按钮数组
-    footer: PropTypes.array,
+    footer: PropTypes.arrayOf(PropTypes.any),
     // 是否全屏
     fullScreen: PropTypes.bool,
     // 是否使用动画
@@ -60,12 +62,9 @@ export default class Dialog extends UIComponent {
     // 一个特殊的按钮状态
     operation: PropTypes.bool,
     // 按钮点击颜色
-    underlayColor: '#EEE',
+    underlayColor: PropTypes.string,
     // 按钮类型
-    styleBtnMap: {
-      no: { color: '#666' },
-      yes: { color: '#337ab7' },
-    },
+    styleBtnMap: PropTypes.objectOf(PropTypes.any),
   }
 
   /**
@@ -172,10 +171,10 @@ export default class Dialog extends UIComponent {
       } else {
         borderBottomLeftRadius = i === footer.length - 1 ? borderRadius : 0;
       }
-
+      const key = `th${i}`;
       return (
         <TouchableHighlight
-          key={i}
+          key={key}
           style={[horizontalFlex, {
             /* 修复安卓按钮按住高亮时，若容器有圆角，边角仍然溢出的bug */
             borderBottomLeftRadius,
@@ -221,7 +220,7 @@ export default class Dialog extends UIComponent {
           contentStyle={styles.innerContent}
           visible={visible}
           onAnimationEnd={onAnimationEnd}
-          animateAppear={animateAppear}
+          animateWhenMount={animateAppear}
         >
           <View style={maxHeight} ref={this._saveRoot}>
             {headerEl}

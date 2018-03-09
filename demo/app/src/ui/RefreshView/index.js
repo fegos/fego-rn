@@ -1,82 +1,59 @@
-'use strict';
-
 import React, { Component } from 'react';
 import {
-    View,
-    ListView,
-    Image,
-    Text,
-    TouchableOpacity,
-    TouchableHighlight,
-    StyleSheet,
-    Alert,
-    ScrollView,
-    Dimensions,
-    InteractionManager,
-    AppRegistry,
+  View,
+  Text,
+  StyleSheet,
 } from 'react-native';
 
-import { RefreshView } from 'fego-rn'
-
-export default class Page extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    onRefresh(){
-        console.log('refresh');
-        var self = this;
-        setTimeout(function(){
-            self.refs.PullRefresh.refreshed();
-        },2000);
-	}
-	
-	onLoadMore(PullRefresh) {
-		alert('123')
-	}
-
-    render() {
-
-
-        return (
-            <View style={styles.container}>
-                <View style={styles.header}>
-                </View>
-
-                <RefreshView ref="PullRefresh" onRefresh={()=>this.onRefresh()}>
-                    <View style={styles.scrollItem}><Text>Scroll1</Text></View>
-                    <View style={styles.scrollItem}><Text>Scroll2</Text></View>
-                    <View style={styles.scrollItem}><Text>Scroll3</Text></View>
-                    <View style={styles.scrollItem}><Text>Scroll4</Text></View>
-                    <View style={styles.scrollItem}><Text>Scroll5</Text></View>
-                    <View style={styles.scrollItem}><Text>Scroll6</Text></View>
-                </RefreshView>
-            </View>
-        );
-    }
-}
-
-
+import { RefreshView } from 'fego-rn';
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    header:{
-        height:64,
-        backgroundColor: '#293447',
-    },
-    scrollItem:{
-        flex:1,
-        height:80,
-        marginBottom:10,
-        backgroundColor: '#ccc',
-        alignItems:'center',
-      justifyContent:'center'
-    },
-    separator: {
-        height: 1,
-        backgroundColor: '#CCCCCC',
-      },
+  container: {
+    flex: 1,
+  },
+  header: {
+    height: 64,
+    backgroundColor: '#293447',
+  },
+  scrollItem: {
+    flex: 1,
+    height: 80,
+    marginBottom: 10,
+    backgroundColor: '#ccc',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#CCCCCC',
+  },
 });
-AppRegistry.registerComponent('demo', () => Projects);
+export default class Page extends Component {
+  onRefresh() {
+    console.log('refresh');
+    const self = this;
+    setTimeout(() => {
+      self.PullRefresh.refreshed();
+    }, 2000);
+  }
+
+  onLoadMore() {
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.header} />
+
+        <RefreshView ref={(c) => { this.PullRefresh = c; }} onRefresh={() => this.onRefresh()}>
+          <View style={styles.scrollItem}><Text>Scroll1</Text></View>
+          <View style={styles.scrollItem}><Text>Scroll2</Text></View>
+          <View style={styles.scrollItem}><Text>Scroll3</Text></View>
+          <View style={styles.scrollItem}><Text>Scroll4</Text></View>
+          <View style={styles.scrollItem}><Text>Scroll5</Text></View>
+          <View style={styles.scrollItem}><Text>Scroll6</Text></View>
+        </RefreshView>
+      </View>
+    );
+  }
+}

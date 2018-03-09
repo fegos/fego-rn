@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Footer extends Component {
-	render() {
-		return (
-			<footer id='footer'>
-				<p className='copyright'>powered by <a href='#'>@{this.props.copyright}</a></p>
-			</footer>
-		);
-	}
+export default function Footer(props) {
+  return (
+    <footer id="footer">
+      <p className="copyright">powered by @{props.copyright}</p>
+    </footer>
+  );
 }

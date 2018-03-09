@@ -10,7 +10,7 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import UIComponent from '../../../common/UIComponent';
+import { UIComponent } from 'common';
 
 const itemHeight = 36;
 
@@ -21,7 +21,7 @@ export default class PickerAndroid extends UIComponent {
 
   static propTypes = {
     // 数据
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(PropTypes.object),
     // 滚轮的值变化后的回调函数
     onValueChange: PropTypes.func,
     // 选择的值的位置，作为受控属性使用
@@ -41,15 +41,21 @@ export default class PickerAndroid extends UIComponent {
   }
 
   _onMomentumScrollBegin = (event) => {
-    this.props.onMomentumScrollBegin && this.props.onMomentumScrollBegin(event);
+    if (this.props.onMomentumScrollBegin) {
+      this.props.onMomentumScrollBegin(event);
+    }
   }
 
   _onMomentumScrollEnd = (event) => {
-    this.props.onMomentumScrollEnd && this.props.onMomentumScrollEnd(event);
+    if (this.props.onMomentumScrollEnd) {
+      this.props.onMomentumScrollEnd(event);
+    }
   }
 
   _onScrollBeginDrag = (event) => {
-    this.props.onScrollBeginDrag && this.props.onScrollBeginDrag(event);
+    if (this.props.onScrollBeginDrag) {
+      this.props.onScrollBeginDrag(event);
+    }
   }
 
   _onScrollEndDrag = (event) => {
@@ -83,11 +89,15 @@ export default class PickerAndroid extends UIComponent {
     const { data } = this.props;
     const len = data.length;
     const items = [];
-
     data.forEach((item, i) => {
       items.push((
-        <View style={style.item} key={i + 2}>
-          <Text onPress={this._onItemPress.bind(this, i)} style={style.text} >
+        <View style={style.item} key={item}>
+          <Text
+            onPress={() => {
+              this._onItemPress(i);
+            }}
+            style={style.text}
+          >
             {item.label}
           </Text>
         </View>

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {
 
 } from 'react-native';
-import UIComponent from '../../../common/UIComponent';
+import { UIComponent } from 'common';
 import PickerView from '../PickerView';
 
 export default class TimePicker extends UIComponent {
@@ -192,13 +192,13 @@ export default class TimePicker extends UIComponent {
 
   render() {
     const {
-      maskClosable, visible, minuteStep, initialValue, mode, minDate, maxDate, ...rest
+      maskClosable, visible, minuteStep, initialValue, mode, minDate, maxDate, timeRef, ...rest
     } = this.props;
     const { hour, minute, data } = this.state;
     const _data1 = data[1].filter((d, i) => (i % minuteStep) === 0);
     return (
       <PickerView
-        ref="pw2"
+        ref={timeRef}
         {...rest}
         data={[data[0], _data1]}
         visible={visible}

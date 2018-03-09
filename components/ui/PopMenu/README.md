@@ -11,20 +11,19 @@ subTitle: 气泡层
 ### 示例代码
 
 ```html
-import PopMenu from 'somewhere'
+import {PopMenu, Item} from 'fego-rn'
 
-const Item=PopMenu.Item
 
 <PopMenu
 	placement='top'
-	title='title' 
+	title='title'
 	maskClosable={false}
 	content={[
-		<Item text='添加新朋友' iconName='user'/>,
-		<Item text='扫一扫' iconName='user' onPress={()=>{
+		<Item styles = {{container:{paddingLeft: 10, width:xx}}} text='添加新朋友' iconName='user'/>,
+		<Item styles = {{container:{paddingLeft: 10, width:xx}}} text='扫一扫' iconName='user' onPress={()=>{
 			this.props.navigation.navigate('ui/Button');
 		}} />,
-		<Item iconName='user'><Text>帮助</Text></Item>
+		<Item styles = {{container:{paddingLeft: 10, width:xx}}} iconName='user'><Text>帮助</Text></Item>
 	]}
 >
 	<View>
@@ -37,7 +36,7 @@ const Item=PopMenu.Item
 
 #### 注意
 ```warning
-popoverStyle中的宽度应当与PopMenu.item保持一致
+popoverStyle中的宽度应当与Item保持一致
 ```
 
 ## API

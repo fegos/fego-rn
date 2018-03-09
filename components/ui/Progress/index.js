@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, Animated, Dimensions } from 'react-native';
-import UIComponent from 'common/UIComponent';
+import { UIComponent } from 'common';
 
 export default class Progress extends UIComponent {
   static defaultProps = {
@@ -31,7 +31,7 @@ export default class Progress extends UIComponent {
     // 尺寸 small default large
     size: PropTypes.oneOf(['default', 'small', 'large']),
     // 位置 top normal
-    position: PropTypes.oneOf(['normal', 'normal']),
+    position: PropTypes.oneOf(['top', 'normal']),
     // 显示进度未满区域
     showUnfill: PropTypes.bool,
     // 进度条右边缘是否呈线形

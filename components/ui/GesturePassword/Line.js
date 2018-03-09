@@ -1,6 +1,4 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   StyleSheet,
@@ -41,7 +39,9 @@ export default class Line extends Component {
   }
 
   render() {
-    const { color, lineWidth, start, end } = this.props;
+    const {
+      color, lineWidth, start, end,
+    } = this.props;
     const transform = Utils.getLineTransform(start, end);
     return (<View style={
         [styles.container, {

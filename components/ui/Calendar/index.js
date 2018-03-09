@@ -8,7 +8,7 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 import Header from './Header';
 import WeekdayBar from './WeekdayBar';
 import Days from './Month';
@@ -48,9 +48,9 @@ export default class Calendar extends UIComponent {
     // 是否从周一开始显示，默认周日开始，需搭配 weekdays 使用
     startFromMonday: PropTypes.bool,
     // 日历显示的星期文案
-    weekdays: PropTypes.array,
+    weekdays: PropTypes.arrayOf(PropTypes.string),
     // 日历显示的月份文案
-    months: PropTypes.array,
+    months: PropTypes.arrayOf(PropTypes.string),
     // 上月翻页
     prev: PropTypes.oneOfType([
       PropTypes.element,

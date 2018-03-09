@@ -12,12 +12,13 @@ import {
   Dimensions,
   View,
 } from 'react-native';
+import { UIComponent } from 'common';
 
 import * as Utils from './Utils';
 import Point from './Point';
 import Line from './Line';
 import Arrow from './Arrow';
-import UIComponent from '../../common/UIComponent';
+
 
 const padding = 8;
 const borderWidth = 1;
@@ -127,7 +128,7 @@ export default class GesturePassword extends UIComponent {
     const { style } = this;
     return (
       <View style={{ ...style.container }}>
-        { this.props.topComponent }
+        {this.props.topComponent}
         <View
           {...this._panResponder.panHandlers}
           onLayout={this._onLayout}
@@ -154,509 +155,516 @@ export default class GesturePassword extends UIComponent {
     }
   }
 
-_onLayout = (e) => {
-  this._gestureAreaLeft = e.nativeEvent.layout.x;
-  this._gestureAreaTop = e.nativeEvent.layout.y;
-  this._initializePoints();
-}
-
-_renderArrows() {
-  const {
-    style,
-  } = this;
-  return this.state.arrows.map((arrow, index) => {
-    if (this.state.isWarning) {
-      arrow.color = style.warning.color;
-    }
-    return (<Arrow
-      key={`arrow-${index}`}
-      width={
-        this._pointRadius / 3
-      }
-      color={
-        arrow.color
-      }
-      start={{
-          x: arrow.start.x - this._gestureAreaLeft,
-          y: arrow.start.y - this._gestureAreaTop,
-        }}
-      end={{
-          x: arrow.end.x - this._gestureAreaLeft,
-          y: arrow.end.y - this._gestureAreaTop,
-      }}
-    />
-    );
-  });
-}
-
-_renderPoints() {
-  const {
-    style,
-  } = this;
-  return this.state.points.map((point, index) => (<Point
-    key={`point-${index}`}
-    radius={this._pointRadius}
-    borderWidth={borderWidth}
-    backgroundColor={
-      style.normal.backgroundColor
-    }
-    color={
-      style.normal.color
-    }
-    activeColor={
-      style.active.color
-    }
-    warningColor={
-      style.warning.color
-    }
-    isActive={
-      point.isActive
-    }
-    isWarning={
-      point.isActive ? this.state.isWarning : false
-    }
-    index={
-      point.index
-    }
-    isNoChange={
-      this.props.isPointNoChange
-    }
-    isShowBorder={
-      this.props.isShowBorder
-    }
-    position={
-      point.position
-    }
-  />
-  ));
-}
-
-_renderLineDetail(line, index) {
-  const {
-    style,
-  } = this;
-  if (line.show) {
-    if (this.state.isWarning) {
-      line.color = style.warning.color;
-    }
-    return (
-      <Line
-        key={`line-${index}`}
-        color={line.color}
-        lineWidth={style.line.width}
-        start={{
-          x: line.start.x - this._gestureAreaLeft,
-          y: line.start.y - this._gestureAreaTop,
-        }}
-        end={{
-          x: line.end.x - this._gestureAreaLeft,
-          y: line.end.y - this._gestureAreaTop,
-        }}
-      />
-    );
-  }
-  return null;
-}
-
-_renderLines() {
-  const lines = this.state.lines.map((line, index) => this._renderLineDetail(line, index));
-  const segMentLines = this.state.segMentLines.map((line, index) => this._renderLineDetail(line, index));
-  return (<View style={{ flex: 1 }}>
-            {lines}
-            {segMentLines}
-          </View>
-  );
-}
-
-_initializePoints() {
-  // avoid repeat invoking(for android)
-  if (this.state.points.length) {
-    return;
+  _onLayout = (e) => {
+    this._gestureAreaLeft = e.nativeEvent.layout.x;
+    this._gestureAreaTop = e.nativeEvent.layout.y;
+    this._initializePoints();
   }
 
-  const points = [];
-  for (let i = 0; i < 9; i += 1) {
-    const left = (this._pointRadius * 3 * (i % 3)) + padding;
-    const top = (this._pointRadius * 3 * Math.floor(i / 3)) + padding;
-    points.push({
-      index: i,
-      position: {
-        left,
-        top,
-      },
-      origin: {
-        x: this._gestureAreaLeft + left + this._pointRadius,
-        y: this._gestureAreaTop + top + this._pointRadius,
-      },
-      isActive: false,
-      isWarning: false,
-    });
-  }
-  this.setState({
-    points,
-  });
-}
-
-_getTouchPoint(location) {
-  for (const point of this.state.points) {
-    if (Utils.isPointInPath(location, point.origin, this._pointRadius)) {
-      return point;
-    }
-  }
-  return null;
-}
-
-_addSequence(index) {
-  // if (~this._sequence.findIndex((item) => item === index)) {
-  if (this._sequence.includes(index)) {
-    return;
-  }
-  this._sequence.push(index);
-}
-
-_addArrow(arrow) {
-  this.state.arrows.push(arrow);
-  const { arrows } = this.state;
-  this.setState({
-    arrows,
-  });
-}
-
-_addLine(line) {
-  if (this.props.isHideLine) {
-    const {
-      start,
-      end,
-    } = line;
-
-    const dy = end.y - start.y;
-    const dx = end.x - start.x;
-    const len = Math.sqrt((dx * dx) + (dy * dy));
-    if (len < this._pointRadius) {
-      line.show = false;
-    } else {
-      line.show = true;
-      line.start = {
-        x: start.x + ((this._pointRadius * dx) / len),
-        y: start.y + ((this._pointRadius * dy) / len),
-      };
-    }
-  }
-  this.state.lines.push(line);
-  const { lines } = this.state;
-  this.setState({
-    lines,
-  });
-}
-
-
-_computerSegMentLines(point, line, end) {
-  const segMentLines = [];
-  // 计算线条经过的其他圆圈
-  const { points } = this.state;
-  let crossPoint = [];
-  for (let i = 0; i < points.length; i += 1) {
-    const tmpPoint = points[i];
-    if (tmpPoint.index !== point.index) {
-      // 计算line.start/end的直线到tmpPoint的距离，来判断线是否跟圆圈相交
-      const distanse = Utils.computerDistance(line.start, end, tmpPoint.origin);
-      if (distanse < this._pointRadius) {
-        // 相交
-        // console.log(tmpPoint.index);
-        // 如果跟这个圆圈相交，则需要计算出线的交点
-        const crossPoints = Utils.getCircleLineIntersectionPoint(line.start, end, tmpPoint.origin, this._pointRadius);
-        // 确保交叉点在起始点范围内
-        if (Utils.pointInMiddleLine(crossPoints[0], line.start, end) &&
-          Utils.pointInMiddleLine(crossPoints[1], line.start, end)) {
-          crossPoint.push({
-            index: tmpPoint.index,
-            point1: crossPoints[0],
-            point2: crossPoints[1],
-          });
-        }
-      }
-    }
-  }
-
-  const crossCount = crossPoint.length;
-  if (crossCount > 0) {
-    // 触碰圆圈大于1个，需要调整好交点的位置
-    crossPoint = Utils.reSortArray(crossPoint, line.start, end);
+  _renderArrows() {
     const {
       style,
     } = this;
-    for (let i = 0; i < crossCount; i += 1) {
-      const crossDetail = crossPoint[i];
-      if (i === 0) {
-        line.end = {
-          x: crossDetail.point1.x,
-          y: crossDetail.point1.y,
-        };
+    return this.state.arrows.map((arrow) => {
+      if (this.state.isWarning) {
+        arrow.color = style.warning.color;
       }
-      const segMentLine = {
-        show: true,
-        start: crossDetail.point2,
-        end: i === crossCount - 1 ? end : crossPoint[i + 1].point1,
-        color: style.line.color || style.active.color,
-      };
-      segMentLines.push(segMentLine);
-    }
-  }
-  // console.log(segMentLines);
-  return segMentLines;
-}
-
-/**
- * 更新手势线
- * @param {*} point 手势圆圈信息
- * @param {*} end 移动的终点位置信息
- * @param {*} endIsPointOrigin 用来标识终点位置是否是一个圆圈的圆心，默认false
- * @param {*} needCheckCross 用来标识当前更新线是否需要检测落点跟其他的圆圈相交
- * 如果相交，在isShowBorder模式需要做断线处理
- */
-_updateLine(
-  point, end,
-  endIsPointOrigin = false,
-  needCheckCross = false,
-  endPointHasActive = false,
-) {
-  // 获取当前手势圆圈的信息
-  const start = point.origin;
-  this._currentLine.start = start;
-  this._currentLine.end = end;
-  // 先清理之前的短线
-  this.setState({
-    segMentLines: [],
-  });
-  if (this.props.isHideLine) {
-    const dy = end.y - start.y;
-    const dx = end.x - start.x;
-    const len = Math.sqrt((dx * dx) + (dy * dy));
-
-    const line = this._currentLine;
-    // 更新线条
-    if (len >= this._pointRadius) {
-      line.show = true;
-      line.start = {
-        x: point.origin.x + ((this._pointRadius * dx) / len),
-        y: point.origin.y + ((this._pointRadius * dy) / len),
-      };
-      if (endIsPointOrigin) {
-        // 计算以end为中心的圆与point点之间的交点
-        const dx = start.x - end.x;
-        const dy = start.y - end.y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        end = {
-          x: end.x + this._pointRadius * dx / len,
-          y: end.y + this._pointRadius * dy / len,
-        };
-        const segLines = this._computerSegMentLines(point, line, end, true);
-        if (segLines.length > 0) {
-          if (!endPointHasActive) {
-            for (let m = 0; m < segLines.length; m += 1) {
-              this.state.lines.push(segLines[m]);
-            }
-          }
-          this.setState({
-            segMentLines: segLines.slice(0),
-          });
-        } else {
-          line.end = end;
+      return (<Arrow
+        key={arrow.id}
+        width={
+          this._pointRadius / 3
         }
-      } else if (needCheckCross) {
-        // 处理线跳点的情况
-        // 如果存在交点，那么需要根据当前line的方向决定分段线
-        const segMentLines = this._computerSegMentLines(point, line, end);
-        if (segMentLines.length > 0) {
-          this.setState({
-            segMentLines,
-          });
+        color={
+          arrow.color
         }
+        start={{
+          x: arrow.start.x - this._gestureAreaLeft,
+          y: arrow.start.y - this._gestureAreaTop,
+        }}
+        end={{
+          x: arrow.end.x - this._gestureAreaLeft,
+          y: arrow.end.y - this._gestureAreaTop,
+        }}
+      />
+      );
+    });
+  }
+
+  _renderPoints() {
+    const {
+      style,
+    } = this;
+    return this.state.points.map(point => (<Point
+      key={point.index}
+      radius={this._pointRadius}
+      borderWidth={borderWidth}
+      backgroundColor={
+        style.normal.backgroundColor
       }
-    } else {
-      line.show = false;
-    }
-  }
-
-  // 更新线条
-  const { lines } = this.state;
-  this.setState({
-    lines,
-  });
-}
-
-_setToActive(point) {
-  point.isActive = true;
-  this.setState({
-    points: this.state.points,
-  });
-}
-
-_reset() {
-  const points = this.state.points.map((point, index) => {
-    point.isActive = false;
-    return point;
-  });
-  this.setState({
-    isWarning: false,
-    points,
-    lines: [],
-    segMentLines: [],
-    arrows: [],
-  });
-
-  this._sequence = [];
-  this._currentPoint = null;
-  this._currentLine = null;
-
-  if (this.props.onReset) {
-    this.props.onReset();
-  }
-}
-
-_onTouchStart = (e) => {
-  if (this.props.onStart) {
-    this.props.onStart();
-  }
-
-  if (this._timer != null) {
-    clearTimeout(this._timer);
-    this._timer = null;
-  }
-
-  this._reset();
-  const location = {
-    x: e.nativeEvent.pageX,
-    y: e.nativeEvent.pageY,
-  };
-  const point = this._getTouchPoint(location);
-  if (point == null) {
-    return;
-  }
-
-  this._addSequence(point.index);
-  this._setToActive(point);
-  this._currentPoint = point;
-}
-
-_onTouchMove = (e) => {
-  // 获取当前移动位置的坐标
-  const {
-    style,
-  } = this;
-  const location = {
-    x: e.nativeEvent.pageX,
-    y: e.nativeEvent.pageY,
-  };
-  // 根据坐标获取对应的手势原点
-  const point = this._getTouchPoint(location);
-
-  if (point == null) {
-    // 如果没有获取到手势圆圈，说明位置在圆圈与圆圈之间的部分
-    if (this._currentLine == null) {
-      // 当前线为空说明首次发起移动的地方不在圆圈点内
-      return;
-    }
-    // 如果存在当前的线，说明该线是从某一个圆圈拉出来的但是没有落到其他圆圈里的路径
-    this._updateLine(this._currentPoint, location, false, true);
-  } else if (this._currentLine == null) {
-    const line = {
-      show: true,
-      start: point.origin,
-      end: location,
-      color: style.line.color || style.active.color,
-    };
-    this._addLine(line);
-    this._currentLine = line;
-    if (this._currentPoint != null) {
-      return;
-    }
-    this._addSequence(point.index);
-    this._setToActive(point);
-    this._currentPoint = point;
-  } else {
-    // 落点任然在当前手势圆圈里，如果是isShowBorder=true无需处理
-    if (point === this._currentPoint) {
-      if (!this.props.isHideLine) {
-        this._updateLine(point, location, false, true);
+      color={
+        style.normal.color
       }
+      activeColor={
+        style.active.color
+      }
+      warningColor={
+        style.warning.color
+      }
+      isActive={
+        point.isActive
+      }
+      isWarning={
+        point.isActive ? this.state.isWarning : false
+      }
+      index={
+        point.index
+      }
+      isNoChange={
+        this.props.isPointNoChange
+      }
+      isShowBorder={
+        this.props.isShowBorder
+      }
+      position={
+        point.position
+      }
+    />
+    ));
+  }
+
+  _renderLineDetail(line, index) {
+    const {
+      style,
+    } = this;
+    if (line.show) {
+      if (this.state.isWarning) {
+        line.color = style.warning.color;
+      }
+      return (
+        <Line
+          key={`line-${index}`}
+          color={line.color}
+          lineWidth={style.line.width}
+          start={{
+            x: line.start.x - this._gestureAreaLeft,
+            y: line.start.y - this._gestureAreaTop,
+          }}
+          end={{
+            x: line.end.x - this._gestureAreaLeft,
+            y: line.end.y - this._gestureAreaTop,
+          }}
+        />
+      );
+    }
+    return null;
+  }
+
+  _renderLines() {
+    const lines = this.state.lines.map((line, index) => this._renderLineDetail(line, index));
+    const segMentLines = this.state.segMentLines.map((line, index) => this._renderLineDetail(line, index));
+    return (
+      <View style={{ flex: 1 }}>
+        {lines}
+        {segMentLines}
+      </View>
+    );
+  }
+
+  _initializePoints() {
+    // avoid repeat invoking(for android)
+    if (this.state.points.length) {
       return;
     }
-    // 落点在已经激活的手势圆圈里
-    if (this._sequence.includes(point.index)) {
-      if (this.props.isHideLine) {
-        // console.log('==000000000==');
-        // console.log(point.origin);
-        this._updateLine(this._currentPoint, point.origin, true, true, true);
+
+    const points = [];
+    for (let i = 0; i < 9; i += 1) {
+      const left = (this._pointRadius * 3 * (i % 3)) + padding;
+      const top = (this._pointRadius * 3 * Math.floor(i / 3)) + padding;
+      points.push({
+        index: i,
+        position: {
+          left,
+          top,
+        },
+        origin: {
+          x: this._gestureAreaLeft + left + this._pointRadius,
+          y: this._gestureAreaTop + top + this._pointRadius,
+        },
+        isActive: false,
+        isWarning: false,
+      });
+    }
+    this.setState({
+      points,
+    });
+  }
+
+  _getTouchPoint(location) {
+    for (const point of this.state.points) {
+      if (Utils.isPointInPath(location, point.origin, this._pointRadius)) {
+        return point;
+      }
+    }
+    return null;
+  }
+
+  _addSequence(index) {
+    // if (~this._sequence.findIndex((item) => item === index)) {
+    if (this._sequence.includes(index)) {
+      return;
+    }
+    this._sequence.push(index);
+  }
+
+  _addArrow(arrow) {
+    // this.state.arrows.push(arrow);
+    const { arrows } = this.state;
+    this.setState({
+      // arrows: arrows.slice().push(arrow),
+      arrows: arrows.concat(arrow),
+    });
+  }
+
+  _addLine(line) {
+    if (this.props.isHideLine) {
+      const {
+        start,
+        end,
+      } = line;
+
+      const dy = end.y - start.y;
+      const dx = end.x - start.x;
+      const len = Math.sqrt((dx * dx) + (dy * dy));
+      if (len < this._pointRadius) {
+        line.show = false;
       } else {
-        this._updateLine(this._currentPoint, location);
+        line.show = true;
+        line.start = {
+          x: start.x + ((this._pointRadius * dx) / len),
+          y: start.y + ((this._pointRadius * dy) / len),
+        };
       }
+    }
+    // this.state.lines.push(line);
+    const { lines } = this.state;
+    this.setState({
+      lines: lines.concat(line),
+    });
+  }
 
+
+  _computerSegMentLines(point, line, end) {
+    const segMentLines = [];
+    // 计算线条经过的其他圆圈
+    const { points } = this.state;
+    let crossPoint = [];
+    for (let i = 0; i < points.length; i += 1) {
+      const tmpPoint = points[i];
+      if (tmpPoint.index !== point.index) {
+        // 计算line.start/end的直线到tmpPoint的距离，来判断线是否跟圆圈相交
+        const distanse = Utils.computerDistance(line.start, end, tmpPoint.origin);
+        if (distanse < this._pointRadius) {
+          // 相交
+          // console.log(tmpPoint.index);
+          // 如果跟这个圆圈相交，则需要计算出线的交点
+          const crossPoints = Utils.getCircleLineIntersectionPoint(line.start, end, tmpPoint.origin, this._pointRadius);
+          // 确保交叉点在起始点范围内
+          if (Utils.pointInMiddleLine(crossPoints[0], line.start, end) &&
+            Utils.pointInMiddleLine(crossPoints[1], line.start, end)) {
+            crossPoint.push({
+              index: tmpPoint.index,
+              point1: crossPoints[0],
+              point2: crossPoints[1],
+            });
+          }
+        }
+      }
+    }
+
+    const crossCount = crossPoint.length;
+    if (crossCount > 0) {
+      // 触碰圆圈大于1个，需要调整好交点的位置
+      crossPoint = Utils.reSortArray(crossPoint, line.start, end);
+      const {
+        style,
+      } = this;
+      for (let i = 0; i < crossCount; i += 1) {
+        const crossDetail = crossPoint[i];
+        if (i === 0) {
+          line.end = {
+            x: crossDetail.point1.x,
+            y: crossDetail.point1.y,
+          };
+        }
+        const segMentLine = {
+          show: true,
+          start: crossDetail.point2,
+          end: i === crossCount - 1 ? end : crossPoint[i + 1].point1,
+          color: style.line.color || style.active.color,
+        };
+        segMentLines.push(segMentLine);
+      }
+    }
+    // console.log(segMentLines);
+    return segMentLines;
+  }
+
+  /**
+   * 更新手势线
+   * @param {*} point 手势圆圈信息
+   * @param {*} end 移动的终点位置信息
+   * @param {*} endIsPointOrigin 用来标识终点位置是否是一个圆圈的圆心，默认false
+   * @param {*} needCheckCross 用来标识当前更新线是否需要检测落点跟其他的圆圈相交
+   * 如果相交，在isShowBorder模式需要做断线处理
+   */
+  _updateLine(
+    point, end,
+    endIsPointOrigin = false,
+    needCheckCross = false,
+    endPointHasActive = false,
+  ) {
+    // 获取当前手势圆圈的信息
+    const start = point.origin;
+    this._currentLine.start = start;
+    this._currentLine.end = end;
+    // 先清理之前的短线
+    this.setState({
+      segMentLines: [],
+    });
+
+    const { lines } = this.state;
+
+    if (this.props.isHideLine) {
+      let dy = end.y - start.y;
+      let dx = end.x - start.x;
+      let len = Math.sqrt((dx * dx) + (dy * dy));
+
+      const line = this._currentLine;
+      // 更新线条
+      if (len >= this._pointRadius) {
+        line.show = true;
+        line.start = {
+          x: point.origin.x + ((this._pointRadius * dx) / len),
+          y: point.origin.y + ((this._pointRadius * dy) / len),
+        };
+        if (endIsPointOrigin) {
+          // 计算以end为中心的圆与point点之间的交点
+          dx = start.x - end.x;
+          dy = start.y - end.y;
+          len = Math.sqrt(dx * dx + dy * dy);
+          end = {
+            x: end.x + this._pointRadius * dx / len,
+            y: end.y + this._pointRadius * dy / len,
+          };
+          const segLines = this._computerSegMentLines(point, line, end, true);
+          if (segLines.length > 0) {
+            if (!endPointHasActive) {
+              for (let m = 0; m < segLines.length; m += 1) {
+                lines.push(segLines[m]);
+              }
+            }
+            this.setState({
+              segMentLines: segLines.slice(0),
+            });
+          } else {
+            line.end = end;
+          }
+        } else if (needCheckCross) {
+          // 处理线跳点的情况
+          // 如果存在交点，那么需要根据当前line的方向决定分段线
+          const segMentLines = this._computerSegMentLines(point, line, end);
+          if (segMentLines.length > 0) {
+            this.setState({
+              segMentLines,
+            });
+          }
+        }
+      } else {
+        line.show = false;
+      }
+    }
+
+    // 更新线条
+    this.setState({
+      lines,
+    });
+  }
+
+  _setToActive(point) {
+    point.isActive = true;
+    this.setState({
+      points: this.state.points,
+    });
+  }
+
+  _reset() {
+    const points = this.state.points.map((point) => {
+      point.isActive = false;
+      return point;
+    });
+    this.setState({
+      isWarning: false,
+      points,
+      lines: [],
+      segMentLines: [],
+      arrows: [],
+    });
+
+    this._sequence = [];
+    this._currentPoint = null;
+    this._currentLine = null;
+
+    if (this.props.onReset) {
+      this.props.onReset();
+    }
+  }
+
+  _onTouchStart = (e) => {
+    if (this.props.onStart) {
+      this.props.onStart();
+    }
+
+    if (this._timer != null) {
+      clearTimeout(this._timer);
+      this._timer = null;
+    }
+
+    this._reset();
+    const location = {
+      x: e.nativeEvent.pageX,
+      y: e.nativeEvent.pageY,
+    };
+    const point = this._getTouchPoint(location);
+    if (point == null) {
       return;
     }
 
-    if (!this.props.allowCross) {
-      const crossPoint = Utils.getCrossPoint(this.state.points, this._currentPoint, point, this._pointRadius);
-      if (crossPoint != null) {
-        this._addSequence(crossPoint.index);
-        this._setToActive(crossPoint);
-      }
-    }
-
-    // 如果落点在其他未激活的手势圆圈里
-    this._updateLine(this._currentPoint, point.origin, true, true);
-    // 需要在其他圆圈里处理箭头
-    const arrow = {
-      start: this._currentPoint.origin,
-      end: point.origin,
-      color: style.active.color,
-    };
-    this._addArrow(arrow);
-    // 以及添加一条新线
-    const line = {
-      show: true,
-      start: point.origin,
-      end: location,
-      color: style.line.color || style.active.color,
-    };
-    this._addLine(line);
-    this._currentLine = line;
     this._addSequence(point.index);
     this._setToActive(point);
     this._currentPoint = point;
   }
-}
 
-_onTouchEnd = () => {
-  if (this._sequence.length === 0) {
-    return;
+  _onTouchMove = (e) => {
+    // 获取当前移动位置的坐标
+    const {
+      style,
+    } = this;
+    const location = {
+      x: e.nativeEvent.pageX,
+      y: e.nativeEvent.pageY,
+    };
+    // 根据坐标获取对应的手势原点
+    const point = this._getTouchPoint(location);
+
+    if (point == null) {
+      // 如果没有获取到手势圆圈，说明位置在圆圈与圆圈之间的部分
+      if (this._currentLine == null) {
+        // 当前线为空说明首次发起移动的地方不在圆圈点内
+        return;
+      }
+      // 如果存在当前的线，说明该线是从某一个圆圈拉出来的但是没有落到其他圆圈里的路径
+      this._updateLine(this._currentPoint, location, false, true);
+    } else if (this._currentLine == null) {
+      const line = {
+        show: true,
+        start: point.origin,
+        end: location,
+        color: style.line.color || style.active.color,
+        id: `line-${point.origin.x}-${point.origin.y}-${location.x}-${location.y}`,
+      };
+      this._addLine(line);
+      this._currentLine = line;
+      if (this._currentPoint != null) {
+        return;
+      }
+      this._addSequence(point.index);
+      this._setToActive(point);
+      this._currentPoint = point;
+    } else {
+      // 落点任然在当前手势圆圈里，如果是isShowBorder=true无需处理
+      if (point === this._currentPoint) {
+        if (!this.props.isHideLine) {
+          this._updateLine(point, location, false, true);
+        }
+        return;
+      }
+      // 落点在已经激活的手势圆圈里
+      if (this._sequence.includes(point.index)) {
+        if (this.props.isHideLine) {
+          // console.log('==000000000==');
+          // console.log(point.origin);
+          this._updateLine(this._currentPoint, point.origin, true, true, true);
+        } else {
+          this._updateLine(this._currentPoint, location);
+        }
+
+        return;
+      }
+
+      if (!this.props.allowCross) {
+        const crossPoint = Utils.getCrossPoint(this.state.points, this._currentPoint, point, this._pointRadius);
+        if (crossPoint != null) {
+          this._addSequence(crossPoint.index);
+          this._setToActive(crossPoint);
+        }
+      }
+
+      // 如果落点在其他未激活的手势圆圈里
+      this._updateLine(this._currentPoint, point.origin, true, true);
+      // 需要在其他圆圈里处理箭头
+      const arrow = {
+        start: this._currentPoint.origin,
+        end: point.origin,
+        color: style.active.color,
+        id: `arrow-${this._currentPoint.origin.x}-${this._currentPoint.origin.y}-${point.origin.x}-${point.origin.y}`,
+      };
+      this._addArrow(arrow);
+      // 以及添加一条新线
+      const line = {
+        show: true,
+        start: point.origin,
+        end: location,
+        color: style.line.color || style.active.color,
+        id: `line-${point.origin.x}-${point.origin.y}-${location.x}-${location.y}`,
+      };
+      this._addLine(line);
+      this._currentLine = line;
+      this._addSequence(point.index);
+      this._setToActive(point);
+      this._currentPoint = point;
+    }
   }
-  const { points, lines, segMentLines } = this.state;
-  if (segMentLines.length > 1) {
-    segMentLines.pop();
-  } else {
-    lines.pop();
-  }
 
-  this.setState({
-    lines,
-    segMentLines,
-    points,
-  });
+  _onTouchEnd = () => {
+    if (this._sequence.length === 0) {
+      return;
+    }
+    const { points, lines, segMentLines } = this.state;
+    if (segMentLines.length > 1) {
+      segMentLines.pop();
+    } else {
+      lines.pop();
+    }
 
-  const password = Utils.getPassword(this._sequence);
-  if (this.props.onFinish) {
-    this.props.onFinish(password);
-  }
+    this.setState({
+      lines,
+      segMentLines,
+      points,
+    });
 
-  if (this.props.warningDuration > 0) {
-    this._timer = setTimeout(() => {
+    const password = Utils.getPassword(this._sequence);
+    if (this.props.onFinish) {
+      this.props.onFinish(password);
+    }
+
+    if (this.props.warningDuration > 0) {
+      this._timer = setTimeout(() => {
+        this._reset();
+      }, this.props.warningDuration);
+    } else {
       this._reset();
-    }, this.props.warningDuration);
-  } else {
-    this._reset();
+    }
   }
-}
 }
 
 GesturePassword.baseStyle = {

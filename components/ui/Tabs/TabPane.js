@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 
-export default class TabPane extends Component {
-  render() {
-    const { children, style = { flex: 1 }, ...rets } = this.props;
-    return (
-      <View style={style} {...rets}>
-        {children}
-      </View>
-    );
-  }
-}
+export default (props) => {
+  const { children, style = { flex: 1 }, ...rets } = props;
+  return (
+    <View style={style} {...rets}>
+      {children}
+    </View>
+  );
+};

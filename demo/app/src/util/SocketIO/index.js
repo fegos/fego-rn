@@ -19,6 +19,13 @@ class TestView extends Component {
     };
   }
 
+  componentWillUnmount() {
+    if (this.socket) {
+      this.socket.disconnect();
+      this.socket = null;
+    }
+  }
+
   _socketConnect = () => {
     if (this.socket) {
       this.socket.disconnect();
@@ -73,13 +80,6 @@ class TestView extends Component {
   _socketDisConnect = () => {
     this.socket.disconnect();
     this.socket = null;
-  }
-
-  componentWillUnmount() {
-    if (this.socket) {
-      this.socket.disconnect();
-      this.socket = null;
-    }
   }
 
   render() {

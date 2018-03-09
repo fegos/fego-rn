@@ -5,7 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native';
-import UIComponent from 'common/UIComponent';
+import { UIComponent } from 'common';
 
 export default class Segment extends UIComponent {
   static defaultProps = {
@@ -20,7 +20,7 @@ export default class Segment extends UIComponent {
     // 非控属性：默认被选中的下标
     defaultIndex: PropTypes.number,
     // 按顺序每一个段落的标题文字
-    values: PropTypes.array,
+    values: PropTypes.arrayOf(PropTypes.string),
     // 主题色调，若使用则会覆盖所有颜色相关的style
     themeColor: PropTypes.string,
     onChange: PropTypes.func,

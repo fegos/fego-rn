@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { ScrollView, Text } from 'react-native';
-import { ActivityIndicator, List } from 'fego-rn';
+import { ActivityIndicator, Item } from 'fego-rn';
 import { Style } from '../../../common';
 
-const { ListItem } = List;
 
 export default class Page extends Component {
   static navigationOptions = {
@@ -19,28 +18,26 @@ export default class Page extends Component {
     return (
       <ScrollView style={Style.container}>
         <Text style={Style.title}>ActivityIndicator</Text>
-        <List>
-          <ListItem>
-            <Text>默认：</Text>
-            <ActivityIndicator />
-          </ListItem>
-          <ListItem>
-            <Text>size设为large：</Text>
-            <ActivityIndicator size="large" />
-          </ListItem>
-          <ListItem>
-            <Text>text设为正在加载：</Text>
-            <ActivityIndicator text="正在加载" />
-          </ListItem>
-          <ListItem>
-            <Text>变更颜色：</Text>
-            <ActivityIndicator color="#33F" textStyle={{ color: '#33F' }} text="正在加载" />
-          </ListItem>
-          <ListItem>
-            <Text>visible为false</Text>
-            <ActivityIndicator visible={this.state.toast1Visible} hasToast size="large" color="#FFF" />
-          </ListItem>
-        </List>
+        <Item>
+          <Text>默认：</Text>
+          <ActivityIndicator />
+        </Item>
+        <Item>
+          <Text>size设为large：</Text>
+          <ActivityIndicator size="large" />
+        </Item>
+        <Item>
+          <Text>text设为正在加载：</Text>
+          <ActivityIndicator text="正在加载" />
+        </Item>
+        <Item>
+          <Text>变更颜色：</Text>
+          <ActivityIndicator color="#33F" textStyle={{ color: '#33F' }} text="正在加载" />
+        </Item>
+        <Item>
+          <Text>visible为false</Text>
+          <ActivityIndicator visible={this.state.toast1Visible} hasToast size="large" color="#FFF" />
+        </Item>
       </ScrollView>
     );
   }

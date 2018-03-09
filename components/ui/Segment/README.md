@@ -10,26 +10,26 @@ subTitle: 分段器
 
 ### 代码示例
 ~~~js
-<List>
-	<ListItem styles={listItemStyle}>
+<ScrollView>
+	<Item styles={ItemStyle}>
 		<Text style={{ padding: 10 }}>禁止的</Text>
-		<Segment values={this.state.values} disabled={true} /> 
-	</ListItem>
-	<ListItem styles={listItemStyle}>
+		<Segment values={this.state.values} disabled={true} />
+	</Item>
+	<Item styles={ItemStyle}>
 		<Text style={{ padding: 10 }}>非控组件: 使用非控属性defaultIndex，默认0</Text>
-		<Segment values={this.state.values} onChange={i=>{}}/> 
-	</ListItem>
-	<ListItem styles={listItemStyle}>
+		<Segment values={this.state.values} onChange={i=>{}}/>
+	</Item>
+	<Item styles={ItemStyle}>
 		<Text style={{ padding: 10 }}>受控组件：使用受控属性index，配合onChange更新</Text>
 		<Segment index={this.state.segmentIndex} values={this.state.values} onChange={i=>{
 			this.setState({segmentIndex: i})
 		}}/>
-	</ListItem>
-	<ListItem styles={listItemStyle}>
+	</Item>
+	<Item styles={ItemStyle}>
 		<Text style={{ padding: 10 }}>主题色调：themeColor</Text>
-		<Segment values={this.state.values} themeColor='#981231'/> 
-	</ListItem>
-</List>
+		<Segment values={this.state.values} themeColor='#981231'/>
+	</Item>
+</ScrollView>
 ~~~
 
 

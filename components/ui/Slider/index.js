@@ -8,7 +8,7 @@ import {
   View,
   Easing,
 } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 
 const TRACK_SIZE = 4;
 const THUMB_SIZE = 20;

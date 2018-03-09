@@ -5,7 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableWithoutFeedback, View, Text } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 import Icon from '../Icon';
 
 export default class Checkbox extends UIComponent {

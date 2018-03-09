@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { List, Popup, Button, Icon, Toast } from 'fego-rn';
+import { Item, Popup, Button, Icon, Toast } from 'fego-rn';
 import { Style } from '../../../common';
-
-const { ListItem } = List;
 
 export default class Page extends Component {
   static navigationOptions = {
@@ -44,10 +42,20 @@ export default class Page extends Component {
         <Button type="primary" title="下一个Popup" onPress={() => this._popShow()} />
       </View>
     );
+    let direct = '';
+    if (this.popNum > 1) {
+      if (this.popNum % 2 > 0) {
+        direct = 'right';
+      } else {
+        direct = 'left';
+      }
+    } else {
+      direct = 'bottom';
+    }
     Popup.show(SelfView, {
       title: `第 ${this.popNum} 个Popup`,
       headerLeft: this.popNum > 1,
-      aniIn: this.popNum > 1 ? (this.popNum % 2 > 0 ? 'right' : 'left') : 'bottom',
+      aniIn: direct,
       // 退出方向可以自定义
       aniOutFn: type => (type === 'headerLeft' ? null : 'bottom'),
       onClose: (type) => {
@@ -68,54 +76,52 @@ export default class Page extends Component {
       <View style={Style.container}>
         <ScrollView>
           <Text style={Style.title}>{`关闭时onClose接受参数：type=${this.state.closeType}`}</Text>
-          <List>
-            <ListItem onPress={() => this._popShow()} title="命令方式Popup.show" />
-            <ListItem onPress={() => this._pop('bottom')} title="底部弹出 aniIn=bottom" />
-            <ListItem onPress={() => this._pop('top')} title="顶部弹出 aniIn=top" />
-            <ListItem onPress={() => this._pop('top', 'top')} title="顶部弹出且置顶 aniIn=top location=top" />
-            <ListItem onPress={() => this._pop('left')} title="左下弹出 aniIn=left" />
-            <ListItem onPress={() => this._pop('right')} title="右下弹出 aniIn=right" />
-            <ListItem onPress={() => this._pop('left', 'top')} title="左上弹出 aniIn=left location=top" />
-            <ListItem onPress={() => this._pop('right', 'top')} title="右上弹出 aniIn=right location=top" />
-            <ListItem
-              onPress={() => {
-                this.setState({
-                  visible: true,
-                  aniIn: 'bottom',
-                  location: 'bottom',
-                  title: false,
-                });
-              }}
-              title="无标题"
-            />
-            <ListItem
-              onPress={() => {
-                this.setState({
-                  visible: true,
-                  aniIn: 'bottom',
-                  location: 'bottom',
-                  title: '头部左右侧图标',
-                  headerLeft: true,
-                  headerRight: true,
-                });
-              }}
-              title="标题显示左侧右侧图标"
-            />
-            <ListItem
-              onPress={() => {
-                this.setState({
-                  visible: true,
-                  aniIn: 'bottom',
-                  location: 'bottom',
-                  title: <Icon style={{ flex: 1, paddingHorizontal: 40, textAlign: 'center' }} name="free-code-camp" />,
-                  headerLeft: <View style={{ paddingHorizontal: 10 }}><Text style={{ fontSize: 12, color: '#999' }}>取消</Text></View>,
-                  headerRight: '确定',
-                });
-              }}
-              title="自定义头部"
-            />
-            <ListItem onPress={() => this.setState({ visible1: true })} title="多Popup叠加" />
-          </List>
+          <Item onPress={() => this._popShow()} title="命令方式Popup.show" />
+          <Item onPress={() => this._pop('bottom')} title="底部弹出 aniIn=bottom" />
+          <Item onPress={() => this._pop('top')} title="顶部弹出 aniIn=top" />
+          <Item onPress={() => this._pop('top', 'top')} title="顶部弹出且置顶 aniIn=top location=top" />
+          <Item onPress={() => this._pop('left')} title="左下弹出 aniIn=left" />
+          <Item onPress={() => this._pop('right')} title="右下弹出 aniIn=right" />
+          <Item onPress={() => this._pop('left', 'top')} title="左上弹出 aniIn=left location=top" />
+          <Item onPress={() => this._pop('right', 'top')} title="右上弹出 aniIn=right location=top" />
+          <Item
+            onPress={() => {
+              this.setState({
+                visible: true,
+                aniIn: 'bottom',
+                location: 'bottom',
+                title: false,
+              });
+            }}
+            title="无标题"
+          />
+          <Item
+            onPress={() => {
+              this.setState({
+                visible: true,
+                aniIn: 'bottom',
+                location: 'bottom',
+                title: '头部左右侧图标',
+                headerLeft: true,
+                headerRight: true,
+              });
+            }}
+            title="标题显示左侧右侧图标"
+          />
+          <Item
+            onPress={() => {
+              this.setState({
+                visible: true,
+                aniIn: 'bottom',
+                location: 'bottom',
+                title: <Icon style={{ flex: 1, paddingHorizontal: 40, textAlign: 'center' }} name="free-code-camp" />,
+                headerLeft: <View style={{ paddingHorizontal: 10 }}><Text style={{ fontSize: 12, color: '#999' }}>取消</Text></View>,
+                headerRight: '确定',
+              });
+            }}
+            title="自定义头部"
+          />
+          <Item onPress={() => this.setState({ visible1: true })} title="多Popup叠加" />
         </ScrollView>
         <Popup
           title={this.state.title}
@@ -195,7 +201,7 @@ export default class Page extends Component {
             </View>
           </ScrollView>
         </Popup>
-      </View>
+      </View >
     );
   }
 }

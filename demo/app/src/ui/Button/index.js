@@ -8,9 +8,7 @@ export default class Page extends Component {
   static navigationOptions = {
     title: '按钮Button',
   }
-  state = {
-    layout: false,
-  }
+
   constructor(props) {
     super(props);
     // 统一重设主题样式
@@ -24,6 +22,10 @@ export default class Page extends Component {
         },
       },
     });
+  }
+
+  state = {
+    layout: false,
   }
 
   render() {

@@ -6,6 +6,32 @@ import Accordion from 'react-native-collapsible/Accordion';
 
 import { Style } from '../../../common';
 
+const localStyle = {
+  title: {
+    textAlign: 'center',
+    fontSize: 22,
+    fontWeight: '300',
+    marginBottom: 20,
+  },
+  header: {
+    backgroundColor: '#F5FCFF',
+    padding: 10,
+  },
+  headerText: {
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  content: {
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  item: {
+  },
+  code: {
+    textAlign: 'left', color: 'white', backgroundColor: 'black', lineHeight: 25, marginVertical: 10,
+  },
+};
 class TestView extends Component {
   static navigationOptions = {
     title: '网络请求组件，基于Axios封装',
@@ -408,32 +434,5 @@ class TestView extends Component {
     );
   }
 }
-
-let localStyle = {
-  title: {
-    textAlign: 'center',
-    fontSize: 22,
-    fontWeight: '300',
-    marginBottom: 20,
-  },
-  header: {
-    backgroundColor: '#F5FCFF',
-    padding: 10,
-  },
-  headerText: {
-    textAlign: 'center',
-    fontSize: 16,
-    fontWeight: '500',
-  },
-  content: {
-    padding: 20,
-    backgroundColor: '#fff',
-  },
-  item: {
-  },
-  code: {
-    textAlign: 'left', color: 'white', backgroundColor: 'black', lineHeight: 25, marginVertical: 10,
-  },
-};
 
 export default TestView;

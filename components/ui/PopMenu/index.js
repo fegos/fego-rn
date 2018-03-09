@@ -12,11 +12,13 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import Item from './Item';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 import AnimateModal from '../AnimateModal';
+import Item from '../Item';
 
-const { width, height } = Dimensions.get('window');
+const window = Dimensions.get('window');
+const screenWidth = window.width;
+const screenHeight = window.height;
 const { Shape, Path, Surface } = ART;
 
 export default class PopMenu extends UIComponent {
@@ -44,7 +46,7 @@ export default class PopMenu extends UIComponent {
     // PopMenu 标题
     title: PropTypes.node,
     // PopMenu 的内容
-    content: PropTypes.array,
+    content: PropTypes.arrayOf(PropTypes.any),
     // 控制PopMenu的三角形是否显示
     showTriangle: PropTypes.bool,
     // 三角形的高
@@ -52,7 +54,7 @@ export default class PopMenu extends UIComponent {
     // 三角形的宽
     triangleWidth: PropTypes.number,
     // PopMenu 出现的位置
-    placement: PropTypes.oneOf(['top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight', 'left', 'leftTop', 'leftBottom', , 'right', 'rightTop', 'rightBottom']),
+    placement: PropTypes.oneOf(['top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight', 'left', 'leftTop', 'leftBottom', 'right', 'rightTop', 'rightBottom']),
     // PopMenu 距离 trigger 的边距
     offset: PropTypes.number,
     // 是否能点击遮罩关闭 PopMenu
@@ -83,8 +85,8 @@ export default class PopMenu extends UIComponent {
       const _state = {
         // 容器左上角点在屏幕中的位置
         original: {
-          X: pageX % width,
-          Y: pageY % height,
+          X: pageX % screenWidth,
+          Y: pageY % screenHeight,
         },
         // 容器的宽高
         triggerSize: {
@@ -411,7 +413,7 @@ export default class PopMenu extends UIComponent {
           scale={false}
           visible={visible}
           maskClosable={maskClosable}
-          animateAppear={false}
+          animateWhenMount={false}
           animationDuration={animateTime}
           onClose={this._onHidePopMenu}
           // ios 端能把这个样式下放到 _renderOverlay 方法返回的顶层元素上，但是 android 端不行，下放后整个PopMenu 的 overlay 都不会显示

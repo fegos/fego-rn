@@ -1,4 +1,4 @@
-import UIComponent from './common/UIComponent';
+import { UIComponent } from 'common';
 import * as ui from './ui';
 import * as util from './util';
 import './patch';

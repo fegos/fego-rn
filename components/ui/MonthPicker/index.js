@@ -5,12 +5,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import Button from '../Button';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 
+import Button from '../Button';
 
 const itemHeight = 50;
-
 
 export default class MonthPicker extends UIComponent {
   static defaultProps = {
@@ -21,7 +20,7 @@ export default class MonthPicker extends UIComponent {
   }
   static propTypes = {
     // 内容，设置此属性可覆盖 MonthPicker 默认的选项
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(PropTypes.any),
     // 初始选中的值，默认选中最后一个
     initialValue: PropTypes.string,
     // 关闭回调
@@ -45,9 +44,11 @@ export default class MonthPicker extends UIComponent {
 
     for (let i = startYear; i <= nowYear; i++) {
       for (let j = 1; j <= 12; j++) {
-        if (i === startYear && j < startMonth) continue;
-        else if (i === nowYear && j > nowMonth) continue;
-        else {
+        if (i === startYear && j < startMonth) {
+          // continue
+        } else if (i === nowYear && j > nowMonth) {
+          // continue
+        } else {
           // 格式化月份数据
           j = (j < 10 ? '0' : '') + j;
           const label = MonthPicker.format(i, j);
@@ -164,7 +165,14 @@ export default class MonthPicker extends UIComponent {
           >
 
             {this.months.map((m, i) => (
-              <TouchableOpacity onPress={this._onSelect.bind(this, m, i)} key={m.value}>
+              <TouchableOpacity
+                onPress={
+                  () => {
+                    this._onSelect(m, i);
+                  }
+                }
+                key={m.value}
+              >
                 <View style={style.item}>
                   <Text style={[style.text, m.value === value && style.selectedText]}>{m.label}</Text>
                 </View>

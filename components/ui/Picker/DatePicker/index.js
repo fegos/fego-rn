@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {
 
 } from 'react-native';
-import UIComponent from '../../../common/UIComponent';
+import { UIComponent } from 'common';
 import DateModePicker from './Date';
 import TimeModePicker from './Time';
 
@@ -23,12 +23,10 @@ export default class DatePicker extends UIComponent {
     showInModal: true,
     maskClosable: true,
     dateMode: 'year-month-day',
-    onClose: () => { },
-    onConfirm: () => { },
     format: () => { },
   }
   static propTypes = {
-    // 是否可见，受控属性，需配合 onClose 使用
+    // 是否可见，受控属性
     visible: PropTypes.bool,
     // 日期选择器模式，目前支持 'date', 'time'
     mode: PropTypes.oneOf(['date', 'time']),
@@ -52,10 +50,6 @@ export default class DatePicker extends UIComponent {
     showInModal: PropTypes.bool,
     // 点击蒙层是否允许关闭
     maskClosable: PropTypes.bool,
-    // 关闭弹框的回调函数
-    onClose: PropTypes.func,
-    // 确定按钮的回调函数
-    onConfirm: PropTypes.func,
     // 每列数据选择变化后的回调函数
     onChange: PropTypes.func,
   }
@@ -63,22 +57,22 @@ export default class DatePicker extends UIComponent {
 
   _onChange = (val, idx, label, pickerType) => {
     const { onChange } = this.props;
-    onChange instanceof Function && onChange(val, idx, label, pickerType);
+    if (onChange instanceof Function) {
+      onChange(val, idx, label, pickerType);
+    }
   }
 
   render() {
-    const { mode } = this.props;
+    const { mode, dataPickRef } = this.props;
     const callbacks = {
-      onClose: this._onClose,
-      onConfirm: this._onConfirm,
       onChange: this._onChange,
     };
 
     switch (mode) {
       case 'date':
-        return <DateModePicker ref="pw1" {...this.props} {...callbacks} />;
+        return <DateModePicker pickRef={dataPickRef} {...this.props} {...callbacks} />;
       case 'time':
-        return <TimeModePicker ref="pw1" {...this.props} {...callbacks} />;
+        return <TimeModePicker timeRef={dataPickRef} {...this.props} {...callbacks} />;
       default:
         return null;
     }

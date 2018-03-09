@@ -14,8 +14,10 @@ import {
   Platform,
 } from 'react-native';
 import merge from 'lodash/merge';
+import { UIComponent } from 'common';
+
 import ActivityIndicator from '../ActivityIndicator';
-import UIComponent from '../../common/UIComponent';
+
 
 export default class Button extends UIComponent {
   static defaultProps = {

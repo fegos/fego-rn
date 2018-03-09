@@ -11,7 +11,7 @@ import {
   TouchableHighlight,
   Animated,
 } from 'react-native';
-import UIComponent from '../../common/UIComponent';
+import { UIComponent } from 'common';
 
 export default class NPSwitch extends UIComponent {
   static defaultProps = {
@@ -156,7 +156,7 @@ export default class NPSwitch extends UIComponent {
    */
   _swipe = (currentPosition, startingPosition, onActive, onInActive) => {
     if (currentPosition - startingPosition >= 0) { // 向右滑动
-      if (currentPosition - startingPosition > this.state.width / 2 || startingPosition == this.state.width) {
+      if (currentPosition - startingPosition > this.state.width / 2 || startingPosition === this.state.width) {
         onActive();
       } else {
         onInActive();
@@ -189,7 +189,11 @@ export default class NPSwitch extends UIComponent {
   }
 
   _performAnim = (active) => {
-    active ? this._activateAni() : this._deactivateAni();
+    if (active) {
+      this._activateAni();
+    } else {
+      this._deactivateAni();
+    }
   }
 
   /**
@@ -213,7 +217,9 @@ export default class NPSwitch extends UIComponent {
     } else if (active === newActive) {
       this._performAnim(newActive);
     }
-    onChange && onChange(newActive, this);
+    if (onChange) {
+      onChange(newActive, this);
+    }
   }
   _changeActiveOn = () => {
     this._changeActive(true);
@@ -239,22 +245,33 @@ export default class NPSwitch extends UIComponent {
     const padding = borderRadius - style.bar.height / 2 + 1;
     const doublePadding = padding * 2 - 2;
     const halfPadding = doublePadding / 2;
+    let barStyle;
+    let btnStyle;
+    if (this.props.disabled) {
+      barStyle = style.barDisabled;
+      btnStyle = style.buttonDisabled;
+    } else if (this.state.active) {
+      barStyle = style.barActive;
+      btnStyle = this.state.pressed ? style.buttonPressActive : style.buttonActive;
+    } else {
+      barStyle = style.barInactive;
+      btnStyle = this.state.pressed ? style.buttonPressInactive : style.buttonInactive;
+    }
     return (
       <View
         {...this._panResponder.panHandlers}
         style={
-        {
-          ...style.container,
-          padding,
+          {
+            ...style.container,
+            padding,
+          }
         }
-      }
       >
         <View style={[
-            style.bar,
-            this.props.disabled ? style.barDisabled :
-            (this.state.active ? style.barActive : style.barInactive),
-            { borderRadius: style.bar.height / 2 },
-          ]}
+          style.bar,
+          barStyle,
+          { borderRadius: style.bar.height / 2 },
+        ]}
         />
         <TouchableHighlight
           underlayColor="transparent"
@@ -268,21 +285,18 @@ export default class NPSwitch extends UIComponent {
           }}
         >
           <Animated.View style={[
-              style.button,
-              this.props.disabled ? style.buttonDisabled :
-              this.state.active ?
-              (this.state.pressed ? style.buttonPressActive : style.buttonActive) :
-              (this.state.pressed ? style.buttonPressInactive : style.buttonInactive),
-              {
-                height: borderRadius * 2,
-                width: borderRadius * 2,
-                top: halfPadding + style.bar.height / 2 - borderRadius,
-                left: style.bar.height / 2 > borderRadius ? halfPadding : halfPadding + style.bar.height / 2 - borderRadius,
-                transform: [{
-                  translateX: this.state.position,
-                }],
-              },
-            ]}
+            style.button,
+            btnStyle,
+            {
+              height: borderRadius * 2,
+              width: borderRadius * 2,
+              top: halfPadding + style.bar.height / 2 - borderRadius,
+              left: style.bar.height / 2 > borderRadius ? halfPadding : halfPadding + style.bar.height / 2 - borderRadius,
+              transform: [{
+                translateX: this.state.position,
+              }],
+            },
+          ]}
           />
         </TouchableHighlight>
       </View>

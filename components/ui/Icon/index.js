@@ -6,6 +6,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 
+const baseStyle = {
+  container: {
+    fontSize: 16,
+    color: '#333',
+    fontWeight: 'normal',
+    fontStyle: 'normal',
+  },
+};
 /**
  * 字体数据
  * 示例：
@@ -66,11 +74,3 @@ export default class Icon extends Component {
     return <Text {...props}>{glyph}</Text>;
   }
 }
-const baseStyle = {
-  container: {
-    fontSize: 16,
-    color: '#333',
-    fontWeight: 'normal',
-    fontStyle: 'normal',
-  },
-};

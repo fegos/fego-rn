@@ -1,20 +1,31 @@
-import React, { Component } from 'react';
-import PropTypes, { number } from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Text,
   View,
+  ViewPropTypes,
   Animated,
   ScrollView,
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
 
-export default class DefaultTabBar extends Component {
+import { UIComponent } from 'common';
+
+const tabStyle = StyleSheet.create({
+  underline: {
+    position: 'absolute',
+    height: 4,
+    bottom: 0,
+  },
+});
+
+
+export default class TabBar extends UIComponent {
   static defaultProps = {
     activeIdx: null,
-    aniScrollIdx: null,
-    containerWidth: 0,
-    viewWidth: 0,
+    duration: 350,
+    showUnderline: true,
     style: null,
     tabStyle: null,
     textStyle: null,
@@ -27,165 +38,254 @@ export default class DefaultTabBar extends Component {
 
   static propTypes = {
     // tab 标签
-    tabs: PropTypes.array.isRequired,
+    items: PropTypes.arrayOf(PropTypes.any).isRequired,
     // 当前激活的 tab 在 tabs 数组中的下标
     activeIdx: PropTypes.number,
-    // animated value, 用户控制下划线的位置
-    aniScrollIdx: PropTypes.object, // animated value
-    // tabBar 容器宽
-    containerWidth: PropTypes.number,
-    // 内容区宽
-    viewWidth: PropTypes.number,
-    // 点击 tab 标签的回调
-    onTabClick: PropTypes.func,
-    // tabBar 可滚动时，滚动后的回调，参数为滚动后的 x 方向上的位移
-    onScrollEnd: PropTypes.func,
-    // tabBar 位置更新后的回调
-    onAnimationEnd: PropTypes.func,
-    // tabBar 容器样式
-    style: View.propTypes.style,
-    // tab 标签样式
-    tabStyle: View.propTypes.style,
-    // tab 文字样式
+    // tabBar宽度
+    barWidth: PropTypes.number,
+    // TabBarItem宽度
+    itemWidth: PropTypes.number,
+    // 动画持续时间
+    duration: PropTypes.number,
+    // 是否显示bottomline
+    showUnderline: PropTypes.bool,
+    // TabBar容器样式
+    style: ViewPropTypes.style,
+    // TabBarItem样式
+    itemStyle: ViewPropTypes.style,
+    // TabBarItem高亮样式
+    activeItemStyle: ViewPropTypes.style,
+    // title文字样式
     textStyle: Text.propTypes.style,
-    // 激活态文字样式
+    // 文字高亮样式
     activeTextStyle: Text.propTypes.style,
-    // 激活态下划线样式
-    activeUnderlineStyle: View.propTypes.style,
+    // 下划线高亮样式
+    activeUnderlineStyle: ViewPropTypes.style,
+    // 点击TabBarItem的回调
+    onTabClick: PropTypes.func,
+    // TabBar可滚动时，滚动后的回调，参数为滚动后的x方向上的偏移
+    onScrollEnd: PropTypes.func,
+    // TabBar选中变更动画结束回调
+    onAnimationEnd: PropTypes.func,
   }
+
+  static autoStyleSheet = false;
 
   constructor(props) {
     super(props);
 
-    this._itemWidth = this._getItemWidth(props);
     this.state = {
-      aniLeft: new Animated.Value(props.activeIdx * this._itemWidth),
+      tabBarWidth: props.barWidth,
+      itemWidth: this._getItemWidth(props, props.barWidth),
+      left: new Animated.Value(this._getItemWidth(props, props.barWidth)),
     };
+
+    this._contentOffsetX = 0;
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this._animatedToIndex(this.props.activeIdx);
+    }, 0);
   }
 
   componentWillReceiveProps(nextProps) {
+    super.componentWillReceiveProps(nextProps);
     const index = nextProps.activeIdx;
+    const { itemWidth, tabBarWidth } = this.state;
+    const newItemWidth = this._getItemWidth(nextProps, tabBarWidth);
+    if (itemWidth !== newItemWidth) {
+      this.setState({
+        itemWidth: newItemWidth,
+      }, () => {
+        this._animatedToIndex(index);
+      });
+    } else if (index !== this.props.activeIdx) {
+      this._animatedToIndex(index, nextProps);
+    }
+  }
 
-    if (index !== this.props.activeIdx) {
-      this._itemWidth = this._getItemWidth(nextProps);
+  /**
+   * 更新item宽度
+   *
+   * @param {any} props
+   * @returns
+   * @memberof TabBar
+   */
+  _getItemWidth(props, tabBarWidth) {
+    const { itemWidth, items } = props;
+    if (itemWidth) {
+      return itemWidth;
+    } else {
+      return items.length ? tabBarWidth / items.length : 0;
+    }
+  }
 
-      if (this._handler) {
-        this._handler.stop();
-        this._handler = null;
-      }
+  /**
+   * 点击item
+   *
+   * @memberof TabBar
+   */
+  _onItemPress = (item) => {
+    const { onTabClick } = this.props;
+    if (onTabClick) {
+      onTabClick(item._key, item.title, item.index);
+    }
+  }
 
-      this._handler = Animated.timing(
-        this.state.aniLeft,
+  /**
+   * 停止拖拽
+   *
+   * @memberof TabBar
+   */
+  _onScrollEndDrag = (e) => {
+    const { onScrollEnd } = this.props;
+    if (onScrollEnd) {
+      onScrollEnd(e.nativeEvent.contentOffset.x);
+    }
+  }
+
+
+  /**
+   * 动画滚到目标位置
+   *
+   * @memberof TabBar
+   */
+  _animatedToIndex = (index, nextProps = this.props) => {
+    if (this._underlineAnimation) {
+      this._underlineAnimation.stop();
+      this._underlineAnimation = null;
+    }
+    const { duration, onAnimationEnd, showUnderline } = nextProps;
+    if (showUnderline) {
+      const { itemWidth } = this.state;
+      this._underlineAnimation = Animated.timing(
+        this.state.left,
         {
-          toValue: index * this._itemWidth,
-          duration: 350,
+          toValue: index * itemWidth,
+          duration,
         },
       ).start(() => {
-        this._handler = null;
-        this.props.onAnimationEnd(index);
+        this._underlineAnimation = null;
+        if (onAnimationEnd) {
+          onAnimationEnd(index);
+        }
+      });
+    }
+    this._scrollTabBar(index, true);
+  }
+
+  _scrollTabBar(index, animated) {
+    const { itemWidth, tabBarWidth } = this.state;
+    const start = itemWidth * index;
+    const end = itemWidth * (index + 1);
+
+    if (start - this._contentOffsetX < 0) {
+      this._scrollView.scrollTo({ x: start, y: 0, animated });
+      this._contentOffsetX = start;
+    }
+    if (end - this._contentOffsetX > tabBarWidth) {
+      const offsetx = end - tabBarWidth;
+      this._scrollView.scrollTo({ x: offsetx, y: 0, animated });
+      this._contentOffsetX = offsetx;
+    }
+  }
+
+
+  /**
+   * 处理布局
+   *
+   * @memberof TabBar
+   */
+  _handleLayout = (e) => {
+    const { width } = e.nativeEvent;
+    const { tabBarWidth, activeIdx } = this.state;
+    if (width !== tabBarWidth) {
+      this.setState({
+        itemWidth: this._getItemWidth(this.props, width),
+        tabBarWidth: width,
+      }, () => {
+        this._animatedToIndex(activeIdx);
       });
     }
   }
 
-  _getItemWidth(props) {
-    const { containerWidth, viewWidth, tabs } = props;
+  /**
+   * 渲染TabItem
+   *
+   * @param {any} item
+   * @param {any} activeIdx
+   * @returns
+   * @memberof DefaultTabBar
+   */
+  _renderTabItem(item, activeIdx) {
+    const {
+      itemStyle, activeItemStyle, textStyle, activeTextStyle,
+    } = this.props;
+    const isActive = activeIdx === item.index;
 
-    return (containerWidth || viewWidth) / tabs.length;
-  }
-
-  _onTabClick = (tab) => {
-    this.props.onTabClick(tab._key, tab.label, tab.index);
-  }
-
-  // _onScroll = (e) => {
-  // }
-  // _onMomentumScrollBegin = (e) => {
-  // }
-  // _onMomentumScrollEnd = (e) => {
-  // }
-  // _onScrollBeginDrag = (e) => {
-  // }
-
-  _onScrollEndDrag = (e) => {
-    this.props.onScrollEnd(e.nativeEvent.contentOffset.x);
-  }
-
-  renderTab(tab, activeIdx) {
-    const isTabActive = activeIdx === tab.index;
-    const { textStyle, activeTextStyle } = this.props;
-    const _activeTextStyle = isTabActive ? activeTextStyle : {};
+    const actualItemStyle = isActive ? [itemStyle, activeItemStyle] : itemStyle;
+    const itemTextStyle = isActive ? [textStyle, activeTextStyle] : textStyle;
 
     return (
       <TouchableWithoutFeedback
         style={{ flex: 1 }}
-        key={tab.index}
-        accessible
-        accessibilityLabel={tab.label}
-        accessibilityTraits="button"
-        onPress={this._onTabClick.bind(this, tab)}
+        key={item.index}
+        onPress={() => { this._onItemPress(item); }}
       >
-        <View style={this.props.tabStyle}>
-          <Text style={[textStyle, _activeTextStyle]}>{tab.label}</Text>
+        <View style={[{ height: this.style.container.height }, actualItemStyle]}>
+          <Text style={itemTextStyle}>{item.title}</Text>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback >
     );
   }
 
   render() {
     const {
-      containerWidth, viewWidth, tabs, style, activeIdx, activeUnderlineStyle, aniScrollIdx,
+      items, activeIdx, activeUnderlineStyle, barWidth, showUnderline,
     } = this.props;
-    const width = containerWidth || viewWidth;
+    const {
+      itemWidth,
+    } = this.state;
 
-    // let left = aniScrollIdx.interpolate({
-    // 	inputRange: [0, 1], outputRange: [0, this._itemWidth],
-    // });
-
-    const cnt = (
-      <View style={style}>
-        {tabs.map(tab => this.renderTab(tab, activeIdx))}
-        <Animated.View style={[tabStyle.tabUnderline, {
-          width: this._itemWidth,
-          // left: left
-          left: this.state.aniLeft,
-        }, activeUnderlineStyle]}
-        />
+    const contentView = (
+      <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+        {items.map(item => this._renderTabItem(item, activeIdx))}
+        {showUnderline ? <Animated.View style={
+          [{
+            width: itemWidth,
+            left: this.state.left,
+          }, tabStyle.underline, activeUnderlineStyle]}
+        /> : null}
       </View>
     );
-
-    return width > viewWidth ? (
-      <View style={[{ width: viewWidth }]} >
+    return (
+      <View
+        style={[{ width: barWidth }, this.style.container]}
+        onLayout={this.handleLayout}
+      >
         <ScrollView
           horizontal
-					/**
-					 * 当值为true时，滚动条会停在滚动视图的尺寸的整数倍位置，可以用在水平分页上
-					 * 默认值为false
-					 * 此处为防止以后忘记以及加以提醒，还是显示的设置为 false
-					 */
-          pagingEnabled={false}
-          automaticallyAdjustContentInsets={false}
           ref={(s) => { this._scrollView = s; }}
-          // onScrollBeginDrag={this._onScrollBeginDrag}
-          onScrollEndDrag={this._onScrollEndDrag}
-          // onMomentumScrollBegin={this._onMomentumScrollBegin}
-          // onMomentumScrollEnd={this._onMomentumScrollEnd}
+          automaticallyAdjustContentInsets={false}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           bounces={false}
-          alwaysBounceVertical={false}
-          alwaysBounceHorizontal={false}
+          onScrollEndDrag={this._onScrollEndDrag}
+          contentContainerStyle={
+            [
+              {
+                position: 'relative',
+              },
+              {
+                width: itemWidth * items.length,
+                height: this.style.container.height,
+              },
+            ]}
         >
-          {cnt}
+          {contentView}
         </ScrollView>
-      </View>
-    ) : cnt;
+      </View >
+    );
   }
 }
-
-const tabStyle = StyleSheet.create({
-  tabUnderline: {
-    position: 'absolute',
-    height: 4,
-    bottom: 0,
-  },
-});

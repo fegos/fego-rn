@@ -28,20 +28,21 @@ const style = StyleSheet.create({
 });
 
 export default class Page extends Component {
-  state = {
-    checked1: true,
-    selfTagSel: false,
-    closed1: false,
-  }
   constructor(props) {
     super(props);
-    Tag.setBaseStyle(Tag, {
+    Tag.setBaseStyle({
       container: {
         marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
       },
     });
+  }
+
+  state = {
+    checked1: true,
+    selfTagSel: false,
+    closed1: false,
   }
 
   render() {
