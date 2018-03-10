@@ -81,9 +81,9 @@ export default class UIComponent extends Component {
   /**
    * 设置默认主题样式
    */
-  static setThemeStyle(_class, style = {}) {
-    if (_class && _class.themeStyle) {
-      return merge(_class.themeStyle, style);
+  static setThemeStyle(style = {}) {
+    if (this.themeStyle) {
+      return merge(this.themeStyle, style);
     }
     return {};
   }
