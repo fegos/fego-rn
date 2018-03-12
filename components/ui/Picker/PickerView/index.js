@@ -297,7 +297,7 @@ class PickerView extends UIComponent {
       // selectedIndex 供 PickerAndroid 使用，方便 PickerAndroid 滚动的相关计算
       (
         <PickerView.PickerRoll
-          key={index}
+          key={this.generateIndex(index)}
           style={{ flex: 1, justifyContent: 'flex-start' }}
           data={rollData}
           selectedIndex={this.state.selectedIndex[index]}
@@ -319,6 +319,10 @@ class PickerView extends UIComponent {
           }
         </PickerView.PickerRoll>
       ));
+  }
+
+  generateIndex(index) {
+    return `${index}`;
   }
 
   render() {

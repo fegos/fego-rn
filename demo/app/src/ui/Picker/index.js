@@ -194,7 +194,6 @@ export default class Page extends Component {
           data={pickerData1}
           visible={this.state.picker1Visible}
           defaultValue={['2013', '2', '22']}
-          // modal={false}
           maskClosable
           onClose={() => { this.setState({ picker1Visible: false }); }}
           onConfirm={(selectedValue, selectedIndex, selectedLabel) => {
@@ -206,7 +205,6 @@ export default class Page extends Component {
           }}
         />
         <Picker
-        // modal={false}
           data={pickerData2}
           visible={this.state.picker2Visible}
           onClose={() => { this.setState({ picker2Visible: false }); }}
@@ -219,7 +217,6 @@ export default class Page extends Component {
           }}
         />
         <Picker
-        modal={false}
           data={pickerData3}
           visible={this.state.picker3Visible}
           onClose={() => { this.setState({ picker3Visible: false }); }}
@@ -232,6 +229,7 @@ export default class Page extends Component {
             console.log('onChange: ', selectedValue, selectedIndex, selectedLabel);
           }}
         />
+
         <Picker
           visible={this.state.picker4Visible}
           footer

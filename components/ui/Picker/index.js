@@ -152,9 +152,8 @@ class Picker extends UIComponent {
             <PickerView
               ref={(pw) => { this._pickerView = pw; }}
               data={data}
-              value={this.state.selectedValue}
+              initialValue={this.state.selectedValue}
               onChange={this._onChange}
-              onReady={this._onPickerViewReady}
             />
           ) : (
             <DatePicker
