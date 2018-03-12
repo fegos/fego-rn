@@ -91,7 +91,7 @@ export default class PickerAndroid extends UIComponent {
     const items = [];
     data.forEach((item, i) => {
       items.push((
-        <View style={style.item} key={item}>
+        <View style={style.item} key={this.generateIndex(i)}>
           <Text
             onPress={() => {
               this._onItemPress(i);
@@ -114,6 +114,7 @@ export default class PickerAndroid extends UIComponent {
         </View>
       );
     }
+
     items.unshift(emptyItem(0));
     items.unshift(emptyItem(1));
     items.push(emptyItem(len + 2));
@@ -124,6 +125,10 @@ export default class PickerAndroid extends UIComponent {
 
   _onLayout = () => {
     this._scrollTo(this.props.selectedIndex, true);
+  }
+
+  generateIndex(i) {
+    return `${i}+2`;
   }
 
   render() {
