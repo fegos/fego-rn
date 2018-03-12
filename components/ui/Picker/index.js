@@ -200,7 +200,7 @@ class Picker extends UIComponent {
         <AnimateModal
           visible={this.state.visible}
           maskClosable={this.props.maskClosable}
-          animationType="slide-up"
+          animationType="slide"
           onClose={this._onClose}
           styles={{ container: { justifyContent: 'flex-end' } }}
         >

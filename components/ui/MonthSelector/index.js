@@ -11,7 +11,7 @@ import Button from '../Button';
 
 const itemHeight = 50;
 
-export default class MonthPicker extends UIComponent {
+export default class MonthSelector extends UIComponent {
   static defaultProps = {
     data: [],
     initialValue: '',
@@ -31,14 +31,14 @@ export default class MonthPicker extends UIComponent {
   static months = []
   static startMonth = '201609'
   static setStartMonths(value) {
-    MonthPicker.startMonth = value;
+    MonthSelector.startMonth = value;
   }
   static getMonths() {
     const months = [];
     const now = new Date();
     const nowYear = now.getFullYear();
     const nowMonth = now.getMonth() + 1;
-    const sm = MonthPicker.startMonth;
+    const sm = MonthSelector.startMonth;
     const startYear = parseInt(sm.slice(0, 4), 10);
     const startMonth = parseInt(sm.slice(4), 10);
 
@@ -51,7 +51,7 @@ export default class MonthPicker extends UIComponent {
         } else {
           // 格式化月份数据
           j = (j < 10 ? '0' : '') + j;
-          const label = MonthPicker.format(i, j);
+          const label = MonthSelector.format(i, j);
           months.push({
             label,
             value: `${i}${j}`,
@@ -59,7 +59,7 @@ export default class MonthPicker extends UIComponent {
         }
       }
     }
-    MonthPicker.months = months;
+    MonthSelector.months = months;
     return months;
   }
   static format(year, month) {
@@ -75,7 +75,7 @@ export default class MonthPicker extends UIComponent {
 
   _init(props) {
     const { data } = props;
-    this.months = data.length === 0 ? MonthPicker.months : data;
+    this.months = data.length === 0 ? MonthSelector.months : data;
     this.totalCount = this.months.length;
     this.viewCount = this.totalCount < 4 ? this.totalCount : 4;
 
@@ -187,7 +187,7 @@ export default class MonthPicker extends UIComponent {
   }
 }
 
-MonthPicker.baseStyle = {
+MonthSelector.baseStyle = {
   container: {
     // height: pickerHeight + 54,
     backgroundColor: '#F1F1F3',

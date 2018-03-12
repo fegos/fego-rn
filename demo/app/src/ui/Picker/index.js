@@ -187,6 +187,7 @@ export default class Page extends Component {
           data={pickerData1}
           visible={this.state.picker1Visible}
           defaultValue={['2013', '2', '22']}
+          // modal={false}
           maskClosable
           onClose={() => { this.setState({ picker1Visible: false }); }}
           onConfirm={(selectedValue, selectedIndex, selectedLabel) => {

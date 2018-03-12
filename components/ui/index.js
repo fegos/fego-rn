@@ -8,7 +8,6 @@ import Button from './Button';
 import Calendar from './Calendar';
 import Carousel from './Carousel';
 import Checkbox from './Checkbox';
-import DatePicker from './Picker//DatePicker';
 import Dialog from './Dialog';
 import GesturePassword from './GesturePassword';
 import Icon from './Icon';
@@ -16,9 +15,8 @@ import Input from './Input';
 import Item from './Item';
 import Loading from './Loading';
 import AnimateModal from './AnimateModal';
-import MonthPicker from './MonthPicker';
+import MonthSelector from './MonthSelector';
 import Picker from './Picker';
-import PickerView from './Picker/PickerView';
 import PieChart from './PieChart';
 import PopMenu from './PopMenu';
 import Popup from './Popup';
@@ -40,16 +38,14 @@ export {
   Calendar,
   Carousel,
   Checkbox,
-  DatePicker,
   Dialog,
   GesturePassword,
   Icon,
   Input,
   Item,
   Loading,
-  MonthPicker,
+  MonthSelector,
   Picker,
-  PickerView,
   PieChart,
   PopMenu,
   Popup,
