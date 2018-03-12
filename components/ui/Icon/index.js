@@ -61,6 +61,11 @@ export default class Icon extends PureComponent {
     const simpleStyle = {};
     if (typeof glyph === 'number') {
       glyph = String.fromCharCode(glyph);
+    } else if (typeof glyph === 'string') {
+      glyph = glyph.replace('/', '');
+      glyph = glyph.replace('&#x', '');
+      glyph = glyph.replace(';', '');
+      glyph = String.fromCharCode(parseInt(glyph, 16));
     }
     if (typeof size === 'number') {
       simpleStyle.fontSize = size;

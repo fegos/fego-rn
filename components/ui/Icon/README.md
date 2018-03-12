@@ -29,11 +29,12 @@ subTitle: 图标
 添加自己的字体库名字与unicode码对应的文件，只需增加字体json文件或者js文件，内容格式如下：
 
 ```
-// 图标名字：unicode码
+// 图标名字：unicode码，支持下面几种格式
 {
-	"aircraft-take-off": 61705,
-	"align-bottom": 61706,
-	"align-horizontal-middle": 61707,
+	"aircraft-take-off": 61705, // 十进制数
+  "glass": "f000",            // 十六进制字符串
+  "music": "/f001",           // 十六进制字符串含/（直接从阿里库下载下来的iconfont.css文件中拷贝出来的）
+  "search":"&#xf002;"         // 图标代码，unicode码（直接复制图标代码）
 	...
 }
 ```
