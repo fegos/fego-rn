@@ -2,7 +2,7 @@
  * 图标组件
  * @author esky Henry
  */
-import React, { Component } from 'react';
+import React, { PurComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 
@@ -23,7 +23,7 @@ const baseStyle = {
  * }
  */
 let FAMILY_MAP = {};
-export default class Icon extends Component {
+export default class Icon extends PurComponent {
   /**
    * 产品项目可设置默认字体
    * Icon.defaultProps.family = 'self'
@@ -32,8 +32,6 @@ export default class Icon extends Component {
     // 默认字体为FontAwesome
     // http://www.fontawesome.com.cn/faicons/
     family: 'FontAwesome',
-    size: 16,
-    color: '#333',
   }
   static propTypes = {
     ...Text.propTypes,
@@ -69,7 +67,7 @@ export default class Icon extends Component {
     if (typeof color === 'string') {
       simpleStyle.color = color;
     }
-    // 样式优先级 baseStyle style simpleStyle
+    // 样式优先级 baseStyle < style < simpleStyle
     props.style = [baseStyle.container, style, simpleStyle, { fontFamily: family }];
     return <Text {...props}>{glyph}</Text>;
   }
