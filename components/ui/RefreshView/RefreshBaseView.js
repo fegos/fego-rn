@@ -47,6 +47,7 @@ export default class JBRefreshBaseView extends Component {
     bottomIndicatorHeight: config.bottomHeight,
     duration: 300,
     refreshType: 'normal',
+    useLoadMore: false,
     customView: null,
     customBottomView: null,
     styleType: config.styleType,
@@ -70,7 +71,7 @@ export default class JBRefreshBaseView extends Component {
     // 自定义底部view
     customBottomView: PropTypes.node,
     // 主题
-    styleType: config.styleType,
+    styleType: PropTypes.string,
     // 告知外部，当前刷新状态的方法
     onStatusChange: PropTypes.func,
     // 下拉刷新函数
@@ -78,7 +79,7 @@ export default class JBRefreshBaseView extends Component {
     // 上拉加载更多函数
     onLoadMore: PropTypes.func,
     // 是否有loadmore
-    useLoadMore: PropTypes.bool.isRequired,
+    useLoadMore: PropTypes.bool,
     // 自定义的上下拉刷新gif
     pullImageView: PropTypes.arrayOf(PropTypes.any),
     loadMoreView: PropTypes.arrayOf(PropTypes.any),
@@ -274,10 +275,10 @@ export default class JBRefreshBaseView extends Component {
           if (gestureDy > -this.bottomIndicatorHeight) { // 正在上拉，没到位置
             if (!this.flag.loading) {
               // 调用回调方法
-              this.setFlag(flagLoading);
+              this._setFlag(flagLoading);
             }
           } else if (!this.flag.loadok) {
-            this.setFlag(flagLoadok);
+            this._setFlag(flagLoadok);
           }
         }
       }
