@@ -2,7 +2,7 @@
  * 图标组件
  * @author esky Henry
  */
-import React, { PurComponent } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 
@@ -23,7 +23,7 @@ const baseStyle = {
  * }
  */
 let FAMILY_MAP = {};
-export default class Icon extends PurComponent {
+export default class Icon extends PureComponent {
   /**
    * 产品项目可设置默认字体
    * Icon.defaultProps.family = 'self'
@@ -36,6 +36,7 @@ export default class Icon extends PurComponent {
   static propTypes = {
     ...Text.propTypes,
     name: PropTypes.string.isRequired,
+    /* eslint react/require-default-props: "off" */
     size: PropTypes.number,
     color: PropTypes.string,
     // 字体库名称
