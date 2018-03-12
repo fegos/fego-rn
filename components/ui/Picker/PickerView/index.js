@@ -237,6 +237,7 @@ class PickerView extends UIComponent {
     if (this.cascade) { // 级联
       const cascadeData = this.state.cascadeData.concat();
 
+
       cascadeData.splice(index + 1); // state 中保存的数据中的前index+1列的数据不用变，只需要级联变化之后的列数据
       if (d[newIndex].children) cascadeData.push(d[newIndex].children);
       // 存储的选中信息则是需要从变化的这一列开始重新计算
@@ -296,7 +297,7 @@ class PickerView extends UIComponent {
       // selectedIndex 供 PickerAndroid 使用，方便 PickerAndroid 滚动的相关计算
       (
         <PickerView.PickerRoll
-          key={rollData}
+          key={index}
           style={{ flex: 1, justifyContent: 'flex-start' }}
           data={rollData}
           selectedIndex={this.state.selectedIndex[index]}

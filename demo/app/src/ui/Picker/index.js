@@ -121,6 +121,13 @@ const pickerData3 = [{
   }, {
     label: '台湾-烧烤',
     value: 'shao',
+    children: [{
+      label: '烤羊腿',
+      value: 'kyt',
+    }, {
+      label: '烤羊排',
+      value: 'kyp',
+    }],
   }],
 }, {
   label: '西餐',
@@ -199,6 +206,7 @@ export default class Page extends Component {
           }}
         />
         <Picker
+        // modal={false}
           data={pickerData2}
           visible={this.state.picker2Visible}
           onClose={() => { this.setState({ picker2Visible: false }); }}
@@ -211,6 +219,7 @@ export default class Page extends Component {
           }}
         />
         <Picker
+        modal={false}
           data={pickerData3}
           visible={this.state.picker3Visible}
           onClose={() => { this.setState({ picker3Visible: false }); }}
