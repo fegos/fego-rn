@@ -12,7 +12,7 @@ export default class Page extends Component {
   constructor(props) {
     super(props);
     // 统一重设主题样式
-    Button.setThemeStyle(Button, {
+    Button.setThemeStyle({
       type: {
         danger: {
           container: {
