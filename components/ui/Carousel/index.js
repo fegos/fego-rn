@@ -131,9 +131,7 @@ export default class Carousel extends UIComponent {
     super.componentWillReceiveProps(nextProps);
     this._updateChildrenCount(nextProps);
     this._updateActualLoadPageCount(this.props);
-    if (this._shouldUpdateDisplayInfo(this.props, nextProps)) {
-      this._updateLoadPageRegion(nextProps, this.state.curPage);
-    }
+    this._updateLoadPageRegion(nextProps, this.state.curPage);
     this._setTimerIfNeed(nextProps, this.state.curPage);
   }
 
