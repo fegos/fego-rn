@@ -170,8 +170,10 @@ export default class Carousel extends UIComponent {
       }
       if (!reachEnd) {
         this._setTimer(props);
+        return;
       }
     }
+    this._clearTimer();
   }
 
   _setTimer = (props) => {
