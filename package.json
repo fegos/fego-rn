@@ -1,6 +1,6 @@
 {
   "name": "fego-rn",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "基于 React Native 的移动开发库",
   "author": "esky",
   "main": "components/index.js",
@@ -58,8 +58,8 @@
     "react-navigation": "1.2.1"
   },
   "peerDependencies": {
-    "react": "16.0.0-alpha.12",
-    "react-native": "0.47.2"
+    "react": ">=16.0 <=16.2",
+    "react-native": ">=0.47 <0.54"
   },
   "scripts": {
     "init": "yarn install --no-optional -s --registry=https://registry.npm.taobao.org && cd demo/ios && pod install",
