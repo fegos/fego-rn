@@ -77,7 +77,7 @@ export default class TabBar extends UIComponent {
     this.state = {
       tabBarWidth: props.barWidth,
       itemWidth: this._getItemWidth(props, props.barWidth),
-      left: new Animated.Value(this._getItemWidth(props, props.barWidth)),
+      left: new Animated.Value(props.activeIdx * this._getItemWidth(props, props.barWidth)),
     };
 
     this._contentOffsetX = 0;
