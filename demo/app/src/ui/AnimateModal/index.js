@@ -59,7 +59,7 @@ export default class Page extends Component {
         </Modal>
         <Text style={[Style.title, { marginTop: 15 }]}>AnimateModal（同一时间只允许弹出一个模态）</Text>
         <Group
-          style={{ marginTop: 15 }}
+          style={{ marginTop: 15, flexDirection: 'column' }}
           defaultValue="none"
           onChange={(value) => {
             this.setState({
@@ -67,13 +67,17 @@ export default class Page extends Component {
             });
           }}
         >
-          <Radio style={{ marginLeft: 5 }} styles={{ text: { fontSize: 10 } }} value="none">none</Radio>
-          <Radio style={{ marginLeft: 0 }} styles={{ text: { fontSize: 10 } }} value="fade">fade</Radio>
-          <Radio style={{ marginLeft: 0 }} styles={{ text: { fontSize: 10 } }} value="slide">slide</Radio>
-          <Radio style={{ marginLeft: 0 }} styles={{ text: { fontSize: 10 } }} value="slide-down">slide-down</Radio>
-          <Radio style={{ marginLeft: 0 }} styles={{ text: { fontSize: 10 } }} value="scale">scale</Radio>
-          <Radio style={{ marginLeft: 0 }} styles={{ text: { fontSize: 10 } }} value="fade-scale">fade-scale</Radio>
-          <Radio style={{ marginLeft: 0 }} styles={{ text: { fontSize: 10 } }} value="alert">alert</Radio>
+          <View type="container" style={{ flexDirection: 'row' }}>
+            <Radio style={{ marginLeft: 5, width: 70, flex: 0 }} styles={{ text: { fontSize: 13 } }} value="none">none</Radio>
+            <Radio style={{ marginLeft: 0, width: 70, flex: 0 }} styles={{ text: { fontSize: 13 } }} value="fade">fade</Radio>
+            <Radio style={{ marginLeft: 0, width: 70, flex: 0 }} styles={{ text: { fontSize: 13 } }} value="slide">slide</Radio>
+            <Radio style={{ marginLeft: 0, width: 140, flex: 0 }} styles={{ text: { fontSize: 13 } }} value="slide-down">slide-down</Radio>
+          </View>
+          <View type="container" style={{ flexDirection: 'row', marginTop: 10 }}>
+            <Radio style={{ marginLeft: 5, width: 70, flex: 0 }} styles={{ text: { fontSize: 13 } }} value="scale">scale</Radio>
+            <Radio style={{ marginLeft: 0, width: 70, flex: 0 }} styles={{ text: { fontSize: 13 } }} value="alert">alert</Radio>
+            <Radio style={{ marginLeft: 0, width: 140, flex: 0 }} styles={{ text: { fontSize: 13 } }} value="fade-scale">fade-scale</Radio>
+          </View>
         </Group>
         <Radio
           style={{ marginLeft: 5, marginTop: 10 }}

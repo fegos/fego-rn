@@ -73,10 +73,28 @@ export default class Group extends UIComponent {
     console.log(isSingle, value);
     return (
       <View style={this.style.container}>{
-        React.Children.map(this.props.children, child => React.cloneElement(child, {
-          checked: isSingle ? child.props.value === value : value.indexOf(child.props.value) >= 0,
-          onChange: this.onChange,
-        }, child.props.children))
+        React.Children.map(
+          this.props.children,
+          (child) => {
+            if (child.props.type === 'container') {
+              return React.cloneElement(
+                child, child.props,
+                React.Children.map(
+                  child.props.children,
+                  childEl => React.cloneElement(childEl, {
+                    checked: isSingle ? childEl.props.value === value : value.indexOf(childEl.props.value) >= 0,
+                    onChange: this.onChange,
+                  }, childEl.props.children),
+                ),
+              );
+            } else {
+              return React.cloneElement(child, {
+                checked: isSingle ? child.props.value === value : value.indexOf(child.props.value) >= 0,
+                onChange: this.onChange,
+              }, child.props.children);
+            }
+          },
+        )
       }
       </View>
     );
