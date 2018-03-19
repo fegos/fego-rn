@@ -35,6 +35,7 @@ subTitle: 单选框，一般与Group配合使用实现单选
 | iconCheckName | 选中图标名称 | string | check-square-o |
 | iconUncheckName | 未选中图标名称 | string | square-o |
 | onChange | 选择框变化回调，当使用 checked 属性时需配合 onChange 更新数据checked 属性 | function | - |
+| left | 图标位置 | boolean | true |
 
 ### 样式对象styles
 

@@ -15,7 +15,7 @@ export default class Page extends Component {
       <ScrollView style={Style.container}>
         <Text style={Style.title}>Radio</Text>
         <Item>
-          <Radio defaultChecked>非受控组件：使用defaultChecked</Radio>
+          <Radio defaultChecked left={false} styles={{ icon: { marginLeft: 10 } }}>非受控组件：使用defaultChecked</Radio>
         </Item>
         <Item>
           <Radio

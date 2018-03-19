@@ -6,6 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { UIComponent } from 'common';
+import GroupItem from './GroupItem';
 
 export default class Group extends UIComponent {
   static defaultProps = {
@@ -103,7 +104,8 @@ export default class Group extends UIComponent {
 
 Group.baseStyle = {
   container: {
-    flex: 1,
     flexDirection: 'row',
   },
 };
+
+Group.Item = GroupItem;
