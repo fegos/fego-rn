@@ -40,7 +40,7 @@ export default class Carousel extends UIComponent {
     rightArrow: '>',
     onShouldChange: (prePage, nextPage) => { console.log(prePage, nextPage); return true; },
     onChange: (curPage) => { console.log(curPage); },
-    onScrollBeginDrag: (e) => { console.log(e); },
+    onScrollBeginDrag: () => { },
   }
 
   static propTypes = {
@@ -516,9 +516,9 @@ export default class Carousel extends UIComponent {
   /**
    * scrollview事件回调
    */
-  _onScrollBeginDrag = (event) => {
+  _onScrollBeginDrag = () => {
     this._clearTimer();
-    this.props.onScrollBeginDrag(event);
+    this.props.onScrollBeginDrag();
     this._prePage = this.state.curPage;
   }
 
