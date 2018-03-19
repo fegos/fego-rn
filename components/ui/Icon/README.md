@@ -22,6 +22,13 @@ subTitle: 图标
 <Icon name='music' style={{ fontSize: 20 }} />
 <Icon name='star' color="#D8B080" size={20} />
 <Icon name='music' style={{ color: '#D8B080', fontSize: 20 }} />
+<Icon
+  name="music"
+  style={{ color: '#D8B080', fontSize: 20 }}
+  onPress={() => {
+    Toast.info('我被点击了');
+  }}
+/>
 ```
 
 ### 使用说明
@@ -59,6 +66,7 @@ Icon.defaultProps.family = 'FontAwesome';
 | size | 字体尺寸 | number | 16 |
 | color | 字体颜色 | string | #333 |
 | family | 字体库名称 | string | FontAwesome |
+| onPress | 点击回调 | function | |
 
 ### 样式对象styles
 
