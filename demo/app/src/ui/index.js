@@ -23,7 +23,6 @@ export default class Page extends Component {
           { title: '组 Group', icon: 'group', page: 'ui/Group' },
           { title: '图标 Icon', icon: 'heart-o', page: 'ui/Icon' },
           { title: '输入框 Input', icon: 'mouse-pointer', page: 'ui/Input' },
-          { title: '清单 List', icon: 'list-ul', page: 'ui/List' },
           { title: '选择器 MonthSelector', icon: 'calendar-minus-o', page: 'ui/MonthSelector' },
           { title: '选择器 Picker', icon: 'calendar-check-o', page: 'ui/Picker' },
           { title: '图表 PieChart', icon: 'pie-chart', page: 'ui/PieChart' },
