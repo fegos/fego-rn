@@ -10,6 +10,7 @@ import Carousel from './Carousel';
 import Checkbox from './Checkbox';
 import Dialog from './Dialog';
 import GesturePassword from './GesturePassword';
+import Group from './Group';
 import Icon from './Icon';
 import Input from './Input';
 import Item from './Item';
@@ -40,6 +41,7 @@ export {
   Checkbox,
   Dialog,
   GesturePassword,
+  Group,
   Icon,
   Input,
   Item,
