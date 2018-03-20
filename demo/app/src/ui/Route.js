@@ -80,8 +80,8 @@ export default {
       title: 'Loading',
     },
   },
-  'ui/MonthPicker': {
-    screen: require('./MonthPicker').default,
+  'ui/MonthSelector': {
+    screen: require('./MonthSelector').default,
     navigationOptions: {
       title: 'MonthPicker',
     },

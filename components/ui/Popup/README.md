@@ -37,7 +37,7 @@ Popup.show(SelfView, {
 	visible={this.state.visible}
 	location={location}
 	aniFrom={aniFrom}
-	onClose={() => this.setState({ visible: false })} 
+	onClose={() => this.setState({ visible: false })}
 >
 	<View>
 		<Text>从顶部或底部浮出的模态，提供标题和关闭按钮，展示和当前内容相关的信息或提供相关操作。</Text>
@@ -57,7 +57,7 @@ Popup.show(SelfView, {
 - opt 配置对象同 Popup 的 props，**可使用key唯一标记**
 
 ### static hide(key, hasAni)
-关闭一个 Popup，默认关闭最上层 Popup 
+关闭一个 Popup，默认关闭最上层 Popup
 
 - key 若指定 key，则关闭对应 key 的 Popup
 - hasAni 关闭时是否动画，默认 true
@@ -80,7 +80,8 @@ Popup.show(SelfView, {
 | headerLeft | 头部左侧区，false为关闭，也可传入自定义元素，字符串 | any | false |
 | headerRight | 头部右侧区，false为关闭，也可可传入自定义元素，字符串 | any | true |
 | iconFamily | 图标字体库名称 | string | |
-| iconTypes | 图标配置 | object | { 'headerLeft': 'angle-left', 'headerRight': 'times-circle' }|
+| headerLeftIconName | 头部左侧图标 | string | 'angle-left'|
+| headerRightIconName | 头部右侧图标 | string | 'times-circle'|
 | offsetHeight | 高度偏移量，整体高度会减掉该高度。一般是导航栏的高度。 | number | |
 | aniTime | 动画时间，毫秒 | number | 300 |
 | maskOpacity | 遮罩透明度 | number | 0.7 |

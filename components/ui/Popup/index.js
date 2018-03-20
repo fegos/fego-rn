@@ -30,10 +30,8 @@ export default class Popup extends UIComponent {
     headerLeft: false,
     headerRight: true,
     maskOpacity: 0.7,
-    iconTypes: {
-      headerLeft: 'angle-left',
-      headerRight: 'times-circle',
-    },
+    headerLeftIconName: 'angle-left',
+    headerRightIconName: 'times-circle',
   }
   static propTypes = {
     // 受控属性：是否可见
@@ -53,10 +51,10 @@ export default class Popup extends UIComponent {
       PropTypes.element,
     ]),
     iconFamily: PropTypes.string,
-    iconTypes: React.PropTypes.shape({
-      headerLeft: React.PropTypes.string,
-      headerRight: React.PropTypes.string,
-    }),
+    // header左上角图标
+    headerLeftIconName: React.PropTypes.string,
+    // header右上角图标
+    headerRightIconName: React.PropTypes.string,
     // 头部左侧区，false为关闭，也可传入自定义元素，字符串
     headerLeft: PropTypes.oneOfType([
       PropTypes.node,
@@ -202,14 +200,14 @@ export default class Popup extends UIComponent {
   _renderHeaderType(type) {
     const { style } = this;
     let headerEl = this.props[type];
-    const { iconFamily, iconTypes } = this.props;
+    const { iconFamily, headerLeftIconName, headerRightIconName } = this.props;
     if (!headerEl) return null;
     if (typeof headerEl === 'string') {
       headerEl = <Text style={style[`${type}Ctn`]} >{headerEl}</Text>;
     }
     // 缺省内容
     if (headerEl === true) {
-      headerEl = <Icon style={style[`${type}Ctn`]} family={iconFamily} name={iconTypes[type]} />;
+      headerEl = <Icon style={style[`${type}Ctn`]} family={iconFamily} name={type === 'headerLeft' ? headerLeftIconName : headerRightIconName} />;
     }
     if (!React.isValidElement(headerEl)) return null;
     return (

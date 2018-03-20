@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0728E9AF204FD6A80034BE32 /* ip.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0728E9AE204FD6A70034BE32 /* ip.txt */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		B02EB8C81FFBC19B00307CC3 /* ip.txt in Resources */ = {isa = PBXBuildFile; fileRef = B02EB8C71FFBC19B00307CC3 /* ip.txt */; };
 		B95CBB6D1FEB58E600785CDE /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B95CBB6C1FEB58E600785CDE /* FontAwesome.ttf */; };
 		B95CBB6F1FEB58F100785CDE /* entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B95CBB6E1FEB58F100785CDE /* entypo.ttf */; };
 		D99FD0BDB467D412E9AB1B68 /* libPods-fegoRN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4004FBC6CB160FF67AC7678 /* libPods-fegoRN.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0728E9AE204FD6A70034BE32 /* ip.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ip.txt; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* fegoRN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fegoRN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = fegoRN/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = fegoRN/AppDelegate.m; sourceTree = "<group>"; };
@@ -27,7 +28,6 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = fegoRN/main.m; sourceTree = "<group>"; };
 		4956ABE385A5DC732440A53E /* Pods-fegoRN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fegoRN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fegoRN/Pods-fegoRN.debug.xcconfig"; sourceTree = "<group>"; };
 		A674CF8A6A42533A266C0AD2 /* Pods-fegoRN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fegoRN.release.xcconfig"; path = "Pods/Target Support Files/Pods-fegoRN/Pods-fegoRN.release.xcconfig"; sourceTree = "<group>"; };
-		B02EB8C71FFBC19B00307CC3 /* ip.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ip.txt; sourceTree = "<group>"; };
 		B95CBB6C1FEB58E600785CDE /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		B95CBB6E1FEB58F100785CDE /* entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = entypo.ttf; sourceTree = "<group>"; };
 		D4004FBC6CB160FF67AC7678 /* libPods-fegoRN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-fegoRN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +68,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				B02EB8C71FFBC19B00307CC3 /* ip.txt */,
+				0728E9AE204FD6A70034BE32 /* ip.txt */,
 				B95CBB6E1FEB58F100785CDE /* entypo.ttf */,
 				B95CBB6C1FEB58E600785CDE /* FontAwesome.ttf */,
 				13B07FAE1A68108700A75B9A /* fegoRN */,
@@ -169,7 +169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B02EB8C81FFBC19B00307CC3 /* ip.txt in Resources */,
+				0728E9AF204FD6A80034BE32 /* ip.txt in Resources */,
 				B95CBB6F1FEB58F100785CDE /* entypo.ttf in Resources */,
 				B95CBB6D1FEB58E600785CDE /* FontAwesome.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
@@ -224,7 +224,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AF48C4391C5553CF887A258C /* [CP] Copy Pods Resources */ = {

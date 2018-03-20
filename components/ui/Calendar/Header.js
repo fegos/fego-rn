@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import MonthPicker from '../MonthPicker';
+import MonthSelector from '../MonthSelector';
 import Popup from '../Popup';
 import Picker from '../Picker';
 
@@ -148,7 +148,7 @@ export default class Header extends Component {
   _changeMonths = () => {
     const { year, month } = this.props;
     const initialValue = month < 10 ? `${year}0${1}` : `${year}${month}`;
-    Popup.show(<MonthPicker
+    Popup.show(<MonthSelector
       initialValue={initialValue}// month需要加上0几
       onClose={() => { Popup.hide(); }}
       data={this.monthsData}
@@ -183,7 +183,7 @@ export default class Header extends Component {
 
   _changeYears = () => {
     const initialValue = `${this.props.year}`;
-    Popup.show(<MonthPicker
+    Popup.show(<MonthSelector
       initialValue={initialValue}// month需要加上0几
       onClose={() => { Popup.hide(); }}
       data={this.yearData}

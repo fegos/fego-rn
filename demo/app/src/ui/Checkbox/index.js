@@ -7,15 +7,17 @@ export default class Page extends Component {
   state = {
     checked: false,
   }
+
   render() {
     return (
       <ScrollView style={Style.container}>
         <Text style={Style.title}>Checkbox</Text>
         <Item>
-          <Checkbox defaultChecked>非受控组件：使用defaultChecked</Checkbox>
+          <Checkbox defaultChecked left={false} styles={{ icon: { marginLeft: 10 } }}>非受控组件：使用defaultChecked</Checkbox>
         </Item>
         <Item>
           <Checkbox
+            styles={{ container: { flex: 1 }, text: { flex: 1 } }}
             checked={this.state.checked}
             onChange={(checked) => {
               this.setState({
@@ -28,7 +30,7 @@ export default class Page extends Component {
         <Item>
           <Checkbox disabled>disabled</Checkbox>
         </Item>
-      </ScrollView>
+      </ScrollView >
     );
   }
 }

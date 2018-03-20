@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, StyleSheet } from 'react-native';
-import { Icon, Item } from 'fego-rn';
+import { Icon, Item, Toast } from 'fego-rn';
 import { Style } from '../../../common';
 
 const localStyle = StyleSheet.create({
@@ -45,7 +45,20 @@ class Example extends Component {
         </Item>
         <Item>
           <Text style={localStyle.text}>Icon使用style设置字体样式</Text>
-          <Icon name="music" style={{ color: '#D8B080', fontSize: 20 }} />
+          <Icon
+            name="music"
+            style={{ color: '#D8B080', fontSize: 20 }}
+          />
+        </Item>
+        <Item>
+          <Text style={localStyle.text}>Icon可点击</Text>
+          <Icon
+            name="music"
+            style={{ color: '#D8B080', fontSize: 20 }}
+            onPress={() => {
+              Toast.info('我被点击了');
+            }}
+          />
         </Item>
       </ScrollView>
     );

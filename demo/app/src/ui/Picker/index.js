@@ -121,6 +121,13 @@ const pickerData3 = [{
   }, {
     label: '台湾-烧烤',
     value: 'shao',
+    children: [{
+      label: '烤羊腿',
+      value: 'kyt',
+    }, {
+      label: '烤羊排',
+      value: 'kyp',
+    }],
   }],
 }, {
   label: '西餐',
@@ -222,6 +229,7 @@ export default class Page extends Component {
             console.log('onChange: ', selectedValue, selectedIndex, selectedLabel);
           }}
         />
+
         <Picker
           visible={this.state.picker4Visible}
           footer

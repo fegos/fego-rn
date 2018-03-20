@@ -22,6 +22,13 @@ subTitle: 图标
 <Icon name='music' style={{ fontSize: 20 }} />
 <Icon name='star' color="#D8B080" size={20} />
 <Icon name='music' style={{ color: '#D8B080', fontSize: 20 }} />
+<Icon
+  name="music"
+  style={{ color: '#D8B080', fontSize: 20 }}
+  onPress={() => {
+    Toast.info('我被点击了');
+  }}
+/>
 ```
 
 ### 使用说明
@@ -29,11 +36,12 @@ subTitle: 图标
 添加自己的字体库名字与unicode码对应的文件，只需增加字体json文件或者js文件，内容格式如下：
 
 ```
-// 图标名字：unicode码
+// 图标名字：unicode码，支持下面几种格式
 {
-	"aircraft-take-off": 61705,
-	"align-bottom": 61706,
-	"align-horizontal-middle": 61707,
+	"aircraft-take-off": 61705, // 十进制数
+  "glass": "f000",            // 十六进制字符串
+  "music": "/f001",           // 十六进制字符串含/（直接从阿里库下载下来的iconfont.css文件中拷贝出来的）
+  "search":"&#xf002;"         // 图标代码，unicode码（直接复制图标代码）
 	...
 }
 ```
@@ -58,6 +66,7 @@ Icon.defaultProps.family = 'FontAwesome';
 | size | 字体尺寸 | number | 16 |
 | color | 字体颜色 | string | #333 |
 | family | 字体库名称 | string | FontAwesome |
+| onPress | 点击回调 | function | |
 
 ### 样式对象styles
 

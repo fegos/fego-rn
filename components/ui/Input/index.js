@@ -325,7 +325,7 @@ export default class Input extends UIComponent {
 }
 Input.baseStyle = {
   container: {
-    flex: 1,
+    height: 48,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#999',
     marginLeft: 10,
@@ -333,18 +333,18 @@ Input.baseStyle = {
     marginTop: 0,
     marginBottom: 0,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'stretch',
   },
   label: {
     width: 60,
     marginRight: 5,
     textAlignVertical: 'center',
+    alignSelf: 'center',
     fontSize: 14,
     color: '#333',
   },
   input: {
     flex: 1,
-    height: 48,
     backgroundColor: '#FFF',
     includeFontPadding: false,
     textAlignVertical: 'center',

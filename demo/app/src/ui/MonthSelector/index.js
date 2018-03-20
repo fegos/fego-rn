@@ -3,12 +3,12 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import { MonthPicker, Item, Popup } from 'fego-rn';
+import { MonthSelector, Item, Popup } from 'fego-rn';
 
 // 组件静态方法生成 从 startMonth 到昨天所在月份的可选数组
 // startMonth 目前是随意写的 201609
 // MonthPicker.setStartMonth('201001')
-MonthPicker.getMonths();
+MonthSelector.getMonths();
 
 export default class Page extends Component {
   constructor(props, context) {
@@ -36,7 +36,7 @@ export default class Page extends Component {
           <Item
             title={`默认选中最后一个。您选择: ${this.state.MonthPicker1Label}`}
             onPress={() => {
-              Popup.show(<MonthPicker
+              Popup.show(<MonthSelector
                 initialValue={this.state.MonthPicker1Value}
                 onClose={() => { Popup.hide(); }}
                 onSelect={(obj) => {
@@ -52,7 +52,7 @@ export default class Page extends Component {
           <Item
             title={`默认选中2017年3月。您选择: ${this.state.MonthPicker2Label}`}
             onPress={() => {
-              Popup.show(<MonthPicker
+              Popup.show(<MonthSelector
                 initialValue={this.state.MonthPicker2Value}
                 onClose={() => { Popup.hide(); }}
                 onSelect={(obj) => {
@@ -68,7 +68,7 @@ export default class Page extends Component {
           <Item
             title={`使用自行定义的数据,类似于普通picker了。您选择: ${this.state.MonthPicker3Label}`}
             onPress={() => {
-              Popup.show(<MonthPicker
+              Popup.show(<MonthSelector
                 data={[{ value: '1', label: 'qwer' }, { value: '2', label: 'asdf' }, { value: '3', label: 'zxcv' }]}
                 initialValue={this.state.MonthPicker3Value}
                 onClose={() => { Popup.hide(); }}
