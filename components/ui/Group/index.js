@@ -71,7 +71,9 @@ export default class Group extends UIComponent {
   render() {
     const { isSingle } = this.props;
     const { value } = this.state;
-    console.log(isSingle, value);
+    if (__DEV__) {
+      console.log(isSingle, value);
+    }
     return (
       <View style={this.style.container}>{
         React.Children.map(

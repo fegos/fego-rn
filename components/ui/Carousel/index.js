@@ -38,8 +38,17 @@ export default class Carousel extends UIComponent {
     showArrows: false,
     leftArrow: '<',
     rightArrow: '>',
-    onShouldChange: (prePage, nextPage) => { console.log(prePage, nextPage); return true; },
-    onChange: (curPage) => { console.log(curPage); },
+    onShouldChange: (prePage, nextPage) => {
+      if (__DEV__) {
+        console.log(prePage, nextPage);
+      }
+      return true;
+    },
+    onChange: (curPage) => {
+      if (__DEV__) {
+        console.log(curPage);
+      }
+    },
     onScrollBeginDrag: () => { },
   }
 
@@ -304,7 +313,7 @@ export default class Carousel extends UIComponent {
           endPage = startPage + actualLoadPageCount - 1;
         }
       } else {
-        console.log(`不支持的mode:${mode}`);
+        console.warn(`不支持的mode:${mode}`);
       }
       this.setState({
         startPage,
@@ -352,7 +361,7 @@ export default class Carousel extends UIComponent {
     const childrenCount = this._childrenCount;
     const actualLoadPageCount = this._actualLoadPageCount;
     if (targetPage >= childrenCount) {
-      console.log(`目标页超出显示范围！！${targetPage}`);
+      console.warn(`目标页超出显示范围！！${targetPage}`);
       return;
     }
 
