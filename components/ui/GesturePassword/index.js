@@ -365,7 +365,6 @@ export default class GesturePassword extends UIComponent {
         const distanse = Utils.computerDistance(line.start, end, tmpPoint.origin);
         if (distanse < this._pointRadius) {
           // 相交
-          // console.log(tmpPoint.index);
           // 如果跟这个圆圈相交，则需要计算出线的交点
           const crossPoints = Utils.getCircleLineIntersectionPoint(line.start, end, tmpPoint.origin, this._pointRadius);
           // 确保交叉点在起始点范围内
@@ -405,7 +404,6 @@ export default class GesturePassword extends UIComponent {
         segMentLines.push(segMentLine);
       }
     }
-    // console.log(segMentLines);
     return segMentLines;
   }
 
@@ -591,8 +589,6 @@ export default class GesturePassword extends UIComponent {
       // 落点在已经激活的手势圆圈里
       if (this._sequence.includes(point.index)) {
         if (this.props.isHideLine) {
-          // console.log('==000000000==');
-          // console.log(point.origin);
           this._updateLine(this._currentPoint, point.origin, true, true, true);
         } else {
           this._updateLine(this._currentPoint, location);
