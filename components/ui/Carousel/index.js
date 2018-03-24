@@ -750,7 +750,7 @@ export default class Carousel extends UIComponent {
     const { curPage } = this.state;
     const { rightArrow } = this.props;
 
-    const isText = typeof leftArrow === 'string';
+    const isText = typeof rightArrow === 'string';
     const rightArrowView = isText ? (
       <Text style={style.arrowText}>{rightArrow}</Text>
     ) : rightArrow;
