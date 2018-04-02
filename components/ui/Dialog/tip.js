@@ -25,12 +25,13 @@ const onAnimationEnd = (visible) => {
   }
 };
 
-function creatTip(title, content, actions) {
+function creatTip(title, content, actions, type) {
   actions = actions || defaultOption.alert.actions;
   AppContainer.add(<TipAgent
     key={topViewDialogKey}
     ref={(el) => { curTip = el; }}
     title={title}
+    type={type}
     content={content}
     actions={actions}
     onAnimationEnd={onAnimationEnd}
@@ -43,7 +44,7 @@ function creatTip(title, content, actions) {
  * @param {String/Element} content
  * @param {Array} actions
  */
-function tip(title, content, actions) {
+function tip(title, content, actions, type) {
   if (curTip) {
     curTip.close(() => {
       setTimeout(() => {
@@ -54,7 +55,7 @@ function tip(title, content, actions) {
       }, 200);
     });
   } else {
-    creatTip(title, content, actions);
+    creatTip(title, content, actions, type);
   }
 }
 
@@ -67,7 +68,7 @@ function tip(title, content, actions) {
  * @param {String} title
  * @param {String/Element} content
  */
-function alert(title, content, callback) {
+function alert(title, content, callback, type) {
   const opt = defaultOption.alert;
   const argLen = arguments.length;
   if (argLen === 1) {
@@ -85,7 +86,7 @@ function alert(title, content, callback) {
   if (opt.actions[0]) {
     opt.actions[0].onPress = callback;
   }
-  tip(title, content, opt.actions);
+  tip(title, content, opt.actions, type);
 }
 /**
  * 确认
@@ -96,7 +97,7 @@ function alert(title, content, callback) {
  * @param {String} title
  * @param {String/Element} content
  */
-function confirm(title, content, callback) {
+function confirm(title, content, callback, type) {
   const opt = defaultOption.confirm;
   const argLen = arguments.length;
   if (argLen === 1) {
@@ -117,7 +118,7 @@ function confirm(title, content, callback) {
   if (opt.actions[1]) {
     opt.actions[1].onPress = callback;
   }
-  tip(title, content, opt.actions);
+  tip(title, content, opt.actions, type);
 }
 /**
  * TipAgent容器，可设置基础样式

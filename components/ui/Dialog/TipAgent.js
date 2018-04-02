@@ -31,7 +31,7 @@ export default class TipAgent extends UIComponent {
   }
   render() {
     const { style } = this;
-    const { title, actions, onAnimationEnd } = this.props;
+    const { title, actions, onAnimationEnd, type } = this.props;
     const setAniEndFn = (endFn) => {
       this.endFn = endFn;
     };
@@ -66,6 +66,7 @@ export default class TipAgent extends UIComponent {
     return (
       <Dialog
         title={title}
+        type={type}
         visible={this.state.visible}
         onClose={() => this.close}
         footer={footer}

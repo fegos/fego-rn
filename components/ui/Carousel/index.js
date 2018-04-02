@@ -471,12 +471,12 @@ export default class Carousel extends UIComponent {
   _calculateCurrentPage = (offset) => {
     const { direction, size } = this.props;
     const { curPage, startPage } = this.state;
-    const { width, height } = size;
-    const denominator = direction === 'horizontal' ? width : height;
-    const result = offset / denominator;
-    const nextPage = (result % 1) >= 0.5 ? Math.ceil(result) : Math.floor(result);
-    const diff = nextPage + startPage - this._prePage;
-    const newCurPage = curPage + diff;
+    let newCurPage = curPage;
+    if (this._beginOffset > offset) {
+      newCurPage -= 1;
+    } else {
+      newCurPage += 1;
+    }
     return this._getFixedPageIdx(newCurPage);
   }
 
@@ -525,7 +525,10 @@ export default class Carousel extends UIComponent {
   /**
    * scrollview事件回调
    */
-  _onScrollBeginDrag = () => {
+  _onScrollBeginDrag = (event) => {
+    const { direction } = this.props;
+    const { contentOffset } = event.nativeEvent;
+    this._beginOffset = direction === 'horizontal' ? contentOffset.x : contentOffset.y;
     this._clearTimer();
     this.props.onScrollBeginDrag();
     this._prePage = this.state.curPage;
@@ -615,11 +618,11 @@ export default class Carousel extends UIComponent {
           const sourceEl = source[fixedIdx];
           if (typeof sourceEl === 'number') {
             page = (
-              <Image key={key} source={sourceEl} style={size} />
+              <Image key={key} resizeMode="stretch" source={sourceEl} style={size} />
             );
           } else {
             page = (
-              <Image key={key} source={{ uri: sourceEl, ...size }} />
+              <Image key={key} resizeMode="stretch" source={{ uri: sourceEl, ...size }} />
             );
           }
         } else {
