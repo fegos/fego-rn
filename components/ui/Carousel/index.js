@@ -139,7 +139,7 @@ export default class Carousel extends UIComponent {
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps);
     this._updateChildrenCount(nextProps);
-    this._updateActualLoadPageCount(this.props);
+    this._updateActualLoadPageCount(nextProps);
     this._updateLoadPageRegion(nextProps, this.state.curPage);
     this._setTimerIfNeed(nextProps, this.state.curPage);
   }
@@ -318,6 +318,8 @@ export default class Carousel extends UIComponent {
       this.setState({
         startPage,
         endPage,
+      }, () => {
+        this._placeCritical(curPage, startPage);
       });
     }
     this._hasUpdatedDisplayRegion = true;
@@ -375,6 +377,11 @@ export default class Carousel extends UIComponent {
     if (!infinite && targetPage >= childrenCount - 1) {
       this._clearTimer();
     }
+
+    if (childrenCount < 2) {
+      return;
+    }
+
 
     if (mode === 'all') {
       let actualTargetPage = targetPage;
@@ -469,15 +476,14 @@ export default class Carousel extends UIComponent {
    * 通过偏移量计算当前页
    */
   _calculateCurrentPage = (offset) => {
-    const { direction, size } = this.props;
-    const { curPage, startPage } = this.state;
+    const { curPage } = this.state;
     let newCurPage = curPage;
-    if (this._beginOffset > offset) {
+    if (this._beginOffset > offset && this._beginOffset - offset > windowWidth / 3) {
       newCurPage -= 1;
-    } else {
+    } else if (this._beginOffset < offset && offset - this._beginOffset > windowWidth / 3) {
       newCurPage += 1;
     }
-    return this._getFixedPageIdx(newCurPage);
+    return newCurPage;
   }
 
   /**
@@ -535,12 +541,32 @@ export default class Carousel extends UIComponent {
   }
 
   _onScrollEndDrag = (event) => {
-    const { direction } = this.props;
+    const { direction, infinite } = this.props;
+    const { curPage } = this.state;
     const { contentOffset } = event.nativeEvent;
-    const offset = direction === 'horizontal' ? contentOffset.x : contentOffset.y;
-    const page = this._calculateCurrentPage(offset);
-    this._setTimerIfNeed(this.props, this.state.curPage);
-    this._changeToPage(page, false);
+    let newCurPage = curPage;
+    if (event.nativeEvent) {
+      const { velocity } = event.nativeEvent;
+      const { x: vX } = velocity;
+      if (Math.abs(vX) > 0.1) {
+        if (vX > 0) {
+          newCurPage = curPage + 1;
+        } else {
+          newCurPage = curPage - 1;
+        }
+      } else {
+        const offset = direction === 'horizontal' ? contentOffset.x : contentOffset.y;
+        newCurPage = this._calculateCurrentPage(offset);
+      }
+    }
+    if (!infinite &&
+      ((curPage === this._childrenCount - 1 && newCurPage > curPage) ||
+        (curPage === 0 && newCurPage < 0))) {
+      return;
+    }
+    const fixedPage = this._getFixedPageIdx(newCurPage);
+    this._setTimerIfNeed(this.props, fixedPage);
+    this._changeToPage(fixedPage, false);
   }
 
   /**
@@ -630,9 +656,7 @@ export default class Carousel extends UIComponent {
         }
       } else {
         page = (
-          <View style={style.noChild}>
-            <Text style={{ color: '#333' }}>您未添加任何轮播内容</Text>
-          </View>
+          <View style={style.noChild} />
         );
       }
       let key = `page${fixedIdx + 100}`;
@@ -728,7 +752,7 @@ export default class Carousel extends UIComponent {
 
     const { style } = this;
     const { curPage } = this.state;
-    const { leftArrow } = this.props;
+    const { leftArrow, infinite } = this.props;
 
     const isText = typeof leftArrow === 'string';
     const leftArrowView = isText ? (
@@ -738,11 +762,16 @@ export default class Carousel extends UIComponent {
       <View style={style.leftArrowContainer}>
         <TouchableOpacity
           style={[style.arrowWrapper, style.leftArrowWrapper]}
-          onPress={() => this._changeToPage(this._getFixedPageIdx(curPage - 1), true, false)}
+          onPress={() => {
+            if (!infinite && curPage === 0) {
+              return;
+            }
+            this._changeToPage(this._getFixedPageIdx(curPage - 1), true, false);
+          }}
         >
           {leftArrowView}
         </TouchableOpacity>
-      </View>
+      </View >
     );
   }
 
@@ -751,7 +780,7 @@ export default class Carousel extends UIComponent {
 
     const { style } = this;
     const { curPage } = this.state;
-    const { rightArrow } = this.props;
+    const { rightArrow, infinite } = this.props;
 
     const isText = typeof rightArrow === 'string';
     const rightArrowView = isText ? (
@@ -762,11 +791,16 @@ export default class Carousel extends UIComponent {
       <View style={style.rightArrowContainer}>
         <TouchableOpacity
           style={[style.arrowWrapper, style.rightArrowWrapper]}
-          onPress={() => this._changeToPage(this._getFixedPageIdx(curPage + 1), true, true)}
+          onPress={() => {
+            if (!infinite && curPage === childrenCount - 1) {
+              return;
+            }
+            this._changeToPage(this._getFixedPageIdx(curPage + 1), true, true);
+          }}
         >
           {rightArrowView}
         </TouchableOpacity>
-      </View>
+      </View >
     );
   }
 
@@ -792,13 +826,6 @@ export default class Carousel extends UIComponent {
 }
 
 Carousel.baseStyle = {
-  noChild: {
-    width: windowWidth,
-    height: 100,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   // 容器
   container: {},
   // 指示点
