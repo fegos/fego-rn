@@ -212,7 +212,13 @@ export default class Carousel extends UIComponent {
     if (childrenType === 'image') {
       childrenCount = source.length;
     } else {
-      childrenCount = children.length;
+      if (Array.isArray(children)) {
+        childrenCount = children.length;
+      } else if (React.isValidElement(children)) {
+        childrenCount = 1
+      } else {
+        childrenCount = 0;
+      }
     }
     return childrenCount;
   }
@@ -315,13 +321,13 @@ export default class Carousel extends UIComponent {
       } else {
         console.warn(`不支持的mode:${mode}`);
       }
-      this.setState({
-        startPage,
-        endPage,
-      }, () => {
-        this._placeCritical(curPage, startPage);
-      });
     }
+    this.setState({
+      startPage,
+      endPage,
+    }, () => {
+      this._placeCritical(curPage, startPage);
+    });
     this._hasUpdatedDisplayRegion = true;
   }
 
@@ -652,7 +658,11 @@ export default class Carousel extends UIComponent {
             );
           }
         } else {
-          page = children[fixedIdx];
+          if (Array.isArray(children)) {
+            page = children[fixedIdx];
+          } else {
+            page = children;
+          }
         }
       } else {
         page = (

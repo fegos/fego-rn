@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView, TouchableWithoutFeedback, Text, View } from 'react-native';
-import { Carousel, Radio } from 'fego-rn';
+import { ScrollView, TouchableWithoutFeedback, Text, View, Image, Dimensions } from 'react-native';
+import { Carousel, Radio, Group } from 'fego-rn';
+
+const { width } = Dimensions.get('window');
 
 const imageArray = [
   require('./img/car1.png'),
@@ -13,6 +15,8 @@ const imageArray = [
   require('./img/girl.jpg'),
 ];
 
+
+
 export default class Page extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +27,7 @@ export default class Page extends Component {
       showArrows: false,
       autoPlay: true,
       infinite: true,
+      childrenType: 'image',
     };
   }
 
@@ -48,7 +53,7 @@ export default class Page extends Component {
 
   render() {
     const {
-      autoPlay, infinite, showDot, showPagination, showArrows,
+      autoPlay, infinite, showDot, showPagination, showArrows, childrenType,
     } = this.state;
     const source = imageArray.slice(0, this.state.pageCount);
 
@@ -100,6 +105,28 @@ export default class Page extends Component {
         >属性管理
         </Text>
 
+        <View style={{
+          flexDirection: 'row', marginLeft: 20, alignItems: 'center'
+        }}>
+          < Text style={{
+            fontSize: 13, color: '#55555'
+          }}
+          >子view类型
+          </Text>
+
+          <Group
+            style={{ alignItems: 'center' }}
+            defaultValue="image"
+            onChange={(value) => {
+              this.setState({
+                childrenType: value,
+              })
+            }}
+          >
+            <Radio value="image">image</Radio>
+            <Radio style={{ marginLeft: 5 }} value="custom">custom</Radio>
+          </Group>
+        </View >
         <View style={{ flexDirection: 'row', marginLeft: 15, marginTop: 5, }}>
           <Radio
             style={{ marginLeft: 5, marginTop: 10 }}
@@ -164,13 +191,16 @@ export default class Page extends Component {
         </View>
 
         <Carousel
+          childrenType={childrenType}
           source={source}
           autoPlay={autoPlay}
           infinite={infinite}
           showDot={showDot}
           showPagination={showPagination}
           showArrows={showArrows}
-        />
+        >
+          <Image resizeMode="stretch" source={source[0]} style={{ width, height: width * 180 / 375 }} />
+        </Carousel>
 
       </ScrollView >
     );
