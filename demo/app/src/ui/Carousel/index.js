@@ -106,7 +106,7 @@ export default class Page extends Component {
         </Text>
 
         <View style={{
-          flexDirection: 'row', marginLeft: 20, alignItems: 'center'
+          flexDirection: 'row', marginLeft: 15, alignItems: 'center'
         }}>
           < Text style={{
             fontSize: 13, color: '#55555'
