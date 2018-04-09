@@ -31,7 +31,9 @@ export default class TipAgent extends UIComponent {
   }
   render() {
     const { style } = this;
-    const { title, actions, onAnimationEnd, type } = this.props;
+    const {
+      title, actions, onAnimationEnd, type,
+    } = this.props;
     const setAniEndFn = (endFn) => {
       this.endFn = endFn;
     };

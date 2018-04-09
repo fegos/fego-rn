@@ -23,8 +23,8 @@ export default class Page extends Component {
           visible={this.state.dialogVisible}
           onClose={() => this.setState({ dialogVisible: false })}
           footer={[
-            { text: '取消', onPress: () => console.log('cancel'), style: 'no' },
-            { text: '确定', onPress: () => console.log('ok'), style: 'yes' },
+            { text: '取消', onPress: () => console.log('cancel'), style: 'cancel' },
+            { text: '确定', onPress: () => console.log('ok'), style: 'confirm' },
           ]}
         >
           <View>
@@ -38,10 +38,10 @@ export default class Page extends Component {
           visible={this.state.dialog2Visible}
           onClose={() => this.setState({ dialog2Visible: false })}
           footer={[
-            { text: '按钮1', style: 'no' },
+            { text: '按钮1', style: 'cancel' },
             { text: '按钮2' },
             { text: '按钮3' },
-            { text: '按钮4', style: 'yes' },
+            { text: '按钮4', style: 'confirm' },
           ]}
         >
           <View>
@@ -68,7 +68,7 @@ export default class Page extends Component {
         </Button>
         <Button onPress={() => Dialog.alert('新密码须至少包含1个字母和1个数字，6-10位')}>alert</Button>
         <Button onPress={() => Dialog.confirm('你很帅吗？', (btn) => {
-          if (btn.type === 'yes') {
+          if (btn.type === 'confirm') {
             Dialog.alert('你很自信嘛！');
           } else {
             Dialog.alert('这就对了！');
@@ -77,7 +77,7 @@ export default class Page extends Component {
         >confirm
         </Button>
         <Button onPress={() => Dialog.confirm(<Text style={{ color: '#338811' }}>这窗口点确定是没用的</Text>, (btn) => {
-          if (btn.type === 'yes') {
+          if (btn.type === 'confirm') {
             return false;
           } else {
             return true;

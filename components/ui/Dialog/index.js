@@ -30,16 +30,15 @@ export default class Dialog extends UIComponent {
     closable: false,
     maskClosable: false,
     animationType: 'fade',
-    onClose() { },
     footer: [],
     fullScreen: false,
-    animateAppear: true,
-    operation: false,
-    underlayColor: '#EEE',
-    styleBtnMap: {
-      no: { color: '#666' },
-      yes: { color: '#337ab7' },
+    animateWhenMount: true,
+    btnUnderlayColor: '#EEE',
+    footerBtnStyleMap: {
+      cancel: { color: '#666' },
+      confirm: { color: '#337ab7' },
     },
+    onClose: () => { },
   }
 
   static propTypes = {
@@ -58,13 +57,11 @@ export default class Dialog extends UIComponent {
     // 是否全屏
     fullScreen: PropTypes.bool,
     // 是否使用动画
-    animateAppear: PropTypes.bool,
-    // 一个特殊的按钮状态
-    operation: PropTypes.bool,
+    animateWhenMount: PropTypes.bool,
     // 按钮点击颜色
-    underlayColor: PropTypes.string,
+    btnUnderlayColor: PropTypes.string,
     // 按钮类型
-    styleBtnMap: PropTypes.objectOf(PropTypes.any),
+    footerBtnStyleMap: PropTypes.objectOf(PropTypes.any),
   }
 
   /**
@@ -74,63 +71,55 @@ export default class Dialog extends UIComponent {
   static alert = alert
   static confirm = confirm
   static autoStyleSheet = false
-  root = null
   _maskClose = () => {
     if (this.props.maskClosable && this.props.onClose) {
       this.props.onClose();
     }
   }
 
-  _footerLayout = (e) => {
-    if (this.root) {
-      this.root.setNativeProps({
-        style: [{ paddingBottom: e.nativeEvent.layout.height }, maxHeight],
-      });
-    }
-  }
-
-  _saveRoot = (root) => {
-    this.root = root;
-  }
-  crtFullScreen(styles) {
+  render() {
+    const styles = this.style;
     const {
-      children, visible, animationType,
+      children, animateWhenMount, fullScreen, visible, onAnimationEnd, animationType, animationDuration,
     } = this.props;
-    let aniType = animationType;
-    if (animationType === 'slide-up' || animationType === 'slide-down' || animationType === 'slide') {
-      aniType = 'slide';
+    if (fullScreen) {
+      return this._createFullScreenDialog(styles);
     }
+    const headerEl = this._createHeader(styles);
+    const footerEl = this._createFooter(styles);
+    const closeEl = this._createClose(styles);
     return (
       <View style={styles.container}>
         <AnimateModal
+          onClose={this._maskClose}
+          animationType={animationType}
+          animationDuration={animationDuration}
+          style={styles.inner}
+          contentStyle={styles.innerContent}
           visible={visible}
-          animationType={aniType}
-          onRequestClose={this._maskClose}
+          onAnimationEnd={onAnimationEnd}
+          animateWhenMount={animateWhenMount}
         >
-          <View style={styles.body}>
-            {children}
+          <View style={maxHeight} ref={(ref) => { this.root = ref; }}>
+            {headerEl}
+            <View style={styles.body}>{children}</View>
+            {footerEl}
+            {closeEl}
           </View>
         </AnimateModal>
-      </View>
+      </View >
     );
   }
 
-  crtClose(styles) {
-    const { closable, onClose } = this.props;
-    return closable ? (
-      <View style={[styles.closeWrap]}>
-        <TouchableWithoutFeedback onPress={onClose}>
-          <View>
-            <Text style={[styles.close]}>×</Text>
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
-    ) : null;
+  _createHeader = (styles) => {
+    const { title } = this.props;
+    return title ? <Text style={[styles.header]}>{title}</Text> : null;
   }
 
-  crtFooter(styles) {
+
+  _createFooter = (styles) => {
     const {
-      footer, onClose, operation, underlayColor, styleBtnMap,
+      footer, onClose, btnUnderlayColor, footerBtnStyleMap,
     } = this.props;
     if (!footer || !footer.length) {
       return null;
@@ -139,7 +128,7 @@ export default class Dialog extends UIComponent {
     const borderRadius = styles.innerContent.borderRadius || 10;
     let horizontalFlex = {};
     let isHorizontal = false;
-    if (footer && footer.length === 2 && !operation) {
+    if (footer && footer.length === 2) {
       isHorizontal = true;
       btnGroupStyle = styles.buttonGroupH;
       horizontalFlex = { flex: 1 };
@@ -147,13 +136,10 @@ export default class Dialog extends UIComponent {
     const buttonWrapStyle = footer && footer.length === 2 ? styles.buttonWrapH : styles.buttonWrapV;
     const footerButtons = footer.map((button, i) => {
       let buttonStyle = {};
-      if (operation) {
-        buttonStyle = styles.buttonTextOperation;
-      }
       if (button.style) {
         buttonStyle = button.style;
         if (typeof buttonStyle === 'string') {
-          buttonStyle = styleBtnMap[buttonStyle] || {};
+          buttonStyle = footerBtnStyleMap[buttonStyle] || {};
         }
       }
       const noneBorder = footer && footer.length === 2 && i === 1 ? { borderRightWidth: 0 } : {};
@@ -180,7 +166,7 @@ export default class Dialog extends UIComponent {
             borderBottomLeftRadius,
             borderBottomRightRadius: i === footer.length - 1 ? borderRadius : 0,
           }]}
-          underlayColor={underlayColor}
+          underlayColor={btnUnderlayColor}
           onPress={onPressFn}
         >
           <View style={[buttonWrapStyle, noneBorder]}>
@@ -190,43 +176,42 @@ export default class Dialog extends UIComponent {
       );
     });
     return (
-      <View style={[btnGroupStyle, styles.footer]} onLayout={this._footerLayout}>
+      <View style={[btnGroupStyle, styles.footer]}>
         {footerButtons}
       </View>
     );
   }
-  crtHeader(styles) {
-    const { title } = this.props;
-    return title ? <Text style={[styles.header]}>{title}</Text> : null;
+
+  _createClose = (styles) => {
+    const { closable, onClose } = this.props;
+    return closable ? (
+      <View style={[styles.closeWrap]}>
+        <TouchableWithoutFeedback onPress={onClose}>
+          <View>
+            <Text style={[styles.close]}>×</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    ) : null;
   }
-  render() {
-    const styles = this.style;
+
+  _createFullScreenDialog = (styles) => {
     const {
-      children, animateAppear, fullScreen, visible, onAnimationEnd, animationType, animationDuration,
+      children, visible, animationType,
     } = this.props;
-    if (fullScreen) {
-      return this.crtFullScreen(styles);
+    let aniType = animationType;
+    if (animationType === 'slide-up' || animationType === 'slide-down' || animationType === 'slide') {
+      aniType = 'slide';
     }
-    const headerEl = this.crtHeader(styles);
-    const footerEl = this.crtFooter(styles);
-    const closeEl = this.crtClose(styles);
     return (
       <View style={styles.container}>
         <AnimateModal
-          onClose={this._maskClose}
-          animationType={animationType}
-          animationDuration={animationDuration}
-          style={styles.inner}
-          contentStyle={styles.innerContent}
           visible={visible}
-          onAnimationEnd={onAnimationEnd}
-          animateWhenMount={animateAppear}
+          animationType={aniType}
+          onRequestClose={this._maskClose}
         >
-          <View style={maxHeight} ref={this._saveRoot}>
-            {headerEl}
-            <View style={styles.body}>{children}</View>
-            {footerEl}
-            {closeEl}
+          <View style={styles.body}>
+            {children}
           </View>
         </AnimateModal>
       </View>
@@ -250,7 +235,6 @@ Dialog.baseStyle = {
     overflow: 'hidden',
   },
   footer: {
-    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
@@ -314,10 +298,5 @@ Dialog.baseStyle = {
     color: '#0076FF',
     fontSize: 17,
     backgroundColor: 'transparent',
-  },
-  buttonTextOperation: {
-    color: '#333',
-    textAlign: 'left',
-    paddingHorizontal: 15,
   },
 };
