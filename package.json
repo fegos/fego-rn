@@ -33,9 +33,9 @@
     "babel-plugin-module-resolver": "^3.0.0"
   },
   "devDependencies": {
-    "react": "16.0.0-alpha.12",
+    "react": "^16.3.1",
     "react-dom": "16.0.0-alpha.12",
-    "react-native": "0.47.2",
+    "react-native": "0.55.1",
     "babel-jest": "21.2.0",
     "babel-preset-react-native": "4.0.0",
     "babel-eslint": "8.0.2",
