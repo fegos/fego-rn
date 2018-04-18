@@ -27,7 +27,11 @@ export default class AnimateModal extends UIComponent {
     animateWhenMount: false,
     springEffect: false,
     onClose: () => { },
-    onAnimationEnd: (visible) => { console.log(visible); },
+    onAnimationEnd: (visible) => {
+      if (__DEV__) {
+        console.log(visible);
+      }
+    },
   }
   static propTypes = {
     // 是否可见

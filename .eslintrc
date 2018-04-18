@@ -7,6 +7,9 @@
     "es6": true,
     "jest": true
   },
+  "globals": {
+    "__DEV__": true
+  },
   "rules": {
     "global-require": [1],
     "max-len": [1, { "code": 150 }],

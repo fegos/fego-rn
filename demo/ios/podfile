@@ -3,6 +3,7 @@
 
 source 'https://github.com/CocoaPods/Specs.git'
 
+
 def mainPods
 	# Uncomment this line if you're using Swift or would like to use dynamic frameworks
 	# use_frameworks!
@@ -20,12 +21,12 @@ def mainPods
 	'ART',
 	'RCTAnimation',
 	'RCTWebSocket', # needed for debugging
-	'jschelpers_legacy',
-	'cxxreact_legacy',
-	'BatchedBridge'
+    'jschelpers_legacy',
+    'cxxreact_legacy',
+    'BatchedBridge'
 	]
 	# 如果你的RN版本 >= 0.42.0，则加入下面这行
-	pod "Yoga", :path => '../../node_modules/react-native/ReactCommon/yoga'
+    pod "Yoga", :path => '../../node_modules/react-native/ReactCommon/yoga'
 end
 
 target 'fegoRN' do

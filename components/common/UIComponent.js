@@ -152,7 +152,6 @@ export default class UIComponent extends Component {
    * 更新this.style，若有必要子类可调用该方法刷新style
    */
   updateStyle(nextProps) {
-    // console.log(this.constructor.name + ': updateStyle')
     this.style = this._getStyle(nextProps);
     return this.style;
   }

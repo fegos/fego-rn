@@ -126,7 +126,7 @@ export function computerDistance(point1, point2, orgin) {
   // const C = x2 * y1 - x1 * y2;
 
   const distance = (Math.abs((y2 - y1) * x0 + (x1 - x2) * y0 + ((x2 * y1) - (x1 * y2)))) /
-  (Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x1 - x2, 2)));
+    (Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x1 - x2, 2)));
 
   return distance;
 }
@@ -255,7 +255,6 @@ export function reSortArray(originArr, start, end) {
 }
 
 export function pointInMiddleLine(crossPoint, start, end) {
-  // console.log('======pointInMiddleLine======');
   let result = false;
   if (start.x === end.x) {
     if ((crossPoint.y > start.y && crossPoint.y > end.y) ||
@@ -271,6 +270,5 @@ export function pointInMiddleLine(crossPoint, start, end) {
   } else {
     result = true;
   }
-  // console.log('======pointInMiddleLine======');
   return result;
 }

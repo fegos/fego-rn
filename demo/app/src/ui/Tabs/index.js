@@ -5,6 +5,7 @@ import {
   View,
   ScrollView,
 } from 'react-native';
+
 import { Tabs } from 'fego-rn';
 import { Style } from '../../../common';
 
@@ -18,6 +19,7 @@ const TabStyles = {
   },
   activeUnderline: {
     height: 3,
+    marginHorizontal: 15,
   },
 };
 
