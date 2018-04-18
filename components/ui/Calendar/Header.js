@@ -139,7 +139,6 @@ export default class Header extends Component {
       const yearLabel = `${year}年`;
       const monthValue = month < 10 ? `0${month}` : month;
       const monthLabel = `${month + 1}月`;
-      // console.log('月：  ' + monthLabel);
       data.push({ value: `${year}${monthValue}`, label: `${yearLabel}${monthLabel}` });
       start = new Date(year, month + 1);
     }
@@ -160,10 +159,10 @@ export default class Header extends Component {
         Popup.hide();
       }}
     />, {
-      title: false,
-      location: 'bottom',
-      aniFrom: 'bottom',
-    });
+        title: false,
+        location: 'bottom',
+        aniFrom: 'bottom',
+      });
   }
 
   // 年选择的形式
@@ -193,10 +192,10 @@ export default class Header extends Component {
         Popup.hide();
       }}
     />, {
-      title: false,
-      location: 'bottom',
-      aniFrom: 'bottom',
-    });
+        title: false,
+        location: 'bottom',
+        aniFrom: 'bottom',
+      });
   }
 
 
@@ -244,11 +243,11 @@ export default class Header extends Component {
                 {year}年{months[month]}
               </Text>
             ) : (
-              <TouchableOpacity onPress={this.scanCallback}>
-                <Text style={[styles.title]}>
-                  {year}年{months[month]}
-                </Text>
-              </TouchableOpacity>
+                <TouchableOpacity onPress={this.scanCallback}>
+                  <Text style={[styles.title]}>
+                    {year}年{months[month]}
+                  </Text>
+                </TouchableOpacity>
               )
           }
 

@@ -52,9 +52,9 @@ export default class Popup extends UIComponent {
     ]),
     iconFamily: PropTypes.string,
     // header左上角图标
-    headerLeftIconName: React.PropTypes.string,
+    headerLeftIconName: PropTypes.string,
     // header右上角图标
-    headerRightIconName: React.PropTypes.string,
+    headerRightIconName: PropTypes.string,
     // 头部左侧区，false为关闭，也可传入自定义元素，字符串
     headerLeft: PropTypes.oneOfType([
       PropTypes.node,

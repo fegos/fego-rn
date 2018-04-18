@@ -361,7 +361,6 @@ export default class Slider extends UIComponent {
   _thumbHitTest = (e) => {
     const { nativeEvent } = e;
     const thumbTouchRect = this._getThumbTouchRect();
-    // console.log('touch react: ', thumbTouchRect);
     return thumbTouchRect.containsPoint(nativeEvent.locationX, nativeEvent.locationY);
   }
 

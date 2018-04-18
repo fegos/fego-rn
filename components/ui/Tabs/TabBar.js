@@ -9,16 +9,16 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
-
+import merge from 'lodash/merge';
 import { UIComponent } from 'common';
 
-const tabStyle = StyleSheet.create({
+const tabStyle = {
   underline: {
     position: 'absolute',
     height: 4,
     bottom: 0,
   },
-});
+};
 
 
 export default class TabBar extends UIComponent {
@@ -248,14 +248,26 @@ export default class TabBar extends UIComponent {
       itemWidth,
     } = this.state;
 
+    const finalLineStyle = merge({}, {
+      width: itemWidth,
+      left: this.state.left,
+    }, tabStyle.underline, ...activeUnderlineStyle);
+
+    let { width } = finalLineStyle;
+    if (finalLineStyle.marginHorizontal) {
+      width -= 2 * finalLineStyle.marginHorizontal;
+    } else if (finalLineStyle.marginLeft) {
+      width -= finalLineStyle.marginLeft;
+    } else if (finalLineStyle.marginRight) {
+      width -= finalLineStyle.marginRight;
+    }
+
+    finalLineStyle.width = width;
+
     const contentView = (
       <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
         {items.map(item => this._renderTabItem(item, activeIdx))}
-        {showUnderline ? <Animated.View style={
-          [{
-            width: itemWidth,
-            left: this.state.left,
-          }, tabStyle.underline, activeUnderlineStyle]}
+        {showUnderline ? <Animated.View style={finalLineStyle}
         /> : null}
       </View>
     );

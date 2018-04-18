@@ -113,7 +113,6 @@ export default class NPSwitch extends UIComponent {
       onPanResponderTerminationRequest: () => true,
       // 监视器被释放
       onPanResponderRelease: () => {
-        // console.log("onPanResponderRelease");
         this.setState({
           pressed: false,
         });
@@ -126,7 +125,6 @@ export default class NPSwitch extends UIComponent {
       },
       // 响应被终止
       onPanResponderTerminate: () => {
-        // console.log("onPanResponderTerminate");
         const currentPos = this.state.position._value;
         this.setState({
           pressed: false,
