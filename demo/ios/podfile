@@ -21,13 +21,12 @@ def mainPods
 	'ART',
 	'RCTAnimation',
 	'RCTWebSocket', # needed for debugging
-    'jschelpers',
-    'cxxreact',
-    'CxxBridge',
-    'fabric'
+    'jschelpers_legacy',
+    'cxxreact_legacy',
+    'BatchedBridge'
 	]
 	# 如果你的RN版本 >= 0.42.0，则加入下面这行
-    pod "yoga", :path => '../../node_modules/react-native/ReactCommon/yoga'
+    pod "Yoga", :path => '../../node_modules/react-native/ReactCommon/yoga'
 end
 
 target 'fegoRN' do

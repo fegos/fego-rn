@@ -15,8 +15,6 @@ const imageArray = [
   require('./img/girl.jpg'),
 ];
 
-
-
 export default class Page extends Component {
   constructor(props) {
     super(props);
@@ -106,10 +104,11 @@ export default class Page extends Component {
         </Text>
 
         <View style={{
-          flexDirection: 'row', marginLeft: 15, alignItems: 'center'
-        }}>
-          < Text style={{
-            fontSize: 13, color: '#55555'
+          flexDirection: 'row', marginLeft: 15, alignItems: 'center',
+        }}
+        >
+          <Text style={{
+            fontSize: 13, color: '#555555',
           }}
           >子view类型
           </Text>
@@ -120,14 +119,17 @@ export default class Page extends Component {
             onChange={(value) => {
               this.setState({
                 childrenType: value,
-              })
+              });
             }}
           >
             <Radio value="image">image</Radio>
             <Radio style={{ marginLeft: 5 }} value="custom">custom</Radio>
           </Group>
         </View >
-        <View style={{ flexDirection: 'row', marginLeft: 15, marginTop: 5, }}>
+        <View style={{
+          flexDirection: 'row', marginLeft: 15, marginTop: 5,
+        }}
+        >
           <Radio
             style={{ marginLeft: 5, marginTop: 10 }}
             checked={autoPlay}
@@ -150,7 +152,10 @@ export default class Page extends Component {
           </Radio>
         </View>
 
-        <View style={{ flexDirection: 'row', marginLeft: 15, marginTop: 5, }}>
+        <View style={{
+          flexDirection: 'row', marginLeft: 15, marginTop: 5,
+        }}
+        >
           <Radio
             style={{ marginLeft: 5, marginTop: 10 }}
             checked={showDot}
