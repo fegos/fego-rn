@@ -33,9 +33,9 @@
     "babel-plugin-module-resolver": "^3.0.0"
   },
   "devDependencies": {
-    "react": "16.0.0-alpha.12",
-    "react-dom": "16.0.0-alpha.12",
-    "react-native": "0.47.2",
+    "react": "16.3.1",
+    "react-dom": "16.3.1",
+    "react-native": "0.55.3",
     "babel-jest": "21.2.0",
     "babel-preset-react-native": "4.0.0",
     "babel-eslint": "8.0.2",
@@ -58,8 +58,8 @@
     "react-navigation": "1.2.1"
   },
   "peerDependencies": {
-    "react": ">=16.0 <=16.2",
-    "react-native": ">=0.47 <0.54"
+    "react": ">=16.0 <=16.4",
+    "react-native": ">=0.47 <=0.55"
   },
   "scripts": {
     "init": "yarn install --no-optional -s --registry=https://registry.npm.taobao.org && cd demo/ios && pod install",

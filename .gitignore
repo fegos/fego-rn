@@ -17,4 +17,6 @@ xcuserdata
 package-lock.json
 yarn.lock
 lint.txt
+ip.txt
 sync.sh
+demo/ios/fegoRN.xcworkspace/xcshareddata
