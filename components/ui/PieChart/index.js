@@ -52,10 +52,6 @@ export default class PieChart extends Component {
 
     this.animationArray = [];
     this.endAngleArray = [];
-    // 初始化动画对象
-    for (let index = 0; index < this.props.percentArray.length; index++) {
-      this.animationArray.push(new Animated.Value(0));
-    }
 
     this.state = {
       wedgeAngles: [],
@@ -63,37 +59,32 @@ export default class PieChart extends Component {
   }
 
   componentDidMount() {
-    this._handleData();
-    this._animations();
+    this._runPieChart();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props && nextProps) {
-      if ((this.props.percentArray.toString() === nextProps.percentArray.toString()) &&
-        (this.props.colorArray.toString() === nextProps.colorArray.toString())) {
-        return;
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    super.componentDidUpdate(prevProps);
+    if (snapshot) {
+      this._runPieChart();
+    }
+  }
+
+  getSnapshotBeforeUpdate(prevProps) {
+    const nextProps = this.props;
+    if (nextProps && prevProps) {
+      if ((nextProps.percentArray.toString() === prevProps.percentArray.toString()) &&
+        (nextProps.colorArray.toString() === prevProps.colorArray.toString())) {
+        return null;
       }
     }
+    return nextProps;
+  }
 
+  _runPieChart = () => {
     // 初始化动画对象
-    if (nextProps) {
-      this.animationArray = [];
-      for (let index = 0; index < nextProps.percentArray.length; index++) {
-        this.animationArray.push(new Animated.Value(0));
-      }
-    }
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (this.props && nextProps) {
-      if ((this.props.percentArray.toString() === nextProps.percentArray.toString()) &&
-        (this.props.colorArray.toString() === nextProps.colorArray.toString())) {
-        return;
-      }
-    }
-    if (nextProps && nextState) {
-      this.props = nextProps;
-      // this.state = nextState;
+    this.animationArray = [];
+    for (let index = 0; index < this.props.percentArray.length; index++) {
+      this.animationArray.push(new Animated.Value(0));
     }
     this._handleData();
     this._animations();

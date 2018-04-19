@@ -21,6 +21,7 @@ export default class GroupItem extends UIComponent {
     // 图标位置
     left: true,
   }
+
   static propsType = {
     // 受控属性：需配合onChange使用更新数据checked
     checked: PropTypes.bool,
@@ -39,21 +40,25 @@ export default class GroupItem extends UIComponent {
     // 图标位置
     left: PropTypes.bool,
   }
+
   static autoStyleSheet = false
+
+  static getDerivedStateFromProps(nextProps) {
+    if (typeof nextProps.checked === 'boolean') {
+      return ({
+        checked: nextProps.checked,
+      });
+    }
+    return null;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       checked: typeof props.checked === 'boolean' ? props.checked : props.defaultChecked,
     };
   }
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
-    if (typeof nextProps.checked === 'boolean') {
-      this.setState({
-        checked: nextProps.checked,
-      });
-    }
-  }
+
   _handleClick = () => {
     const { disabled, checked, onChange } = this.props;
     if (disabled) return;
@@ -69,6 +74,7 @@ export default class GroupItem extends UIComponent {
       onChange(_checked, this);
     }
   }
+
   _renderChildren() {
     const { children, disabled } = this.props;
     if (typeof children === 'string') {
@@ -76,6 +82,7 @@ export default class GroupItem extends UIComponent {
     }
     return children;
   }
+
   render() {
     const { style } = this;
     const {
@@ -102,6 +109,7 @@ export default class GroupItem extends UIComponent {
     );
   }
 }
+
 GroupItem.baseStyle = {
   container: {
     flexDirection: 'row',

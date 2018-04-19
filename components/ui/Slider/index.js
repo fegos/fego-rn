@@ -94,7 +94,18 @@ export default class Slider extends UIComponent {
       allMeasured: false,
       value: new Animated.Value(typeof this.props.value === 'number' ? this.props.value : this.props.defaultValue),
     };
+
+    this._panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: this._handleStartShouldSetPanResponder,
+      onMoveShouldSetPanResponder: this._handleMoveShouldSetPanResponder,
+      onPanResponderGrant: this._handlePanResponderGrant,
+      onPanResponderMove: this._handlePanResponderMove,
+      onPanResponderRelease: this._handlePanResponderEnd,
+      onPanResponderTerminationRequest: this._handlePanResponderRequestEnd,
+      onPanResponderTerminate: this._handlePanResponderEnd,
+    });
   }
+
   render() {
     const {
       minimumValue,
@@ -169,23 +180,10 @@ export default class Slider extends UIComponent {
     );
   }
 
-  componentWillMount() {
-    super.componentWillMount();
-    this._panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: this._handleStartShouldSetPanResponder,
-      onMoveShouldSetPanResponder: this._handleMoveShouldSetPanResponder,
-      onPanResponderGrant: this._handlePanResponderGrant,
-      onPanResponderMove: this._handlePanResponderMove,
-      onPanResponderRelease: this._handlePanResponderEnd,
-      onPanResponderTerminationRequest: this._handlePanResponderRequestEnd,
-      onPanResponderTerminate: this._handlePanResponderEnd,
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
-    const newValue = nextProps.value;
-    if (this.props.value !== newValue) {
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
+    const newValue = this.props.value;
+    if (prevProps.value !== newValue) {
       if (this.props.animateTransitions) {
         this._setCurrentValueAnimated(newValue);
       } else {

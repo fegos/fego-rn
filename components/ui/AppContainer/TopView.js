@@ -23,7 +23,7 @@ export default class TopView extends Component {
   state = {
     views: [],
   }
-  componentWillMount() {
+  componentDidMount() {
     RNMessage.on('topView.add', this.add);
     RNMessage.on('topView.remove', this.remove);
     RNMessage.on('topView.removeAll', this.removeAll);

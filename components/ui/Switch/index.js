@@ -5,12 +5,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  PanResponder,
-  View,
-  TouchableHighlight,
-  Animated,
-} from 'react-native';
+import { PanResponder, View, TouchableHighlight, Animated } from 'react-native';
 import { UIComponent } from 'common';
 
 export default class NPSwitch extends UIComponent {
@@ -32,31 +27,40 @@ export default class NPSwitch extends UIComponent {
     // 状态改变回调
     onChange: PropTypes.func,
   }
+
   static autoStyleSheet = false
-  state = {
-    width: 0,
-    active: false,
-    position: null,
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // 若使用受控组件属性
+    if (typeof nextProps.active === 'boolean' && nextProps.active !== prevState.active) {
+      return ({
+        active: nextProps.active,
+      });
+    }
+    return null;
   }
-  componentWillMount() {
-    super.componentWillMount();
-    const { style } = this;
+
+  constructor(props) {
+    super(props);
+
     // 使用了active则defaultActive无效
-    let {
-      active,
-    } = this.props;
+    let { active } = this.props;
     const { defaultActive, disabled } = this.props;
+
     if (typeof active !== 'boolean') {
       active = defaultActive;
     }
     this.start = {};
+
     // 动画起始位置
+    const { style } = this;
     this.w = style.bar.width - Math.min(style.bar.height, style.button.borderRadius * 2);
-    this.setState({
+    this.state = {
       width: this.w,
       active,
       position: new Animated.Value(active ? this.w : 0),
-    });
+    };
+
     this._panResponder = PanResponder.create({
       // 在开始触摸时的捕获期，是否成为响应者
       onStartShouldSetPanResponder: () => true,
@@ -134,14 +138,11 @@ export default class NPSwitch extends UIComponent {
       onShouldBlockNativeResponder: () => true,
     });
   }
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
-    // 若使用受控组件属性
-    if (typeof nextProps.active === 'boolean' && nextProps.active !== this.state.active) {
-      this._changeActive(nextProps.active, true);
-      this.setState({
-        active: nextProps.active,
-      });
+
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
+    if (typeof this.props.active === 'boolean' && prevProps.active !== this.props.active) {
+      this._changeActive(this.props.active, true);
     }
   }
 

@@ -79,6 +79,13 @@ export default class GesturePassword extends UIComponent {
     onFinish: PropTypes.func,
   }
   static autoStyleSheet = false
+
+  static getDerivedStateFromProps(nextProps) {
+    return ({
+      isWarning: nextProps.isWarning,
+    });
+  }
+
   // 构造
   constructor(props) {
     super(props);
@@ -99,14 +106,7 @@ export default class GesturePassword extends UIComponent {
     this._currentLine = null; // 当前手势线所在的圆圈拉出来的线
     this._timer = null;
     this._sequence = []; // 记录手势经过的圆圈的序列号
-  }
 
-  shouldComponentUpdate() {
-    return true;
-  }
-
-  componentWillMount() {
-    super.componentWillMount();
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
@@ -117,11 +117,8 @@ export default class GesturePassword extends UIComponent {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
-    this.setState({
-      isWarning: nextProps.isWarning,
-    });
+  shouldComponentUpdate() {
+    return true;
   }
 
   render() {

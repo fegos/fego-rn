@@ -12,6 +12,7 @@ export default class Group extends UIComponent {
   static defaultProps = {
     isSingle: true,
   }
+
   static propTypes = {
     // 受控属性，选中的项对应的value，需配合onChange使用
     value: PropTypes.oneOfType([
@@ -28,6 +29,16 @@ export default class Group extends UIComponent {
     // 是否是单选
     isSingle: PropTypes.bool,
   }
+
+  static getDerivedStateFromProps(nextProps) {
+    if ('value' in nextProps && nextProps.value.toString() !== this.props.value.toString()) {
+      return ({
+        value: nextProps.value,
+      });
+    }
+    return null;
+  }
+
   constructor(props) {
     super(props);
 
@@ -35,13 +46,7 @@ export default class Group extends UIComponent {
       value: 'value' in props ? props.value : props.defaultValue,
     };
   }
-  componentWillReceiveProps(nextProps) {
-    if ('value' in nextProps && nextProps.value.toString() !== this.props.value.toString()) {
-      this.setState({
-        value: nextProps.value,
-      });
-    }
-  }
+
   updateSelectValue(value, checked) {
     const valueArr = this.state.value.concat();
 

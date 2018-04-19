@@ -122,22 +122,20 @@ export default class Carousel extends UIComponent {
    *
    * @memberof Carousel
    */
-  componentWillMount() {
-    super.componentWillMount();
+  componentDidMount() {
     this._updateChildrenCount(this.props);
     if (this.state.curPage >= this._childrenCount) {
       this.state.curPage = 0;
     }
     this._updateActualLoadPageCount(this.props);
     this._updateLoadPageRegion(this.props, this.state.curPage);
-  }
-
-  componentDidMount() {
     this._setTimerIfNeed(this.props, this.state.curPage);
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
+
+    const nextProps = this.props;
     this._updateChildrenCount(nextProps);
     this._updateActualLoadPageCount(nextProps);
     this._updateLoadPageRegion(nextProps, this.state.curPage);

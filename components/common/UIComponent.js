@@ -107,37 +107,39 @@ export default class UIComponent extends Component {
    * 若子类需要纯对象，则设成false
    */
   static autoStyleSheet = true
-  /**
-   * 挂载前执行一次
-   */
-  componentWillMount() {
+
+  constructor(props) {
+    super(props);
     this._handlePropStyle();
     this.updateStyle();
   }
+
   /**
-   * 每次接受prop时执行
-   * @param {} nextProps
-   */
-  componentWillReceiveProps(nextProps) {
-    if (this.shouldComponentUpdate(nextProps)) {
-      this.updateStyle(nextProps);
-    }
-  }
-  /**
-   * 性能优化使用
-   * @param {*} nextProps
-   * @param {*} nextState
-   */
+ * 性能优化使用
+ * @param {*} nextProps
+ * @param {*} nextState
+ */
   shouldComponentUpdate(nextProps, nextState) {
     // props 或 state 有变化是才render
     if (!isEqual(nextProps, this.props)) return true;
     if (nextState && !isEqual(nextState, this.state)) return true;
     return false;
   }
+
+  /**
+   * 每次接受prop时执行
+   * @param {} nextProps
+   */
+  componentDidUpdate(prevProps) {
+    if (!isEqual(this.props, prevProps)) {
+      this.updateStyle(this.props);
+    }
+  }
+
   /**
    * 组件当前有效的样式
-   * 由 componentWillMount，componentWillReceiveProps 负责刷新style
-   * 若子类使用上面的钩子则需要先调用父类方法，如 super.componentWillReceiveProps
+   * 由 componentDidUpdate 负责刷新style
+   * 若子类使用上面的钩子则需要先调用父类方法，如 super.componentDidUpdate
    */
   style = {}
   /**
