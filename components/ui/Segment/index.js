@@ -32,14 +32,16 @@ export default class Segment extends UIComponent {
     };
   }
   static autoStyleSheet = false
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
-    if (nextProps.index !== this.props.index) {
-      this.setState({
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.index !== prevState.index) {
+      return ({
         index: nextProps.index,
       });
     }
+    return null;
   }
+
   _onPress(i, value, e) {
     const { disabled, onChange, index } = this.props;
     if (disabled) return;

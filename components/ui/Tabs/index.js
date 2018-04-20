@@ -108,13 +108,13 @@ export default class Tabs extends UIComponent {
     }, 0);
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
 
-    const { activeKey, children } = nextProps;
+    const { activeKey, children } = this.props;
     this._updateTabBarItems(children);
     // 受控属性，由父元素告知 activeKey 来进行更新
-    if (activeKey !== undefined && activeKey !== this.props.activeKey) {
+    if (activeKey !== undefined && activeKey !== prevProps.activeKey) {
       const idx = this._getIndex(activeKey);
       this._setCurrentPage(idx);
     }

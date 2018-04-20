@@ -209,14 +209,12 @@ export default class Carousel extends UIComponent {
     let childrenCount;
     if (childrenType === 'image') {
       childrenCount = source.length;
+    } else if (Array.isArray(children)) {
+      childrenCount = children.length;
+    } else if (React.isValidElement(children)) {
+      childrenCount = 1;
     } else {
-      if (Array.isArray(children)) {
-        childrenCount = children.length;
-      } else if (React.isValidElement(children)) {
-        childrenCount = 1
-      } else {
-        childrenCount = 0;
-      }
+      childrenCount = 0;
     }
     return childrenCount;
   }
@@ -287,38 +285,36 @@ export default class Carousel extends UIComponent {
     if (actualLoadPageCount === 1) {
       startPage = 0;
       endPage = 0;
-    } else {
-      if (mode === 'all') {
-        if (infinite) {
-          startPage = -1;
-          endPage = actualLoadPageCount - 2;
+    } else if (mode === 'all') {
+      if (infinite) {
+        startPage = -1;
+        endPage = actualLoadPageCount - 2;
+      } else {
+        startPage = 0;
+        endPage = actualLoadPageCount - 1;
+      }
+    } else if (mode === 'preload') {
+      const halfCount = Math.floor(actualLoadPageCount / 2);
+      if (infinite) {
+        startPage = curPage - halfCount;
+        endPage = startPage + actualLoadPageCount - 1;
+      } else if (actualLoadPageCount === childrenCount) {
+        startPage = 0;
+        endPage = actualLoadPageCount - 1;
+      } else if (curPage - halfCount > 0) {
+        if (curPage + halfCount >= childrenCount - 1) {
+          endPage = childrenCount - 1;
+          startPage = endPage - actualLoadPageCount + 1;
         } else {
-          startPage = 0;
-          endPage = actualLoadPageCount - 1;
-        }
-      } else if (mode === 'preload') {
-        const halfCount = Math.floor(actualLoadPageCount / 2);
-        if (infinite) {
           startPage = curPage - halfCount;
-          endPage = startPage + actualLoadPageCount - 1;
-        } else if (actualLoadPageCount === childrenCount) {
-          startPage = 0;
-          endPage = actualLoadPageCount - 1;
-        } else if (curPage - halfCount > 0) {
-          if (curPage + halfCount >= childrenCount - 1) {
-            endPage = childrenCount - 1;
-            startPage = endPage - actualLoadPageCount + 1;
-          } else {
-            startPage = curPage - halfCount;
-            endPage = startPage + actualLoadPageCount - 1;
-          }
-        } else {
-          startPage = 0;
           endPage = startPage + actualLoadPageCount - 1;
         }
       } else {
-        console.warn(`不支持的mode:${mode}`);
+        startPage = 0;
+        endPage = startPage + actualLoadPageCount - 1;
       }
+    } else {
+      console.warn(`不支持的mode:${mode}`);
     }
     this.setState({
       startPage,
@@ -655,12 +651,10 @@ export default class Carousel extends UIComponent {
               <Image key={key} resizeMode="stretch" source={{ uri: sourceEl, ...size }} />
             );
           }
+        } else if (Array.isArray(children)) {
+          page = children[fixedIdx];
         } else {
-          if (Array.isArray(children)) {
-            page = children[fixedIdx];
-          } else {
-            page = children;
-          }
+          page = children;
         }
       } else {
         page = (

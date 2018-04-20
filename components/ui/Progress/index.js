@@ -46,11 +46,11 @@ export default class Progress extends UIComponent {
     this.viewWidth = Dimensions.get('window').width;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.appearTransition && nextProps.percent !== this.props.percent) {
+  componentDidUpdate(prevProps) {
+    if (this.props.appearTransition && prevProps.percent !== this.props.percent) {
       const curStyle = this.style;
       const w = curStyle.container ? (curStyle.container.width || this.viewWidth) : this.viewWidth;
-      const pw = this._getPercentWidth(w, nextProps.percent);
+      const pw = this._getPercentWidth(w, this.props.percent);
 
       Animated.timing(this.state.percentage, {
         toValue: pw,

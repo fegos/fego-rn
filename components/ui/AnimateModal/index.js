@@ -65,15 +65,21 @@ export default class AnimateModal extends UIComponent {
   /**
    * lifecycle
    */
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
-    if (this.props.visible !== nextProps.visible) {
-      this.setState({
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.modalVisible !== nextProps.visible) {
+      return ({
         modalVisible: true,
       });
-      this._animateDialog(nextProps.visible);
+    }
+    return null;
+  }
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
+    if (this.props.visible !== prevProps.visible) {
+      this._animateDialog(this.props.visible);
     }
   }
+
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.visible !== nextProps.visible) {
       return true;

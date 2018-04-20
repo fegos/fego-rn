@@ -41,14 +41,14 @@ class PickerView extends UIComponent {
     this._getInitialState(props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps();
-
-    if (!this.isArrayEquals(nextProps.data, this.props.data)) {
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate();
+    const nextProps = this.props;
+    if (!this.isArrayEquals(nextProps.data, prevProps.data)) {
       this._handleData(nextProps);
     }
 
-    if (nextProps.value !== undefined && !this.isArrayEquals(nextProps.value, this.props.value)) {
+    if (nextProps.value !== undefined && !this.isArrayEquals(nextProps.value, prevProps.value)) {
       const { value } = nextProps;
       const pickerData = this.cascade ? this.state.cascadeData : this.data;
       const label = [];

@@ -29,9 +29,11 @@ export default class PickerAndroid extends UIComponent {
   }
 
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps();
-    this._scrollTo(nextProps.selectedIndex, true);
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate();
+    if (prevProps.selectedIndex !== this.props.selectedIndex) {
+      this._scrollTo(this.props.selectedIndex, true);
+    }
   }
 
   _scrollTo(index, animated = true) {

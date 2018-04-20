@@ -76,8 +76,8 @@ export default class TabBar extends UIComponent {
 
     this.state = {
       tabBarWidth: props.barWidth,
-      itemWidth: this._getItemWidth(props, props.barWidth),
-      left: new Animated.Value(props.activeIdx * this._getItemWidth(props, props.barWidth)),
+      itemWidth: TabBar.getItemWidth(props, props.barWidth),
+      left: new Animated.Value(props.activeIdx * TabBar.getItemWidth(props, props.barWidth)),
     };
 
     this._contentOffsetX = 0;
@@ -89,19 +89,26 @@ export default class TabBar extends UIComponent {
     }, 0);
   }
 
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
-    const index = nextProps.activeIdx;
-    const { itemWidth, tabBarWidth } = this.state;
-    const newItemWidth = this._getItemWidth(nextProps, tabBarWidth);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { itemWidth, tabBarWidth } = prevState;
+    const newItemWidth = TabBar.getItemWidth(nextProps, tabBarWidth);
     if (itemWidth !== newItemWidth) {
-      this.setState({
+      return ({
         itemWidth: newItemWidth,
-      }, () => {
-        this._animatedToIndex(index);
       });
-    } else if (index !== this.props.activeIdx) {
-      this._animatedToIndex(index, nextProps);
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps) {
+    super.componentDidUpdate(prevProps);
+
+    const index = this.props.activeIdx;
+    const { itemWidth, tabBarWidth } = this.state;
+    const newItemWidth = TabBar.getItemWidth(this.props, tabBarWidth);
+
+    if (itemWidth !== newItemWidth || index !== prevProps.activeIdx) {
+      this._animatedToIndex(index, this.props);
     }
   }
 
@@ -112,7 +119,7 @@ export default class TabBar extends UIComponent {
    * @returns
    * @memberof TabBar
    */
-  _getItemWidth(props, tabBarWidth) {
+  static getItemWidth(props, tabBarWidth) {
     const { itemWidth, items } = props;
     if (itemWidth) {
       return itemWidth;
@@ -202,7 +209,7 @@ export default class TabBar extends UIComponent {
     const { tabBarWidth, activeIdx } = this.state;
     if (width !== tabBarWidth) {
       this.setState({
-        itemWidth: this._getItemWidth(this.props, width),
+        itemWidth: TabBar.getItemWidth(this.props, width),
         tabBarWidth: width,
       }, () => {
         this._animatedToIndex(activeIdx);

@@ -80,19 +80,15 @@ export default class Calendar extends UIComponent {
     this.handleMinAndManDate(props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    /**
-     * 子组件调用 componentWillReceiveProps 和 componentWillMount 两个钩子
-     * 需先使用 super.func() 调父类的同名方法，进行覆盖
-     */
-    super.componentWillReceiveProps(nextProps);
-    if ('selectedDate' in nextProps && nextProps.selectedDate.getTime() !== this.props.selectedDate.getTime()) {
-      this.setState({
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if ('selectedDate' in nextProps && nextProps.selectedDate.getTime() !== prevState.selectedDate.getTime()) {
+      return ({
         month: nextProps.selectedDate.getMonth(),
         year: nextProps.selectedDate.getFullYear(),
         selectedDate: nextProps.selectedDate,
       });
     }
+    return null;
   }
 
   handleMinAndManDate(props) {

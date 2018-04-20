@@ -95,19 +95,18 @@ class Picker extends UIComponent {
       selectedValue: props.value === undefined ? props.defaultValue : props.value,
     };
   }
-
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps();
-    if ('visible' in nextProps && nextProps.visible !== this.props.visible) {
-      this.setState({
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if ('visible' in nextProps && nextProps.visible !== prevState.visible) {
+      return ({
         visible: nextProps.visible,
       });
     }
-    if (nextProps.value !== undefined && nextProps.value.toString() !== this.props.value.toString()) {
-      this.setState({
+    if (nextProps.value !== undefined && nextProps.value.toString() !== prevState.selectedValue.toString()) {
+      return ({
         selectedValue: nextProps.value,
       });
     }
+    return null;
   }
 
   // 确认按钮
@@ -156,13 +155,13 @@ class Picker extends UIComponent {
               onChange={this._onChange}
             />
           ) : (
-            <DatePicker
-              dataPickRef={(el) => { this._pickerView = el; }}
-              {...this.props}
-              mode={this.props.datePickerMode}
-              initialValue={this.props.defaultDateValue}
-              onChange={this._onChange}
-            />
+              <DatePicker
+                dataPickRef={(el) => { this._pickerView = el; }}
+                {...this.props}
+                mode={this.props.datePickerMode}
+                initialValue={this.props.defaultDateValue}
+                onChange={this._onChange}
+              />
             )}
 
         {/* footer */}

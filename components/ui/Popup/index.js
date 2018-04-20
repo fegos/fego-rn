@@ -79,34 +79,31 @@ export default class Popup extends UIComponent {
   static show = Api.show
   static hide = Api.hide
   static hideAll = Api.hideAll
-  // 关闭类型
-  closeType = null
+
   constructor(props) {
     super(props);
-    const { visible, aniIn, aniOut } = props;
+    const { visible } = props;
     this.state = {
-      modalVisible: props.visible,
-      position: new Animated.Value(this._getPosition(visible, aniIn, aniOut)),
+      closeType: null,
+      position: new Animated.Value(Popup.getPosition(props, null)),
+      modalVisible: visible,
       opacity: new Animated.Value(this._getOpacity(visible)),
     };
   }
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
-    const { visible, aniIn, aniOut } = this.props;
-    if (nextProps.aniIn !== aniIn || nextProps.aniOut !== aniOut) {
-      this.setState({
-        position: new Animated.Value(this._getPosition(visible, nextProps.aniIn, nextProps.aniOut)),
-      });
-    }
-    if (this.shouldComponentUpdate(nextProps)) {
-      // 一直可见，直到动画结束
-      this.setState({
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.visible !== prevState.modalVisible) {
+      const props = Object.assign({}, nextProps, { visible: prevState.modalVisible });
+      return ({
+        position: new Animated.Value(Popup.getPosition(props, prevState.closeType)),
         modalVisible: true,
       });
     }
+    return null;
   }
+
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.visible || this.props.visible !== nextProps.visible) {
+    if (this.props.visible !== nextProps.visible) {
       return true;
     }
     if (nextState) {
@@ -116,17 +113,27 @@ export default class Popup extends UIComponent {
     }
     return false;
   }
+
   componentDidUpdate(prevProps) {
     const { visible } = this.props;
     if (prevProps.visible !== visible) {
       this._aniPosition(visible);
       this._aniOpacity(visible);
     }
-    // 隐藏后还原关闭类型
-    if (!visible) this.closeType = null;
   }
-  _getPosition(visible, aniIn, aniOut) {
-    const tempAniOut = this._getAniOut(aniIn, aniOut);
+
+  // aniOut取值优先级 aniOutFn>aniOut>aniIn
+  static getAniOut(props, closeType) {
+    const { aniIn, aniOut, aniOutFn } = props;
+    let _aniOut;
+    if (aniOutFn && closeType) _aniOut = aniOutFn(closeType);
+    _aniOut = _aniOut || aniOut || aniIn;
+    return _aniOut;
+  }
+
+  static getPosition(props, closeType) {
+    const { visible, aniIn } = props;
+    const tempAniOut = Popup.getAniOut(props, closeType);
     switch (visible ? aniIn : tempAniOut) {
       case 'bottom':
         return visible ? 0 : height;
@@ -143,27 +150,25 @@ export default class Popup extends UIComponent {
   _getOpacity(visible) {
     return visible ? this.props.maskOpacity : 0;
   }
-  // aniOut取值优先级 aniOutFn>aniOut>aniIn
-  _getAniOut(aniIn, aniOut) {
-    const { aniOutFn } = this.props;
-    let _aniOut;
-    if (aniOutFn && this.closeType) _aniOut = aniOutFn(this.closeType, this);
-    _aniOut = _aniOut || aniOut || aniIn;
-    return _aniOut;
-  }
+
   _aniPosition(visible) {
-    const { aniIn, aniOut } = this.props;
     this._stopAniPosition();
-    this.aniPosition = Animated.timing(this.state.position, {
-      toValue: this._getPosition(visible, aniIn, aniOut),
-      duration: this.props.aniTime,
-    }).start(() => {
+    this.aniPosition = Animated.timing(
+      this.state.position,
+      {
+        toValue: Popup.getPosition(this.props, this.state.closeType),
+        duration: this.props.aniTime,
+      },
+    ).start(() => {
       this.aniPosition = null;
       if (this.props.onAniEnd) {
         this.props.onAniEnd(visible);
       }
       if (!visible) {
-        this.setState({ modalVisible: false });
+        this.setState({
+          modalVisible: false,
+          closeType: null,
+        });
       }
     });
   }
@@ -192,11 +197,12 @@ export default class Popup extends UIComponent {
     }
   }
   _dissmiss = (type) => {
-    this.closeType = type;
+    this.setState({ closeType: type });
     if (this.props.onClose) {
       this.props.onClose(type);
     }
   }
+
   _renderHeaderType(type) {
     const { style } = this;
     let headerEl = this.props[type];
@@ -218,6 +224,7 @@ export default class Popup extends UIComponent {
       </TouchableWithoutFeedback>
     );
   }
+
   _renderHeader() {
     const { style } = this;
     let { title } = this.props;
@@ -228,15 +235,16 @@ export default class Popup extends UIComponent {
     }
     return !title ? null : <View style={style.header}>{leftEl}{title}{rightEl}</View>;
   }
+
   render() {
     if (!this.state.modalVisible) return null;
     const { style } = this;
     const {
-      children, aniIn, aniOut, location, offsetHeight, visible,
+      children, aniIn, location, offsetHeight, visible,
     } = this.props;
     const { position, opacity } = this.state;
     const headerEl = this._renderHeader();
-    const aniFrom = visible ? aniIn : this._getAniOut(aniIn, aniOut);
+    const aniFrom = visible ? aniIn : Popup.getAniOut(this.props, this.state.closeType);
     const locationMap = {
       top: 'flex-start',
       bottom: 'flex-end',

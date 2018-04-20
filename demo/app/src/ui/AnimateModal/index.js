@@ -15,6 +15,8 @@ export default class Page extends Component {
       multiModalVisible: false,
       springEffect: false,
       maskClosable: true,
+      mod2Visible: false,
+      mod3Visible: false,
     };
   }
   render() {
@@ -45,7 +47,8 @@ export default class Page extends Component {
               officialModalVisible: true,
             });
           }}
-        >弹出modal
+        >
+          弹出modal
         </Button>
         <Modal
           animationType={officialAnimationType}
@@ -57,6 +60,7 @@ export default class Page extends Component {
             <Button onPress={() => this.setState({ officialModalVisible: false })}>关闭</Button>
           </View>
         </Modal>
+
         <Text style={[Style.title, { marginTop: 15 }]}>AnimateModal（同一时间只允许弹出一个模态）</Text>
         <Group
           style={{ marginTop: 15, flexDirection: 'column' }}
@@ -125,6 +129,7 @@ export default class Page extends Component {
           onPress={() => { this.setState({ multiModalVisible: true }); }}
         >多模态框叠加（不建议使用，且iOS仅支持一级）
         </Button>
+
         <AnimateModal
           visible={this.state.multiModalVisible}
           onClose={() => this.setState({ multiModalVisible: false })}
@@ -140,6 +145,7 @@ export default class Page extends Component {
             <Button onPress={() => this.setState({ multiModalVisible: false })}>关闭</Button>
           </View>
         </AnimateModal>
+
         <AnimateModal
           animationType={animationType}
           visible={this.state.mod2Visible}
@@ -158,6 +164,7 @@ export default class Page extends Component {
             <Button onPress={() => this.setState({ mod2Visible: false })}>关闭</Button>
           </View>
         </AnimateModal>
+
         <AnimateModal
           visible={this.state.mod3Visible}
           onClose={() => this.setState({ mod3Visible: false })}

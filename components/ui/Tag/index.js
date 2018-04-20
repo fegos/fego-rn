@@ -52,13 +52,13 @@ export default class Tag extends UIComponent {
       checked: typeof props.checked === 'boolean' ? props.checked : props.defaultChecked,
     };
   }
-  componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps(nextProps);
-    if (this.props.checked !== nextProps.checked) {
-      this.setState({
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.checked !== nextProps.checked) {
+      return ({
         checked: nextProps.checked,
       });
     }
+    return null;
   }
   _onCloseClick = () => {
     const { onClose } = this.props;

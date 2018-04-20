@@ -9,7 +9,8 @@ subTitle: 饼图
 使用的页面必须有`state`初始化，可以为空，用来触发动画的绘制。
 若从外部传入参数，则建议使用
 
-componentWillReceiveProps(nextProps) {
+componentDidUpdate(prevProps) {
+  const nextProps=this.props;
 	if (nextProps) {
 		this.setState({
 			percent: nextProps.percent,
@@ -19,7 +20,6 @@ componentWillReceiveProps(nextProps) {
 				percent: nextProps.percent,
 			})
 		}, 0);
-
 	}
 }
 

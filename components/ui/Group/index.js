@@ -30,8 +30,8 @@ export default class Group extends UIComponent {
     isSingle: PropTypes.bool,
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    if ('value' in nextProps && nextProps.value.toString() !== this.props.value.toString()) {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if ('value' in nextProps && nextProps.value.toString() !== prevState.value.toString()) {
       return ({
         value: nextProps.value,
       });
