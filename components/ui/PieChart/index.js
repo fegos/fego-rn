@@ -63,7 +63,6 @@ export default class PieChart extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    super.componentDidUpdate(prevProps);
     if (snapshot) {
       this._runPieChart();
     }

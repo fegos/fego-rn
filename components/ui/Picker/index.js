@@ -147,14 +147,17 @@ class Picker extends UIComponent {
 
         {/* middle */}
         {
-          this.props.mode === 'dataPicker' ? (
-            <PickerView
-              ref={(pw) => { this._pickerView = pw; }}
-              data={data}
-              initialValue={this.state.selectedValue}
-              onChange={this._onChange}
-            />
-          ) : (
+          this.props.mode === 'dataPicker' ?
+            (
+              <PickerView
+                ref={(pw) => { this._pickerView = pw; }}
+                data={data}
+                initialValue={this.state.selectedValue}
+                onChange={this._onChange}
+              />
+            )
+            :
+            (
               <DatePicker
                 dataPickRef={(el) => { this._pickerView = el; }}
                 {...this.props}
@@ -163,7 +166,6 @@ class Picker extends UIComponent {
                 onChange={this._onChange}
               />
             )}
-
         {/* footer */}
         {this.props.footer ? this._renderFooterView(style, style.footerHorizontalView, okText, title, cancelText) : null}
 
