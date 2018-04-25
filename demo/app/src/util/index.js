@@ -10,6 +10,7 @@ class TestView extends Component {
       <TestListView
         {...this.props}
         list={[
+          { title: '升级测试', page: 'util/Test' },
           { title: 'Fetch', page: 'util/Fetch' },
           { title: 'SocketIO', page: 'util/SocketIO' },
         ]}
