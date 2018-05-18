@@ -21,8 +21,6 @@ const windowWidth = Dimensions.get('window').width;
 
 export default class Carousel extends UIComponent {
   static defaultProps = {
-    mode: 'all',
-    preloadPageCount: 5,
     childrenType: 'image',
     size: { width: windowWidth, height: windowWidth * 180 / 375 },
     source: [],
@@ -53,8 +51,6 @@ export default class Carousel extends UIComponent {
   }
 
   static propTypes = {
-    // 加载模式
-    mode: PropTypes.oneOf(['all', 'preload']),
     // 子view种类
     childrenType: PropTypes.oneOf(['image', 'custom']),
     // 图片尺寸
@@ -79,8 +75,6 @@ export default class Carousel extends UIComponent {
     showPagination: PropTypes.bool,
     // 分隔符
     paginationSeparator: PropTypes.string,
-    // 预加载数量
-    preloadPageCount: PropTypes.number,
     // 左右翻动按钮
     showArrows: PropTypes.bool,
     // 左按钮
@@ -108,12 +102,14 @@ export default class Carousel extends UIComponent {
 
     this._prePage = 0;
     this._hasUpdatedDisplayRegion = false;
-    const { defaultPage, preloadPageCount } = props;
+    const { defaultPage } = props;
     this._scrollView = null;
     this.state = {
+      childrenCount: 0,
+      actualLoadPageCount: 0,
       curPage: defaultPage,
       startPage: 0,
-      endPage: preloadPageCount - 1,
+      endPage: 0,
     };
   }
 
@@ -123,23 +119,44 @@ export default class Carousel extends UIComponent {
    * @memberof Carousel
    */
   componentDidMount() {
-    this._updateChildrenCount(this.props);
-    if (this.state.curPage >= this._childrenCount) {
+    const childrenCount = Carousel._getChildrenCount(this.props);
+    this._updateChildrenCount(childrenCount);
+    if (this.state.curPage >= childrenCount) {
       this.state.curPage = 0;
     }
-    this._updateActualLoadPageCount(this.props);
-    this._updateLoadPageRegion(this.props, this.state.curPage);
-    this._setTimerIfNeed(this.props, this.state.curPage);
+    const actualLoadPageCount = Carousel._getActualLoadPageCount(this.props, childrenCount);
+    this._updateActualLoadPageCount(actualLoadPageCount);
+    this._updateLoadPageRegion(this.props, this.state.curPage, actualLoadPageCount);
+    this._setTimerIfNeed(this.props, this.state.curPage, childrenCount);
   }
 
-  componentDidUpdate(prevProps) {
-    super.componentDidUpdate(prevProps);
-
-    const nextProps = this.props;
-    this._updateChildrenCount(nextProps);
-    this._updateActualLoadPageCount(nextProps);
-    this._updateLoadPageRegion(nextProps, this.state.curPage);
-    this._setTimerIfNeed(nextProps, this.state.curPage);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const childrenCount = Carousel._getChildrenCount(nextProps);
+    const actualLoadPageCount = Carousel._getActualLoadPageCount(nextProps, childrenCount);
+    let { curPage } = prevState;
+    const { infinite } = nextProps;
+    let startPage;
+    let endPage;
+    if (actualLoadPageCount === 1) {
+      startPage = 0;
+      endPage = 0;
+    } else if (infinite) {
+      startPage = -1;
+      endPage = actualLoadPageCount - 2;
+    } else {
+      startPage = 0;
+      endPage = actualLoadPageCount - 1;
+    }
+    if (curPage > endPage) {
+      curPage = endPage;
+    }
+    return {
+      curPage,
+      childrenCount,
+      actualLoadPageCount,
+      startPage,
+      endPage,
+    };
   }
 
   componentWillUnmount() {
@@ -166,13 +183,13 @@ export default class Carousel extends UIComponent {
    *
    * @memberof Carousel
    */
-  _setTimerIfNeed = (props, curPage) => {
+  _setTimerIfNeed = (props, curPage, childrenCount) => {
     const { autoPlay, infinite } = props;
     if (autoPlay) {
       let reachEnd = false;
-      if (this._childrenCount < 2) {
+      if (childrenCount < 2) {
         reachEnd = true;
-      } else if (!infinite && curPage >= this._childrenCount - 1) {
+      } else if (!infinite && curPage >= childrenCount - 1) {
         reachEnd = true;
       }
       if (!reachEnd) {
@@ -200,11 +217,13 @@ export default class Carousel extends UIComponent {
    *
    * @memberof Carousel
    */
-  _updateChildrenCount = (props) => {
-    this._childrenCount = this._getChildrenCount(props);
+  _updateChildrenCount = (childrenCount) => {
+    this.setState({
+      childrenCount,
+    });
   }
 
-  _getChildrenCount = (props) => {
+  static _getChildrenCount = (props) => {
     const { childrenType, source, children } = props;
     let childrenCount;
     if (childrenType === 'image') {
@@ -224,31 +243,27 @@ export default class Carousel extends UIComponent {
    *
    * @memberof Carousel
    */
-  _updateActualLoadPageCount = (props) => {
+  _updateActualLoadPageCount = (actualLoadPageCount) => {
+    this.setState({
+      actualLoadPageCount,
+    });
+  }
+
+  static _getActualLoadPageCount = (props, childrenCount) => {
     const {
-      mode, preloadPageCount, infinite,
+      infinite,
     } = props;
-    const childrenCount = this._childrenCount;
     let actualLoadPageCount;
     if (childrenCount <= 1) {
       actualLoadPageCount = 1;
-    } else if (mode === 'all') {
-      if (infinite) {
-        actualLoadPageCount = childrenCount + 2;
-      } else {
-        actualLoadPageCount = childrenCount;
-      }
-    } else if (mode === 'preload') {
-      if (childrenCount >= preloadPageCount) {
-        actualLoadPageCount = preloadPageCount;
-      } else if (childrenCount === 2 && infinite) {
-        actualLoadPageCount = 3;
-      } else {
-        actualLoadPageCount = childrenCount;
-      }
+    } else if (infinite) {
+      actualLoadPageCount = childrenCount + 2;
+    } else {
+      actualLoadPageCount = childrenCount;
     }
-    this._actualLoadPageCount = actualLoadPageCount;
+    return actualLoadPageCount;
   }
+
 
   /**
    * 是否需要更新页面加载区间
@@ -256,14 +271,12 @@ export default class Carousel extends UIComponent {
    * @memberof Carousel
    */
   _shouldUpdateLoadPageRegion = (props, nextProps) => {
-    const { mode: preMode, preloadPageCount: prePreloadPageCount, infinite: preInfinite } = props;
-    const { mode, preloadPageCount, infinite } = nextProps;
+    const { infinite: preInfinite } = props;
+    const { infinite } = nextProps;
     const preChildrenCount = this._getChildrenCount(props);
     const childrenCount = this._getChildrenCount(nextProps);
     let shouldUpdate = false;
     if (preChildrenCount !== childrenCount ||
-      preMode !== mode ||
-      prePreloadPageCount !== preloadPageCount ||
       preInfinite !== infinite) {
       shouldUpdate = true;
     }
@@ -275,46 +288,20 @@ export default class Carousel extends UIComponent {
    *
    * @memberof Carousel
    */
-  _updateLoadPageRegion = (props, curPage) => {
-    const { mode, infinite } = props;
-    const childrenCount = this._childrenCount;
-    const actualLoadPageCount = this._actualLoadPageCount;
+  _updateLoadPageRegion = (props, curPage, actualLoadPageCount) => {
+    const { infinite } = props;
 
     let startPage;
     let endPage;
     if (actualLoadPageCount === 1) {
       startPage = 0;
       endPage = 0;
-    } else if (mode === 'all') {
-      if (infinite) {
-        startPage = -1;
-        endPage = actualLoadPageCount - 2;
-      } else {
-        startPage = 0;
-        endPage = actualLoadPageCount - 1;
-      }
-    } else if (mode === 'preload') {
-      const halfCount = Math.floor(actualLoadPageCount / 2);
-      if (infinite) {
-        startPage = curPage - halfCount;
-        endPage = startPage + actualLoadPageCount - 1;
-      } else if (actualLoadPageCount === childrenCount) {
-        startPage = 0;
-        endPage = actualLoadPageCount - 1;
-      } else if (curPage - halfCount > 0) {
-        if (curPage + halfCount >= childrenCount - 1) {
-          endPage = childrenCount - 1;
-          startPage = endPage - actualLoadPageCount + 1;
-        } else {
-          startPage = curPage - halfCount;
-          endPage = startPage + actualLoadPageCount - 1;
-        }
-      } else {
-        startPage = 0;
-        endPage = startPage + actualLoadPageCount - 1;
-      }
+    } else if (infinite) {
+      startPage = -1;
+      endPage = actualLoadPageCount - 2;
     } else {
-      console.warn(`不支持的mode:${mode}`);
+      startPage = 0;
+      endPage = actualLoadPageCount - 1;
     }
     this.setState({
       startPage,
@@ -334,20 +321,10 @@ export default class Carousel extends UIComponent {
     this.setState({
       curPage,
     }, () => {
-      const { onChange, mode } = this.props;
+      const { onChange } = this.props;
       const { startPage } = this.state;
       onChange && onChange(curPage);
-      if (mode === 'preload') {
-        this._placeCritical(curPage, startPage);
-      }
     });
-  }
-
-  _updateDisplay = () => {
-    if (Platform.OS === 'ios' && this.props.mode === 'preload') {
-      this._updateLoadPageRegion(this.props, this._targetPage);
-      this._updateCurPage(this._targetPage);
-    }
   }
 
   /**
@@ -360,15 +337,14 @@ export default class Carousel extends UIComponent {
       return;
     }
 
-    const childrenCount = this._childrenCount;
-    const actualLoadPageCount = this._actualLoadPageCount;
+    const { childrenCount, actualLoadPageCount } = this.state;
     if (targetPage >= childrenCount) {
       console.warn(`目标页超出显示范围！！${targetPage}`);
       return;
     }
 
     const {
-      mode, size, direction, infinite,
+      size, direction, infinite,
     } = this.props;
     const { curPage, startPage } = this.state;
     const { width, height } = size;
@@ -382,56 +358,38 @@ export default class Carousel extends UIComponent {
       return;
     }
 
-
-    if (mode === 'all') {
-      let actualTargetPage = targetPage;
-      if (infinite) {
-        actualTargetPage = targetPage + 1;
-        let tempTargetPage;
-        if (childrenCount === 2) {
-          if (forward && targetPage === 0) {
-            tempTargetPage = 0;
-          } else if (!forward && targetPage === 1) {
-            tempTargetPage = childrenCount + 1;
-          }
-        } else if (curPage === 0 && targetPage === childrenCount - 1) {
-          tempTargetPage = actualLoadPageCount - 1;
-        } else if (curPage === childrenCount - 1 && targetPage === 0) {
+    let actualTargetPage = targetPage;
+    if (infinite) {
+      actualTargetPage = targetPage + 1;
+      let tempTargetPage;
+      if (childrenCount === 2) {
+        if (forward && targetPage === 0) {
           tempTargetPage = 0;
+        } else if (!forward && targetPage === 1) {
+          tempTargetPage = childrenCount + 1;
         }
+      } else if (curPage === 0 && targetPage === childrenCount - 1) {
+        tempTargetPage = actualLoadPageCount - 1;
+      } else if (curPage === childrenCount - 1 && targetPage === 0) {
+        tempTargetPage = 0;
+      }
 
-        if (tempTargetPage !== undefined) {
-          if (direction === 'horizontal') {
-            this._scrollTo(tempTargetPage * width, 0, false);
-          } else {
-            this._scrollTo(0, tempTargetPage * height, false);
-          }
+      if (tempTargetPage !== undefined) {
+        if (direction === 'horizontal') {
+          this._scrollTo(tempTargetPage * width, 0, false);
+        } else {
+          this._scrollTo(0, tempTargetPage * height, false);
         }
-      }
-
-      if (direction === 'horizontal') {
-        this._scrollTo(actualTargetPage * width, 0, animated);
-      } else {
-        this._scrollTo(0, actualTargetPage * height, animated);
-      }
-
-      this._updateCurPage(targetPage);
-    } else if (mode === 'preload') {
-      const actualTargetPage = targetPage === 0 ? curPage + 1 : targetPage;
-      if (direction === 'horizontal') {
-        this._scrollTo((actualTargetPage - startPage) * width, 0, animated);
-      } else {
-        this._scrollTo(0, (actualTargetPage - startPage) * height, animated);
-      }
-      if (Platform.OS === 'ios') {
-        this._targetPage = targetPage;
-      } else {
-        setTimeout(() => {
-          this._updateLoadPageRegion(this.props, targetPage);
-          this._updateCurPage(targetPage);
-        }, 300);
       }
     }
+
+    if (direction === 'horizontal') {
+      this._scrollTo(actualTargetPage * width, 0, animated);
+    } else {
+      this._scrollTo(0, actualTargetPage * height, animated);
+    }
+
+    this._updateCurPage(targetPage);
   }
 
   /**
@@ -491,9 +449,10 @@ export default class Carousel extends UIComponent {
    *
    * @memberof Carousel
    */
-  _scrollTo = (offsetX, offsetY, animated) => {
+  _scrollTo = (offsetX, offsetY, animate) => {
     if (this.scrollView) {
-      this.scrollView.scrollTo({ y: offsetY, x: offsetX, animated });
+      console.log(animate);
+      this.scrollView.scrollTo({ y: offsetY, x: offsetX, animated: animate });
     }
   }
 
@@ -502,14 +461,13 @@ export default class Carousel extends UIComponent {
    */
   _placeCritical = (curPage, startPage) => {
     const {
-      mode, direction, size, infinite,
+      direction, size, infinite,
     } = this.props;
     const { width, height } = size;
-    const childrenCount = this._childrenCount;
-
+    const { childrenCount } = this.state;
     if (childrenCount === 1) {
       this._scrollTo(0, 0, false);
-    } else if (mode === 'all') {
+    } else {
       let actualCurPage = curPage;
       if (infinite) {
         actualCurPage = curPage + 1;
@@ -518,12 +476,6 @@ export default class Carousel extends UIComponent {
         this._scrollTo(actualCurPage * width, 0, false);
       } else {
         this._scrollTo(0, actualCurPage * height, false);
-      }
-    } else if (mode === 'preload') {
-      if (direction === 'horizontal') {
-        this._scrollTo((curPage - startPage) * width, 0, false);
-      } else {
-        this._scrollTo(0, (curPage - startPage) * height, false);
       }
     }
   }
@@ -542,7 +494,7 @@ export default class Carousel extends UIComponent {
 
   _onScrollEndDrag = (event) => {
     const { direction, infinite } = this.props;
-    const { curPage } = this.state;
+    const { curPage, childrenCount } = this.state;
     const { contentOffset } = event.nativeEvent;
     let newCurPage = curPage;
     if (event.nativeEvent) {
@@ -560,13 +512,13 @@ export default class Carousel extends UIComponent {
       }
     }
     if (!infinite &&
-      ((curPage === this._childrenCount - 1 && newCurPage > curPage) ||
+      ((curPage === childrenCount - 1 && newCurPage > curPage) ||
         (curPage === 0 && newCurPage < 0))) {
       return;
     }
     const fixedPage = this._getFixedPageIdx(newCurPage);
     this._setTimerIfNeed(this.props, fixedPage);
-    this._changeToPage(fixedPage, false);
+    this._changeToPage(fixedPage, true);
   }
 
   /**
@@ -577,20 +529,10 @@ export default class Carousel extends UIComponent {
   render() {
     const { style } = this;
     const {
-      showArrows, showDot, showPagination, direction, size, preloadPageCount, mode,
+      showArrows, showDot, showPagination, direction, size,
     } = this.props;
     const horizontal = direction === 'horizontal';
-    const childrenCount = this._childrenCount;
-    if (mode === 'preload' && preloadPageCount < 3) {
-      return (
-        <View style={[style.container, {
-          ...size, backgroundColor: 'gray', alignItems: 'center', justifyContent: 'center',
-        }]}
-        >
-          <Text style={{ fontSize: 15, color: 'white' }}>预加载页数需要大于2张！</Text>
-        </View>
-      );
-    }
+    const { childrenCount } = this.state;
 
     if (!this._hasUpdatedDisplayRegion) {
       return (
@@ -619,14 +561,12 @@ export default class Carousel extends UIComponent {
   _renderContent = (childrenCount) => {
     const { style } = this;
     const {
-      curPage, startPage, endPage,
+      curPage, startPage, endPage, actualLoadPageCount,
     } = this.state;
     const {
-      childrenType, direction, children, source, size, mode,
+      childrenType, direction, children, source, size,
     } = this.props;
     const horizontal = direction === 'horizontal';
-    const actualLoadPageCount = this._actualLoadPageCount;
-
     const contentSize = {
       width: horizontal ? size.width * actualLoadPageCount : size.width,
       height: horizontal ? size.height : size.height * actualLoadPageCount,
@@ -638,9 +578,7 @@ export default class Carousel extends UIComponent {
       if (childrenCount) {
         if (childrenType === 'image') {
           let key = `image${fixedIdx + 10}`;
-          if (childrenCount === 2 || mode === 'all') {
-            key = `image${idx + 10}`;
-          }
+          key = `image${idx + 10}`;
           const sourceEl = source[fixedIdx];
           if (typeof sourceEl === 'number') {
             page = (
@@ -662,9 +600,7 @@ export default class Carousel extends UIComponent {
         );
       }
       let key = `page${fixedIdx + 100}`;
-      if (childrenCount === 2 || mode === 'all') {
-        key = `page${idx + 100}`;
-      }
+      key = `page${idx + 100}`;
       const touchablePage = (
         <TouchableWithoutFeedback
           key={key}
@@ -705,7 +641,6 @@ export default class Carousel extends UIComponent {
             }
           }
         }
-        onMomentumScrollEnd={this._updateDisplay}
       >
         {scrollChildren}
       </ScrollView >
@@ -733,7 +668,7 @@ export default class Carousel extends UIComponent {
             if (idx < this.state.curPage) {
               forward = false;
             }
-            this._changeToPage(idx, false, forward);
+            this._changeToPage(idx, true, forward);
           }}
         >
           <View
