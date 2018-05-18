@@ -6,7 +6,7 @@ import Icon from '../Icon';
 
 export default class Item extends UIComponent {
   static defaultProps = {
-    underlayColor: '#F9F9F9',
+    underlayColor: '#eeeeee',
     hasRightArrow: false,
     rightArrowIconName: 'angle-right',
     isLast: false,
@@ -40,27 +40,10 @@ export default class Item extends UIComponent {
   static autoStyleSheet = false;
 
   render() {
-    const children = this._renderChildren();
-    const { onPress, onLongPress, underlayColor } = this.props;
-    if (onPress || onLongPress) {
-      return (
-        <TouchableHighlight
-          underlayColor={underlayColor}
-          onPress={(e) => { onPress && onPress(e); }}
-          onLongPress={(e) => { onLongPress && onLongPress(e); }}
-        >
-          {children}
-        </TouchableHighlight>
-      );
-    }
-    return children;
-  }
-
-  _renderChildren = () => {
     const { style } = this;
     let { children } = this.props;
     const {
-      title, iconName, iconFamily, hasRightArrow, rightArrowIconName, rightArrowIconFamily, isLast,
+      onPress, onLongPress, underlayColor, title, iconName, iconFamily, hasRightArrow, rightArrowIconName, rightArrowIconFamily, isLast,
     } = this.props;
 
     if (!children) {
@@ -68,6 +51,26 @@ export default class Item extends UIComponent {
         <Text style={style.title}>{title}</Text>
       ) : ({ title });
     }
+
+    if (onPress || onLongPress) {
+      return (
+        <View style={style.container}>
+          <TouchableHighlight
+            style={{ flex: 1 }}
+            underlayColor={underlayColor}
+            onPress={(e) => { onPress && onPress(e); }}
+            onLongPress={(e) => { onLongPress && onLongPress(e); }}
+          >
+            <View style={[style.content, isLast && style.noLine]}>
+              {iconName ? <Icon name={iconName} family={iconFamily} style={style.icon} /> : null}
+              {children}
+              {hasRightArrow ? <Icon name={rightArrowIconName} family={rightArrowIconFamily} style={style.rightArrow} /> : null}
+            </View>
+          </TouchableHighlight>
+        </View>
+      );
+    }
+
     return (
       <View style={[style.container, isLast && style.noLine]}>
         <View style={style.content}>
@@ -86,19 +89,19 @@ Item.baseStyle = {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 10,
-    paddingLeft: 20,
-    paddingRight: 10,
-    paddingBottom: 10,
-    borderBottomColor: '#ededed',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginBottom: 10,
     backgroundColor: 'white',
-    // width: 120,
   },
   content: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingRight: 10,
+    marginLeft: 20,
+    borderBottomColor: '#eeeeee',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   icon: {
     fontSize: 15,
