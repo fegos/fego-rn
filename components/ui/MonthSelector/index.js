@@ -28,6 +28,7 @@ export default class MonthSelector extends UIComponent {
     // 选中回调
     onSelect: PropTypes.func,
   }
+  static autoStyleSheet = false
   static months = []
   static startMonth = '201609'
   static setStartMonths(value) {
@@ -181,7 +182,7 @@ export default class MonthSelector extends UIComponent {
 
           </ScrollView>
         </View>
-        <Button title="取消" onPress={this._onClose} style={style.btn} textColor="#858DA0" />
+        <Button title="取消" onPress={this._onClose} styles={{ container: style.btn, text: { color: style.btnText.color, fontSize: style.btnText.fontSize } }} />
       </View>
     );
   }
@@ -223,5 +224,9 @@ MonthSelector.baseStyle = {
     borderWidth: 0,
     marginTop: 10,
     backgroundColor: '#ffffff',
+  },
+  btnText: {
+    color: '#858DA0',
+    fontSize: 16,
   },
 };
