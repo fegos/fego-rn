@@ -203,9 +203,40 @@ export default class Page extends Component {
           showDot={showDot}
           showPagination={showPagination}
           showArrows={showArrows}
+          size={{ width, height: width * 180 / 375 }}
+        />
+
+        <ScrollView
+          style={{ width, height: width * 180 / 375 }}
+          ref={(c) => {
+            if (c) {
+              this.scrollView = c;
+            }
+          }}
+          onScrollBeginDrag={() => {
+            console.log('==onScrollBeginDrag==');
+          }}
+          onScrollEndDrag={() => {
+            console.log('==onScrollEndDrag==');
+          }}
+          onMomentumScrollEnd={() => {
+            console.log('==onMomentumScrollEnd==');
+          }}
+          alwaysBounceHorizontal={false}
+          alwaysBounceVertical={false}
+          contentInset={{ top: 0 }}
+          automaticallyAdjustContentInsets={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          horizontal
+          pagingEnabled
+          bounces={false}
+          pinchGestureEnabled={false}
         >
-          <Image resizeMode="stretch" source={source[0]} style={{ width, height: width * 180 / 375 }} />
-        </Carousel>
+          <View style={{ width, height: width * 180 / 375, backgroundColor: 'red' }} />
+          <View style={{ width, height: width * 180 / 375, backgroundColor: 'green' }} />
+          <View style={{ width, height: width * 180 / 375, backgroundColor: 'blue' }} />
+        </ScrollView >
 
       </ScrollView >
     );

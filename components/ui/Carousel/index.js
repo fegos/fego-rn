@@ -5,11 +5,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  Animated,
   View,
   Text,
   Image,
   Platform,
-  ScrollView,
   Dimensions,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -204,6 +204,9 @@ export default class Carousel extends UIComponent {
     const { curPage } = this.state;
     if (onPress) {
       onPress(curPage);
+    }
+    if (__DEV__) {
+      console.log(`=====轮播图 onPress=======${curPage}`);
     }
   }
 
@@ -416,7 +419,12 @@ export default class Carousel extends UIComponent {
    */
   _scrollTo = (offsetX, offsetY, animate) => {
     if (this.scrollView) {
-      console.log(animate);
+      if (Platform.OS === 'android') {
+        animate = true;
+      }
+      if (__DEV__) {
+        console.log(`=====_scrollTo=====${offsetX}|${animate}`);
+      }
       this.scrollView.scrollTo({ y: offsetY, x: offsetX, animated: animate });
     }
   }
@@ -449,7 +457,10 @@ export default class Carousel extends UIComponent {
    * scrollview事件回调
    */
   _onScrollBeginDrag = (event) => {
-    const { direction, infinite } = this.props;
+    if (__DEV__) {
+      console.log('=====_onScrollBeginDrag=======');
+    }
+    const { direction } = this.props;
     const { contentOffset } = event.nativeEvent;
     this._beginOffset = direction === 'horizontal' ? contentOffset.x : contentOffset.y;
     this._clearTimer();
@@ -458,6 +469,9 @@ export default class Carousel extends UIComponent {
   }
 
   _onScrollEndDrag = (event) => {
+    if (__DEV__) {
+      console.log('=====_onScrollEndDrag=======');
+    }
     if (Platform.OS === 'ios') {
       const { direction, infinite } = this.props;
       const { curPage, childrenCount } = this.state;
@@ -493,6 +507,9 @@ export default class Carousel extends UIComponent {
   }
 
   _onMomentumScrollEnd = (event) => {
+    if (__DEV__) {
+      console.log('=====_onMomentumScrollEnd=======');
+    }
     const { direction, infinite, size } = this.props;
     const { childrenCount, curPage } = this.state;
     const { contentOffset } = event.nativeEvent;
@@ -598,13 +615,14 @@ export default class Carousel extends UIComponent {
         }
         const key = `page${idx + 100}`;
         const touchablePage = (
-          <TouchableWithoutFeedback
+          <TouchableOpacity
+            activeOpacity={1.0}
             key={key}
             style={{ ...size }}
             onPress={this._onPress}
           >
             {page}
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
         );
         scrollChildren.push(touchablePage);
       }
@@ -626,8 +644,13 @@ export default class Carousel extends UIComponent {
     }
 
     return (
-      <ScrollView
-        ref={(c) => { this.scrollView = c; }}
+      <Animated.ScrollView
+        ref={(c) => {
+          if (c) {
+            // this.scrollView = c;
+            this.scrollView = c._component;
+          }
+        }}
         onScrollBeginDrag={this._onScrollBeginDrag}
         onScrollEndDrag={this._onScrollEndDrag}
         onMomentumScrollEnd={this._onMomentumScrollEnd}
@@ -650,14 +673,17 @@ export default class Carousel extends UIComponent {
         onLayout={
           (e) => {
             if (e) {
-              console.log('onLayout');
               this._placeCritical(curPage);
             }
           }
         }
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: this.state.animatedValue } } }],
+          { useNativeDriver: true }, // <-- Add this
+        )}
       >
         {scrollChildren}
-      </ScrollView >
+      </Animated.ScrollView >
     );
   }
 
@@ -682,7 +708,9 @@ export default class Carousel extends UIComponent {
             if (idx < this.state.curPage) {
               forward = false;
             }
+            this._clearTimer();
             this._changeToPage(idx, true, forward);
+            this._setTimerIfNeed(this.props, idx);
           }}
         >
           <View
@@ -717,7 +745,10 @@ export default class Carousel extends UIComponent {
             if (!infinite && curPage === 0) {
               return;
             }
-            this._changeToPage(this._getFixedPageIdx(curPage - 1), true, false);
+            this._clearTimer();
+            const fixedCurPage = this._getFixedPageIdx(curPage - 1);
+            this._changeToPage(fixedCurPage, true, false);
+            this._setTimerIfNeed(this.props, fixedCurPage);
           }}
         >
           {leftArrowView}
@@ -746,7 +777,10 @@ export default class Carousel extends UIComponent {
             if (!infinite && curPage === childrenCount - 1) {
               return;
             }
-            this._changeToPage(this._getFixedPageIdx(curPage + 1), true, true);
+            this._clearTimer();
+            const fixedCurPage = this._getFixedPageIdx(curPage + 1);
+            this._changeToPage(fixedCurPage, true, false);
+            this._setTimerIfNeed(this.props, fixedCurPage);
           }}
         >
           {rightArrowView}
