@@ -681,6 +681,7 @@ export default class Carousel extends UIComponent {
           [{ nativeEvent: { contentOffset: { y: this.state.animatedValue } } }],
           { useNativeDriver: true }, // <-- Add this
         )}
+        scrollEventThrottle={16}
       >
         {scrollChildren}
       </Animated.ScrollView >
