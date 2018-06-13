@@ -193,6 +193,12 @@ export default class Carousel extends UIComponent {
     this._clearTimer();
   }
 
+  componentDidUpdate(preProps) {
+    if (preProps.autoPlay !== this.props.autoPlay) {
+      this._setTimerIfNeed(this.props, this.state.curPage);
+    }
+  }
+
   /**
    * methods
    *
