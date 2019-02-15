@@ -1,12 +1,110 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PieChart Tests renders correctly 1`] = `
-<Text
-  accessible={true}
-  allowFontScaling={true}
-  disabled={false}
-  ellipsizeMode="tail"
+<ARTSurfaceView
+  style={
+    Array [
+      undefined,
+      Object {
+        "height": 80,
+        "width": 80,
+      },
+    ]
+  }
 >
-  PieChart
-</Text>
+  <ARTGroup
+    opacity={1}
+    transform={
+      Array [
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+      ]
+    }
+  >
+    <ARTShape
+      d={Array []}
+      fill={null}
+      opacity={1}
+      stroke={null}
+      strokeCap={1}
+      strokeDash={null}
+      strokeJoin={1}
+      strokeWidth={1}
+      transform={
+        Array [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+        ]
+      }
+    />
+    <ARTShape
+      d={Array []}
+      fill={null}
+      opacity={1}
+      stroke={null}
+      strokeCap={1}
+      strokeDash={null}
+      strokeJoin={1}
+      strokeWidth={1}
+      transform={
+        Array [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+        ]
+      }
+    />
+    <ARTShape
+      d={Array []}
+      fill={null}
+      opacity={1}
+      stroke={null}
+      strokeCap={1}
+      strokeDash={null}
+      strokeJoin={1}
+      strokeWidth={1}
+      transform={
+        Array [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+        ]
+      }
+    />
+    <ARTShape
+      d={Array []}
+      fill={null}
+      opacity={1}
+      stroke={null}
+      strokeCap={1}
+      strokeDash={null}
+      strokeJoin={1}
+      strokeWidth={1}
+      transform={
+        Array [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+        ]
+      }
+    />
+  </ARTGroup>
+</ARTSurfaceView>
 `;

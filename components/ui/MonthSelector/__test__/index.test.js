@@ -57,7 +57,7 @@ describe('MonthPicker Tests', () => {
     // 初始选中3
     expect(wrapper.instance().state.value).toBe('3');
     // 找到2并选择
-    wrapper.childAt(0).childAt(0).childAt(0).childAt(1)
+    wrapper.childAt(0).childAt(0).childAt(1)
       .simulate('press');
     expect(wrapper.instance().state.value).toBe('2');
   });

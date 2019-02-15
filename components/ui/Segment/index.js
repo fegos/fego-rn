@@ -34,7 +34,7 @@ export default class Segment extends UIComponent {
   static autoStyleSheet = false
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.index !== prevState.index) {
+    if (typeof nextProps.index === 'number' && nextProps.index !== prevState.index) {
       return ({
         index: nextProps.index,
       });

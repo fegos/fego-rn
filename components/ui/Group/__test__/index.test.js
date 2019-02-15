@@ -29,7 +29,7 @@ describe('Group Tests', () => {
     it('defaultValue', () => {
       const wrapper = shallow(<Group defaultValue={['english']} isSingle={false}>{content}</Group>);
       expect(wrapper.find(Checkbox)).toHaveLength(3);
-      expect(wrapper.instance().state.valueArr).toHaveLength(1);
+      expect(wrapper.instance().state.value).toHaveLength(1);
     });
   });
   describe('Radio Group', () => {

@@ -30,26 +30,14 @@ describe('Carousel Tests', () => {
     const wrapperWithoutDots = shallow(<Carousel showDot={false}>{content}</Carousel>);
     const wrapperWithArrowsAndPagination = shallow(<Carousel showArrows showPagination showDot={false}>{content}</Carousel>);
     const wrapperWithAll = shallow(<Carousel showArrows showPagination >{content}</Carousel>);
-    expect(wrapper.children()).toHaveLength(2); // dots & content
-    expect(wrapperWithoutDots.children()).toHaveLength(1); // content
-    expect(wrapperWithArrowsAndPagination.children()).toHaveLength(4); // content & rightArrow & leftArrow & pagination
-    expect(wrapperWithAll.children()).toHaveLength(5);
-  });
-
-  it('onChange test', () => {
-    // 非无限循环播放，那么三张会触发两次 onChange
-    // 但是因为 shallow 是将 React 组件渲染成 Virtual DOM 对象
-    // 所以其实是不会触发 didMount 里的计时器的...尴尬...
-    // const onChangeHandler = jest.fn();
-    // const wrapper = shallow(<Carousel infinite={false} onChange={onChangeHandler}>{content}</Carousel>);
-
-    // expect(onChangeHandler).toHaveBeenCalledTimes(0);
+    expect(wrapper.instance().props.showDot).toBe(true); // dots & content
+    expect(wrapperWithoutDots.instance().props.showDot).toBe(false); // content
+    expect(wrapperWithArrowsAndPagination.instance().props.showPagination).toBe(true); // content & rightArrow & leftArrow & pagination
+    expect(wrapperWithAll.instance().props.showArrows).toBe(true);
   });
 
   it('props test', () => {
     const wrapper = shallow(<Carousel defaultPage={1}>{content}</Carousel>);
-
-    expect(wrapper.instance().state.currPage).toBe(1);
     expect(wrapper.instance().props.dotType).toBe('circle');
   });
 });

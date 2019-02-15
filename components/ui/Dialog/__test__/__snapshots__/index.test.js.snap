@@ -16,25 +16,16 @@ exports[`Dialog Tests renders correctly 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "rgba(0,0,0,0)",
-            "flex": 1,
-            "justifyContent": "center",
-          },
-        ]
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "rgba(0,0,0,0)",
+          "flex": 1,
+          "justifyContent": "center",
+        }
       }
     >
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
         accessible={true}
-        collapsable={undefined}
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -51,7 +42,6 @@ exports[`Dialog Tests renders correctly 1`] = `
             "top": 0,
           }
         }
-        testID={undefined}
       >
         <View
           style={
@@ -72,18 +62,12 @@ exports[`Dialog Tests renders correctly 1`] = `
         />
       </View>
       <View
-        collapsable={undefined}
         style={
           Object {
             "backgroundColor": "white",
             "borderRadius": 10,
             "opacity": 1,
             "overflow": "hidden",
-            "transform": Array [
-              Object {
-                "scale": 1,
-              },
-            ],
             "width": 270,
           }
         }
@@ -96,10 +80,6 @@ exports[`Dialog Tests renders correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -124,14 +104,10 @@ exports[`Dialog Tests renders correctly 1`] = `
             }
           >
             <View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-              >
+              <Text>
                 简单对话框
               </Text>
+              Ï
             </View>
           </View>
         </View>

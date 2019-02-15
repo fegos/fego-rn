@@ -2,13 +2,12 @@
 
 exports[`Carousel Tests renders correctly 1`] = `
 <View
-  onLayout={[Function]}
   style={
     Array [
       Object {},
       Object {
-        "height": 0,
-        "width": 0,
+        "height": 360,
+        "width": 750,
       },
     ]
   }
@@ -24,8 +23,8 @@ exports[`Carousel Tests renders correctly 1`] = `
           "position": "relative",
         },
         Object {
-          "height": 0,
-          "width": 0,
+          "height": 360,
+          "width": 750,
         },
       ]
     }
@@ -35,252 +34,27 @@ exports[`Carousel Tests renders correctly 1`] = `
       }
     }
     horizontal={true}
-    onMomentumScrollEnd={undefined}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
     pagingEnabled={true}
+    scrollEventThrottle={16}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
   >
     <View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
         accessible={true}
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={undefined}
-        testID={undefined}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-        >
-          这是一张走马灯
-        </Text>
-      </View>
-      <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={undefined}
-        testID={undefined}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-        >
-          这也是一张走马灯
-        </Text>
-      </View>
-      <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={undefined}
-        testID={undefined}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-        >
-          这还是一张走马灯
-        </Text>
-      </View>
-      <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={undefined}
-        testID={undefined}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-        >
-          这是一张走马灯
-        </Text>
-      </View>
-      <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={undefined}
-        testID={undefined}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-        >
-          这也是一张走马灯
-        </Text>
-      </View>
+      />
     </View>
   </RCTScrollView>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "bottom": 10,
-        "flexDirection": "row",
-        "justifyContent": "center",
-        "left": 0,
-        "position": "absolute",
-        "right": 0,
-      }
-    }
-  >
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hitSlop={undefined}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "rgba(31, 31, 31, 0.2)",
-            "borderColor": "#fff",
-            "borderRadius": 5,
-            "borderWidth": 1,
-            "height": 10,
-            "margin": 5,
-            "width": 10,
-          },
-          Object {
-            "backgroundColor": "#fff",
-          },
-          false,
-        ]
-      }
-      testID={undefined}
-    />
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hitSlop={undefined}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "rgba(31, 31, 31, 0.2)",
-            "borderColor": "#fff",
-            "borderRadius": 5,
-            "borderWidth": 1,
-            "height": 10,
-            "margin": 5,
-            "width": 10,
-          },
-          false,
-        ]
-      }
-      testID={undefined}
-    />
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hitSlop={undefined}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "rgba(31, 31, 31, 0.2)",
-            "borderColor": "#fff",
-            "borderRadius": 5,
-            "borderWidth": 1,
-            "height": 10,
-            "margin": 5,
-            "width": 10,
-          },
-          false,
-        ]
-      }
-      testID={undefined}
-    />
-  </View>
 </View>
 `;

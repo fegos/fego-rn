@@ -1,7 +1,6 @@
 import React from 'react';
 import Renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { describe, it, expect, beforeEach } from 'jest';
 import PickerView from '../index';
 
 describe('PickerView Tests', () => {

@@ -5,11 +5,11 @@ exports[`Input Tests renders correctly 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
+        "alignItems": "stretch",
         "borderBottomColor": "#999",
         "borderBottomWidth": 0.5,
-        "flex": 1,
         "flexDirection": "row",
+        "height": 48,
         "marginBottom": 0,
         "marginLeft": 10,
         "marginTop": 0,
@@ -22,12 +22,9 @@ exports[`Input Tests renders correctly 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
     style={
       Object {
+        "alignSelf": "center",
         "color": "#333",
         "fontSize": 14,
         "marginRight": 5,
@@ -39,6 +36,7 @@ exports[`Input Tests renders correctly 1`] = `
     label
   </Text>
   <TextInput
+    allowFontScaling={true}
     clearButtonMode="never"
     defaultValue=""
     editable={true}
@@ -54,7 +52,8 @@ exports[`Input Tests renders correctly 1`] = `
           "backgroundColor": "#FFF",
           "flex": 1,
           "fontSize": 14,
-          "height": 48,
+          "includeFontPadding": false,
+          "textAlignVertical": "center",
         },
         Object {},
       ]

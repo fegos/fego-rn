@@ -14,18 +14,18 @@ describe('Tag Tests', () => {
 
   it('defaultSelected state', () => {
     const wrapper = shallow(<Tag>I’m a tag</Tag>);
-    expect(wrapper.instance().state.selected).toBe(false);
+    expect(wrapper.instance().state.checked).toBe(false);
 
     wrapper.simulate('press');
-    expect(wrapper.instance().state.selected).toBe(true);
+    expect(wrapper.instance().state.checked).toBe(true);
   });
 
   it('press event', () => {
     const handler = jest.fn();
     const wrapper = shallow(<Tag onPress={handler}>I’m a tag too</Tag>);
 
-    expect(wrapper.instance().state.selected).toBe(false);
+    expect(wrapper.instance().state.checked).toBe(false);
     wrapper.simulate('press');
-    expect(wrapper.instance().state.selected).toBe(true);
+    expect(wrapper.instance().state.checked).toBe(true);
   });
 });

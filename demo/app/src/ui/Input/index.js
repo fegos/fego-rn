@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { Input } from 'fego-rn';
 import { Style } from '../../../common';
 
@@ -26,6 +26,7 @@ export default class Page extends Component {
           autoFocus
           error
           defaultValue="错误状态标红，且自动聚焦"
+          errorStyle={{ alignItems: 'center', justifyContent: 'center' }}
         />
         <Input
           label="正确示例"
@@ -45,7 +46,7 @@ export default class Page extends Component {
           label="标题"
           type="number"
           defaultValue="10000"
-          extra="元"
+          extra={<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}><Text>元</Text></View>}
         />
         <Input
           label="银行卡"
@@ -63,7 +64,7 @@ export default class Page extends Component {
           type="phone"
           value={this.state.inputValue3}
           onChange={(v) => {
-          this.setState({ inputValue3: v });
+            this.setState({ inputValue3: v });
           }}
         />
         <Input defaultValue="输入域默认值，且无标题label" />

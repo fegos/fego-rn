@@ -23,11 +23,6 @@ describe('Radio item', () => {
     const wrapper = shallow(<Radio checked={false} onChange={handler}>使用受控属性checked的Radio</Radio>);
     wrapper.simulate('press');
     expect(handler).toBeCalled();
-    // 使用这种方式来模拟应该在onChange中执行的setState操作吧
-    wrapper.setState({
-      checked: true,
-    });
-    expect(wrapper.instance().state.checked).toBe(true);
   });
 
   it('wrapper name', () => {

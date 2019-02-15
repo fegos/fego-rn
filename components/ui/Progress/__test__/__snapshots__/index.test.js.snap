@@ -2,7 +2,6 @@
 
 exports[`Progress Tests renders correctly 1`] = `
 <View
-  onLayout={undefined}
   style={
     Array [
       Object {
@@ -13,9 +12,8 @@ exports[`Progress Tests renders correctly 1`] = `
         "justifyContent": "center",
       },
       Object {
-        "borderColor": "transparent",
+        "borderColor": undefined,
         "borderRadius": 3,
-        "borderWidth": 0,
         "width": 750,
       },
       null,
@@ -37,10 +35,11 @@ exports[`Progress Tests renders correctly 1`] = `
           "width": 0,
         },
         Object {
-          "borderColor": "#ddd",
+          "borderColor": undefined,
           "borderRadius": 3,
           "borderWidth": 0,
         },
+        null,
       ]
     }
   />

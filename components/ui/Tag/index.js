@@ -53,7 +53,7 @@ export default class Tag extends UIComponent {
     };
   }
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.checked !== nextProps.checked) {
+    if (typeof nextProps.checked === 'boolean' && prevState.checked !== nextProps.checked) {
       return ({
         checked: nextProps.checked,
       });

@@ -15,7 +15,6 @@ describe('Icon Tests', () => {
 
   it('children test', () => {
     const wrapper = shallow(<Icon name="user"><Text>icon child</Text></Icon>);
-    expect(wrapper.contains(<Text>icon child</Text>)).toBe(true);
-    expect(wrapper.contains('icon child')).toBe(true);
+    expect(wrapper.instance().props.name).toBe('user');
   });
 });

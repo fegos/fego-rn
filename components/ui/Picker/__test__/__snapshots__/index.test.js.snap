@@ -9,24 +9,15 @@ exports[`Picker Tests renders correctly 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
-          "backgroundColor": "rgba(0,0,0,0)",
-          "flex": 1,
-          "justifyContent": "flex-end",
-        },
-      ]
+      Object {
+        "backgroundColor": "rgba(0,0,0,0)",
+        "flex": 1,
+        "justifyContent": "flex-end",
+      }
     }
   >
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
       accessible={true}
-      collapsable={undefined}
-      hitSlop={undefined}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -43,7 +34,6 @@ exports[`Picker Tests renders correctly 1`] = `
           "top": 0,
         }
       }
-      testID={undefined}
     >
       <View
         style={
@@ -64,7 +54,6 @@ exports[`Picker Tests renders correctly 1`] = `
       />
     </View>
     <View
-      collapsable={undefined}
       style={
         Object {
           "backgroundColor": "white",
@@ -98,15 +87,8 @@ exports[`Picker Tests renders correctly 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            collapsable={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -122,14 +104,8 @@ exports[`Picker Tests renders correctly 1`] = `
                 "paddingVertical": 10,
               }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -144,10 +120,6 @@ exports[`Picker Tests renders correctly 1`] = `
             </Text>
           </View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#333",
@@ -159,15 +131,8 @@ exports[`Picker Tests renders correctly 1`] = `
             请选择
           </Text>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            collapsable={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -183,14 +148,8 @@ exports[`Picker Tests renders correctly 1`] = `
                 "paddingVertical": 10,
               }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {

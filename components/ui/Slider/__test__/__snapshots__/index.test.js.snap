@@ -3,6 +3,7 @@
 exports[`Slider Tests renders correctly 1`] = `
 <View
   animationType="timing"
+  defaultValue={0}
   disabled={false}
   onLayout={[Function]}
   step={1}
@@ -38,7 +39,6 @@ exports[`Slider Tests renders correctly 1`] = `
     }
   />
   <View
-    collapsable={undefined}
     style={
       Object {
         "backgroundColor": "green",
@@ -51,7 +51,6 @@ exports[`Slider Tests renders correctly 1`] = `
     }
   />
   <View
-    collapsable={undefined}
     onLayout={[Function]}
     style={
       Object {
@@ -71,7 +70,9 @@ exports[`Slider Tests renders correctly 1`] = `
         "width": 30,
       }
     }
-  />
+  >
+    <Image />
+  </View>
   <View
     onMoveShouldSetResponder={[Function]}
     onMoveShouldSetResponderCapture={[Function]}

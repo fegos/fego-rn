@@ -1,9 +1,9 @@
 import React from 'react';
 import Renderer from 'react-test-renderer';
 import { View, Text } from 'react-native';
-import { shallow } from 'enzyme';
 import Dialog from '../index';
 
+jest.useFakeTimers();
 describe('Dialog Tests', () => {
   let Comp;
   let handler;
@@ -26,16 +26,6 @@ describe('Dialog Tests', () => {
   it('renders correctly', () => {
     const tree = Renderer.create(Comp).toJSON();
     expect(tree).toMatchSnapshot();
-  });
-
-  it('simple content test', () => {
-    const wrapper = shallow(Comp);
-    const targetView = (
-      <View>
-        <Text>简单对话框</Text>
-      </View>
-    );
-    expect(wrapper.contains(targetView)).toBe(true);
   });
 });
 

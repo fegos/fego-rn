@@ -346,7 +346,7 @@ class TestView extends Component {
               });
               const data = new FormData();
               data.append('foo', 'bar');
-              data.append('file', '/Users/wangxiang/Desktop/1.txt');
+              data.append('file', '../../../1.txt');
 
               const config = {
                 onUploadProgress: (progressEvent) => {
@@ -357,9 +357,17 @@ class TestView extends Component {
               Fetch.put('/upload/server', data, config)
                 .then((res) => {
                   console.log(res);
+                  this.setState({
+                    fetchMsg: res.retdesc,
+                    list: [],
+                  });
                 })
                 .catch((err) => {
                   console.log(err);
+                  this.setState({
+                    fetchMsg: err.retdesc,
+                    list: [],
+                  });
                 });
             }}
           />
@@ -373,7 +381,7 @@ class TestView extends Component {
     if (isOK) {
       this.setState({
         fetchMsg: '成功',
-        list: obj.data.data.result,
+        list: obj.data.result,
       });
     } else {
       this.setState({

@@ -1,8 +1,9 @@
 import React from 'react';
 import Renderer from 'react-test-renderer';
-import { Text } from 'react-native';
+import { shallow } from 'enzyme';
 import PieChart from '../index';
 
+jest.useFakeTimers();
 describe('PieChart Tests', () => {
   let Comp;
   beforeEach(() => {
@@ -16,13 +17,14 @@ describe('PieChart Tests', () => {
       />
     );
   });
-  if (!Comp) { return; }
+
   it('renders correctly', () => {
-    const tree = Renderer.create(<Text>PieChart</Text>).toJSON();
+    const tree = Renderer.create(Comp).toJSON();
     expect(tree).toMatchSnapshot();
   });
-  // it('other', () => {
-  //   const wrapper = shallow(Comp);
-  //   expect(wrapper.instance().props.innerRadius).toBe(25);
-  // });
+
+  it('other', () => {
+    const wrapper = shallow(Comp);
+    expect(wrapper.instance().props.innerRadius).toBe(25);
+  });
 });

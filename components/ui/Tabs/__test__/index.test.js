@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import Tabs from '../index';
 import TabBar from '../TabBar';
 
+jest.useFakeTimers();
 describe('Tabs Tests', () => {
   let content;
 

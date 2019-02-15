@@ -48,7 +48,9 @@ module.exports = {
       return {
         retcode: 200,
         retdesc: '消息',
-        username: 'username',
+        data: {
+          username: 'username',
+        },
       };
     },
   },
@@ -59,7 +61,18 @@ module.exports = {
       return {
         retcode: 200,
         retdesc: '消息',
-        nickname: 'nickname',
+        data: {
+          nickname: 'nickname',
+        },
+      };
+    },
+  },
+  'upload/server': {
+    delay: 2000,
+    response() {
+      return {
+        retcode: 200,
+        retdesc: '上传成功',
       };
     },
   },

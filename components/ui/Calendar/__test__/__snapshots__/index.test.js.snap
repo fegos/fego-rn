@@ -9,36 +9,60 @@ exports[`Calendar Tests renders correctly 1`] = `
     }
   }
 >
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "alignSelf": "center",
-        "backgroundColor": "transparent",
-        "flexDirection": "row",
-        "marginBottom": 20,
-        "padding": 10,
-        "paddingBottom": 6,
-      }
-    }
-  >
+  <View>
     <View
       style={
         Object {
-          "width": 160,
+          "alignItems": "center",
+          "alignSelf": "center",
+          "backgroundColor": "transparent",
+          "flexDirection": "row",
+          "marginBottom": 20,
+          "padding": 10,
+          "paddingBottom": 6,
         }
       }
     >
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
+        style={
+          Object {
+            "width": 160,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          isTVSelectable={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1188e9",
+                  "fontSize": 28,
+                  "textAlign": "left",
+                },
+              ]
+            }
+          >
+            &lt;
+          </Text>
+        </View>
+      </View>
+      <View
         accessible={true}
-        collapsable={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -50,96 +74,60 @@ exports[`Calendar Tests renders correctly 1`] = `
             "opacity": 1,
           }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
                 "color": "#1188e9",
-                "fontSize": 28,
-                "textAlign": "left",
+                "fontSize": 32,
+                "textAlign": "center",
+                "width": 360,
               },
             ]
           }
         >
-          &lt;
+          2017
+          年
+          12月
         </Text>
       </View>
-    </View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "color": "#1188e9",
-            "fontSize": 32,
-            "textAlign": "center",
-            "width": 360,
-          },
-        ]
-      }
-    >
-      2017
-      年
-      12月
-    </Text>
-    <View
-      style={
-        Object {
-          "width": 160,
-        }
-      }
-    >
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        collapsable={undefined}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "opacity": 1,
+            "width": 160,
           }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
-        <Text
+        <View
           accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
+          isTVSelectable={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "color": "#1188e9",
-                "fontSize": 28,
-                "textAlign": "right",
-              },
-            ]
+            Object {
+              "opacity": 1,
+            }
           }
         >
-          &gt;
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1188e9",
+                  "fontSize": 28,
+                  "textAlign": "right",
+                },
+              ]
+            }
+          >
+            &gt;
+          </Text>
+        </View>
       </View>
     </View>
   </View>
@@ -157,10 +145,6 @@ exports[`Calendar Tests renders correctly 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -178,10 +162,6 @@ exports[`Calendar Tests renders correctly 1`] = `
       周日
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -196,10 +176,6 @@ exports[`Calendar Tests renders correctly 1`] = `
       周一
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -214,10 +190,6 @@ exports[`Calendar Tests renders correctly 1`] = `
       周二
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -232,10 +204,6 @@ exports[`Calendar Tests renders correctly 1`] = `
       周三
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -250,10 +218,6 @@ exports[`Calendar Tests renders correctly 1`] = `
       周四
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -268,10 +232,6 @@ exports[`Calendar Tests renders correctly 1`] = `
       周五
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -315,15 +275,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -335,8 +288,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -357,16 +308,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -393,15 +341,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -413,8 +354,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -435,16 +374,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -471,15 +407,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -491,8 +420,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -513,16 +440,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -549,15 +473,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -569,8 +486,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -591,16 +506,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -627,15 +539,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -647,8 +552,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -669,16 +572,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -705,15 +605,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -725,8 +618,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -747,16 +638,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -781,15 +669,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -801,8 +682,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -823,16 +702,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -867,15 +743,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -887,8 +756,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -909,16 +776,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -945,15 +809,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -965,8 +822,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -987,16 +842,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -1021,15 +873,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1041,8 +886,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1063,16 +906,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -1097,15 +937,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1117,8 +950,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1139,16 +970,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -1173,15 +1001,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1193,8 +1014,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1215,16 +1034,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -1249,15 +1065,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1269,8 +1078,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1291,16 +1098,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -1325,15 +1129,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1345,8 +1142,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1367,16 +1162,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -1411,15 +1203,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1431,8 +1216,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1453,16 +1236,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -1489,15 +1269,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1509,8 +1282,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1531,16 +1302,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -1565,15 +1333,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1585,8 +1346,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1607,16 +1366,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -1641,15 +1397,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1661,8 +1410,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1683,16 +1430,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -1717,15 +1461,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1737,8 +1474,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1759,16 +1494,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -1793,15 +1525,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1813,8 +1538,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1835,16 +1558,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -1869,15 +1589,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1889,8 +1602,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1911,16 +1622,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -1955,15 +1663,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1975,8 +1676,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1997,16 +1696,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -2033,15 +1729,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2053,8 +1742,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2075,16 +1762,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -2109,15 +1793,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2129,8 +1806,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2151,16 +1826,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -2185,15 +1857,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2205,8 +1870,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2227,16 +1890,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -2261,15 +1921,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2281,8 +1934,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2303,16 +1954,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -2337,15 +1985,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2357,8 +1998,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2379,16 +2018,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -2413,15 +2049,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2433,8 +2062,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2455,16 +2082,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -2499,15 +2123,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2519,8 +2136,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2541,16 +2156,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -2577,15 +2189,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2597,8 +2202,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2619,16 +2222,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -2653,15 +2253,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2673,8 +2266,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2695,16 +2286,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -2729,15 +2317,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2749,8 +2330,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2774,16 +2353,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -2810,15 +2386,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2830,8 +2399,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2846,30 +2413,22 @@ exports[`Calendar Tests renders correctly 1`] = `
                   "justifyContent": "center",
                   "width": 60,
                 },
-                Object {
-                  "backgroundColor": "#ecf6ff",
-                  "borderColor": "#1188e9",
-                },
+                false,
                 false,
               ]
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
-                  Object {
-                    "color": "#1188e9",
-                  },
+                  false,
                   false,
                 ]
               }
@@ -2878,25 +2437,6 @@ exports[`Calendar Tests renders correctly 1`] = `
             </Text>
           </View>
         </View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-                "color": "#1188e9",
-                "fontSize": 24,
-                "marginTop": 10,
-                "textAlign": "center",
-              },
-            ]
-          }
-        >
-          今天
-        </Text>
       </View>
       <View
         style={
@@ -2910,15 +2450,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2930,8 +2463,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2952,16 +2483,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {},
                   false,
@@ -2986,15 +2514,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3006,8 +2527,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3028,16 +2547,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -3072,15 +2588,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3092,8 +2601,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3114,16 +2621,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -3150,15 +2654,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3170,8 +2667,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3192,16 +2687,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -3228,15 +2720,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3248,8 +2733,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3270,16 +2753,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -3306,15 +2786,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3326,8 +2799,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3348,16 +2819,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -3384,15 +2852,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3404,8 +2865,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3426,16 +2885,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -3462,15 +2918,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3482,8 +2931,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3504,16 +2951,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",
@@ -3540,15 +2984,8 @@ exports[`Calendar Tests renders correctly 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
           accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3560,8 +2997,6 @@ exports[`Calendar Tests renders correctly 1`] = `
               "opacity": 1,
             }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3582,16 +3017,13 @@ exports[`Calendar Tests renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
                     "backgroundColor": "transparent",
                     "color": "#000",
                     "fontSize": 28,
+                    "fontWeight": "600",
                   },
                   Object {
                     "color": "#666",

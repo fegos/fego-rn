@@ -119,8 +119,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				FBFEEF2D1BC861F4116CF96A /* [CP] Embed Pods Frameworks */,
-				45E5EEE91213B3C00873ADEA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -194,21 +192,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		45E5EEE91213B3C00873ADEA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fegoRN/Pods-fegoRN-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A1F6A6935C2FBCC72012E4C5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,21 +223,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ip=$(ifconfig en0 inet|grep 'inet' |head -1|cut -d \" \" -f 2)\necho $ip>ip.txt";
-			showEnvVarsInLog = 0;
-		};
-		FBFEEF2D1BC861F4116CF96A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-fegoRN/Pods-fegoRN-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -16,158 +16,163 @@ exports[`Tabs Tests renders correctly 1`] = `
     style={
       Array [
         Object {
-          "borderColor": "#ddd",
-          "flexDirection": "row",
-          "height": 42,
+          "width": 750,
         },
         Object {
           "borderBottomWidth": 0.5,
+          "borderColor": "#ddd",
           "borderTopWidth": 0,
+          "flexDirection": "row",
+          "height": 42,
         },
       ]
     }
   >
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel="tab1"
-      accessibilityTraits="button"
-      accessible={true}
-      hitSlop={undefined}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-          "paddingBottom": 0,
-        }
+    <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      bounces={false}
+      contentContainerStyle={
+        Array [
+          Object {
+            "position": "relative",
+          },
+          Object {
+            "height": 42,
+            "width": 750,
+          },
+        ]
       }
-      testID={undefined}
+      horizontal={true}
+      onScrollEndDrag={[Function]}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
+      <View>
+        <View
+          style={
             Object {
-              "color": "#333",
-              "fontSize": 15,
-            },
-            Object {
-              "color": "#108ee9",
-            },
-          ]
-        }
-      >
-        tab1
-      </Text>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel="tab2"
-      accessibilityTraits="button"
-      accessible={true}
-      hitSlop={undefined}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-          "paddingBottom": 0,
-        }
-      }
-      testID={undefined}
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "color": "#333",
-              "fontSize": 15,
-            },
-            Object {},
-          ]
-        }
-      >
-        tab2
-      </Text>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel="tab3"
-      accessibilityTraits="button"
-      accessible={true}
-      hitSlop={undefined}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-          "paddingBottom": 0,
-        }
-      }
-      testID={undefined}
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "color": "#333",
-              "fontSize": 15,
-            },
-            Object {},
-          ]
-        }
-      >
-        tab3
-      </Text>
-    </View>
-    <View
-      collapsable={undefined}
-      style={
-        Object {
-          "backgroundColor": "#108ee9",
-          "bottom": -1,
-          "height": 2,
-          "left": 0,
-          "position": "absolute",
-          "width": 250,
-        }
-      }
-    />
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "height": 42,
+                },
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "paddingBottom": 0,
+                  },
+                  Object {},
+                ],
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontSize": 15,
+                  },
+                  Object {
+                    "color": "#108ee9",
+                  },
+                ]
+              }
+            />
+          </View>
+          <View
+            accessible={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "height": 42,
+                },
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#333",
+                  "fontSize": 15,
+                }
+              }
+            />
+          </View>
+          <View
+            accessible={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "height": 42,
+                },
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "paddingBottom": 0,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#333",
+                  "fontSize": 15,
+                }
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#108ee9",
+                "bottom": -1,
+                "height": 2,
+                "left": 0,
+                "position": "absolute",
+                "width": 250,
+              }
+            }
+          />
+        </View>
+      </View>
+    </RCTScrollView>
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
@@ -178,7 +183,6 @@ exports[`Tabs Tests renders correctly 1`] = `
     keyboardShouldPersistTaps="handled"
     onMomentumScrollBegin={[Function]}
     onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
     pagingEnabled={true}
     scrollEnabled={true}
     scrollEventThrottle={16}
@@ -210,6 +214,11 @@ exports[`Tabs Tests renders correctly 1`] = `
         }
       >
         <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
           tab="tab2"
         />
       </View>
@@ -221,6 +230,11 @@ exports[`Tabs Tests renders correctly 1`] = `
         }
       >
         <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
           tab="tab3"
         />
       </View>

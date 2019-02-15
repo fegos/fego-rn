@@ -2,17 +2,10 @@
 
 exports[`PopMenu Tests renders correctly 1`] = `
 <View
-  onLayout={[Function]}
   style={Object {}}
 >
   <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
     accessible={true}
-    hitSlop={undefined}
-    nativeID={undefined}
-    onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -20,13 +13,8 @@ exports[`PopMenu Tests renders correctly 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={Object {}}
-    testID={undefined}
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={Object {}}
     >
       点我显示 popover 哦

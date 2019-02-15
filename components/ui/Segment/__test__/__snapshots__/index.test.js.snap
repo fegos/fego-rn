@@ -18,13 +18,7 @@ exports[`Segment Tests renders correctly 1`] = `
   }
 >
   <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
     accessible={true}
-    hitSlop={undefined}
-    nativeID={undefined}
-    onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -35,9 +29,9 @@ exports[`Segment Tests renders correctly 1`] = `
       Object {
         "borderWidth": 0,
         "flex": 1,
+        "flexDirection": "row",
       }
     }
-    testID={undefined}
   >
     <View
       style={
@@ -46,14 +40,15 @@ exports[`Segment Tests renders correctly 1`] = `
             "alignItems": "center",
             "backgroundColor": "#FFF",
             "borderColor": "#108ee9",
-            "borderLeftWidth": 0.5,
             "borderStyle": "solid",
             "flex": 1,
             "justifyContent": "center",
             "paddingVertical": 5,
           },
           Object {
+            "borderBottomLeftRadius": 5,
             "borderLeftWidth": 0,
+            "borderTopLeftRadius": 5,
           },
           Object {
             "backgroundColor": "#108ee9",
@@ -64,10 +59,6 @@ exports[`Segment Tests renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -86,13 +77,7 @@ exports[`Segment Tests renders correctly 1`] = `
     </View>
   </View>
   <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
     accessible={true}
-    hitSlop={undefined}
-    nativeID={undefined}
-    onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -103,10 +88,18 @@ exports[`Segment Tests renders correctly 1`] = `
       Object {
         "borderWidth": 0,
         "flex": 1,
+        "flexDirection": "row",
       }
     }
-    testID={undefined}
   >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#108ee9",
+          "width": 0.5,
+        }
+      }
+    />
     <View
       style={
         Array [
@@ -114,7 +107,6 @@ exports[`Segment Tests renders correctly 1`] = `
             "alignItems": "center",
             "backgroundColor": "#FFF",
             "borderColor": "#108ee9",
-            "borderLeftWidth": 0.5,
             "borderStyle": "solid",
             "flex": 1,
             "justifyContent": "center",
@@ -127,10 +119,6 @@ exports[`Segment Tests renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -147,13 +135,7 @@ exports[`Segment Tests renders correctly 1`] = `
     </View>
   </View>
   <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
     accessible={true}
-    hitSlop={undefined}
-    nativeID={undefined}
-    onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -164,10 +146,18 @@ exports[`Segment Tests renders correctly 1`] = `
       Object {
         "borderWidth": 0,
         "flex": 1,
+        "flexDirection": "row",
       }
     }
-    testID={undefined}
   >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#108ee9",
+          "width": 0.5,
+        }
+      }
+    />
     <View
       style={
         Array [
@@ -175,23 +165,21 @@ exports[`Segment Tests renders correctly 1`] = `
             "alignItems": "center",
             "backgroundColor": "#FFF",
             "borderColor": "#108ee9",
-            "borderLeftWidth": 0.5,
             "borderStyle": "solid",
             "flex": 1,
             "justifyContent": "center",
             "paddingVertical": 5,
           },
-          null,
+          Object {
+            "borderBottomRightRadius": 5,
+            "borderTopRightRadius": 5,
+          },
           Object {},
           Object {},
         ]
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {

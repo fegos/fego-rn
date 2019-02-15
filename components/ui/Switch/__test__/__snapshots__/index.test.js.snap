@@ -39,15 +39,8 @@ exports[`Switch Tests renders correctly 1`] = `
     }
   />
   <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
     accessible={true}
-    hasTVPreferredFocus={undefined}
-    hitSlop={undefined}
     isTVSelectable={true}
-    nativeID={undefined}
-    onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -55,24 +48,16 @@ exports[`Switch Tests renders correctly 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Array [
-        Object {
-          "backgroundColor": "transparent",
-        },
-        Object {
-          "height": 30,
-          "left": 1,
-          "position": "absolute",
-          "top": 1,
-          "width": 50,
-        },
-      ]
+      Object {
+        "height": 30,
+        "left": 1,
+        "position": "absolute",
+        "top": 1,
+        "width": 50,
+      }
     }
-    testID={undefined}
-    tvParallaxProperties={undefined}
   >
     <View
-      collapsable={undefined}
       style={
         Object {
           "alignItems": "center",

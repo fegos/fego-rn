@@ -83,7 +83,7 @@ export default {
   'ui/MonthSelector': {
     screen: require('./MonthSelector').default,
     navigationOptions: {
-      title: 'MonthPicker',
+      title: 'MonthSelector',
     },
   },
   'ui/Picker': {
