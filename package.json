@@ -61,7 +61,6 @@
     "socket-mock": "^1.0.1"
   },
   "peerDependencies": {
-    "react": ">=16.0 <=16.4",
     "react-native": ">=0.47 <=0.58"
   },
   "scripts": {
