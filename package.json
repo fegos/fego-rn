@@ -38,6 +38,7 @@
     "@babel/preset-env": "^7.3.1",
     "babel-eslint": "9.0.0",
     "babel-jest": "^24.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "bisheng": "^1.1.2",
     "bisheng-plugin-description": "^0.1.4",
     "bisheng-plugin-react": "^1.0.0",

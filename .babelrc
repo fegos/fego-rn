@@ -9,6 +9,7 @@
         "loose": true,
       }
     ],
+    "transform-class-properties",
     [
       "module-resolver",
       {

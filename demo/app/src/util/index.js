@@ -13,6 +13,7 @@ class TestView extends Component {
           { title: '升级测试', page: 'util/Test' },
           { title: 'Fetch', page: 'util/Fetch' },
           { title: 'SocketIO', page: 'util/SocketIO' },
+          { title: 'Message', page: 'util/Message' },
         ]}
       />
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppContainer } from 'fego-rn';
+import { AppContainer, Message, Toast } from 'fego-rn';
 
 import StackNav from './config/StackNav';
 import Font from './config/font';
@@ -16,6 +16,9 @@ if (__DEV__) {
 export default {
   init: () => {
     Font.init();
+    Message.on('event', () => {
+      Toast.info('监听到事件hello', 2);
+    });
     return AppContainer.setApp(<StackNav />);
   },
 };

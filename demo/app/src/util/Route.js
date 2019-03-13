@@ -2,6 +2,7 @@ const index = require('./index');
 const fetch = require('./Fetch');
 const socket = require('./SocketIO');
 const test = require('./Test');
+const message = require('./Message');
 
 export default {
   'util/index': {
@@ -16,5 +17,8 @@ export default {
 
   'util/SocketIO': {
     screen: socket.default,
+  },
+  'util/Message': {
+    screen: message.default,
   },
 };
