@@ -12,7 +12,7 @@ import {
   Dimensions,
   View,
 } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 import * as Utils from './Utils';
 import Point from './Point';

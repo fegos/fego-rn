@@ -10,7 +10,7 @@ import {
   Text,
   ScrollView,
 } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../../common';
 
 const itemHeight = 36;
 

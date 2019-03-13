@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {
 
 } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../../common';
 import PickerView from '../PickerView';
 
 

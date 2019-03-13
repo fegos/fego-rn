@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { Text, ScrollView } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 import Dialog from './index';
 

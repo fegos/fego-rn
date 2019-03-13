@@ -9,7 +9,7 @@ import {
   PickerIOS,
   Platform,
 } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../../common';
 import PickerAndroid from './PickerAndroid';
 
 class PickerView extends UIComponent {

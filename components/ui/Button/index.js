@@ -14,7 +14,7 @@ import {
   Platform,
 } from 'react-native';
 import merge from 'lodash/merge';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 import ActivityIndicator from '../ActivityIndicator';
 

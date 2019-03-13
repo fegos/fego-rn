@@ -9,7 +9,7 @@ import {
   Text,
   ActivityIndicator,
 } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 export default class FEGOActivityIndicator extends UIComponent {
   static defaultProps = {

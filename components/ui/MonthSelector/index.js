@@ -5,7 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 import Button from '../Button';
 

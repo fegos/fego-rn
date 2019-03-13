@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, Animated, Dimensions } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 export default class Progress extends UIComponent {
   static defaultProps = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, ActivityIndicator, Animated } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 import Icon from '../Icon';
 

@@ -18,8 +18,7 @@
           "./"
         ],
         "alias": {
-          "fego-rn": "./components",
-          "common": "./components/common"
+          "fego-rn": "./components"
         }
       },
     ]

@@ -12,7 +12,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 import AnimateModal from '../AnimateModal';
 import { tip, alert, confirm } from './tip';

@@ -10,7 +10,7 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 import TabBar from './TabBar';
 import TabPane from './TabPane';

@@ -83,7 +83,7 @@
  */
 import React from 'react'
 import { View, Text } from 'react-native'
-import { UIComponent } from 'common'
+import { UIComponent } from '../../common'
 
 export default class SelfMod extends UIComponent {
 	static defaultProps = {

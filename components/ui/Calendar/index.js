@@ -8,7 +8,7 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 import Header from './Header';
 import WeekdayBar from './WeekdayBar';
 import Days from './Month';

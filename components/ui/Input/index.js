@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
 } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 import Icon from '../Icon';
 
 export default class Input extends UIComponent {

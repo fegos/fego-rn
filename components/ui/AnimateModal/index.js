@@ -14,7 +14,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 const screen = Dimensions.get('window');
 

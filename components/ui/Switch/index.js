@@ -6,7 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PanResponder, View, TouchableHighlight, Animated } from 'react-native';
-import { UIComponent } from 'common';
+import { UIComponent } from '../../common';
 
 export default class NPSwitch extends UIComponent {
   static defaultProps = {
