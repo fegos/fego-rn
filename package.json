@@ -1,6 +1,6 @@
 {
   "name": "fego-rn",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "基于 React Native 的移动开发库",
   "author": "esky",
   "main": "components/index.js",
